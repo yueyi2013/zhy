@@ -1,0 +1,529 @@
+*
+{
+    font-size: 12px;
+    scrollbar-face-color: white;
+    scrollbar-highlight-color: white;
+    scrollbar-shadow-color: #00CC00;
+    scrollbar-3dlight-color: #00CC00;
+    scrollbar-arrow-color: #00CC00;
+    scrollbar-track-color: white;
+    scrollbar-darkshadow-color: white;
+    scrollbar-base-color: #00CC00;
+    margin-bottom: 0px;
+}
+a
+{
+    color: #000000;
+    text-decoration: none;
+}
+a:hover
+{
+    color: #000000;
+    text-decoration: underline;
+}
+
+
+
+form
+{
+    padding-right: 1px;
+    padding-left: 1px;
+    padding-bottom: 1px;
+    margin: 1px;
+    padding-top: 1px;
+}
+
+P
+{
+    font-size: 12px;
+    margin: 1px;
+}
+
+div
+{
+    font-size: 12px;
+    line-height: 23px;
+}
+
+/*右侧头部
+*/
+.headerBg
+{
+    width: 172px;
+    height: 31px;
+    background-image: url(../images/left_headbg.gif);
+}
+
+/*
+内容
+*/
+.contentBg
+{
+    width: 160px;
+    text-align: center;
+    cursor: hand;
+    font-family: 宋体;
+    font-size: 9pt;
+    line-height: 21px;
+}
+
+/*Modal Popup
+背景
+*/
+.modalBackground
+{
+    background-color: Gray;
+    filter: alpha(opacity=70);
+    opacity: 0.7;
+}
+
+.modalPopup
+{
+    background-color: #ffffdd;
+    border-width: 3px;
+    border-style: solid;
+    border-color: Gray;
+    padding: 3px;
+    width: 250px;
+}
+
+
+
+
+.modalPopup p
+{
+    padding: 5px;
+}
+
+.modalDragPopup
+{
+    cursor: move;
+    background-color: #DDDDDD;
+    border: solid 1px Gray;
+    color: Black;
+    height: 20px;
+    text-align: right;
+}
+
+
+.boxoff strong
+{
+    background: url("../images/boxoff.gif") no-repeat scroll right -10px transparent;
+    display: block;
+    float: left;
+    font-size: 0;
+    height: 10px;
+    line-height: 100px;
+    overflow: hidden;
+    width: 8px;
+}
+
+.ptr
+{
+    border: 1px solid #E2E2E2;
+    clear: both;
+    height: 25px;
+    overflow: hidden;
+}
+
+
+/*按钮样式*/
+.buttonCss
+{
+    font-family: "Tahoma" , "宋体";
+    font-size: 9pt;
+    color: #003399;
+    border: 1px solid #93bee2;
+    color: #006699;
+    background-color: #e8f4ff;
+    cursor: hand;
+    font-style: normal;
+    height: 20px;
+}
+/*
+验证控件样式
+*/
+.validatorCalloutHighlight
+{
+    background-color: lemonchiffon;
+}
+
+/*
+日历样式
+*/
+.MyCalendar .ajax__calendar_container
+{
+    border: 1px solid #646464;
+    background-color: lemonchiffon;
+    color: Gray;
+}
+/*
+首页菜单
+*/
+.staticMenuItemStyle
+{
+    text-align: center;
+    display: block;
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-left: 0;
+}
+
+.staticMenuItemSelectedStyle
+{
+    border: solid 1px #000;
+}
+
+.staticHoverStyle
+{
+    background-image: url(../Images/bg-black.gif);
+}
+
+.menuItem
+{
+    display: block;
+}
+
+.dynamicMenuItemStyle
+{
+    display: block;
+    border: solid 1px #000;
+    background-color: Silver;
+    color: Red;
+    z-index: 200;
+    position: relative;
+}
+
+.background
+{
+    border: solid 1px #000;
+    background-image: url(../Images/bg-black.gif);
+}
+
+.NavigationMenu
+{
+    font-family: Verdana;
+    font-size: 10pt;
+    color: #FFF;
+    font-weight: 600;
+    z-index: 101;
+    background-image: url(../Images/bg-black.gif);
+}
+
+#h
+{
+    background: #CCCFFF;
+    padding: 5px 0 6px 10px;
+}
+
+#e
+{
+    border: solid 1px #919191;
+    background-image: url(../Images/sub.gif);
+    padding: 0 0 1px;
+}
+
+.menuItemMouseOver, .menuItemSelected
+{
+    border: solid 1px Navy;
+    background-image: url(../Images/bg-black.gif);
+}
+
+.NavigationMenu A:link, .NavigationMenu A:visited, .NavigationMenu A:active
+{
+    text-decoration: none;
+    color: #FFF;
+    display: block;
+}
+
+.currentNodeStyle, .nodeStyle, .rootNodeStyle, a.siteMapPath
+{
+    text-decoration: none;
+    font-family: Verdana;
+    font-size: 10pt;
+}
+
+.dt
+{
+    border: 1px solid #E2E2E2;
+    clear: both;
+    height: 25px;
+    overflow: hidden;
+}
+
+/* common styling */
+.menu
+{
+    font-family: arial, sans-serif;
+    width: 100%;
+    position: relative;
+    margin: 0;
+    font-size: 11px;
+    margin: 5 5 5 5;
+    font-family: Verdana;
+}
+.menu ul li a, .menu ul li a:visited
+{
+    display: block;
+    text-decoration: none;
+    color: #000;
+    width: 104px;
+    height: 20px;
+    text-align: center;
+    color: #fff;
+    border: 1px solid #fff;
+    background-color: Green;
+    line-height: 20px;
+    font-size: 11px;
+    overflow: hidden;
+}
+.menu ul
+{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    width: 955px;
+}
+.menu ul li
+{
+    float: left;
+    margin-right: 1px;
+    position: relative;
+}
+.menu ul li ul
+{
+    display: none;
+}
+/* specific to non IE browsers */
+.menu ul li:hover a
+{
+    color: #fff;
+    background: #36f;
+}
+.menu ul li:hover ul
+{
+    display: block;
+    position: absolute;
+    top: 21px;
+    left: 0;
+    width: 105px;
+}
+.menu ul li:hover ul li a.hide
+{
+    background: #6a3;
+    color: #fff;
+}
+.menu ul li:hover ul li:hover a.hide
+{
+    background: #6fc;
+    color: #000;
+}
+.menu ul li:hover ul li ul
+{
+    display: none;
+}
+.menu ul li:hover ul li a
+{
+    display: block;
+    background: #ddd;
+    color: #000;
+}
+.menu ul li:hover ul li a:hover
+{
+    background: #6fc;
+    color: #000;
+}
+.menu ul li:hover ul li:hover ul
+{
+    display: block;
+    position: absolute;
+    left: 105px;
+    top: 0;
+}
+.menu ul li:hover ul li:hover ul.left
+{
+    left: -105px;
+}
+.lmBack
+{
+    background: url("/images/update/tback2.gif") repeat scroll 0 0 transparent;
+    line-height: 26px;
+    width: 100%;
+}
+
+
+.border
+{
+    border: 1px solid #73B76A;
+    overflow: hidden;
+}
+
+
+
+/* ------------------------------------------------Jquery的样式------------------------------------------------ */
+#gallery img {
+	border: none;
+		}
+
+#gallery_nav {
+	float: left;
+	height: 150px;
+	text-align: center;
+	}
+
+#gallery_output {
+	float: left;
+	width: 780px;
+	height: 350px;
+	overflow: hidden;
+	}
+	
+#word_output{
+    float: left;
+	width: 150px;
+	height: 250px;
+	overflow: hidden;
+}
+
+#gallery_output img {
+	display: block;
+	margin: 20px auto 0 auto;
+	}
+	
+#content {
+	width: 930px;
+    height:450px;
+	padding: 20px;
+	background: #FFF;	
+	border: 1px solid #CCC;
+}
+
+h1 {
+	margin: 0;
+}
+
+hr {
+	border: none;
+	height: 1px; line-height: 1px;
+	background: #CCC;	
+	margin-bottom: 20px;
+	padding: 0;
+}
+
+p {
+	margin: 0;	
+	padding: 7px 0;
+}
+
+.clear {
+	clear: both;
+	line-height: 1px;
+	font-size: 1px;
+}
+
+a { 
+	outline-color: #888;	
+}
+/* ------------------------------------------------Jquery的样式------------------------------------------------ */
+
+/*---------------------------------主导航菜单-------------------------------------------------------------------*/
+#menu ul{
+	padding:0;
+	border:0;
+	list-style:none;
+	line-height:150%;
+	margin-top: 0;
+	margin-right: 0;
+	margin-bottom: 0;
+	margin-left: 15px;
+}
+#menu_out{
+	width:966px;
+	padding-left:4px;
+	margin-left:auto;
+	margin-right:auto;
+	background:url(../lanmu/images/menu_left.gif) no-repeat left top;
+}
+#menu_in{
+	background:url(../images/lanmu/menu_right.gif) no-repeat right top;
+	padding-right:4px;
+}
+#menu{
+	background:url(../images/lanmu/menu_bg.gif) repeat-x;
+	height:73px;
+}
+.menu_line{
+	background:url(../images/lanmu/menu_line.gif) no-repeat center top;
+	width:8px;
+}
+.menu_line2{
+	background:url(../images/lanmu/menu_line2.gif) no-repeat center top;
+	width:15px;
+}
+#nav{
+	padding-left:20px;
+}
+#nav li{
+	float:left;
+	height:35px;
+}
+#nav li a{
+	float:left;
+	display:block;
+	padding-left:6px;
+	height:35px;
+	background:url(../images/lanmu/menu_on_left.gif) no-repeat left top;
+	cursor:pointer;
+	text-decoration:none;
+}
+#nav li a span{
+	float:left;
+	padding:11px 14px 10px 10px;
+	line-height:14px;
+	background:url(../images/lanmu/menu_on_right.gif) no-repeat right top;
+	font-size:14px;
+	font-weight:bold;
+	color:#FFFFFF;
+	text-decoration:none;
+}
+#nav li .nav_on{   /*鼠标经过时变换背景，方便JS获取样式*/
+	background-position:left 100%;
+}
+#nav li .nav_on span{  /*鼠标经过时变换背景，方便JS获取样式*/
+	background-position:right 100%;
+	color:#333333;
+	text-decoration:none;
+	padding:14px 14px 7px 10px;
+}
+/*子栏目*/
+#menu_con{
+	text-align:left;
+	padding-left:20px;
+	clear:both;
+}
+#menu_con li{
+	float:left;
+	height:22px;
+	margin-top:8px;
+}
+#menu_con li a{
+	display:block;
+	float:left;
+	background:url(../images/lanmu/menu_on_left2.gif) no-repeat left top;
+	cursor:pointer;
+	padding-left:3px;
+}
+#menu_con li a span{
+	float:left;
+	padding:6px 10px 4px 10px;
+	line-height:12px;
+	background:url(../images/lanmu/menu_on_right2.gif) no-repeat right top;
+}
+#menu_con li a:hover{
+	text-decoration:none;
+	background:url(../images/lanmu/menu_on_left2.gif) no-repeat left bottom;
+}
+#menu_con li a:hover span{
+	background:url(../images/lanmu/menu_on_right2.gif) no-repeat right bottom;
+}
+/*---------------------------------主导航菜单-------------------------------------------------------------------*/

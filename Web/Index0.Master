@@ -1,0 +1,278 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Index0.master.cs" Inherits="ZHY.Web.Index0" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <%--    <link href="css/manage.css" rel="stylesheet" type="text/css" />
+--%><script src="js/My97DatePicker4.0/WdatePicker.js" type="text/javascript"></script>
+
+    <link href="css/css.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <script language="javascript" type="text/javascript">
+        self.moveTo(0, 0)
+        self.resizeTo(screen.availWidth, screen.availHeight)
+    </script>
+
+    <script type="text/javascript" language="javascript">
+        function qiehuan(num) {
+            for (var id = 0; id <= 15; id++) {
+                if (id == num) {
+                    document.getElementById("qh_con" + id).style.display = "block";
+                    document.getElementById("mynav" + id).className = "nav_on";
+                }
+                else {
+                    document.getElementById("qh_con" + id).style.display = "none";
+                    document.getElementById("mynav" + id).className = "";
+                }
+            }
+        }
+    </script>
+
+</head>
+<body style="margin-left: 0px; margin-top: 0px; background-image: url('../images/bg.gif');
+    background-repeat: repeat">
+    <form id="form1" runat="server">
+    <asp:ScriptManager ID="ScriptManager1" runat="server">
+    </asp:ScriptManager>
+    <div>
+        <table align="center" cellpadding="0" cellspacing="0" width="900px">
+            <tr>
+                <td>
+                    <asp:UpdateProgress ID="UpdateProgress1" runat="server" DynamicLayout="true">
+                        <ProgressTemplate>
+                            &nbsp;正在登录,请稍后......</ProgressTemplate>
+                    </asp:UpdateProgress>
+                    <div id="LoginForm" runat="server" style="width: 100%">
+                        <table cellpadding="0" cellspacing="0" width="100%">
+                            <tr align="left" valign="top">
+                                <td style="width: 38%">
+                                    <asp:UpdatePanel ID="upLogin" runat="server" UpdateMode="Conditional">
+                                        <Triggers>
+                                            <asp:AsyncPostBackTrigger ControlID="lbLogin" EventName="Click" />
+                                        </Triggers>
+                                        <ContentTemplate>
+                                            <asp:Label ID="Label1" runat="server" Text="用户名："></asp:Label>
+                                            <asp:TextBox ID="txtUserName" runat="server" Width="100" MaxLength="20">
+                                            </asp:TextBox>
+                                            <asp:Label ID="Label2" runat="server" Text="密码："></asp:Label>
+                                            <asp:TextBox ID="txtUserPsw" runat="server" Width="100" MaxLength="20">
+                                            </asp:TextBox>
+                                        </ContentTemplate>
+                                    </asp:UpdatePanel>
+                                </td>
+                                <td align="left">
+                                    <asp:LinkButton ID="lbLogin" runat="server" OnClick="lbLogin_Click">[登录]</asp:LinkButton>&nbsp;&nbsp;
+                                    <asp:LinkButton ID="lbRegister" runat="server" PostBackUrl="register.html">[注册]</asp:LinkButton>
+                                </td>
+                                <td align="left">
+                                    <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=624592410&site=qq&menu=yes">
+                                        <img border="0" src="http://wpa.qq.com/pa?p=2:624592410:42" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+                                    &nbsp;&nbsp;&nbsp;&nbsp; <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=397483911&site=qq&menu=yes">
+                                        <img border="0" src="http://wpa.qq.com/pa?p=2:397483911:42" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div id="ExitForm" runat="server" style="display: none">
+                        <table>
+                            <tr>
+                                <td>
+                                    欢迎
+                                    <asp:Label ID="lblMember" runat="server" Text=""></asp:Label>登录 &nbsp:
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr style="background-image: url('../images/b13.gif'); background-repeat: repeat-x">
+                <td>
+                    <table cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <td>
+                                <asp:Image ID="imgIndex" runat="server" ImageUrl="~/images/top.png" />
+                            </td>
+                            <td align="left" valign="top">
+                                <%--<fieldset style="width: 300px">
+                                <legend>友情链接</legend>
+                                <asp:LinkButton ID="LinkButton1" runat="server">车辆典当</asp:LinkButton>
+                                <asp:LinkButton ID="LinkButton2" runat="server">车辆典当</asp:LinkButton>
+                                <asp:LinkButton ID="LinkButton3" runat="server">车辆典当</asp:LinkButton>
+                                <asp:LinkButton ID="LinkButton4" runat="server">车辆典当</asp:LinkButton>、
+                                </fieldset>--%>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <%--<asp:Menu ID="MenuIndex" runat="server" Orientation="Horizontal" Width="40%">
+                        <Items>
+                            <asp:MenuItem Text="首页" Value="新建项"></asp:MenuItem>
+                            <asp:MenuItem Text="二手车" Value="新建项"></asp:MenuItem>
+                            <asp:MenuItem Text="车载视频" Value="新建项"></asp:MenuItem>
+                        </Items>
+                    </asp:Menu>--%>
+                    <div id="menu_out">
+                        <div id="menu_in">
+                            <div id="menu">
+                                <ul id="nav">
+                                    <li><a class="nav_on" id="mynav0" onmouseover="javascript:qiehuan(0)" href="../index.html">
+                                        <span>首 页</span></a></li>
+                                    <li class="menu_line"></li>
+                                    <li><a href="#" onmouseover="javascript:qiehuan(1)" id="mynav1" class="nav_off"><span>
+                                        新闻</span></a></li>
+                                    <li class="menu_line"></li>
+                                    <li><a href="#" onmouseover="javascript:qiehuan(2)" id="mynav2" class="nav_off"><span>
+                                        团购</span></a></li>
+                                    <li class="menu_line"></li>
+                                    <li><a href="#" onmouseover="javascript:qiehuan(3)" id="mynav3" class="nav_off"><span>
+                                        商城</span></a></li>
+                                    <li class="menu_line"></li>
+                                    <li><a href="#" onmouseover="javascript:qiehuan(4)" id="mynav4" class="nav_off"><span>
+                                        书店</span></a></li>
+                                    <li class="menu_line"></li>
+                                    <li><a href="#" onmouseover="javascript:qiehuan(5)" id="mynav5" class="nav_off"><span>
+                                        旅游</span></a></li>
+                                    <li class="menu_line"></li>
+                                    <li><a href="#" onmouseover="javascript:qiehuan(6)" id="mynav6" class="nav_off"><span>
+                                        美食</span></a></li>
+                                    <li class="menu_line"></li>
+                                    <li><a href="#" onmouseover="javascript:qiehuan(7)" id="mynav7" class="nav_off"><span>
+                                        男/女装</span></a></li><li class="menu_line"></li>
+                                    <li><a class="nav_off" id="mynav8" onmouseover="javascript:qiehuan(8)" href="#"><span>
+                                        博客</span></a></li>
+                                    <li class="menu_line"></li>
+                                    <li><a class="nav_off" id="mynav9" onmouseover="javascript:qiehuan(9)" href="#" target="_blank">
+                                        <span>论坛</span></a></li>
+                                    <li class="menu_line"></li>
+                                </ul>
+                                <div id="menu_con">
+                                    <div id="qh_con0" style="display: block">
+                                        <ul>
+                                            <li><a href="#"><span>栏目名称1</span></a></li><li class="menu_line2"></li>
+                                            <li><a href="#"><span>栏目名称2</span></a></li><li class="menu_line2"></li>
+                                            <li><a href="#"><span>栏目名称3</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div id="qh_con1" style="display: none">
+                                        <ul>
+                                            <li><a href="#"><span>栏目名称4</span></a></li><li class="menu_line2"></li>
+                                            <li><a href="#"><span>栏目名称5</span></a></li><li class="menu_line2"></li>
+                                            <li><a href="#"><span>栏目名称6</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div id="qh_con2" style="display: none">
+                                        <ul>
+                                            <li><a href="#"><span>栏目名称7</span></a></li><li class="menu_line2"></li>
+                                            <li><a href="#"><span>栏目名称8</span></a></li><li class="menu_line2"></li>
+                                            <li><a href="#"><span>栏目名称9</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div id="qh_con3" style="display: none">
+                                        <ul>
+                                            <li><a href="#"><span>栏目名称10</span></a></li><li class="menu_line2"></li>
+                                            <li><a href="#"><span>栏目名称11</span></a></li><li class="menu_line2"></li>
+                                            <li><a href="#"><span>栏目名称12</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div id="qh_con4" style="display: none">
+                                        <ul>
+                                            <li><a href="#"><span>栏目名称13</span></a></li><li class="menu_line2"></li>
+                                            <li><a href="#"><span>栏目名称14</span></a></li><li class="menu_line2"></li>
+                                            <li><a href="#"><span>栏目名称15</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div id="qh_con5" style="display: none">
+                                        <ul>
+                                            <li><a href="#"><span>栏目名称16</span></a></li><li class="menu_line2"></li>
+                                            <li><a href="#"><span>栏目名称17</span></a></li><li class="menu_line2"></li>
+                                            <li><a href="#"><span>栏目名称18</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div id="qh_con6" style="display: none">
+                                        <ul>
+                                            <li><a href="#"><span>栏目名称19</span></a></li><li class="menu_line2"></li>
+                                            <li><a href="#"><span>栏目名称20</span></a></li><li class="menu_line2"></li>
+                                            <li><a href="#"><span>栏目名称21</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div id="qh_con7" style="display: none">
+                                        <ul>
+                                            <li><a href="#"><span>栏目名称22</span></a></li><li class="menu_line2"></li>
+                                            <li><a href="#"><span>栏目名称23</span></a></li><li class="menu_line2"></li>
+                                            <li><a href="#"><span>栏目名称24</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div id="qh_con8" style="display: none">
+                                        <ul>
+                                            <li><a href="#"><span>栏目名称25</span></a></li><li class="menu_line2"></li>
+                                            <li><a href="#"><span>栏目名称26</span></a></li><li class="menu_line2"></li>
+                                            <li><a href="#"><span>栏目名称27</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <div id="qh_con9" style="display: none">
+                                        <ul>
+                                            <li><a href="#"><span>栏目名称28</span></a></li><li class="menu_line2"></li>
+                                            <li><a href="#"><span>栏目名称29</span></a></li><li class="menu_line2"></li>
+                                            <li><a href="#"><span>栏目名称30</span></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <asp:ContentPlaceHolder ID="cphCarInfo" runat="server">
+                    </asp:ContentPlaceHolder>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <fieldset>
+                        <legend>网站承诺</legend>
+                        <!--#include file="inc/sitepromise.inc"-->
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <fieldset>
+                        <legend>友情链接</legend>
+                        <asp:DataList ID="dlFriendLink" runat="server" RepeatColumns="15" RepeatDirection="Horizontal"
+                            Width="99%">
+                            <ItemTemplate>
+                                <asp:HyperLink ID="HyperLink1" runat="server"></asp:HyperLink>
+                            </ItemTemplate>
+                        </asp:DataList>
+                    </fieldset>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <fieldset>
+                        <legend>其它</legend>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td height="70" align="center">
+                                            Copyright(C) 2010-2013 Zhou Hongyang All Rights Reserved.
+                                        </td>
+                                    </tr>
+                                </table>
+                    </fieldset>
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</body>
+</html>

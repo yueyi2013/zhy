@@ -1,0 +1,15 @@
+.onShow {
+	PADDING-LEFT: 25px; FONT-SIZE: 12px; BACKGROUND: url(../images/Member/onShow.gif) no-repeat; VERTICAL-ALIGN: middle; LINE-HEIGHT: 22px
+}
+.onFocus {
+	BORDER-RIGHT: #85cef3 1px solid; BORDER-TOP: #85cef3 1px solid; PADDING-LEFT: 25px; FONT-SIZE: 12px; BACKGROUND: url(../images/Member/onFocus.gif) #e2f3ff no-repeat; VERTICAL-ALIGN: middle; BORDER-LEFT: #85cef3 1px solid; LINE-HEIGHT: 22px; BORDER-BOTTOM: #85cef3 1px solid
+}
+.onError {
+	BORDER-RIGHT: #ff6d6d 1px solid; BORDER-TOP: #ff6d6d 1px solid; PADDING-LEFT: 25px; FONT-SIZE: 12px; BACKGROUND: url(../images/Member/onError.gif) #fff2e9 no-repeat; VERTICAL-ALIGN: middle; BORDER-LEFT: #ff6d6d 1px solid; COLOR: #cc0000; LINE-HEIGHT: 22px; BORDER-BOTTOM: #ff6d6d 1px solid
+}
+.onCorrect {
+	BORDER-RIGHT: #9ee38c 1px solid; BORDER-TOP: #9ee38c 1px solid; PADDING-LEFT: 25px; FONT-SIZE: 12px; BACKGROUND: url(../images/Member/onCorrect.gif) #e9ffeb no-repeat; VERTICAL-ALIGN: middle; BORDER-LEFT: #9ee38c 1px solid; LINE-HEIGHT: 22px; BORDER-BOTTOM: #9ee38c 1px solid
+}
+.onLoad {
+	PADDING-LEFT: 25px; FONT-SIZE: 12px; BACKGROUND: url(../images/Member/onLoad.gif) #e9ffeb no-repeat 3px 3px; VERTICAL-ALIGN: middle; LINE-HEIGHT: 22px
+}

@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using ZHY.Web;
 using System.Data;
+using ZHY.Model;
 
 namespace Web.admin.site.homepage
 {
@@ -33,7 +34,7 @@ namespace Web.admin.site.homepage
                 TreeNode tn = new TreeNode();
                 tn.Text = dr[i]["NavName"].ToString();
                 tn.Value = dr[i]["NavId"].ToString();
-                drChild = dt.Select("ParantID=" + tn.Value);
+                drChild = dt.Select("NavParantId=" + tn.Value);
                 BindChildMenu(tn, drChild);
                 this.tvMenu.Nodes.Add(tn);
             }
@@ -72,26 +73,41 @@ namespace Web.admin.site.homepage
         /// <param name="e"></param>
         protected void btnModify_Click(object sender, EventArgs e)
         {
-            ZHY.Model.Menu model = new ZHY.Model.Menu();
-            model.MenuName = this.txtMenuName.Text.Trim();
+            User user = new User();
+            if (Session["User"] != null)
+            {
+                user = (User)Session["User"];
+            }
+            else {
+                user.UserName = "未知用户";
+            }
+            
+            ZHY.Model.Navigation model = new ZHY.Model.Navigation();
+            model.NavName = this.txtMenuName.Text.Trim();
             if (this.ddlMenuType.SelectedValue == "0")
             {
-                model.ParantID = 0;
+                model.NavParantId = 0;
             }
             else
             {
-                model.ParantID = ConvertInt32(this.txtMenuID.Text, 0);
+                model.NavParantId = ConvertInt32(this.txtMenuID.Text, 0);
             }
-            model.MenuID = ConvertInt32(this.txtMenuID.Text, 0);
-            model.MenuOrder = ConvertInt32(this.txtMenuOrder.Text, 0);
-            model.MenuPicPath = this.txtMenuPicPath.Text;
-            model.MenuDes = this.txtMenuDes.Text;
-            model.FunID = ConvertInt32(this.ddlFun.SelectedValue, 0);
-            ZHY.BLL.Menu bll = new ZHY.BLL.Menu();
+            model.NavId = ConvertInt32(this.txtMenuID.Text, 0);
+            model.NavOrder = ConvertInt32(this.txtMenuOrder.Text, 0);
+            model.NavLink = this.txtMenuPicPath.Text;
+            model.NavDesc = this.txtMenuDes.Text; 
+            ZHY.BLL.Navigation bll = new ZHY.BLL.Navigation();
+
             if (this.hfOp.Value == "1")
+            {
+                model.NavCreateBy = user.UserName;
+                model.NavCreateAt = DateTime.Now;                
                 bll.Add(model);
-            else
+            }else{
+                model.NavUpdateBy = user.UserName;
+                model.NavUpdateDT = DateTime.Now;
                 bll.Update(model);
+            }
             MessageBox.SelfInform(this.upMenu, this.GetType(), "保存成功！");
         }
 
@@ -102,7 +118,7 @@ namespace Web.admin.site.homepage
         /// <param name="e"></param>
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            ZHY.BLL.Menu bll = new ZHY.BLL.Menu();
+            ZHY.BLL.Navigation bll = new ZHY.BLL.Navigation();
             bll.Delete(ConvertInt32(this.txtMenuID.Text, 0));
         }
 
@@ -113,15 +129,15 @@ namespace Web.admin.site.homepage
         /// <param name="e"></param>
         protected void tvMenu_OnSelectedNodeChanged(object sender, EventArgs e)
         {
-           
-            ZHY.BLL.Menu bll = new ZHY.BLL.Menu();
-            ZHY.Model.Menu model = bll.GetModel(ConvertInt32(this.tvMenu.SelectedNode.Value, 0));
-            this.txtMenuName.Text = model.MenuName;
-            this.txtMenuID.Text = model.MenuID.ToString();
-            this.txtMenuOrder.Text = model.MenuOrder.ToString();
-            this.txtMenuDes.Text = model.MenuDes;
-            this.txtMenuPicPath.Text = model.MenuPicPath;
-            this.txtParantID.Text = model.ParantID.Value.ToString();
+
+            ZHY.BLL.Navigation bll = new ZHY.BLL.Navigation();
+            ZHY.Model.Navigation model = bll.GetModel(ConvertInt32(this.tvMenu.SelectedNode.Value, 0));
+            this.txtMenuName.Text = model.NavName;
+            this.txtMenuID.Text = model.NavId.ToString();
+            this.txtMenuOrder.Text = model.NavOrder.ToString();
+            this.txtMenuDes.Text = model.NavDesc;
+            this.txtMenuPicPath.Text = model.NavLink;
+            this.txtParantID.Text = model.NavParantId.Value.ToString();
         }
 
         /// <summary>

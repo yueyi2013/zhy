@@ -54,6 +54,7 @@
                                     <asp:TextBox ID="txtMenuPicPath" runat="server" Width="200px" Text="Menu023.gif"></asp:TextBox>
                                 </td>
                             </tr>
+                            
                             <tr>
                                 <td align="right">
                                     栏目描述：
@@ -61,6 +62,17 @@
                                 <td align="left">
                                     <asp:TextBox ID="txtMenuDes" runat="server" Width="200px" TextMode="MultiLine"></asp:TextBox>
                                 </td>
+                            </tr>
+                            <tr>
+                                <td align="right">
+                                    状态：
+                                </td>
+                                <td align="left">
+                                    
+                                <asp:CheckBox ID="chkStatus" runat="server" />     
+                                    
+                                </td>
+                            
                             </tr>
                             <tr>
                                 <td>

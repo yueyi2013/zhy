@@ -798,6 +798,9 @@ namespace Maticsoft.DBUtility
                     catch (System.Data.SqlClient.SqlException e)
                     {
                         throw e;
+                    }catch(Exception e)
+                    {
+                        throw e;
                     }
                 }
             }

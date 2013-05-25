@@ -1,8 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Main.Master" AutoEventWireup="true" CodeBehind="wfNavigation.aspx.cs" Inherits="Web.admin.site.homepage.wfNavigation" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Main0.Master" AutoEventWireup="true" CodeBehind="wfNavigation.aspx.cs" Inherits="Web.admin.site.homepage.wfNavigation" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
- <fieldset style="width: 585px">
+    <fieldset style="width: 585px">
     <legend>首页导航栏</legend>
     <table cellspacing="0" cellpadding="0" border="0" width="100%">
         <tr align="left" valign="top">
@@ -48,10 +48,10 @@
                             </tr>
                             <tr>
                                 <td align="right">
-                                    链接：
+                                    链接网址：
                                 </td>
                                 <td align="left">
-                                    <asp:TextBox ID="txtMenuPicPath" runat="server" Width="200px" Text="Menu023.gif"></asp:TextBox>
+                                    <asp:TextBox ID="txtMenuPicPath" runat="server" Width="200px"></asp:TextBox>
                                 </td>
                             </tr>
                             
@@ -65,12 +65,11 @@
                             </tr>
                             <tr>
                                 <td align="right">
-                                    状态：
+                                    栏目生效：
                                 </td>
                                 <td align="left">
                                     
-                                <asp:CheckBox ID="chkStatus" runat="server" />     
-                                    
+                                <asp:CheckBox ID="chkStatus" runat="server" Checked="true" />                                    
                                 </td>
                             
                             </tr>

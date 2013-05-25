@@ -52,6 +52,7 @@ div
     width: 172px;
     height: 31px;
     background-image: url(../images/left_headbg.gif);
+    vertical-align:bottom;
 }
 
 /*

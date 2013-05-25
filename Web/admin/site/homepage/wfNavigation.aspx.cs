@@ -138,6 +138,7 @@ namespace Web.admin.site.homepage
             this.txtMenuDes.Text = model.NavDesc;
             this.txtMenuPicPath.Text = model.NavLink;
             this.txtParantID.Text = model.NavParantId.Value.ToString();
+            this.chkStatus.Checked = model.NavStatus.Equals("A") ? true : false;
         }
 
         /// <summary>
@@ -153,6 +154,7 @@ namespace Web.admin.site.homepage
             this.hfOp.Value = "1";
             this.txtMenuID.Text = menuId;
             this.txtParantID.Text = parantId;
+            this.chkStatus.Checked = true;
         }
 
     }

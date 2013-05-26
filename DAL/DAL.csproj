@@ -131,6 +131,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseDAL.cs" />
     <Compile Include="FriendLink.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Member.cs" />
@@ -139,6 +140,7 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ProType.cs" />
     <Compile Include="ProTypeDetail.cs" />
     <Compile Include="SysManage.cs" />
     <Compile Include="Detail.cs" />
@@ -148,7 +150,6 @@
     <Compile Include="Menu.cs" />
     <Compile Include="Product.cs" />
     <Compile Include="ProPicture.cs" />
-    <Compile Include="ProType.cs" />
     <Compile Include="Right.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="User.cs" />

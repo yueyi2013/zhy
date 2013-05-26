@@ -1,28 +1,19 @@
 using System;
 using System.Data;
 using System.Collections.Generic;
-using LTP.Common;
+using Maticsoft.Common;
 using ZHY.Model;
 namespace ZHY.BLL
 {
 	/// <summary>
-	/// 业务逻辑类ProType 的摘要说明。
+	/// ProType
 	/// </summary>
-	public class ProType
+	public partial class ProType
 	{
 		private readonly ZHY.DAL.ProType dal=new ZHY.DAL.ProType();
 		public ProType()
 		{}
-		#region  成员方法
-
-		/// <summary>
-		/// 得到最大ID
-		/// </summary>
-		public int GetMaxId()
-		{
-			return dal.GetMaxId();
-		}
-
+		#region  BasicMethod
 		/// <summary>
 		/// 是否存在该记录
 		/// </summary>
@@ -42,18 +33,25 @@ namespace ZHY.BLL
 		/// <summary>
 		/// 更新一条数据
 		/// </summary>
-		public void Update(ZHY.Model.ProType model)
+		public bool Update(ZHY.Model.ProType model)
 		{
-			dal.Update(model);
+			return dal.Update(model);
 		}
 
 		/// <summary>
 		/// 删除一条数据
 		/// </summary>
-		public void Delete(int ProTypeID)
+		public bool Delete(int ProTypeID)
 		{
 			
-			dal.Delete(ProTypeID);
+			return dal.Delete(ProTypeID);
+		}
+		/// <summary>
+		/// 删除一条数据
+		/// </summary>
+		public bool DeleteList(string ProTypeIDlist )
+		{
+			return dal.DeleteList(ProTypeIDlist );
 		}
 
 		/// <summary>
@@ -66,13 +64,13 @@ namespace ZHY.BLL
 		}
 
 		/// <summary>
-		/// 得到一个对象实体，从缓存中。
+		/// 得到一个对象实体，从缓存中
 		/// </summary>
 		public ZHY.Model.ProType GetModelByCache(int ProTypeID)
 		{
 			
 			string CacheKey = "ProTypeModel-" + ProTypeID;
-			object objModel = LTP.Common.DataCache.GetCache(CacheKey);
+			object objModel = Maticsoft.Common.DataCache.GetCache(CacheKey);
 			if (objModel == null)
 			{
 				try
@@ -80,8 +78,8 @@ namespace ZHY.BLL
 					objModel = dal.GetModel(ProTypeID);
 					if (objModel != null)
 					{
-						int ModelCache = LTP.Common.ConfigHelper.GetConfigInt("ModelCache");
-						LTP.Common.DataCache.SetCache(CacheKey, objModel, DateTime.Now.AddMinutes(ModelCache), TimeSpan.Zero);
+                        int ModelCache = LTP.Common.ConfigHelper.GetConfigInt("ModelCache"); 
+                        Maticsoft.Common.DataCache.SetCache(CacheKey, objModel, DateTime.Now.AddMinutes(ModelCache), TimeSpan.Zero);
 					}
 				}
 				catch{}
@@ -123,13 +121,11 @@ namespace ZHY.BLL
 				ZHY.Model.ProType model;
 				for (int n = 0; n < rowsCount; n++)
 				{
-					model = new ZHY.Model.ProType();
-					if(dt.Rows[n]["ProTypeID"].ToString()!="")
+					model = dal.DataRowToModel(dt.Rows[n]);
+					if (model != null)
 					{
-						model.ProTypeID=int.Parse(dt.Rows[n]["ProTypeID"].ToString());
+						modelList.Add(model);
 					}
-					model.ProTypeName=dt.Rows[n]["ProTypeName"].ToString();
-					modelList.Add(model);
 				}
 			}
 			return modelList;
@@ -144,14 +140,31 @@ namespace ZHY.BLL
 		}
 
 		/// <summary>
-		/// 获得数据列表
+		/// 分页获取数据列表
+		/// </summary>
+		public int GetRecordCount(string strWhere)
+		{
+			return dal.GetRecordCount(strWhere);
+		}
+		/// <summary>
+		/// 分页获取数据列表
+		/// </summary>
+		public DataSet GetListByPage(string strWhere, string orderby, int startIndex, int endIndex)
+		{
+			return dal.GetListByPage( strWhere,  orderby,  startIndex,  endIndex);
+		}
+		/// <summary>
+		/// 分页获取数据列表
 		/// </summary>
 		//public DataSet GetList(int PageSize,int PageIndex,string strWhere)
 		//{
 			//return dal.GetList(PageSize,PageIndex,strWhere);
 		//}
 
-		#endregion  成员方法
+		#endregion  BasicMethod
+		#region  ExtensionMethod
+
+		#endregion  ExtensionMethod
 	}
 }
 

@@ -6,52 +6,26 @@ using ZHY.Model;
 namespace ZHY.BLL
 {
 	/// <summary>
-	/// ProType
+	/// NewsCategory
 	/// </summary>
-	public partial class ProType
+	public partial class NewsCategory
 	{
-		private readonly ZHY.DAL.ProType dal=new ZHY.DAL.ProType();
-		public ProType()
+		private readonly ZHY.DAL.NewsCategory dal=new ZHY.DAL.NewsCategory();
+		public NewsCategory()
 		{}
-
-        #region 成员方法
-        /// <summary>
-        /// 调用分页存储过程
-        /// </summary>
-        /// <param name="PageIndex"></param>
-        /// <param name="name"></param>
-        /// <param name="CountAll"></param>
-        /// <returns></returns>
-        public DataSet GetList(int PageIndex, string name, ref int CountAll)
-        {
-            string strGetFields = " [ProTypeID],[ProTypeName],[ProTypeDesc],[ProStatus] ";
-            string tablename = " ProTypes ";
-            int pageSize = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("pageSize"));
-            int intOrder = 2;
-            string strOrder = " ProTypeID";
-            string strWhere = " 1=1 ";
-            if (!String.IsNullOrEmpty(name))
-            {
-                strWhere += "ProTypeName like '%" + name + "'";
-            }
-
-            return dal.GetList(tablename, strGetFields, PageIndex, pageSize, strWhere, strOrder, intOrder, ref CountAll);
-        }
-        #endregion
-
-        #region  BasicMethod
-        /// <summary>
+		#region  BasicMethod
+		/// <summary>
 		/// 是否存在该记录
 		/// </summary>
-		public bool Exists(int ProTypeID)
+		public bool Exists(int NewsCategoryId)
 		{
-			return dal.Exists(ProTypeID);
+			return dal.Exists(NewsCategoryId);
 		}
 
 		/// <summary>
 		/// 增加一条数据
 		/// </summary>
-		public int  Add(ZHY.Model.ProType model)
+		public int  Add(ZHY.Model.NewsCategory model)
 		{
 			return dal.Add(model);
 		}
@@ -59,7 +33,7 @@ namespace ZHY.BLL
 		/// <summary>
 		/// 更新一条数据
 		/// </summary>
-		public bool Update(ZHY.Model.ProType model)
+		public bool Update(ZHY.Model.NewsCategory model)
 		{
 			return dal.Update(model);
 		}
@@ -67,50 +41,51 @@ namespace ZHY.BLL
 		/// <summary>
 		/// 删除一条数据
 		/// </summary>
-		public bool Delete(int ProTypeID)
+		public bool Delete(int NewsCategoryId)
 		{
 			
-			return dal.Delete(ProTypeID);
+			return dal.Delete(NewsCategoryId);
 		}
 		/// <summary>
 		/// 删除一条数据
 		/// </summary>
-		public bool DeleteList(string ProTypeIDlist )
+		public bool DeleteList(string NewsCategoryIdlist )
 		{
-			return dal.DeleteList(ProTypeIDlist );
+			return dal.DeleteList(NewsCategoryIdlist );
 		}
 
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public ZHY.Model.ProType GetModel(int ProTypeID)
+		public ZHY.Model.NewsCategory GetModel(int NewsCategoryId)
 		{
 			
-			return dal.GetModel(ProTypeID);
+			return dal.GetModel(NewsCategoryId);
 		}
 
 		/// <summary>
 		/// 得到一个对象实体，从缓存中
 		/// </summary>
-		public ZHY.Model.ProType GetModelByCache(int ProTypeID)
+		public ZHY.Model.NewsCategory GetModelByCache(int NewsCategoryId)
 		{
 			
-			string CacheKey = "ProTypeModel-" + ProTypeID;
+			string CacheKey = "NewsCategoryModel-" + NewsCategoryId;
 			object objModel = Maticsoft.Common.DataCache.GetCache(CacheKey);
 			if (objModel == null)
 			{
 				try
 				{
-					objModel = dal.GetModel(ProTypeID);
+					objModel = dal.GetModel(NewsCategoryId);
 					if (objModel != null)
 					{
+						//int ModelCache = Globals.SafeInt(BLL.SysManage.ConfigSystem.GetValueByCache("CacheTime"), 30);
                         int ModelCache = LTP.Common.ConfigHelper.GetConfigInt("ModelCache"); 
                         Maticsoft.Common.DataCache.SetCache(CacheKey, objModel, DateTime.Now.AddMinutes(ModelCache), TimeSpan.Zero);
 					}
 				}
 				catch{}
 			}
-			return (ZHY.Model.ProType)objModel;
+			return (ZHY.Model.NewsCategory)objModel;
 		}
 
 		/// <summary>
@@ -130,7 +105,7 @@ namespace ZHY.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public List<ZHY.Model.ProType> GetModelList(string strWhere)
+		public List<ZHY.Model.NewsCategory> GetModelList(string strWhere)
 		{
 			DataSet ds = dal.GetList(strWhere);
 			return DataTableToList(ds.Tables[0]);
@@ -138,13 +113,13 @@ namespace ZHY.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public List<ZHY.Model.ProType> DataTableToList(DataTable dt)
+		public List<ZHY.Model.NewsCategory> DataTableToList(DataTable dt)
 		{
-			List<ZHY.Model.ProType> modelList = new List<ZHY.Model.ProType>();
+			List<ZHY.Model.NewsCategory> modelList = new List<ZHY.Model.NewsCategory>();
 			int rowsCount = dt.Rows.Count;
 			if (rowsCount > 0)
 			{
-				ZHY.Model.ProType model;
+				ZHY.Model.NewsCategory model;
 				for (int n = 0; n < rowsCount; n++)
 				{
 					model = dal.DataRowToModel(dt.Rows[n]);

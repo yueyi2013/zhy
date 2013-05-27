@@ -81,6 +81,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\site\homepage\wfNavigation.aspx" />
+    <Content Include="admin\site\news\wfCollectNews.aspx" />
     <Content Include="css\css.css" />
     <Content Include="Default.aspx" />
     <Content Include="admin\Main0.Master" />
@@ -104,6 +105,13 @@
     </Compile>
     <Compile Include="admin\site\homepage\wfNavigation.aspx.designer.cs">
       <DependentUpon>wfNavigation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\site\news\wfCollectNews.aspx.cs">
+      <DependentUpon>wfCollectNews.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\site\news\wfCollectNews.aspx.designer.cs">
+      <DependentUpon>wfCollectNews.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\wfCarInput.aspx.cs">
       <DependentUpon>wfCarInput.aspx</DependentUpon>

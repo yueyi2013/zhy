@@ -28,7 +28,7 @@ namespace Web.admin.site.news
             {
                 user.UserName = "未知用户";
             }
-            bll.NewsCollect(this.txtUrl.Text, user.UserName);
+            //bll.NewsCollect(this.txtUrl.Text, user.UserName);
         }
 
         protected void lbViewNews_Click(object sender, EventArgs e)

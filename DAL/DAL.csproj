@@ -145,6 +145,9 @@
     </Compile>
     <Compile Include="ProType.cs" />
     <Compile Include="ProTypeDetail.cs" />
+    <Compile Include="RSSChannel.cs" />
+    <Compile Include="RSSChannelItem.cs" />
+    <Compile Include="RSSSite.cs" />
     <Compile Include="SysManage.cs" />
     <Compile Include="Detail.cs" />
     <Compile Include="Function.cs" />

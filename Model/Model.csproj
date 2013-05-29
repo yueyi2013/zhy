@@ -129,6 +129,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ProTypeDetail.cs" />
+    <Compile Include="RSSChannel.cs" />
+    <Compile Include="RSSChannelItem.cs" />
+    <Compile Include="RSSSite.cs" />
     <Compile Include="SysNode.cs" />
     <Compile Include="Detail.cs" />
     <Compile Include="Function.cs" />

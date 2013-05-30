@@ -7,6 +7,7 @@ using ZHY.Model;
 using System.IO;
 using System.Xml;
 using ZHY.Common;
+using System.Web;
 
 namespace ZHY.BLL
 {
@@ -28,7 +29,12 @@ namespace ZHY.BLL
             try
             {
                 XmlDocument rssXml = new XmlDocument();
-                rssXml.LoadXml(RSSFeeds.loadRssFeeds(rssRul));
+                String feeds = RSSFeeds.loadRssFeeds(rssRul, "UTF8");
+                if (String.IsNullOrEmpty(feeds))
+                {
+                    return null;
+                }
+                rssXml.LoadXml(feeds);
                 //定位 channel 节点
                 XmlNode chNode = rssXml.DocumentElement.FirstChild;
                 ZHY.Model.RSSChannel channel = new ZHY.Model.RSSChannel();
@@ -62,6 +68,10 @@ namespace ZHY.BLL
                                         break;
                                     case "link":
                                         item.RCItemLink = subNode.InnerText;
+                                        if (item.RCItemLink!=null)
+                                        {
+                                            loadRssItemContent(item.RCItemLink, "p_content", item);
+                                        }
                                         break;
                                     case "author":
                                         item.RCItemAuthor = subNode.InnerText;
@@ -84,11 +94,22 @@ namespace ZHY.BLL
             return null;
         }
 
-        public void loadRssItemContent(String itemRUL)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="itemRUL"></param>
+        /// <param name="contentId"></param>
+        /// <param name="item"></param>
+        public void loadRssItemContent(String itemRUL, String contentId, ZHY.Model.RSSChannelItem item)
         {
-            //String RSSFeeds.loadRssFeeds(itemRUL);
+            String strContent = RSSFeeds.loadRssFeeds(itemRUL, "");
+            XmlDocument xmlContent = RSSFeeds.loadXMLDocument(strContent);
+            if (xmlContent != null) {
+               XmlElement el =  xmlContent.GetElementById(contentId);
+               if (el.InnerText != null)
+                   item.RCItemDescription = HttpUtility.HtmlEncode(el.InnerText);           
+            }
         }
-
 
 
         #endregion

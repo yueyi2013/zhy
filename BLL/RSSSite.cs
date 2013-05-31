@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Collections.Generic;
 using Maticsoft.Common;
 using ZHY.Model;
+
 using System.IO;
 using System.Xml;
 using ZHY.Common;
@@ -19,104 +19,6 @@ namespace ZHY.BLL
 		private readonly ZHY.DAL.RSSSite dal=new ZHY.DAL.RSSSite();
 		public RSSSite()
 		{}
-        #region 成员方法
-        /// <summary>
-        /// 获取RSS Channel
-        /// </summary>
-        /// <returns></returns>
-        public ZHY.Model.RSSChannel FetchRssFeeds(String rssRul)
-        {
-            try
-            {
-                XmlDocument rssXml = new XmlDocument();
-                String feeds = RSSFeeds.loadRssFeeds(rssRul, "UTF8");
-                if (String.IsNullOrEmpty(feeds))
-                {
-                    return null;
-                }
-                rssXml.LoadXml(feeds);
-                //定位 channel 节点
-                XmlNode chNode = rssXml.DocumentElement.FirstChild;
-                ZHY.Model.RSSChannel channel = new ZHY.Model.RSSChannel();
-                List<ZHY.Model.RSSChannelItem> list = new List<ZHY.Model.RSSChannelItem>();
-                //定位 item 节点
-                foreach (XmlNode node in chNode.ChildNodes)
-                {                    
-                    switch (node.Name)
-                    {
-                        case "title":
-                            channel.RCTitle = node.InnerText;
-                            break;
-                        case "link":
-                            channel.RCLink = node.InnerText;
-                            break;
-                        case "language":
-                            channel.RCLanguage = node.InnerText;
-                            break;
-                        case "description":
-                            channel.RCDescription = node.InnerText;
-                            break;
-                        case "item":
-                            
-                            ZHY.Model.RSSChannelItem item = new ZHY.Model.RSSChannelItem();
-                            foreach (XmlNode subNode in node.ChildNodes)
-                            {
-                                switch (subNode.Name)
-                                {
-                                    case "title":
-                                        item.RCItemTitle = subNode.InnerText;
-                                        break;
-                                    case "link":
-                                        item.RCItemLink = subNode.InnerText;
-                                        if (item.RCItemLink!=null)
-                                        {
-                                            loadRssItemContent(item.RCItemLink, "p_content", item);
-                                        }
-                                        break;
-                                    case "author":
-                                        item.RCItemAuthor = subNode.InnerText;
-                                        break;                                        
-                                    case "pubDate":
-                                        item.RCItemPubDate = DateTime.Parse(subNode.InnerText);
-                                        break;
-                                }
-                            }
-                            list.Add(item);
-                            break;
-                    }
-                }
-                channel.ItemList = list;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.ToString());                
-            }
-            return null;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="itemRUL"></param>
-        /// <param name="contentId"></param>
-        /// <param name="item"></param>
-        public void loadRssItemContent(String itemRUL, String contentId, ZHY.Model.RSSChannelItem item)
-        {
-            String strContent = RSSFeeds.loadRssFeeds(itemRUL, "");
-            XmlDocument xmlContent = RSSFeeds.loadXMLDocument(strContent);
-            if (xmlContent != null) {
-               XmlElement el =  xmlContent.GetElementById(contentId);
-               if (el.InnerText != null)
-                   item.RCItemDescription = HttpUtility.HtmlEncode(el.InnerText);           
-            }
-        }
-
-
-        #endregion
-
-
-
-
         #region  BasicMethod
         /// <summary>
 		/// 是否存在该记录

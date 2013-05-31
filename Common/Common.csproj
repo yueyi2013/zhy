@@ -118,10 +118,14 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
+    <Reference Include="Winista.HtmlParser">
+      <HintPath>dll\Winista.HtmlParser.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BookISBN.cs" />
     <Compile Include="CompressionUtil.cs" />
+    <Compile Include="HtmlPaserUtil.cs" />
     <Compile Include="HttpProc.cs" />
     <Compile Include="MailSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">

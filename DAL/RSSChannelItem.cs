@@ -179,6 +179,31 @@ namespace ZHY.DAL
 			}
 		}
 
+        /// <summary>
+        /// 得到一个对象实体
+        /// </summary>
+        public ZHY.Model.RSSChannelItem GetModel(string RCItemTitle)
+        {
+
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select  top 1 RCItemId,RCId,RCItemTitle,RCItemLink,RCItemCategory,RCItemAuthor,RCItemPubDate,RCItemDescription,RCItemComments,NavCreateAt,NavCreateBy,NavUpdateDT,NavUpdateBy from RSSChannelItem ");
+            strSql.Append(" where RCItemId=@RCItemId");
+            SqlParameter[] parameters = {
+					new SqlParameter("@RCItemTitle", SqlDbType.VarChar,20)
+			};
+            parameters[0].Value = RCItemTitle;
+
+            ZHY.Model.RSSChannelItem model = new ZHY.Model.RSSChannelItem();
+            DataSet ds = DbHelperSQL.Query(strSql.ToString(), parameters);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                return DataRowToModel(ds.Tables[0].Rows[0]);
+            }
+            else
+            {
+                return null;
+            }
+        }
 
 		/// <summary>
 		/// 得到一个对象实体

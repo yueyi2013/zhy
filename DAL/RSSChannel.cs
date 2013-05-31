@@ -29,8 +29,7 @@ namespace ZHY.DAL
 			return DbHelperSQL.Exists(strSql.ToString(),parameters);
 		}
 
-
-		/// <summary>
+        /// <summary>
 		/// 增加一条数据
 		/// </summary>
 		public int Add(ZHY.Model.RSSChannel model)
@@ -159,6 +158,31 @@ namespace ZHY.DAL
 			}
 		}
 
+        /// <summary>
+        /// 得到一个对象实体
+        /// </summary>
+        public ZHY.Model.RSSChannel GetModel(string title)
+        {
+
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select  top 1 RCId,RSSId,RCTitle,RCLink,RCDescription,RCLanguage,RCGenerator,RCPubDate,RCLastBuildDate from RSSChannel ");
+            strSql.Append(" where RCTitle=@RCTitle");
+            SqlParameter[] parameters = {
+					new SqlParameter("@RCTitle", SqlDbType.VarChar,20)
+			};
+            parameters[0].Value = title;
+
+            ZHY.Model.RSSChannel model = new ZHY.Model.RSSChannel();
+            DataSet ds = DbHelperSQL.Query(strSql.ToString(), parameters);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                return DataRowToModel(ds.Tables[0].Rows[0]);
+            }
+            else
+            {
+                return null;
+            }
+        }
 
 		/// <summary>
 		/// 得到一个对象实体

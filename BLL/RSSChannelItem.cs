@@ -54,6 +54,15 @@ namespace ZHY.BLL
 			return dal.DeleteList(RCItemIdlist );
 		}
 
+        /// <summary>
+        /// 得到一个对象实体
+        /// </summary>
+        public ZHY.Model.RSSChannelItem GetModel(string title)
+        {
+
+            return dal.GetModel(title);
+        }
+
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>

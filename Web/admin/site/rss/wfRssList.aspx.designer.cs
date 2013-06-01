@@ -7,10 +7,10 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace ZHY.Web.admin {
+namespace Web.admin.site.rss {
     
     
-    public partial class wfFunctionList {
+    public partial class wfRssList {
         
         /// <summary>
         /// MyUpdatePanelHead 控件。
@@ -256,49 +256,40 @@ namespace ZHY.Web.admin {
         protected global::System.Web.UI.UpdatePanel MyUpdatePanelPanelBody;
         
         /// <summary>
-        /// txtFunCode 控件。
+        /// txtRSSUrl 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFunCode;
+        protected global::System.Web.UI.WebControls.TextBox txtRSSUrl;
         
         /// <summary>
-        /// txtFunName 控件。
+        /// txtSource 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFunName;
+        protected global::System.Web.UI.WebControls.TextBox txtSource;
         
         /// <summary>
-        /// txtFunPage 控件。
+        /// hfRSSID 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFunPage;
+        protected global::System.Web.UI.WebControls.HiddenField hfRSSID;
         
         /// <summary>
-        /// hfFunID 控件。
+        /// txtDes 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfFunID;
-        
-        /// <summary>
-        /// txtFunDes 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFunDes;
+        protected global::System.Web.UI.WebControls.TextBox txtDes;
         
         /// <summary>
         /// btnSave 控件。

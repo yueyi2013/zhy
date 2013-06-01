@@ -1,12 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Main.Master" AutoEventWireup="true"
-    CodeBehind="wfFunctionList.aspx.cs" Inherits="ZHY.Web.admin.wfFunctionList" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Main0.Master" AutoEventWireup="true" CodeBehind="wfRssList.aspx.cs" Inherits="Web.admin.site.rss.wfRssList" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <fieldset style="width: 585px">
-    <legend>功能管理</legend>
+<fieldset style="width: 800px">
+    <legend>RSS管理</legend>
     <asp:UpdatePanel ID="MyUpdatePanelHead" runat="server" UpdateMode="Conditional">
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="btnSave" EventName="Click" />
@@ -23,11 +21,10 @@
         <tr>
             <td align="left" valign="top">
                 <table cellspacing="0" cellpadding="0" width="100%">
-                    
                     <tr>
                         <td>
                             <asp:Button ID="btnAdd" runat="server" Text="增加" CssClass="buttonCss" 
-                                CausesValidation="false" onclick="btnAdd_Click" />
+                                CausesValidation="false"/>
                             <asp:Button ID="btnModify" runat="server" Text="修改" CssClass="buttonCss" CausesValidation="false"
                                 OnClick="btnModify_Click" Enabled="false" />
                             <asp:Button ID="btnDelete" runat="server" Text="批量删除" OnClientClick="return Confirm()"
@@ -49,7 +46,7 @@
                                 </Triggers>
                                 <ContentTemplate>
                                     <asp:GridView ID="MstGridView" runat="server" AutoGenerateColumns="False" Width="98%"
-                                        AllowPaging="false" DataKeyNames="FunID" OnRowCommand="MstGridView_RowCommand"
+                                        AllowPaging="false" DataKeyNames="RSSId" OnRowCommand="MstGridView_RowCommand"
                                         HeaderStyle-HorizontalAlign="Center">
                                         <Columns>
                                             <asp:TemplateField>
@@ -63,20 +60,29 @@
                                                     <asp:CheckBox ID="chkItem" runat="server" onclick="changecolor(this)" />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:BoundField DataField="FunCode" HeaderText="功能编码">
-                                                <ItemStyle Width="60px" />
+                                            <asp:BoundField DataField="RSSURL" HeaderText="RSS URL">
+                                                <ItemStyle Width="300px" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="FunName" HeaderText="功能名称">
+                                            <asp:BoundField DataField="RSSSource" HeaderText="来源">
+                                                <ItemStyle Width="100px" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="RSSDesc" HeaderText="描述">
                                                 <ItemStyle Width="150px" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="FunPage" HeaderText="功能页面">
-                                                <ItemStyle Width="150px" />
+                                             <asp:BoundField DataField="NavCreateAt" HeaderText="创建日期">
+                                                <ItemStyle Width="250px" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="FunDes" HeaderText="功能描述">
-                                                <ItemStyle Width="150px" />
+                                             <asp:BoundField DataField="NavCreateBy" HeaderText="创建人">
+                                                <ItemStyle Width="80px" />
+                                            </asp:BoundField>
+                                             <asp:BoundField DataField="NavUpdateDT" HeaderText="更新日期">
+                                                <ItemStyle Width="250px" />
+                                            </asp:BoundField>
+                                             <asp:BoundField DataField="NavUpdateBy" HeaderText="更新人">
+                                                <ItemStyle Width="80px" />
                                             </asp:BoundField>
                                         </Columns>
-                                    </asp:GridView>                                    
+                                    </asp:GridView>                                   
                                     当前页索引：<asp:Label ID="lblPageIndex0" runat="server" ForeColor="Red"></asp:Label>/
                                     总页数：<asp:Label ID="lblPageAll0" runat="server" ForeColor="Red"></asp:Label>
                                     &nbsp;&nbsp;&nbsp;&nbsp; 每页:
@@ -126,35 +132,27 @@
             <ContentTemplate>
                 <table cellspacing="0" cellpadding="0" width="100%" border="0">
                     <tr>
-                        <td height="25" width="30%" align="right">
-                            功能编码：
+                        <td height="25" width="20%" align="right">
+                            RSS URL：
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox ID="txtFunCode" runat="server" Width="200px"></asp:TextBox>
+                            <asp:TextBox ID="txtRSSUrl" runat="server" Width="200px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td height="25" width="30%" align="right">
-                            功能名称：
+                            来源：
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox ID="txtFunName" runat="server" Width="200px"></asp:TextBox>
+                            <asp:TextBox ID="txtSource" runat="server" Width="200px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td height="25" width="30%" align="right">
-                            功能页面：
+                            描述： <asp:HiddenField ID="hfRSSID" runat="server" Value="0"/>
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox ID="txtFunPage" runat="server" Width="200px"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td height="25" width="30%" align="right">
-                            功能描述：<asp:HiddenField ID="hfFunID" runat="server" Value="0" />
-                        </td>
-                        <td height="25" width="*" align="left">
-                            <asp:TextBox ID="txtFunDes" runat="server" Width="200px"></asp:TextBox>
+                            <asp:TextBox ID="txtDes" runat="server" Width="200px"></asp:TextBox>
                         </td>
                     </tr>
                 </table>

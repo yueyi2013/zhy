@@ -21,6 +21,12 @@ namespace AutoTask
             {
                 sched = sf.GetScheduler();
             }
+            bool inClearJobs = true;
+            if (inClearJobs)
+            {
+                log.Warn("***** Deleting existing jobs/triggers *****");
+                sched.Clear();
+            }
             log.Info("------- Initialization Complete -----------");
 
             DateTime startTime = DateTime.Now.AddMinutes(1);
@@ -35,7 +41,7 @@ namespace AutoTask
             ITrigger mailTrigger = (ISimpleTrigger)TriggerBuilder.Create()
                                           .WithIdentity("SampleJobTrigger", "SampleJobGroup")
                                           .StartAt(startTime)
-                                          .WithSimpleSchedule(x => x.WithIntervalInMinutes(5).RepeatForever())
+                                          .WithSimpleSchedule(x => x.WithIntervalInMinutes(1).RepeatForever())
                                           .Build();
 
             // Tell quartz to schedule the job using our trigger

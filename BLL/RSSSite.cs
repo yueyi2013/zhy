@@ -19,6 +19,33 @@ namespace ZHY.BLL
 		private readonly ZHY.DAL.RSSSite dal=new ZHY.DAL.RSSSite();
 		public RSSSite()
 		{}
+
+        #region 成员方法
+        /// <summary>
+        /// 调用分页存储过程
+        /// </summary>
+        /// <param name="PageIndex"></param>
+        /// <param name="name"></param>
+        /// <param name="CountAll"></param>
+        /// <returns></returns>
+        public DataSet GetList(int PageIndex, string name, ref int CountAll)
+        {
+            string strGetFields = " [RSSId],[RSSURL],[RSSSource],[RSSDesc],[NavCreateAt],[NavCreateBy],[NavUpdateDT],[NavUpdateBy] ";
+            string tablename = " RSSSite ";
+            int pageSize = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("pageSize"));
+            int intOrder = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("intOrder"));
+            string strOrder = " NavUpdateDT";
+            string strWhere = " 1=1 ";
+            if (!String.IsNullOrEmpty(name))
+            {
+                strWhere += "RSSDesc like '%" + name + "'";
+            }
+
+            return dal.GetList(tablename, strGetFields, PageIndex, pageSize, strWhere, strOrder, intOrder, ref CountAll);
+        }
+
+        #endregion
+
         #region  BasicMethod
         /// <summary>
 		/// 是否存在该记录

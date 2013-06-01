@@ -7,10 +7,10 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace ZHY.Web.admin {
+namespace Web.admin.site.rss {
     
     
-    public partial class wfFunctionList {
+    public partial class wfRssItemList {
         
         /// <summary>
         /// MyUpdatePanelHead 控件。
@@ -256,49 +256,49 @@ namespace ZHY.Web.admin {
         protected global::System.Web.UI.UpdatePanel MyUpdatePanelPanelBody;
         
         /// <summary>
-        /// txtFunCode 控件。
+        /// txtFeedTitle 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFunCode;
+        protected global::System.Web.UI.WebControls.TextBox txtFeedTitle;
         
         /// <summary>
-        /// txtFunName 控件。
+        /// txtFeedAuthor 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFunName;
+        protected global::System.Web.UI.WebControls.TextBox txtFeedAuthor;
         
         /// <summary>
-        /// txtFunPage 控件。
+        /// ftContent 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFunPage;
+        protected global::FreeTextBoxControls.FreeTextBox ftContent;
         
         /// <summary>
-        /// hfFunID 控件。
+        /// hfFeedID 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfFunID;
+        protected global::System.Web.UI.WebControls.HiddenField hfFeedID;
         
         /// <summary>
-        /// txtFunDes 控件。
+        /// txtFeedComment 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFunDes;
+        protected global::System.Web.UI.WebControls.TextBox txtFeedComment;
         
         /// <summary>
         /// btnSave 控件。

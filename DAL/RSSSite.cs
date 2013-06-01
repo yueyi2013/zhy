@@ -8,7 +8,7 @@ namespace ZHY.DAL
 	/// <summary>
 	/// 数据访问类:RSSSite
 	/// </summary>
-	public partial class RSSSite
+    public partial class RSSSite : BaseDAL
 	{
 		public RSSSite()
 		{}

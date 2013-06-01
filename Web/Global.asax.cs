@@ -14,8 +14,8 @@ namespace Web
         SchedulerControl  sc= null;
 
         protected void Application_Start(object sender, EventArgs e)
-        {/*
-            if (sc == null)
+        {
+            /*if (sc == null)
                 sc = new SchedulerControl();
             sc.StartSimpleJob();*/
         }

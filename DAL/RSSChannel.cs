@@ -8,7 +8,7 @@ namespace ZHY.DAL
 	/// <summary>
 	/// 数据访问类:RSSChannel
 	/// </summary>
-	public partial class RSSChannel
+    public partial class RSSChannel : BaseDAL
 	{
 		public RSSChannel()
 		{}

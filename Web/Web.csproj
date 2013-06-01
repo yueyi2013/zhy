@@ -82,6 +82,9 @@
   <ItemGroup>
     <Content Include="admin\site\homepage\wfNavigation.aspx" />
     <Content Include="admin\site\news\wfCollectNews.aspx" />
+    <Content Include="admin\site\news\wfNewsList.aspx" />
+    <Content Include="admin\site\rss\wfRssItemList.aspx" />
+    <Content Include="admin\site\rss\wfRssList.aspx" />
     <Content Include="css\css.css" />
     <Content Include="Default.aspx" />
     <Content Include="admin\Main0.Master" />
@@ -112,6 +115,27 @@
     </Compile>
     <Compile Include="admin\site\news\wfCollectNews.aspx.designer.cs">
       <DependentUpon>wfCollectNews.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\site\news\wfNewsList.aspx.cs">
+      <DependentUpon>wfNewsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\site\news\wfNewsList.aspx.designer.cs">
+      <DependentUpon>wfNewsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\site\rss\wfRssItemList.aspx.cs">
+      <DependentUpon>wfRssItemList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\site\rss\wfRssItemList.aspx.designer.cs">
+      <DependentUpon>wfRssItemList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\site\rss\wfRssList.aspx.cs">
+      <DependentUpon>wfRssList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\site\rss\wfRssList.aspx.designer.cs">
+      <DependentUpon>wfRssList.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\wfCarInput.aspx.cs">
       <DependentUpon>wfCarInput.aspx</DependentUpon>

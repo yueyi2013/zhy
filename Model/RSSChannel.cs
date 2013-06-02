@@ -21,7 +21,7 @@ namespace ZHY.Model
 		private DateTime? _rcpubdate= DateTime.Now;
 		private DateTime? _createat= DateTime.Now;
 		private string _createby;
-		private DateTime? _updateat= DateTime.Now;
+		private DateTime? _updatedt= DateTime.Now;
 		private string _updateby;
         private IList<RSSChannelItem> itemList;
 
@@ -113,10 +113,10 @@ namespace ZHY.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public DateTime? UpdateAt
+        public DateTime? UpdateDT
 		{
-			set{ _updateat=value;}
-			get{return _updateat;}
+			set{ _updatedt=value;}
+			get{return _updatedt;}
 		}
 		/// <summary>
 		/// 

@@ -29,15 +29,15 @@ namespace ZHY.BLL
         /// <returns></returns>
         public DataSet GetList(int PageIndex, string name, ref int CountAll)
         {
-            string strGetFields = " [FunID],[FunCode],[FunName],[FunPage],[FunDes] ";
-            string tablename = " Functions ";
+            string strGetFields = " RCId,RSSId,RCTitle,RCLink,RCDescription,RCLanguage,RCGenerator,RCPubDate,CreateAt,CreateBy,UpdateDT,UpdateBy ";
+            string tablename = " RSSChannel ";
             int pageSize = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("pageSize"));
             int intOrder = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("intOrder"));
-            string strOrder = " FunCode";
+            string strOrder = " UpdateDT";
             string strWhere = " 1=1 ";
             if (!String.IsNullOrEmpty(name))
             {
-                strWhere += "FunName like '%" + name + "'";
+                strWhere += "RCTitle like '%" + name + "'";
             }
 
             return dal.GetList(tablename, strGetFields, PageIndex, pageSize, strWhere, strOrder, intOrder, ref CountAll);

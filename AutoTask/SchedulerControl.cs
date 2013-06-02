@@ -20,7 +20,7 @@ namespace AutoTask
             ISchedulerFactory sf = new StdSchedulerFactory();
             if (sched==null)
             {
-                sched = sf.GetScheduler();
+                sched = sf.GetScheduler("SyihyScheduler");
             }
             bool inClearJobs = true;
             if (inClearJobs)

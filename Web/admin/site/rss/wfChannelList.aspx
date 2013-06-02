@@ -4,7 +4,7 @@
     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<fieldset style="width: 800px">
+<fieldset style="width: 900px">
     <legend>Channels 管理</legend>
     <asp:UpdatePanel ID="MyUpdatePanelHead" runat="server" UpdateMode="Conditional">
         <Triggers>
@@ -62,25 +62,28 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:BoundField DataField="RCTitle" HeaderText="频道标题">
-                                                <ItemStyle Width="100px" />
+                                                <ItemStyle Width="200px" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="RCPubDate" HeaderText="发布日期">
+                                                <ItemStyle Width="200px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="RCLink" HeaderText="频道链接">
-                                                <ItemStyle Width="300px" />
+                                                <ItemStyle Width="250px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="RCLanguage" HeaderText="语言">
                                                 <ItemStyle Width="50px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="RCDescription" HeaderText="描述">
-                                                <ItemStyle Width="150px" />
+                                                <ItemStyle Width="200px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="CreateAt" HeaderText="创建日期">
-                                                <ItemStyle Width="120px" />
+                                                <ItemStyle Width="200px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="CreateBy" HeaderText="创建人">
                                                 <ItemStyle Width="80px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="UpdateDT" HeaderText="更新日期">
-                                                <ItemStyle Width="120px" />
+                                                <ItemStyle Width="200px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="UpdateBy" HeaderText="更新人">
                                                 <ItemStyle Width="80px" />
@@ -148,7 +151,7 @@
                             发布日期：
                         </td>
                         <td height="25" width="*" align="left">
-                            <input type="text" id="txtPublishDate" runat="server" class="Wdate" disabled="disabled"
+                            <input type="text" id="txtPublishDate" runat="server" class="Wdate"
                                 style="width: 200px" onfocus="WdatePicker({minDate:'%y-%M-#{%d}'})" />
                         </td>
                     </tr>

@@ -28,7 +28,7 @@ namespace ZHY.BLL
             string tablename = " RSSChannelItem ";
             int pageSize = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("pageSize"));
             int intOrder = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("intOrder"));
-            string strOrder = " NavUpdateBy";
+            string strOrder = " NavUpdateDT";
             string strWhere = " 1=1 ";
             if (!String.IsNullOrEmpty(name))
             {

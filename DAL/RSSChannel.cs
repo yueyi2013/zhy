@@ -37,9 +37,9 @@ namespace ZHY.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into RSSChannel(");
-			strSql.Append("RSSId,RCTitle,RCLink,RCDescription,RCLanguage,RCGenerator,RCPubDate,CreateAt,CreateBy,UpdateAt,UpdateBy)");
+			strSql.Append("RSSId,RCTitle,RCLink,RCDescription,RCLanguage,RCGenerator,RCPubDate,CreateAt,CreateBy,UpdateDT,UpdateBy)");
 			strSql.Append(" values (");
-			strSql.Append("@RSSId,@RCTitle,@RCLink,@RCDescription,@RCLanguage,@RCGenerator,@RCPubDate,@CreateAt,@CreateBy,@UpdateAt,@UpdateBy)");
+			strSql.Append("@RSSId,@RCTitle,@RCLink,@RCDescription,@RCLanguage,@RCGenerator,@RCPubDate,@CreateAt,@CreateBy,@UpdateDT,@UpdateBy)");
 			strSql.Append(";select @@IDENTITY");
 			SqlParameter[] parameters = {
 					new SqlParameter("@RSSId", SqlDbType.Int,4),
@@ -51,7 +51,7 @@ namespace ZHY.DAL
 					new SqlParameter("@RCPubDate", SqlDbType.DateTime),
 					new SqlParameter("@CreateAt", SqlDbType.DateTime),
 					new SqlParameter("@CreateBy", SqlDbType.VarChar,64),
-					new SqlParameter("@UpdateAt", SqlDbType.DateTime),
+					new SqlParameter("@UpdateDT", SqlDbType.DateTime),
 					new SqlParameter("@UpdateBy", SqlDbType.VarChar,64)};
 			parameters[0].Value = model.RSSId;
 			parameters[1].Value = model.RCTitle;
@@ -62,7 +62,7 @@ namespace ZHY.DAL
 			parameters[6].Value = model.RCPubDate;
 			parameters[7].Value = model.CreateAt;
 			parameters[8].Value = model.CreateBy;
-			parameters[9].Value = model.UpdateAt;
+			parameters[9].Value = model.UpdateDT;
 			parameters[10].Value = model.UpdateBy;
 
 			object obj = DbHelperSQL.GetSingle(strSql.ToString(),parameters);
@@ -91,7 +91,7 @@ namespace ZHY.DAL
 			strSql.Append("RCPubDate=@RCPubDate,");
 			strSql.Append("CreateAt=@CreateAt,");
 			strSql.Append("CreateBy=@CreateBy,");
-			strSql.Append("UpdateAt=@UpdateAt,");
+			strSql.Append("UpdateDT=@UpdateDT,");
 			strSql.Append("UpdateBy=@UpdateBy");
 			strSql.Append(" where RCId=@RCId");
 			SqlParameter[] parameters = {
@@ -104,7 +104,7 @@ namespace ZHY.DAL
 					new SqlParameter("@RCPubDate", SqlDbType.DateTime),
 					new SqlParameter("@CreateAt", SqlDbType.DateTime),
 					new SqlParameter("@CreateBy", SqlDbType.VarChar,64),
-					new SqlParameter("@UpdateAt", SqlDbType.DateTime),
+					new SqlParameter("@UpdateDT", SqlDbType.DateTime),
 					new SqlParameter("@UpdateBy", SqlDbType.VarChar,64),
 					new SqlParameter("@RCId", SqlDbType.Int,4)};
 			parameters[0].Value = model.RSSId;
@@ -116,7 +116,7 @@ namespace ZHY.DAL
 			parameters[6].Value = model.RCPubDate;
 			parameters[7].Value = model.CreateAt;
 			parameters[8].Value = model.CreateBy;
-			parameters[9].Value = model.UpdateAt;
+			parameters[9].Value = model.UpdateDT;
 			parameters[10].Value = model.UpdateBy;
 			parameters[11].Value = model.RCId;
 
@@ -182,7 +182,7 @@ namespace ZHY.DAL
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select  top 1 RCId,RSSId,RCTitle,RCLink,RCDescription,RCLanguage,RCGenerator,RCPubDate,CreateAt,CreateBy,UpdateAt,UpdateBy from RSSChannel ");
+			strSql.Append("select  top 1 RCId,RSSId,RCTitle,RCLink,RCDescription,RCLanguage,RCGenerator,RCPubDate,CreateAt,CreateBy,UpdateDT,UpdateBy from RSSChannel ");
 			strSql.Append(" where RCId=@RCId");
 			SqlParameter[] parameters = {
 					new SqlParameter("@RCId", SqlDbType.Int,4)
@@ -208,7 +208,7 @@ namespace ZHY.DAL
         {
 
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select  top 1 RCId,RSSId,RCTitle,RCLink,RCDescription,RCLanguage,RCGenerator,RCPubDate,CreateAt,CreateBy,UpdateAt,UpdateBy from RSSChannel ");
+            strSql.Append("select  top 1 RCId,RSSId,RCTitle,RCLink,RCDescription,RCLanguage,RCGenerator,RCPubDate,CreateAt,CreateBy,UpdateDT,UpdateBy from RSSChannel ");
             strSql.Append(" where RCTitle=@RCTitle");
             SqlParameter[] parameters = {
 					new SqlParameter("@RCTitle", SqlDbType.VarChar,100)
@@ -276,9 +276,9 @@ namespace ZHY.DAL
 				{
 					model.CreateBy=row["CreateBy"].ToString();
 				}
-				if(row["UpdateAt"]!=null && row["UpdateAt"].ToString()!="")
+				if(row["UpdateDT"]!=null && row["UpdateDT"].ToString()!="")
 				{
-					model.UpdateAt=DateTime.Parse(row["UpdateAt"].ToString());
+					model.UpdateDT=DateTime.Parse(row["UpdateDT"].ToString());
 				}
 				if(row["UpdateBy"]!=null)
 				{
@@ -294,7 +294,7 @@ namespace ZHY.DAL
 		public DataSet GetList(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select RCId,RSSId,RCTitle,RCLink,RCDescription,RCLanguage,RCGenerator,RCPubDate,CreateAt,CreateBy,UpdateAt,UpdateBy ");
+			strSql.Append("select RCId,RSSId,RCTitle,RCLink,RCDescription,RCLanguage,RCGenerator,RCPubDate,CreateAt,CreateBy,UpdateDT,UpdateBy ");
 			strSql.Append(" FROM RSSChannel ");
 			if(strWhere.Trim()!="")
 			{
@@ -314,7 +314,7 @@ namespace ZHY.DAL
 			{
 				strSql.Append(" top "+Top.ToString());
 			}
-			strSql.Append(" RCId,RSSId,RCTitle,RCLink,RCDescription,RCLanguage,RCGenerator,RCPubDate,CreateAt,CreateBy,UpdateAt,UpdateBy ");
+			strSql.Append(" RCId,RSSId,RCTitle,RCLink,RCDescription,RCLanguage,RCGenerator,RCPubDate,CreateAt,CreateBy,UpdateDT,UpdateBy ");
 			strSql.Append(" FROM RSSChannel ");
 			if(strWhere.Trim()!="")
 			{

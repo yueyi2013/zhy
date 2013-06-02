@@ -83,6 +83,7 @@
     <Content Include="admin\site\homepage\wfNavigation.aspx" />
     <Content Include="admin\site\news\wfCollectNews.aspx" />
     <Content Include="admin\site\news\wfNewsList.aspx" />
+    <Content Include="admin\site\rss\wfChannelList.aspx" />
     <Content Include="admin\site\rss\wfRssItemList.aspx" />
     <Content Include="admin\site\rss\wfRssList.aspx" />
     <Content Include="css\css.css" />
@@ -122,6 +123,13 @@
     </Compile>
     <Compile Include="admin\site\news\wfNewsList.aspx.designer.cs">
       <DependentUpon>wfNewsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\site\rss\wfChannelList.aspx.cs">
+      <DependentUpon>wfChannelList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\site\rss\wfChannelList.aspx.designer.cs">
+      <DependentUpon>wfChannelList.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\site\rss\wfRssItemList.aspx.cs">
       <DependentUpon>wfRssItemList.aspx</DependentUpon>

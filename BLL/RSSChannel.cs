@@ -47,12 +47,12 @@ namespace ZHY.BLL
         /// 获取RSS Channel
         /// </summary>
         /// <returns></returns>
-        public ZHY.Model.RSSChannel FetchRssFeeds(string rssRul)
+        public ZHY.Model.RSSChannel FetchRssFeeds(string rssUrl)
         {
             try
             {
                 XmlDocument rssXml = new XmlDocument();
-                String feeds = RSSFeeds.loadRssFeeds(rssRul, "UTF8");
+                String feeds = RSSFeeds.loadRssFeeds(rssUrl, "UTF8");
                 if (String.IsNullOrEmpty(feeds))
                 {
                     return null;
@@ -62,6 +62,7 @@ namespace ZHY.BLL
                 XmlNode chNode = rssXml.DocumentElement.FirstChild;
                 ZHY.Model.RSSChannel channel = new ZHY.Model.RSSChannel();
                 List<ZHY.Model.RSSChannelItem> list = new List<ZHY.Model.RSSChannelItem>();
+                //var i = 0;
                 //定位 item 节点
                 foreach (XmlNode node in chNode.ChildNodes)
                 {
@@ -80,7 +81,7 @@ namespace ZHY.BLL
                             channel.RCDescription = node.InnerText;
                             break;
                         case "item":
-
+                           // i++;
                             ZHY.Model.RSSChannelItem item = new ZHY.Model.RSSChannelItem();
                             foreach (XmlNode subNode in node.ChildNodes)
                             {
@@ -97,7 +98,7 @@ namespace ZHY.BLL
                                         }
                                         break;
                                     case "author":
-                                        item.RCItemAuthor = subNode.InnerText;
+                                        item.RCItemAuthor = string.IsNullOrEmpty(subNode.InnerText) ? Constants.AUTHOR_NAME: subNode.InnerText;
                                         break;
                                     case "pubDate":
                                         item.RCItemPubDate = DateTime.Parse(subNode.InnerText);
@@ -107,8 +108,11 @@ namespace ZHY.BLL
                             list.Add(item);
                             break;
                     }
+                   // if (i == 1)
+                   //     break;
                 }
                 channel.ItemList = list;
+                return channel;
             }
             catch (Exception e)
             {
@@ -131,7 +135,8 @@ namespace ZHY.BLL
             {
                 tagSourcec = HtmlPaserUtil.extractHtmlsource(htmlSource);
             }
-            item.RCItemDescription = tagSourcec;
+
+            item.RCItemDescription = CompressionUtil.Compress(HttpUtility.HtmlEncode(tagSourcec));
         }
 
         /// <summary>
@@ -143,20 +148,24 @@ namespace ZHY.BLL
             ZHY.DAL.RSSChannelItem dal = new DAL.RSSChannelItem();
             ZHY.Model.RSSChannel objRSSChannel = this.GetModel(model.RCTitle);
             int rcId = 0;
-            if (objRSSChannel != null && !objRSSChannel.RCTitle.Trim().Equals(model.RCTitle.Trim()))
+            if (objRSSChannel == null)
             {
+                model.CreateBy = Constants.SYSTEM_NAME; 
+                model.UpdateBy = Constants.SYSTEM_NAME;
                 rcId = this.Add(model);
             }
-            else {
+            else{
                 rcId = objRSSChannel.RCId;            
             }
             
             foreach(ZHY.Model.RSSChannelItem item in model.ItemList)
             {
-                ZHY.Model.RSSChannelItem objItem = dal.GetModel(item.RCItemTitle);
-                if (objItem != null && !objItem.RCItemTitle.Equals(item.RCItemTitle))
+                if (!dal.Exists(item.RCItemTitle))
                 {
                     item.RCId = rcId;
+                    item.RCItemAuthor = string.IsNullOrEmpty(item.RCItemAuthor) ? Constants.AUTHOR_NAME : item.RCItemAuthor;
+                    item.NavCreateBy = Constants.SYSTEM_NAME;
+                    item.NavUpdateBy = Constants.SYSTEM_NAME;
                     dal.Add(item);
                 }
             }

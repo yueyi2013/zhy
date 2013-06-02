@@ -6,6 +6,7 @@ using System.Text;
 using Quartz;
 using Quartz.Impl;
 using Common.Logging;
+using System.Reflection;
 namespace AutoTask
 {
     public class SchedulerControl
@@ -27,29 +28,94 @@ namespace AutoTask
                 log.Warn("***** Deleting existing jobs/triggers *****");
                 sched.Clear();
             }
-            log.Info("------- Initialization Complete -----------");
-
-            DateTime startTime = DateTime.Now.AddMinutes(1);
+            log.Info("------- Initialization Complete -----------");        
 
             log.Info("------- Scheduling Job  -------------------");
 
-            // define the job and tie it to our HelloJob class
-            IJobDetail mailJob = JobBuilder.Create<SampleJob>()
-                .WithIdentity("SampleJob", "SampleJob")
-                .Build();
-
-            ITrigger mailTrigger = (ISimpleTrigger)TriggerBuilder.Create()
-                                          .WithIdentity("SampleJobTrigger", "SampleJobGroup")
-                                          .StartAt(startTime)
-                                          .WithSimpleSchedule(x => x.WithIntervalInMinutes(1).RepeatForever())
-                                          .Build();
-
-            // Tell quartz to schedule the job using our trigger
-            sched.ScheduleJob(mailJob, mailTrigger);
+            ScheduleSimpleJob("RssFeeds", "RssFeeds", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 60, true);
 
             // Start up the scheduler (nothing can actually run until the 
             // scheduler has been started)
             sched.Start();
+        }
+
+        /// <summary>
+        /// Schedule simple job
+        /// </summary>
+        /// <param name="jobId"></param>
+        /// <param name="jobGroup"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name="intervalMin"></param>
+        /// <param name="isForever"></param>
+        /// <param name="className"></param>
+        public void ScheduleSimpleJob(string jobId, string jobGroup, DateTime startTime, DateTime endTime, int intervalMin, bool isForever)
+        {
+            try
+            {
+                // define the job and tie it to our HelloJob class
+                IJobDetail simpleJob = JobBuilder.Create<AutoLoadNewsFeedJob>()
+                    .WithIdentity(jobId + "Job", jobGroup + "JobGroup")
+                    .Build();
+                ITrigger simpleTrigger = null;
+                if (isForever)
+                {
+                    simpleTrigger = (ISimpleTrigger)TriggerBuilder.Create()
+                                              .WithIdentity(jobId + "Trigger", jobGroup + "TriggerGroup")
+                                              .StartAt(startTime)
+                                              .WithSimpleSchedule(x => x.WithIntervalInMinutes(intervalMin).RepeatForever())
+                                              .Build();
+                }
+                else {
+                    simpleTrigger = (ISimpleTrigger)TriggerBuilder.Create()
+                                              .WithIdentity(jobId + "Trigger", jobGroup + "Trigger")
+                                              .StartAt(startTime).EndAt(endTime)
+                                              .WithSimpleSchedule(x => x.WithIntervalInMinutes(intervalMin))
+                                              .Build();              
+                
+                }
+                sched.ScheduleJob(simpleJob, simpleTrigger);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally { 
+            
+            
+            }
+        }
+
+        /// <summary>
+        /// Schedule cron job
+        /// </summary>
+        /// <param name="jobId"></param>
+        /// <param name="jobGroup"></param>
+        /// <param name="cronStr"></param>
+        /// <param name="className"></param>
+        public void ScheduleCronJob(string jobId, string jobGroup, string cronStr, Type className)
+        {
+            try
+            {
+                IJobDetail cronJob = JobBuilder.Create<SampleJob>()
+                .WithIdentity(jobId + "Job", jobGroup + "JobGroup")
+                .Build();
+
+                ICronTrigger cronTrigger = (ICronTrigger)TriggerBuilder.Create()
+                                                          .WithIdentity(jobId + "Trigger", jobGroup + "TriggerGroup")
+                                                          .WithCronSchedule(cronStr)
+                                                          .Build();
+                sched.ScheduleJob(cronJob, cronTrigger);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+
+
+            }
         }
 
         /// <summary>

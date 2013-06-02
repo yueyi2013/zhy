@@ -29,6 +29,22 @@ namespace ZHY.DAL
 			return DbHelperSQL.Exists(strSql.ToString(),parameters);
 		}
 
+        /// <summary>
+        /// 是否存在该记录
+        /// </summary>
+        public bool Exists(string RCItemTitle)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select count(1) from RSSChannelItem");
+            strSql.Append(" where RCItemTitle=@RCItemTitle");
+            SqlParameter[] parameters = {
+					new SqlParameter("@RCItemTitle", SqlDbType.VarChar,200)
+			};
+            parameters[0].Value = RCItemTitle;
+
+            return DbHelperSQL.Exists(strSql.ToString(), parameters);
+        }
+
 
 		/// <summary>
 		/// 增加一条数据
@@ -43,7 +59,7 @@ namespace ZHY.DAL
 			strSql.Append(";select @@IDENTITY");
 			SqlParameter[] parameters = {
 					new SqlParameter("@RCId", SqlDbType.Int,4),
-					new SqlParameter("@RCItemTitle", SqlDbType.VarChar,20),
+					new SqlParameter("@RCItemTitle", SqlDbType.VarChar,200),
 					new SqlParameter("@RCItemLink", SqlDbType.VarChar,100),
 					new SqlParameter("@RCItemCategory", SqlDbType.VarChar,10),
 					new SqlParameter("@RCItemAuthor", SqlDbType.VarChar,10),
@@ -99,7 +115,7 @@ namespace ZHY.DAL
 			strSql.Append(" where RCItemId=@RCItemId");
 			SqlParameter[] parameters = {
 					new SqlParameter("@RCId", SqlDbType.Int,4),
-					new SqlParameter("@RCItemTitle", SqlDbType.VarChar,20),
+					new SqlParameter("@RCItemTitle", SqlDbType.VarChar,200),
 					new SqlParameter("@RCItemLink", SqlDbType.VarChar,100),
 					new SqlParameter("@RCItemCategory", SqlDbType.VarChar,10),
 					new SqlParameter("@RCItemAuthor", SqlDbType.VarChar,10),
@@ -189,7 +205,7 @@ namespace ZHY.DAL
             strSql.Append("select  top 1 RCItemId,RCId,RCItemTitle,RCItemLink,RCItemCategory,RCItemAuthor,RCItemPubDate,RCItemDescription,RCItemComments,NavCreateAt,NavCreateBy,NavUpdateDT,NavUpdateBy from RSSChannelItem ");
             strSql.Append(" where RCItemId=@RCItemId");
             SqlParameter[] parameters = {
-					new SqlParameter("@RCItemTitle", SqlDbType.VarChar,20)
+					new SqlParameter("@RCItemTitle", SqlDbType.VarChar,200)
 			};
             parameters[0].Value = RCItemTitle;
 

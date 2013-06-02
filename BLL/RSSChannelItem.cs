@@ -24,7 +24,7 @@ namespace ZHY.BLL
         /// <returns></returns>
         public DataSet GetList(int PageIndex, string name, ref int CountAll)
         {
-            string strGetFields = " RCItemId,RCId,RCItemTitle,RCItemLink,RCItemCategory,RCItemAuthor,RCItemPubDate,RCItemDescription,RCItemComments,NavCreateAt,NavCreateBy,NavUpdateDT,NavUpdateBy ";
+            string strGetFields = " [RCItemId],[RCId],[RCItemTitle],[RCItemLink],[RCItemCategory],[RCItemAuthor],[RCItemPubDate],[RCItemDescription],[RCItemComments],[NavCreateAt],[NavCreateBy],[NavUpdateDT],[NavUpdateBy] ";
             string tablename = " RSSChannelItem ";
             int pageSize = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("pageSize"));
             int intOrder = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("intOrder"));

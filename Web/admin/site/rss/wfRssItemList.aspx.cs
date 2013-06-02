@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ZHY.Web;
-
+using ZHY.Common;
 namespace Web.admin.site.rss
 {
     public partial class wfRssItemList:BasePage
@@ -206,6 +206,7 @@ namespace Web.admin.site.rss
             ZHY.Model.RSSChannelItem model = new ZHY.Model.RSSChannelItem();
             model.RCItemTitle = this.txtFeedTitle.Text;
             model.RCItemAuthor = this.txtFeedAuthor.Text;
+            model.RCItemDescription = CompressionUtil.Compress(HttpUtility.HtmlEncode(this.ftContent.Text));
             model.RCItemComments = this.txtFeedComment.Text;
             ZHY.Model.User user = getLoginUser();
             model.NavCreateBy = user.UserName;
@@ -227,7 +228,7 @@ namespace Web.admin.site.rss
                 model.RCItemTitle = this.txtFeedTitle.Text;
                 model.RCItemAuthor = this.txtFeedAuthor.Text;
                 model.RCItemComments = this.txtFeedComment.Text;
-                model.RCItemDescription = this.ftContent.Text;
+                model.RCItemDescription = CompressionUtil.Compress(HttpUtility.HtmlEncode(this.ftContent.Text));
                 ZHY.Model.User user = getLoginUser();
                 model.NavUpdateBy = user.UserName;
                 model.NavUpdateDT = DateTime.Now;
@@ -258,7 +259,7 @@ namespace Web.admin.site.rss
             this.txtFeedTitle.Text = model.RCItemTitle;
             this.txtFeedAuthor.Text = model.RCItemAuthor;
             this.txtFeedComment.Text = model.RCItemComments;
-            this.ftContent.Text = model.RCItemDescription;
+            this.ftContent.Text = HttpUtility.HtmlDecode(CompressionUtil.Decompress(model.RCItemDescription));
         }
         #endregion
     }

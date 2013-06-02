@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<fieldset style="width: 800px">
+<fieldset style="width: 900px">
     <legend>Feeds管理</legend>
     <asp:UpdatePanel ID="MyUpdatePanelHead" runat="server" UpdateMode="Conditional">
         <Triggers>
@@ -62,22 +62,22 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:BoundField DataField="RCItemTitle" HeaderText="标题">
-                                                <ItemStyle Width="300px" />
+                                                <ItemStyle Width="550px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="RCItemAuthor" HeaderText="作者">
-                                                <ItemStyle Width="100px" />
+                                                <ItemStyle Width="80px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="RCItemComments" HeaderText="备注">
-                                                <ItemStyle Width="150px" />
+                                                <ItemStyle Width="100px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="NavCreateAt" HeaderText="创建日期">
-                                                <ItemStyle Width="250px" />
+                                                <ItemStyle Width="120px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="NavCreateBy" HeaderText="创建人">
                                                 <ItemStyle Width="80px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="NavUpdateDT" HeaderText="更新日期">
-                                                <ItemStyle Width="250px" />
+                                                <ItemStyle Width="120px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="NavUpdateBy" HeaderText="更新人">
                                                 <ItemStyle Width="80px" />

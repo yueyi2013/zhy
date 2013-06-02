@@ -23,9 +23,16 @@ namespace AutoTask
 		/// </summary>
 		public virtual void  Execute(IJobExecutionContext context)
 		{
+
+            ZHY.BLL.RSSSite bllRSSSite = new ZHY.BLL.RSSSite();
+            IList<ZHY.Model.RSSSite> list = bllRSSSite.GetModelList("");
             ZHY.BLL.RSSChannel bll = new ZHY.BLL.RSSChannel();
-            ZHY.Model.RSSChannel model = bll.FetchRssFeeds("http://www.people.com.cn/rss/politics.xml");
-            bll.SaveBatchRssFeeds(model);
+            foreach(ZHY.Model.RSSSite model in list)
+            {
+                ZHY.Model.RSSChannel chlModel = bll.FetchRssFeeds(model.RSSURL);
+                chlModel.RSSId = model.RSSId;
+                bll.SaveBatchRssFeeds(chlModel);
+            }
             _log.Info("Job finish at :"+DateTime.Now);
 		}
     }

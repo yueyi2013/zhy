@@ -1,36 +1,28 @@
 using System;
-using System.Xml.Serialization;
 using System.Collections.Generic;
 namespace ZHY.Model
 {
 	/// <summary>
-	/// RSSChannel:实体类(属性说明自动提取数据库字段的描述信息)
+	/// RSS频道
 	/// </summary>
-    [Serializable]
+	[Serializable]
 	public partial class RSSChannel
 	{
 		public RSSChannel()
 		{}
 		#region Model
-        [XmlIgnore()]
 		private int _rcid;
-        [XmlIgnore()]
 		private int? _rssid;
-        [XmlElement("title")]
 		private string _rctitle;
-        [XmlElement("link")]
 		private string _rclink;
-        [XmlElement("description")]
 		private string _rcdescription;
-        [XmlElement("language")]
 		private string _rclanguage;
-        [XmlIgnore()]
 		private string _rcgenerator;
-        [XmlIgnore()]
-		private DateTime? _rcpubdate;
-        [XmlIgnore()]
-		private DateTime? _rclastbuilddate;
-        [XmlIgnore()]
+		private DateTime? _rcpubdate= DateTime.Now;
+		private DateTime? _createat= DateTime.Now;
+		private string _createby;
+		private DateTime? _updateat= DateTime.Now;
+		private string _updateby;
         private IList<RSSChannelItem> itemList;
 
         public IList<RSSChannelItem> ItemList
@@ -105,10 +97,34 @@ namespace ZHY.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public DateTime? RCLastBuildDate
+		public DateTime? CreateAt
 		{
-			set{ _rclastbuilddate=value;}
-			get{return _rclastbuilddate;}
+			set{ _createat=value;}
+			get{return _createat;}
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		public string CreateBy
+		{
+			set{ _createby=value;}
+			get{return _createby;}
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		public DateTime? UpdateAt
+		{
+			set{ _updateat=value;}
+			get{return _updateat;}
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		public string UpdateBy
+		{
+			set{ _updateby=value;}
+			get{return _updateby;}
 		}
 		#endregion Model
 

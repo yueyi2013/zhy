@@ -229,7 +229,7 @@ namespace Web.admin.site.rss
                 model.RCDescription = this.txtDes.Text;
                 ZHY.Model.User user = getLoginUser();
                 model.UpdateBy = user.UserName;
-                model.UpdateAt = DateTime.Now;
+                model.UpdateDT = DateTime.Now;
                 bll.Update(model);
             }
         }

@@ -18,12 +18,15 @@ namespace AutoTask
             //string cronExpr = ConfigurationManager.AppSettings["cronExpr"];
             // First we must get a reference to a scheduler
             ISchedulerFactory sf = new StdSchedulerFactory();
-            if (sched==null)
+            if (sched == null)
             {
+                sched = sf.GetScheduler();
+            }
+            else {
                 sched = sf.GetScheduler("SyihyScheduler");
             }
             bool inClearJobs = true;
-            if (inClearJobs)
+            if (inClearJobs && sched!=null)
             {
                 log.Warn("***** Deleting existing jobs/triggers *****");
                 sched.Clear();

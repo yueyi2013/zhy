@@ -86,6 +86,7 @@
     <Content Include="admin\site\rss\wfChannelList.aspx" />
     <Content Include="admin\site\rss\wfRssItemList.aspx" />
     <Content Include="admin\site\rss\wfRssList.aspx" />
+    <Content Include="admin\sys\wfSystemConfig.aspx" />
     <Content Include="css\css.css" />
     <Content Include="Default.aspx" />
     <Content Include="admin\Main0.Master" />
@@ -144,6 +145,13 @@
     </Compile>
     <Compile Include="admin\site\rss\wfRssList.aspx.designer.cs">
       <DependentUpon>wfRssList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\sys\wfSystemConfig.aspx.cs">
+      <DependentUpon>wfSystemConfig.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\sys\wfSystemConfig.aspx.designer.cs">
+      <DependentUpon>wfSystemConfig.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\wfCarInput.aspx.cs">
       <DependentUpon>wfCarInput.aspx</DependentUpon>

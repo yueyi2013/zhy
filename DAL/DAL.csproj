@@ -159,6 +159,7 @@
     <Compile Include="ProPicture.cs" />
     <Compile Include="Right.cs" />
     <Compile Include="Role.cs" />
+    <Compile Include="SystemConfig.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>

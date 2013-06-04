@@ -1,0 +1,67 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="tmpl.master.cs" Inherits="Web.template.syihy_1.tmpl" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>syihy.com</title>
+     <script language="javascript" type="text/javascript">
+         self.moveTo(0, 0)
+         self.resizeTo(screen.availWidth, screen.availHeight)
+    </script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body style="margin-left: 0px; margin-top: 0px; background-image: url('../images/bg.gif');
+    background-repeat: repeat">
+    <form id="form1" runat="server">
+    <div>
+        <asp:ScriptManager ID="smUIPage" runat="server">
+        </asp:ScriptManager>
+        <table align="center" cellpadding="0" cellspacing="0" width="900px">
+        <!--Top Start-->
+        <tr><td>
+        <div id="header">
+			<div id="connect">
+				<a href="http://facebook.com/freewebsitetemplates" target="_blank" class="facebook" title="Facebook"></a>
+				<a href="http://twitter.com/fwtemplates" target="_blank" class="twitter" title="Twitter"></a>
+ 			</div>
+			
+			<a href="#" id="logo">syihy.com</a>
+            <asp:Menu ID="muNavigation" runat="server" Orientation="Horizontal">
+               
+            </asp:Menu>			
+		</div>
+        
+        </td></tr>
+        <!--Top End-->
+        <!--Body Start-->
+        <tr><td>
+        <div id="body">
+            <asp:UpdatePanel ID="upBody" runat="server" UpdateMode="Conditional">
+                <Triggers>
+                    <asp:AsyncPostBackTrigger ControlID="muNavigation" EventName="MenuItemClick" />
+                </Triggers>
+                <ContentTemplate>
+                     <asp:ContentPlaceHolder ID="cpBody" runat="server">
+        
+                     </asp:ContentPlaceHolder>   
+                 </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>  
+        </td></tr>
+         <!--Body End-->
+        <!--Foot-->
+        <tr><td>
+        
+        <div id="footer">
+		    &copy; Copyright 2013. syihy.com rights reserved
+	    </div>
+        </td></tr>
+        <!--Foot End-->
+        </table>
+        
+    </div>
+    </form>
+</body>
+</html>

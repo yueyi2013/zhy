@@ -13,6 +13,15 @@ namespace Web.admin.site.homepage {
     public partial class wfNavigation {
         
         /// <summary>
+        /// UpdatePanel1 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
+        
+        /// <summary>
         /// tvMenu 控件。
         /// </summary>
         /// <remarks>
@@ -94,15 +103,6 @@ namespace Web.admin.site.homepage {
         protected global::System.Web.UI.WebControls.TextBox txtMenuDes;
         
         /// <summary>
-        /// chkStatus 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkStatus;
-        
-        /// <summary>
         /// hfOp 控件。
         /// </summary>
         /// <remarks>
@@ -110,6 +110,15 @@ namespace Web.admin.site.homepage {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.HiddenField hfOp;
+        
+        /// <summary>
+        /// chkStatus 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox chkStatus;
         
         /// <summary>
         /// btnAdd 控件。

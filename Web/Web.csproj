@@ -91,10 +91,142 @@
     <Content Include="Default.aspx" />
     <Content Include="admin\Main0.Master" />
     <None Include="inc\navigation.inc" />
+    <Content Include="forum\bolg.aspx" />
+    <Content Include="forum\food.aspx" />
+    <Content Include="forum\news.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="template\demo_aqua\css\slimbox2.css" />
+    <Content Include="template\demo_aqua\images\about.png" />
+    <Content Include="template\demo_aqua\images\closelabel.gif" />
+    <Content Include="template\demo_aqua\images\comment.png" />
+    <Content Include="template\demo_aqua\images\contact.png" />
+    <Content Include="template\demo_aqua\images\facebook.png" />
+    <Content Include="template\demo_aqua\images\go_to_top.png" />
+    <Content Include="template\demo_aqua\images\home.png" />
+    <Content Include="template\demo_aqua\images\loading.gif" />
+    <Content Include="template\demo_aqua\images\logo_fireworks.png" />
+    <Content Include="template\demo_aqua\images\main_bottom.png" />
+    <Content Include="template\demo_aqua\images\nextlabel.gif" />
+    <Content Include="template\demo_aqua\images\portfolio.png" />
+    <Content Include="template\demo_aqua\images\portfolio\01-s.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\01.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\02-s.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\02.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\03-s.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\03.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\04-s.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\04.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\05-s.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\05.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\06-s.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\06.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\07-s.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\07.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\08-s.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\08.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\09-s.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\09.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\10-s.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\10.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\11-s.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\11.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\12-s.jpg" />
+    <Content Include="template\demo_aqua\images\portfolio\12.jpg" />
+    <Content Include="template\demo_aqua\images\prevlabel.gif" />
+    <Content Include="template\demo_aqua\images\services.png" />
+    <Content Include="template\demo_aqua\images\templatemo_body_center.jpg" />
+    <Content Include="template\demo_aqua\images\templatemo_body_repeat.jpg" />
+    <Content Include="template\demo_aqua\images\templatemo_footer.png" />
+    <Content Include="template\demo_aqua\images\templatemo_image_01.jpg" />
+    <Content Include="template\demo_aqua\images\templatemo_image_02.jpg" />
+    <Content Include="template\demo_aqua\images\templatemo_image_03.jpg" />
+    <Content Include="template\demo_aqua\images\templatemo_logo.png" />
+    <Content Include="template\demo_aqua\images\templatemo_main.png" />
+    <Content Include="template\demo_aqua\images\templatemo_menu.png" />
+    <Content Include="template\demo_aqua\images\templatemo_menu_divider.png" />
+    <Content Include="template\demo_aqua\images\twitter.png" />
+    <Content Include="template\demo_aqua\index.html" />
+    <Content Include="template\demo_aqua\js\jquery.localscroll-min.js" />
+    <Content Include="template\demo_aqua\js\jquery.min.js" />
+    <Content Include="template\demo_aqua\js\jquery.scrollTo-min.js" />
+    <Content Include="template\demo_aqua\js\slimbox2.js" />
+    <Content Include="template\demo_aqua\templatemo_style.css" />
+    <Content Include="template\demo_orange\iepngfix.htc" />
+    <Content Include="template\demo_orange\images\blank.gif" />
+    <Content Include="template\demo_orange\images\rss_icon_28x28.png" />
+    <Content Include="template\demo_orange\images\templatemo_ads.jpg" />
+    <Content Include="template\demo_orange\images\templatemo_background_section_top_bg.jpg" />
+    <Content Include="template\demo_orange\images\templatemo_footer_bg.jpg" />
+    <Content Include="template\demo_orange\images\templatemo_logo_bg.jpg" />
+    <Content Include="template\demo_orange\images\templatemo_rss.gif" />
+    <Content Include="template\demo_orange\images\templatemo_section_box_top.jpg" />
+    <Content Include="template\demo_orange\images\templatmo_img_1.jpg" />
+    <Content Include="template\demo_orange\images\templatmo_img_2.jpg" />
+    <Content Include="template\demo_orange\images\templatmo_img_3.jpg" />
+    <Content Include="template\demo_orange\images\templatmo_img_4.jpg" />
+    <Content Include="template\demo_orange\images\templatmo_img_5.jpg" />
+    <Content Include="template\demo_orange\images\templatmo_img_6.jpg" />
+    <Content Include="template\demo_orange\images\templatmo_thumb_1.jpg" />
+    <Content Include="template\demo_orange\images\templatmo_thumb_2.jpg" />
+    <Content Include="template\demo_orange\images\templatmo_thumb_3.jpg" />
+    <Content Include="template\demo_orange\images\templatmo_thumb_4.jpg" />
+    <Content Include="template\demo_orange\images\templatmo_thumb_5.jpg" />
+    <Content Include="template\demo_orange\images\templatmo_thumb_6.jpg" />
+    <Content Include="template\demo_orange\images\templatmo_thumb_7.jpg" />
+    <Content Include="template\demo_orange\images\templatmo_thumb_8.jpg" />
+    <Content Include="template\demo_orange\index.html" />
+    <Content Include="template\demo_orange\slimbox\closelabel.gif" />
+    <Content Include="template\demo_orange\slimbox\jquery.min.js" />
+    <Content Include="template\demo_orange\slimbox\loading.gif" />
+    <Content Include="template\demo_orange\slimbox\nextlabel.gif" />
+    <Content Include="template\demo_orange\slimbox\prevlabel.gif" />
+    <Content Include="template\demo_orange\slimbox\slimbox2.css" />
+    <Content Include="template\demo_orange\slimbox\slimbox2.js" />
+    <Content Include="template\demo_orange\templatemo_style.css" />
+    <Content Include="template\demo_pet\about.html" />
+    <Content Include="template\demo_pet\blog.html" />
+    <Content Include="template\demo_pet\contacts.html" />
+    <Content Include="template\demo_pet\css\ie.css" />
+    <Content Include="template\demo_pet\css\style.css" />
+    <Content Include="template\demo_pet\gallery.html" />
+    <Content Include="template\demo_pet\images\bg-body.gif" />
+    <Content Include="template\demo_pet\images\bg-gallery.jpg" />
+    <Content Include="template\demo_pet\images\bulldog.jpg" />
+    <Content Include="template\demo_pet\images\bulldog2.jpg" />
+    <Content Include="template\demo_pet\images\butterfly.jpg" />
+    <Content Include="template\demo_pet\images\butterfly2.jpg" />
+    <Content Include="template\demo_pet\images\button-submit.gif" />
+    <Content Include="template\demo_pet\images\cat.jpg" />
+    <Content Include="template\demo_pet\images\cat2.jpg" />
+    <Content Include="template\demo_pet\images\cat3.jpg" />
+    <Content Include="template\demo_pet\images\dogs.jpg" />
+    <Content Include="template\demo_pet\images\dogs2.jpg" />
+    <Content Include="template\demo_pet\images\dogs3.jpg" />
+    <Content Include="template\demo_pet\images\horse.jpg" />
+    <Content Include="template\demo_pet\images\icons.gif" />
+    <Content Include="template\demo_pet\images\input.gif" />
+    <Content Include="template\demo_pet\images\logo.jpg" />
+    <Content Include="template\demo_pet\images\owl.jpg" />
+    <Content Include="template\demo_pet\images\owl2.jpg" />
+    <Content Include="template\demo_pet\images\photographer.jpg" />
+    <Content Include="template\demo_pet\images\turtle.jpg" />
+    <Content Include="template\demo_pet\images\turtle2.jpg" />
+    <Content Include="template\demo_pet\index.html" />
+    <Content Include="template\demo_pet\news.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
+    <None Include="template\demo_aqua\images\portfolio\Thumbs.db" />
+    <None Include="template\demo_aqua\images\Thumbs.db" />
+    <None Include="template\demo_orange\images\Thumbs.db" />
+    <None Include="template\demo_orange\slimbox\Thumbs.db" />
+    <Content Include="template\syihy_1\tmpl.Master" />
+    <None Include="template\demo_pet\source\Photography 7 about.psd" />
+    <None Include="template\demo_pet\source\Photography 7 blog.psd" />
+    <None Include="template\demo_pet\source\Photography 7 contacts.psd" />
+    <None Include="template\demo_pet\source\Photography 7 gallery.psd" />
+    <None Include="template\demo_pet\source\Photography 7 index.psd" />
+    <None Include="template\demo_pet\source\Photography 7 news.psd" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="admin\Main.Master.cs">
@@ -332,6 +464,27 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\GeneralMenu.cs" />
+    <Compile Include="forum\bolg.aspx.cs">
+      <DependentUpon>bolg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forum\bolg.aspx.designer.cs">
+      <DependentUpon>bolg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="forum\food.aspx.cs">
+      <DependentUpon>food.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forum\food.aspx.designer.cs">
+      <DependentUpon>food.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="forum\news.aspx.cs">
+      <DependentUpon>news.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forum\news.aspx.designer.cs">
+      <DependentUpon>news.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -420,6 +573,13 @@
     </Compile>
     <Compile Include="ProPublish.aspx.designer.cs">
       <DependentUpon>ProPublish.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="template\syihy_1\tmpl.Master.cs">
+      <DependentUpon>tmpl.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="template\syihy_1\tmpl.Master.designer.cs">
+      <DependentUpon>tmpl.Master</DependentUpon>
     </Compile>
     <Compile Include="ValidateCode.aspx.cs">
       <DependentUpon>ValidateCode.aspx</DependentUpon>

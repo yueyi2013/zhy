@@ -175,9 +175,9 @@ namespace ZHY.BLL
 					objModel = dal.GetModel(NavId);
 					if (objModel != null)
 					{
-						//int ModelCache = Globals.SafeInt(BLL.SysManage.ConfigSystem.GetValueByCache("CacheTime"), 30);
-						//LTP.Common.DataCache.SetCache(CacheKey, objModel, DateTime.Now.AddMinutes(ModelCache), TimeSpan.Zero);
-					}
+                        int ModelCache = LTP.Common.ConfigHelper.GetConfigInt("ModelCache");
+                        Maticsoft.Common.DataCache.SetCache(CacheKey, objModel, DateTime.Now.AddMinutes(ModelCache), TimeSpan.Zero);
+                    }
 				}
 				catch{}
 			}

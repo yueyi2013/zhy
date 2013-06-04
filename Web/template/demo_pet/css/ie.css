@@ -1,0 +1,39 @@
+/* Website template by freewebsitetemplates.com */
+#page {
+	width: 958px;
+	margin: 0 auto;
+	border: 1px solid #e0e0e0;
+}
+
+/*------------------------------ HEADER ------------------------------*/
+#header {
+	width: 960px;
+}
+#connect {
+	*margin-right: 30px;
+	_margin-right: 12px;
+}
+#connect a {
+	margin: 0 3px;
+}
+
+/*------------------------------ BODY ------------------------------*/
+#body {
+	width: 960px;
+}
+
+#favorites a {
+	top: 34px;
+}
+
+#featured h4 {
+	width: 120px;
+}
+
+#articles {
+	width: 960px;
+}
+
+#contents {
+	height: 900px;
+}

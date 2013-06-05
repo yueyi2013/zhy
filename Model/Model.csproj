@@ -125,6 +125,7 @@
     <Compile Include="NewsCategory.cs" />
     <Compile Include="NewsInfo.cs" />
     <Compile Include="NewsSite.cs" />
+    <Compile Include="NewsTop.cs" />
     <Compile Include="ProDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

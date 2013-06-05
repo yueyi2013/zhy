@@ -83,6 +83,7 @@
     <Content Include="admin\site\homepage\wfNavigation.aspx" />
     <Content Include="admin\site\news\wfCollectNews.aspx" />
     <Content Include="admin\site\news\wfNewsList.aspx" />
+    <Content Include="admin\site\news\wfNewsTopList.aspx" />
     <Content Include="admin\site\rss\wfChannelList.aspx" />
     <Content Include="admin\site\rss\wfRssItemList.aspx" />
     <Content Include="admin\site\rss\wfRssList.aspx" />
@@ -95,6 +96,8 @@
     <Content Include="forum\food.aspx" />
     <Content Include="forum\news.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="images\flash\cont_top.swf" />
+    <Content Include="index.aspx" />
     <Content Include="template\demo_aqua\css\slimbox2.css" />
     <Content Include="template\demo_aqua\images\about.png" />
     <Content Include="template\demo_aqua\images\closelabel.gif" />
@@ -256,6 +259,13 @@
     </Compile>
     <Compile Include="admin\site\news\wfNewsList.aspx.designer.cs">
       <DependentUpon>wfNewsList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\site\news\wfNewsTopList.aspx.cs">
+      <DependentUpon>wfNewsTopList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\site\news\wfNewsTopList.aspx.designer.cs">
+      <DependentUpon>wfNewsTopList.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\site\rss\wfChannelList.aspx.cs">
       <DependentUpon>wfChannelList.aspx</DependentUpon>
@@ -487,6 +497,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
     </Compile>
     <Compile Include="Index0.Master.cs">
       <DependentUpon>Index0.Master</DependentUpon>

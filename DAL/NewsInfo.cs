@@ -8,7 +8,7 @@ namespace ZHY.DAL
 	/// <summary>
 	/// 数据访问类:NewsInfo
 	/// </summary>
-	public partial class NewsInfo
+	public partial class NewsInfo :BaseDAL
 	{
 		public NewsInfo()
 		{}

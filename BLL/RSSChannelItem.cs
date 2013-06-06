@@ -38,6 +38,16 @@ namespace ZHY.BLL
             return dal.GetList(tablename, strGetFields, PageIndex, pageSize, strWhere, strOrder, intOrder, ref CountAll);
         }
 
+        /// <summary>
+        /// 获取最新的RSS
+        /// </summary>
+        /// <param name="tops"></param>
+        /// <returns></returns>
+        public IList<ZHY.Model.RSSChannelItem> loadNewsTop(int tops) 
+        {
+            return this.DataTableToList(this.GetList(tops, "", "NavUpdateDT").Tables[0]);
+        }
+
         #endregion
 
 		#region  BasicMethod

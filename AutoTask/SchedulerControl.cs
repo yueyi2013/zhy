@@ -35,7 +35,10 @@ namespace AutoTask
 
             log.Info("------- Scheduling Job  -------------------");
 
+            //Set auto load RSS job 
             ScheduleSimpleJob("RssFeeds", "RssFeeds", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 60, true);
+            //Set auto load Top news job
+            ScheduleSimpleJob("NewsTop", "NewsTop", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 120, true);
 
             // Start up the scheduler (nothing can actually run until the 
             // scheduler has been started)

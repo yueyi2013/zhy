@@ -28,32 +28,32 @@ namespace Web
             DataSet ds = new DataSet();
             this.divflashContent.InnerHtml = "";
             strContent.Append("<script type=\"text/javascript\">\r\n");
-            /*NoticeManager objNoticeManager = new NoticeManager();
-            ds = (DataSet)objNoticeManager.GetList();
+            ZHY.BLL.NewsSite bll = new ZHY.BLL.NewsSite();
+            ds = (DataSet)bll.GetList("");
             if (ds.Tables[0].Rows.Count > 0)
             {
                 string pics = "", links = "", texts = "";
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                 {
                     if (pics == "")
-                        pics = ds.Tables[0].Rows[i]["NotPicPath"].ToString();
+                        pics = ds.Tables[0].Rows[i]["SFPicPath"].ToString();
                     else
-                        pics = pics + "|" + ds.Tables[0].Rows[i]["NotPicPath"].ToString();
+                        pics = pics + "|" + ds.Tables[0].Rows[i]["SFPicPath"].ToString();
                     if (links == "")
-                        links = ds.Tables[0].Rows[i]["NotDetailsURL"].ToString();
+                        links = ds.Tables[0].Rows[i]["SFDetailsURL"].ToString();
                     else
-                        links = links + "|" + ds.Tables[0].Rows[i]["NotDetailsURL"].ToString();
+                        links = links + "|" + ds.Tables[0].Rows[i]["SFDetailsURL"].ToString();
                     if (texts == "")
-                        texts = ds.Tables[0].Rows[i]["ConTitle"].ToString();
+                        texts = ds.Tables[0].Rows[i]["SFConTitle"].ToString();
                     else
-                        texts = texts + "|" + ds.Tables[0].Rows[i]["ConTitle"].ToString();
+                        texts = texts + "|" + ds.Tables[0].Rows[i]["SFConTitle"].ToString();
                 }
                 strContent.Append(" pics=\"" + @pics + "\"; \r\n");
                 strContent.Append(" links=\"" + @links + "\"; \r\n");
                 strContent.Append(" texts=\"" + @texts + "\"; \r\n");
             }
             strContent.Append("</script>\r\n");
-            this.divflashContent.InnerHtml = strContent.ToString();*/
+            this.divflashContent.InnerHtml = strContent.ToString();
 
         }
     }

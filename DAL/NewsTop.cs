@@ -116,6 +116,26 @@ namespace ZHY.DAL
 			}
 		}
 
+        /// <summary>
+        /// 删除所有数据
+        /// </summary>
+        public bool Delete()
+        {
+
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("delete from NewsTop ");
+
+            int rows = DbHelperSQL.ExecuteSql(strSql.ToString());
+            if (rows > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 		/// <summary>
 		/// 删除一条数据
 		/// </summary>

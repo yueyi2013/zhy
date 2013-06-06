@@ -80,6 +80,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\site\ads\wfSiteFlash.aspx" />
+    <Content Include="admin\site\ads\wfWebSiteAds.aspx" />
     <Content Include="admin\site\homepage\wfNavigation.aspx" />
     <Content Include="admin\site\news\wfCollectNews.aspx" />
     <Content Include="admin\site\news\wfNewsList.aspx" />
@@ -238,6 +240,20 @@
     </Compile>
     <Compile Include="admin\Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
+    </Compile>
+    <Compile Include="admin\site\ads\wfSiteFlash.aspx.cs">
+      <DependentUpon>wfSiteFlash.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\site\ads\wfSiteFlash.aspx.designer.cs">
+      <DependentUpon>wfSiteFlash.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\site\ads\wfWebSiteAds.aspx.cs">
+      <DependentUpon>wfWebSiteAds.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\site\ads\wfWebSiteAds.aspx.designer.cs">
+      <DependentUpon>wfWebSiteAds.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\site\homepage\wfNavigation.aspx.cs">
       <DependentUpon>wfNavigation.aspx</DependentUpon>

@@ -65,6 +65,15 @@ namespace ZHY.BLL
 			return dal.Update(model);
 		}
 
+        /// <summary>
+        /// 删除一条数据
+        /// </summary>
+        public bool Delete()
+        {
+
+            return dal.Delete();
+        }
+
 		/// <summary>
 		/// 删除一条数据
 		/// </summary>

@@ -100,6 +100,8 @@
     <Content Include="Global.asax" />
     <Content Include="images\flash\cont_top.swf" />
     <Content Include="index.aspx" />
+    <Content Include="Member\NewsDetails.aspx" />
+    <Content Include="Member\NewsList.aspx" />
     <Content Include="template\demo_aqua\css\slimbox2.css" />
     <Content Include="template\demo_aqua\images\about.png" />
     <Content Include="template\demo_aqua\images\closelabel.gif" />
@@ -590,6 +592,20 @@
     </Compile>
     <Compile Include="Member\MemPassword.aspx.designer.cs">
       <DependentUpon>MemPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Member\NewsDetails.aspx.cs">
+      <DependentUpon>NewsDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Member\NewsDetails.aspx.designer.cs">
+      <DependentUpon>NewsDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Member\NewsList.aspx.cs">
+      <DependentUpon>NewsList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Member\NewsList.aspx.designer.cs">
+      <DependentUpon>NewsList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Member\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>

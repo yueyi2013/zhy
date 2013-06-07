@@ -137,7 +137,7 @@ namespace Web.admin.site.rss
                 CheckBox chk = (CheckBox)gvr.FindControl("chkItem");
                 if (chk.Checked)
                 {
-                    ZHY.BLL.RSSSite bll = new ZHY.BLL.RSSSite();
+                    ZHY.BLL.RSSChannel bll = new ZHY.BLL.RSSChannel();
                     bll.Delete(ConvertInt32(rssId, 0));
                 }
             }

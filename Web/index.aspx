@@ -24,8 +24,9 @@
 <!--主体1--最新更新-->
 <td>
     <div id="topNews">
-        
-        
+        <asp:DataList ID="dlNewsTop" runat="server">
+            
+        </asp:DataList>        
     </div>
 </td>
 </tr>

@@ -36,9 +36,9 @@ namespace AutoTask
             log.Info("------- Scheduling Job  -------------------");
 
             //Set auto load RSS job 
-            ScheduleSimpleJob("RssFeeds", "RssFeeds", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 60, true);
+            ScheduleSimpleJob("RssFeeds", "RssFeeds", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 60, true,typeof(AutoTask.AutoLoadNewsFeedJob));
             //Set auto load Top news job
-            ScheduleSimpleJob("NewsTop", "NewsTop", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 120, true);
+            ScheduleSimpleJob("NewsTop", "NewsTop", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 120, true,typeof(AutoTask.AutoAddNewsTopJob));
 
             // Start up the scheduler (nothing can actually run until the 
             // scheduler has been started)
@@ -55,12 +55,12 @@ namespace AutoTask
         /// <param name="intervalMin"></param>
         /// <param name="isForever"></param>
         /// <param name="className"></param>
-        public void ScheduleSimpleJob(string jobId, string jobGroup, DateTime startTime, DateTime endTime, int intervalMin, bool isForever)
+        public void ScheduleSimpleJob(string jobId, string jobGroup, DateTime startTime, DateTime endTime, int intervalMin, bool isForever,Type classFullName)
         {
             try
             {
                 // define the job and tie it to our HelloJob class
-                IJobDetail simpleJob = JobBuilder.Create<AutoLoadNewsFeedJob>()
+                IJobDetail simpleJob = JobBuilder.Create(classFullName)
                     .WithIdentity(jobId + "Job", jobGroup + "JobGroup")
                     .Build();
                 ITrigger simpleTrigger = null;

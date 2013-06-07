@@ -139,7 +139,7 @@ namespace Web.admin.site.news
                 CheckBox chk = (CheckBox)gvr.FindControl("chkItem");
                 if (chk.Checked)
                 {
-                    ZHY.BLL.NewsTop bll = new ZHY.BLL.NewsTop();
+                    ZHY.BLL.NewsInfo bll = new ZHY.BLL.NewsInfo();
                     bll.Delete(ConvertInt32(newsId, 0));
                 }
             }

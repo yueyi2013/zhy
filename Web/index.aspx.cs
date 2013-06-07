@@ -20,6 +20,24 @@ namespace Web
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        private void BindSectionsList()
+        {
+
+        }
+
+        /// <summary>
+        /// 绑定Top News
+        /// </summary>
+        private void BindNewsTop()
+        {
+            ZHY.BLL.NewsTop bll = new ZHY.BLL.NewsTop();
+            this.dlNewsTop.DataSource = bll.GetAllList();
+            this.dlNewsTop.DataBind();            
+        }
+
+        /// <summary>
         /// 初始化首页广告
         /// </summary>
         private void InitFlash()

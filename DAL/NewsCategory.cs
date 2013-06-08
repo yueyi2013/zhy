@@ -12,8 +12,15 @@ namespace ZHY.DAL
 	{
 		public NewsCategory()
 		{}
-		#region  BasicMethod
-		/// <summary>
+
+        #region 成员方法
+
+
+
+        #endregion
+
+        #region  BasicMethod
+        /// <summary>
 		/// 是否存在该记录
 		/// </summary>
 		public bool Exists(int NewsCategoryId)

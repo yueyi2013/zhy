@@ -13,8 +13,60 @@ namespace ZHY.BLL
 		private readonly ZHY.DAL.NewsCategory dal=new ZHY.DAL.NewsCategory();
 		public NewsCategory()
 		{}
-		#region  BasicMethod
-		/// <summary>
+
+        #region 成员方法
+        /// <summary>
+        /// 调用分页存储过程
+        /// </summary>
+        /// <param name="PageIndex"></param>
+        /// <param name="name"></param>
+        /// <param name="CountAll"></param>
+        /// <returns></returns>
+        public DataSet GetList(int PageIndex, string name, ref int CountAll)
+        {
+            string strGetFields = " NewsCategoryId,NewsCategoryName,NewsCategoryDesc,NavCreateAt,NavCreateBy,NavUpdateDT,NavUpdateBy ";
+            string tablename = " NewsCategory ";
+            int pageSize = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("pageSize"));
+            int intOrder = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("intOrder"));
+            string strOrder = " NavUpdateDT";
+            string strWhere = " 1=1 ";
+            if (!String.IsNullOrEmpty(name))
+            {
+                strWhere += "NewsCategoryName like '%" + name + "'";
+            }
+
+            return dal.GetList(tablename, strGetFields, PageIndex, pageSize, strWhere, strOrder, intOrder, ref CountAll);
+        }
+
+
+        public IList<ZHY.Model.NewsCategory> GetNewsListWithCat(int top)
+        {
+            ZHY.BLL.RSSChannel rcBll = new ZHY.BLL.RSSChannel();
+            ZHY.BLL.RSSChannelItem riBll = new ZHY.BLL.RSSChannelItem();
+            IList<ZHY.Model.RSSChannel> rcList = rcBll.GetModelList("");
+            IList<ZHY.Model.NewsCategory> list = this.GetModelList("");
+            foreach (ZHY.Model.NewsCategory item in list)
+            {
+                IList<ZHY.Model.RSSChannelItem> riList = new List<ZHY.Model.RSSChannelItem>();
+                foreach (ZHY.Model.RSSChannel rcItem in rcList)
+                {
+                    if (item.NewsCategoryName.Trim().Equals(rcItem.RCTitle.Trim()))
+                    {
+                        riBll.GetList(top, "RCId=" + rcItem.RCId, "NavUpdateDT");
+                    }
+                }
+            }
+
+
+
+
+            return list;
+        }
+
+        #endregion
+
+        #region  BasicMethod
+        /// <summary>
 		/// 是否存在该记录
 		/// </summary>
 		public bool Exists(int NewsCategoryId)

@@ -22,7 +22,7 @@ namespace Web
         /// <summary>
         /// 
         /// </summary>
-        private void BindSectionsList()
+        private void BindNewsList()
         {
 
         }

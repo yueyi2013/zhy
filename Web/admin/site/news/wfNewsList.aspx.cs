@@ -18,6 +18,7 @@ namespace Web.admin.site.news
             if (!IsPostBack)
             {
                 MstGridViewBind();
+                BindNewsCategory();
             }
         }
 
@@ -179,7 +180,7 @@ namespace Web.admin.site.news
         }
 
 
-        private void bindNewsCategory() 
+        private void BindNewsCategory() 
         {
             ZHY.BLL.NewsCategory bll = new ZHY.BLL.NewsCategory();
             this.ddlNewsCategory.DataSource = bll.GetAllList();

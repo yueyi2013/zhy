@@ -110,15 +110,15 @@ namespace Web.admin.site.rss
         /// <param name="e"></param>
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            int rssId = ConvertInt32(this.hfRCId.Value, 0);
-            if (rssId == 0)
+            int rcId = ConvertInt32(this.hfRCId.Value, 0);
+            if (rcId == 0)
             {
                 Add();
                 InitDataClear();
             }
             else
             {
-                Modify(rssId);
+                Modify(rcId);
             }
             SelfInform(this.MyUpdatePanelPanelBody, this.GetType(), "保存成功！");
             MstGridViewBind();
@@ -133,12 +133,12 @@ namespace Web.admin.site.rss
         {
             foreach (GridViewRow gvr in MstGridView.Rows)
             {
-                string rssId = MstGridView.DataKeys[gvr.RowIndex].Value.ToString();
+                string rcId = MstGridView.DataKeys[gvr.RowIndex].Value.ToString();
                 CheckBox chk = (CheckBox)gvr.FindControl("chkItem");
                 if (chk.Checked)
                 {
                     ZHY.BLL.RSSChannel bll = new ZHY.BLL.RSSChannel();
-                    bll.Delete(ConvertInt32(rssId, 0));
+                    bll.Delete(ConvertInt32(rcId, 0));
                 }
             }
             MstGridViewBind();
@@ -154,11 +154,11 @@ namespace Web.admin.site.rss
         {
             foreach (GridViewRow gvr in MstGridView.Rows)
             {
-                string rssId = MstGridView.DataKeys[gvr.RowIndex].Value.ToString();
+                string rcId = MstGridView.DataKeys[gvr.RowIndex].Value.ToString();
                 CheckBox chk = (CheckBox)gvr.FindControl("chkItem");
                 if (chk.Checked)
                 {
-                    InitData(ConvertInt32(rssId, 0));
+                    InitData(ConvertInt32(rcId, 0));
                     this.mpMstAdd.Show();
                     btnModify.Enabled = true;
                 }

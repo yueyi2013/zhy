@@ -40,8 +40,29 @@ namespace ZHY.BLL
             return dal.GetList(tablename, strGetFields, PageIndex, pageSize, strWhere, strOrder, intOrder, ref CountAll);
         }
 
+
+        public string genereateHTMLCodeGreen() 
+        {
+            List<Model.Navigation> list = this.GetModelList("NavParantId=0 and NavStatus='A' order by NavOrder");
+            //一级菜单栏
+            StringBuilder sbMainHtml = new StringBuilder("<ul>");
+            var i=0;
+            foreach (Model.Navigation item in list)
+            {
+                if(i==0)
+                {
+                    sbMainHtml.AppendFormat("<li id=\"tray-active\"><a href=\"#\">{0}</a></li>",item.NavName);
+                    i++;
+                }else{
+                    sbMainHtml.AppendFormat("<li><a href=\"{0}\">{1}</a></li>", item.NavLink,item.NavName);                    
+                }
+            }
+            sbMainHtml.Append("</ul>");
+            return sbMainHtml.ToString();
+        }
+
         /// <summary>
-        /// 生成前台导航HTML代码
+        /// 生成前台导航HTML代码1
         /// </summary>
         /// <returns></returns>
         public string generateHtmlCode() 

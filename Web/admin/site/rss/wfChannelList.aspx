@@ -32,7 +32,7 @@
                                 CssClass="buttonCss" CausesValidation="false" OnClick="btnDelete_Click" />
                             <ajaxToolkit:ModalPopupExtender ID="mpMstAdd" runat="server" TargetControlID="btnAdd"
                                 PopupControlID="PanelBody" BackgroundCssClass="modalBackground" DropShadow="true"
-                                PopupDragHandleControlID="PanelDrag" Drag="true">
+                                PopupDragHandleControlID="PanelDrag" Drag="true" OnRowDataBound="MstGridView_RowDataBound">
                             </ajaxToolkit:ModalPopupExtender>
                         </td>
                     </tr>
@@ -47,7 +47,7 @@
                                 </Triggers>
                                 <ContentTemplate>
                                     <asp:GridView ID="MstGridView" runat="server" AutoGenerateColumns="False" Width="98%"
-                                        AllowPaging="false" DataKeyNames="RCId" OnRowCommand="MstGridView_RowCommand"
+                                        AllowPaging="false" DataKeyNames="RCId" HeaderStyle-CssClass="MstGridViewHeaderCss" OnRowCommand="MstGridView_RowCommand"
                                         HeaderStyle-HorizontalAlign="Center">
                                         <Columns>
                                             <asp:TemplateField>

@@ -22,7 +22,11 @@ a:hover
     text-decoration: underline;
 }
 
-
+.MstGridViewHeaderCss
+{
+    background:url('../images/admin/main/tab_14.gif');    
+    
+}
 
 form
 {
@@ -51,7 +55,7 @@ div
 {
     width: 172px;
     height: 31px;
-    background-image: url(../images/left_headbg.gif);
+    background-image: url(../images/admin/left/main_21.png);
     vertical-align:bottom;
 }
 

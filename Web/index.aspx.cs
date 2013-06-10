@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Text;
 using System.Data;
+using ZHY.Common;
 
 namespace Web
 {
@@ -16,6 +17,8 @@ namespace Web
             if(!IsPostBack)
             {
                 InitFlash();
+                BindNewsTop();
+                BindNewsList();
             }
         }
 
@@ -24,17 +27,41 @@ namespace Web
         /// </summary>
         private void BindNewsList()
         {
+            ZHY.BLL.NewsCategory bll = new ZHY.BLL.NewsCategory();
+            this.dlNewsList.DataSource = bll.GetNewsListWithCat("indexNewsList");
+            this.dlNewsList.DataBind();
+        }
 
+        private void BindNewsTop() 
+        {
+            ZHY.BLL.NewsTop bll = new ZHY.BLL.NewsTop();
+            bll.GetAllList();
+            this.dlNewsTop.DataSource = bll.GetAllList();
+            this.dlNewsTop.DataBind();  
         }
 
         /// <summary>
         /// 绑定Top News
         /// </summary>
-        private void BindNewsTop()
+        private void BindNewsTopModel()
         {
             ZHY.BLL.NewsTop bll = new ZHY.BLL.NewsTop();
-            this.dlNewsTop.DataSource = bll.GetAllList();
-            this.dlNewsTop.DataBind();            
+            IList<ZHY.Model.NewsTop> list = bll.GetModelList("");
+            if (list.Count > 0) 
+            {
+                ZHY.Model.NewsTop model = list[0];
+                this.lblNewsTitle.Text = model.NTTitle;
+                string con = HttpUtility.HtmlDecode(CompressionUtil.Decompress(model.NTContent));
+                if (con.Length > 100)
+                {
+                    //this.lblContent.Text = con.Substring(0,100)+"......";
+                }
+                else
+                {
+                   // this.lblContent.Text = con;
+                }
+                
+            }                      
         }
 
         /// <summary>
@@ -43,11 +70,10 @@ namespace Web
         private void InitFlash()
         {
             StringBuilder strContent = new StringBuilder();
-            DataSet ds = new DataSet();
             this.divflashContent.InnerHtml = "";
             strContent.Append("<script type=\"text/javascript\">\r\n");
-            ZHY.BLL.NewsSite bll = new ZHY.BLL.NewsSite();
-            ds = (DataSet)bll.GetList("");
+            ZHY.BLL.SiteFlash bll = new ZHY.BLL.SiteFlash();
+            DataSet ds = bll.GetList("");
             if (ds.Tables[0].Rows.Count > 0)
             {
                 string pics = "", links = "", texts = "";

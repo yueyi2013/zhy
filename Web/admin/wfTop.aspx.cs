@@ -16,6 +16,10 @@ namespace ZHY.Web.admin
                 if (Session["User"] == null)
                     Response.Write("<script language=javascript type=text/javascript>"
                              + "alert('您尚未登陆！');</script>");
+                else {
+                    ZHY.Model.User user = (ZHY.Model.User)Session["User"];
+                    this.lblAdmin.Text = user.UserName;                
+                }
             }
         }
     }

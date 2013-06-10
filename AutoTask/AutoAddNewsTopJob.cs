@@ -5,7 +5,7 @@ using System.Text;
 
 using Quartz;
 using Common.Logging;
-
+using LTP.Common;
 namespace AutoTask
 {
     class AutoAddNewsTopJob : IJob
@@ -26,6 +26,7 @@ namespace AutoTask
             ZHY.BLL.RSSChannelItem bll = new ZHY.BLL.RSSChannelItem();
             ZHY.BLL.NewsTop bllNewsTop = new ZHY.BLL.NewsTop();
             bllNewsTop.Delete();
+            int top = int.Parse(ConfigHelper.GetConfigString("indexNewsTop"));
             IList<ZHY.Model.RSSChannelItem> list = bll.loadNewsTop(10);
             foreach (ZHY.Model.RSSChannelItem item in list)
             {

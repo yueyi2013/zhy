@@ -12,29 +12,51 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
-<body style="margin-left: 0px; margin-top: 0px; background-image: url('../images/bg.gif');
-    background-repeat: repeat">
+<body>
     <form id="form1" runat="server">
-    <div>
+    <div id="main">
         <asp:ScriptManager ID="smUIPage" runat="server">
         </asp:ScriptManager>
-        <table align="center" cellpadding="0" cellspacing="0" width="900px">
+        <table cellpadding="0" cellspacing="0" width="900px">
         <!--Top Start-->
         <tr><td>
         <div id="header">
-			<div id="connect">
-				<a href="http://facebook.com/freewebsitetemplates" target="_blank" class="facebook" title="Facebook"></a>
-				<a href="http://twitter.com/fwtemplates" target="_blank" class="twitter" title="Twitter"></a>
- 			</div>
-			
-			<a href="#" id="logo">syihy.com</a>
-            <asp:Menu ID="muNavigation" runat="server" Orientation="Horizontal">
-               
-            </asp:Menu>			
-		</div>
+            <h1 id="logo"><a href="http://www.phpjz.cn/">SYIHY.COM</a></h1>
+            <hr class="noscreen" />
+            <div id="nav">
+                <a href="#" id="nav-active">首页</a> <span>|</span> 
+                <a href="#">关于我们</a> <span>|</span> 
+                <a href="#">支持</a> <span>|</span> 
+                <a href="#">联系我们</a>
+            </div>
+        </div>
         
         </td></tr>
         <!--Top End-->
+        <!--Navigation-->
+        <tr>
+        <td>
+        <div id="tray">
+           <!-- <asp:Menu ID="muNavigation" runat="server" Orientation="Horizontal">
+              
+            </asp:Menu>-->
+            <div id="divNav" runat="server">
+                
+            </div>
+            <div id="search" class="box">
+                <div class="box">
+                <div id="search-input">
+                    <input type="text" size="30" id="txtSearch" name="" value="Search" runat="server" />
+                </div>
+                <div id="search-submit">
+                    <asp:ImageButton ID="imgBtnSearch" runat="server" ImageUrl="~/images/site/search-submit.gif" ToolTip="OK" />
+                </div>
+                </div>
+            </div>
+        </div>
+        </td>
+        </tr>
+        <!--End Navigation-->
         <!--Body Start-->
         <tr><td>
         <div id="body">

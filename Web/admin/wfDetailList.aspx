@@ -33,9 +33,9 @@
                                     <asp:AsyncPostBackTrigger ControlID="btnDelete" EventName="Click" />
                                 </Triggers>
                                 <ContentTemplate>
-                                    <asp:GridView ID="MstGridView" runat="server" AutoGenerateColumns="False" Width="260px"
-                                        AllowPaging="false" DataKeyNames="DtID" OnRowCommand="MstGridView_RowCommand"
-                                        HeaderStyle-HorizontalAlign="Center">
+                                    <asp:GridView ID="MstGridView" runat="server" AutoGenerateColumns="False" Width="280px" 
+                                        AllowPaging="false" DataKeyNames="DtID" OnRowCommand="MstGridView_RowCommand" HeaderStyle-CssClass="MstGridViewHeaderCss"
+                                        HeaderStyle-HorizontalAlign="Center" OnRowDataBound="MstGridView_RowDataBound">
                                         <Columns>
                                             <asp:TemplateField>
                                                 <HeaderStyle Width="30px" HorizontalAlign="Center" />
@@ -52,7 +52,7 @@
                                                 <ItemStyle Width="80px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="DtName" HeaderText="参数名称">
-                                                <ItemStyle Width="150px" />
+                                                <ItemStyle Width="200px" />
                                             </asp:BoundField>
                                         </Columns>
                                     </asp:GridView>
@@ -96,7 +96,7 @@
                                                 参数名：
                                             </td>
                                             <td align="left">
-                                                <asp:TextBox ID="txtDtName" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="txtDtName" runat="server" Width="200"></asp:TextBox>
                                                 <asp:TextBox ID="txtDtID" runat="server" Visible="false"></asp:TextBox>
                                             </td>
                                         </tr>
@@ -113,7 +113,7 @@
                                                 排序：
                                             </td>
                                             <td align="left">
-                                                <asp:TextBox ID="txtDtOrder" runat="server"></asp:TextBox>
+                                                <asp:TextBox ID="txtDtOrder" runat="server" Width="200"></asp:TextBox>
                                             </td>
                                         </tr>
                                         <tr>
@@ -121,7 +121,7 @@
                                                 描述：
                                             </td>
                                             <td align="left">
-                                                <asp:TextBox ID="txtDtDesc" runat="server" TextMode="MultiLine"></asp:TextBox>
+                                                <asp:TextBox ID="txtDtDesc" runat="server" TextMode="MultiLine" Width="200"></asp:TextBox>
                                                 <asp:HiddenField ID="hfDtValue" runat="server"></asp:HiddenField>
                                             </td>
                                         </tr>

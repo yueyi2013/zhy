@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Main.Master" AutoEventWireup="true"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Main0.Master" AutoEventWireup="true"
     CodeBehind="wfPassword.aspx.cs" Inherits="ZHY.Web.admin.wfPassword" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
@@ -39,9 +39,9 @@
                             <td align="right">
                             </td>
                             <td align="left">
-                                <asp:Button ID="btnSure" runat="server" Text="确认" onclick="btnSure_Click" />
+                                <asp:Button ID="btnSure" runat="server" Text="确认" onclick="btnSure_Click" CssClass="buttonCss"/>
                                 &nbsp; &nbsp;
-                                <asp:Button ID="btnCancel" runat="server" Text="取消" />
+                                <asp:Button ID="btnCancel" runat="server" Text="取消" CssClass="buttonCss"/>
                             </td>
                         </tr>
                     </table>

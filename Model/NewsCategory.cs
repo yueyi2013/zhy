@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 namespace ZHY.Model
 {
 	/// <summary>
@@ -17,6 +18,13 @@ namespace ZHY.Model
 		private string _navcreateby;
 		private DateTime? _navupdatedt= DateTime.Now;
 		private string _navupdateby;
+        private IList<ZHY.Model.RSSChannelItem> riList=null;
+
+        public IList<ZHY.Model.RSSChannelItem> RiList
+        {
+            get { return riList; }
+            set { riList = value; }
+        }
 		/// <summary>
 		/// 
 		/// </summary>

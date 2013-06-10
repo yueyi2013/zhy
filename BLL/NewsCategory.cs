@@ -39,26 +39,23 @@ namespace ZHY.BLL
         }
 
 
-        public IList<ZHY.Model.NewsCategory> GetNewsListWithCat(int top)
+        public IList<ZHY.Model.NewsCategory> GetNewsListWithCat(string key)
         {
+            int top = int.Parse(ConfigHelper.GetConfigString(key));
             ZHY.BLL.RSSChannel rcBll = new ZHY.BLL.RSSChannel();
             ZHY.BLL.RSSChannelItem riBll = new ZHY.BLL.RSSChannelItem();
             IList<ZHY.Model.RSSChannel> rcList = rcBll.GetModelList("");
             IList<ZHY.Model.NewsCategory> list = this.GetModelList("");
             foreach (ZHY.Model.NewsCategory item in list)
             {
-                IList<ZHY.Model.RSSChannelItem> riList = new List<ZHY.Model.RSSChannelItem>();
                 foreach (ZHY.Model.RSSChannel rcItem in rcList)
                 {
                     if (item.NewsCategoryName.Trim().Equals(rcItem.RCTitle.Trim()))
                     {
-                        riBll.GetList(top, "RCId=" + rcItem.RCId, "NavUpdateDT");
+                        item.RiList =riBll.DataTableToList(riBll.GetList(top, "RCId=" + rcItem.RCId, "NavUpdateDT").Tables[0]);
                     }
-                }
+                }                
             }
-
-
-
 
             return list;
         }

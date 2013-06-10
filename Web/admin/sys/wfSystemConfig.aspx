@@ -47,7 +47,7 @@
                                 <ContentTemplate>
                                     <asp:GridView ID="MstGridView" runat="server" AutoGenerateColumns="False" Width="98%"
                                         AllowPaging="false" DataKeyNames="SCId" OnRowCommand="MstGridView_RowCommand"
-                                        HeaderStyle-HorizontalAlign="Center">
+                                        HeaderStyle-HorizontalAlign="Center" OnRowDataBound="MstGridView_RowDataBound">
                                         <Columns>
                                             <asp:TemplateField>
                                                 <HeaderStyle Width="30px" HorizontalAlign="Center" />

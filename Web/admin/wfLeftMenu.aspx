@@ -13,9 +13,10 @@
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>
     <div>
+        
         <asp:UpdatePanel ID="upMenu" runat="server">
             <ContentTemplate>
-                <asp:Accordion ID="adMenu" runat="server" Height="500px" AutoSize="fill" HeaderCssClass="headerBg" ContentCssClass="contentBg">
+                <asp:Accordion ID="adMenu" runat="server" Height="530px" AutoSize="fill" HeaderCssClass="headerBg" ContentCssClass="contentBg">
                 </asp:Accordion>
             </ContentTemplate>
         </asp:UpdatePanel>

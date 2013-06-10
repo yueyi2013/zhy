@@ -52,7 +52,7 @@ namespace ZHY.Web.admin
 
                 hgc.Controls.Add(imghead);
                 hgc.Controls.Add(lblChildMenu);
-                hgc.Attributes.Add("onmouseover", "currentcolor=this.style.backgroundColor;this.style.backgroundColor='#F9E3AA'");
+                hgc.Attributes.Add("onmouseover", "currentcolor=this.style.backgroundColor;this.style.backgroundColor='#9FDF4C'");
                 hgc.Attributes.Add("onmouseout", "this.style.backgroundColor=currentcolor");
                 ap.ContentContainer.Controls.Add(hgc);
             } 

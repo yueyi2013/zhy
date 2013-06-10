@@ -49,6 +49,33 @@ namespace Web.template.syihy_1 {
         protected global::System.Web.UI.WebControls.Menu muNavigation;
         
         /// <summary>
+        /// divNav 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divNav;
+        
+        /// <summary>
+        /// txtSearch 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtSearch;
+        
+        /// <summary>
+        /// imgBtnSearch 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton imgBtnSearch;
+        
+        /// <summary>
         /// upBody 控件。
         /// </summary>
         /// <remarks>

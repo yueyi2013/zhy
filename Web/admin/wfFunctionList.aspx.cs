@@ -59,7 +59,7 @@ namespace ZHY.Web.admin
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 //设置行颜色   
-                e.Row.Attributes.Add("onmouseover", "currentcolor=this.style.backgroundColor;this.style.backgroundColor='#F9E3AA'");
+                e.Row.Attributes.Add("onmouseover", "currentcolor=this.style.backgroundColor;this.style.backgroundColor='#D3F4A4'");
                 //添加自定义属性，当鼠标移走时还原该行的背景色   
                 e.Row.Attributes.Add("onmouseout", "this.style.backgroundColor=currentcolor");
 

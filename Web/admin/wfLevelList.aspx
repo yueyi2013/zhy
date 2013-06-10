@@ -32,7 +32,7 @@
                                 </Triggers>
                                 <ContentTemplate>
                                     <asp:GridView ID="MstGridView" runat="server" AutoGenerateColumns="False" Width="260px"
-                                        AllowPaging="false" DataKeyNames="DtID" OnRowCommand="MstGridView_RowCommand"
+                                        AllowPaging="false" DataKeyNames="DtID" HeaderStyle-CssClass="MstGridViewHeaderCss" OnRowCommand="MstGridView_RowCommand"
                                         HeaderStyle-HorizontalAlign="Center">
                                         <Columns>
                                             <asp:TemplateField>

@@ -80,6 +80,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\down.html" />
     <Content Include="admin\site\ads\wfSiteFlash.aspx" />
     <Content Include="admin\site\ads\wfWebSiteAds.aspx" />
     <Content Include="admin\site\homepage\wfNavigation.aspx" />
@@ -93,6 +94,7 @@
     <Content Include="admin\site\rss\wfRssList.aspx" />
     <Content Include="admin\sys\wfSystemConfig.aspx" />
     <Content Include="css\css.css" />
+    <Content Include="css\site\main.css" />
     <Content Include="Default.aspx" />
     <Content Include="admin\Main0.Master" />
     <None Include="inc\navigation.inc" />
@@ -100,9 +102,53 @@
     <Content Include="forum\food.aspx" />
     <Content Include="forum\membervalidate.aspx" />
     <Content Include="forum\news.aspx" />
+    <Content Include="forum\newsdetails.aspx" />
     <Content Include="forum\register.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="images\flash\cont_top.swf" />
+    <Content Include="images\admin\down\main_45.gif" />
+    <Content Include="images\admin\down\main_47.gif" />
+    <Content Include="images\admin\down\main_49.gif" />
+    <Content Include="images\admin\down\main_51.gif" />
+    <Content Include="images\admin\left\main_21.png" />
+    <Content Include="images\admin\main\tab_14.gif" />
+    <Content Include="images\admin\top\main_01.gif" />
+    <Content Include="images\admin\top\main_04.gif" />
+    <Content Include="images\admin\top\main_06.gif" />
+    <Content Include="images\admin\top\main_07.gif" />
+    <Content Include="images\admin\top\main_08.gif" />
+    <Content Include="images\admin\top\main_09.gif" />
+    <Content Include="images\admin\top\main_11.gif" />
+    <Content Include="images\admin\top\main_12.gif" />
+    <Content Include="images\site\bg.gif" />
+    <Content Include="images\site\browser.gif" />
+    <Content Include="images\site\btn-purchase.gif" />
+    <Content Include="images\site\btn-tell.gif" />
+    <Content Include="images\site\col-bottom.gif" />
+    <Content Include="images\site\col-top.gif" />
+    <Content Include="images\site\col.gif" />
+    <Content Include="images\site\cols2-bottom.gif" />
+    <Content Include="images\site\cols2-top.gif" />
+    <Content Include="images\site\cols2.gif" />
+    <Content Include="images\site\cols3-bottom.gif" />
+    <Content Include="images\site\cols3-more.gif" />
+    <Content Include="images\site\cols3-title.gif" />
+    <Content Include="images\site\cols3-top.gif" />
+    <Content Include="images\site\cols3.gif" />
+    <Content Include="images\site\dot-02.gif" />
+    <Content Include="images\site\dot.gif" />
+    <Content Include="images\site\focus.swf" />
+    <Content Include="images\site\footer.gif" />
+    <Content Include="images\site\ico-comment.gif" />
+    <Content Include="images\site\ico-rss.gif" />
+    <Content Include="images\site\pixviewer.swf" />
+    <Content Include="images\site\ribbon.gif" />
+    <Content Include="images\site\search-input.gif" />
+    <Content Include="images\site\search-submit.gif" />
+    <Content Include="images\site\tray-active.gif" />
+    <Content Include="images\site\tray-hover.gif" />
+    <Content Include="images\site\tray-separator.gif" />
+    <Content Include="images\site\tray.gif" />
+    <Content Include="images\site\ul-01.gif" />
     <Content Include="index.aspx" />
     <Content Include="Member\NewsDetails.aspx" />
     <Content Include="Member\NewsList.aspx" />
@@ -162,6 +208,45 @@
     <Content Include="template\demo_aqua\js\jquery.scrollTo-min.js" />
     <Content Include="template\demo_aqua\js\slimbox2.js" />
     <Content Include="template\demo_aqua\templatemo_style.css" />
+    <Content Include="template\demo_green\css\main-msie.css" />
+    <Content Include="template\demo_green\css\main.css" />
+    <Content Include="template\demo_green\css\print.css" />
+    <Content Include="template\demo_green\css\reset.css" />
+    <Content Include="template\demo_green\css\style.css" />
+    <Content Include="template\demo_green\design\bg.gif" />
+    <Content Include="template\demo_green\design\browser.gif" />
+    <Content Include="template\demo_green\design\btn-purchase.gif" />
+    <Content Include="template\demo_green\design\btn-tell.gif" />
+    <Content Include="template\demo_green\design\col-bottom.gif" />
+    <Content Include="template\demo_green\design\col-top.gif" />
+    <Content Include="template\demo_green\design\col.gif" />
+    <Content Include="template\demo_green\design\cols2-bottom.gif" />
+    <Content Include="template\demo_green\design\cols2-top.gif" />
+    <Content Include="template\demo_green\design\cols2.gif" />
+    <Content Include="template\demo_green\design\cols3-bottom.gif" />
+    <Content Include="template\demo_green\design\cols3-more.gif" />
+    <Content Include="template\demo_green\design\cols3-title.gif" />
+    <Content Include="template\demo_green\design\cols3-top.gif" />
+    <Content Include="template\demo_green\design\cols3.gif" />
+    <Content Include="template\demo_green\design\dot-02.gif" />
+    <Content Include="template\demo_green\design\dot.gif" />
+    <Content Include="template\demo_green\design\footer.gif" />
+    <Content Include="template\demo_green\design\ico-comment.gif" />
+    <Content Include="template\demo_green\design\ico-rss.gif" />
+    <Content Include="template\demo_green\design\ribbon.gif" />
+    <Content Include="template\demo_green\design\search-input.gif" />
+    <Content Include="template\demo_green\design\search-submit.gif" />
+    <Content Include="template\demo_green\design\tray-active.gif" />
+    <Content Include="template\demo_green\design\tray-hover.gif" />
+    <Content Include="template\demo_green\design\tray-separator.gif" />
+    <Content Include="template\demo_green\design\tray.gif" />
+    <Content Include="template\demo_green\design\ul-01.gif" />
+    <Content Include="template\demo_green\index.html" />
+    <Content Include="template\demo_green\tmp\200x140.gif" />
+    <Content Include="template\demo_green\tmp\65x65.gif" />
+    <Content Include="template\demo_green\tmp\browser.gif" />
+    <Content Include="template\demo_green\tmp\logo.gif" />
+    <Content Include="template\demo_green\tmp\slogan.gif" />
     <Content Include="template\demo_orange\iepngfix.htc" />
     <Content Include="template\demo_orange\images\blank.gif" />
     <Content Include="template\demo_orange\images\rss_icon_28x28.png" />
@@ -224,11 +309,83 @@
     <Content Include="template\demo_pet\images\turtle2.jpg" />
     <Content Include="template\demo_pet\index.html" />
     <Content Include="template\demo_pet\news.html" />
+    <Content Include="template\login_admin_green\login\images\dl.gif" />
+    <Content Include="template\login_admin_green\login\images\login_03.gif" />
+    <Content Include="template\login_admin_green\login\images\login_04.gif" />
+    <Content Include="template\login_admin_green\login\images\login_06.gif" />
+    <Content Include="template\login_admin_green\login\images\login_07.gif" />
+    <Content Include="template\login_admin_green\login\images\login_08.gif" />
+    <Content Include="template\login_admin_green\login\images\login_09.gif" />
+    <Content Include="template\login_admin_green\login\login.html" />
+    <Content Include="template\login_admin_green\paibaidu.com.txt" />
+    <Content Include="template\login_admin_green\web\center.html" />
+    <Content Include="template\login_admin_green\web\down.html" />
+    <Content Include="template\login_admin_green\web\images\left_tree.gif" />
+    <Content Include="template\login_admin_green\web\images\main_01.gif" />
+    <Content Include="template\login_admin_green\web\images\main_04.gif" />
+    <Content Include="template\login_admin_green\web\images\main_06.gif" />
+    <Content Include="template\login_admin_green\web\images\main_07.gif" />
+    <Content Include="template\login_admin_green\web\images\main_08.gif" />
+    <Content Include="template\login_admin_green\web\images\main_09.gif" />
+    <Content Include="template\login_admin_green\web\images\main_11.gif" />
+    <Content Include="template\login_admin_green\web\images\main_12.gif" />
+    <Content Include="template\login_admin_green\web\images\main_14.gif" />
+    <Content Include="template\login_admin_green\web\images\main_16.gif" />
+    <Content Include="template\login_admin_green\web\images\main_18.gif" />
+    <Content Include="template\login_admin_green\web\images\main_21.gif" />
+    <Content Include="template\login_admin_green\web\images\main_23.gif" />
+    <Content Include="template\login_admin_green\web\images\main_26.gif" />
+    <Content Include="template\login_admin_green\web\images\main_26_1.gif" />
+    <Content Include="template\login_admin_green\web\images\main_28.gif" />
+    <Content Include="template\login_admin_green\web\images\main_29_1.gif" />
+    <Content Include="template\login_admin_green\web\images\main_31.gif" />
+    <Content Include="template\login_admin_green\web\images\main_31_1.gif" />
+    <Content Include="template\login_admin_green\web\images\main_38.gif" />
+    <Content Include="template\login_admin_green\web\images\main_40.gif" />
+    <Content Include="template\login_admin_green\web\images\main_42.gif" />
+    <Content Include="template\login_admin_green\web\images\main_45.gif" />
+    <Content Include="template\login_admin_green\web\images\main_47.gif" />
+    <Content Include="template\login_admin_green\web\images\main_49.gif" />
+    <Content Include="template\login_admin_green\web\images\main_51.gif" />
+    <Content Include="template\login_admin_green\web\left.html" />
+    <Content Include="template\login_admin_green\web\main.html" />
+    <Content Include="template\login_admin_green\web\paibaidu.com.txt" />
+    <Content Include="template\login_admin_green\web\tab\css\tab.css" />
+    <Content Include="template\login_admin_green\web\tab\images\001.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\002.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\005.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\010.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\037.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\083.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\114.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\311.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\a.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\a1.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\arrow_082.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\back.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\first.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\go.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\g_page.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\last.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\next.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\tab_03.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\tab_05.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\tab_07.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\tab_12.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\tab_14.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\tab_16.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\tab_20.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\tab_21.gif" />
+    <Content Include="template\login_admin_green\web\tab\images\tab_22.gif" />
+    <Content Include="template\login_admin_green\web\tab\tab.htm" />
+    <Content Include="template\login_admin_green\web\top.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
     <None Include="template\demo_aqua\images\portfolio\Thumbs.db" />
     <None Include="template\demo_aqua\images\Thumbs.db" />
+    <None Include="template\demo_green\design\Thumbs.db" />
+    <None Include="template\demo_green\tmp\Thumbs.db" />
     <None Include="template\demo_orange\images\Thumbs.db" />
     <None Include="template\demo_orange\slimbox\Thumbs.db" />
     <Content Include="template\syihy_1\tmpl.Master" />
@@ -238,6 +395,9 @@
     <None Include="template\demo_pet\source\Photography 7 gallery.psd" />
     <None Include="template\demo_pet\source\Photography 7 index.psd" />
     <None Include="template\demo_pet\source\Photography 7 news.psd" />
+    <None Include="template\login_admin_green\psd.rar" />
+    <None Include="template\login_admin_green\web\images\Thumbs.db" />
+    <None Include="template\login_admin_green\web\tab\images\Thumbs.db" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="admin\Main.Master.cs">
@@ -537,6 +697,13 @@
     </Compile>
     <Compile Include="forum\news.aspx.designer.cs">
       <DependentUpon>news.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="forum\newsdetails.aspx.cs">
+      <DependentUpon>newsdetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forum\newsdetails.aspx.designer.cs">
+      <DependentUpon>newsdetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="forum\register.aspx.cs">
       <DependentUpon>register.aspx</DependentUpon>
@@ -3043,6 +3210,7 @@
   <ItemGroup>
     <Folder Include="admin\fckEditor\editor\dialog\fck_about\" />
     <Folder Include="images\article\" />
+    <Folder Include="images\flash\" />
     <Folder Include="index\" />
     <Folder Include="UserControls\Buttons\" />
   </ItemGroup>

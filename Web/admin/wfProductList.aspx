@@ -58,7 +58,7 @@
                                 </Triggers>
                                 <ContentTemplate>
                                     <asp:GridView ID="MstGridView" runat="server" AutoGenerateColumns="False" DataKeyNames="ProID"
-                                        OnRowCommand="MstGridView_RowCommand" HeaderStyle-HorizontalAlign="Center" OnRowDataBound="MstGridView_RowDataBound">
+                                        OnRowCommand="MstGridView_RowCommand" HeaderStyle-CssClass="MstGridViewHeaderCss" HeaderStyle-HorizontalAlign="Center" OnRowDataBound="MstGridView_RowDataBound">
                                         <Columns>
                                             <asp:TemplateField>
                                                 <HeaderStyle Width="30px" HorizontalAlign="Center" />

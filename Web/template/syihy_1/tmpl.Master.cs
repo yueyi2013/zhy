@@ -14,8 +14,15 @@ namespace Web.template.syihy_1
         {
             if(!IsPostBack)
             {
-                BindNavigation();
+                //BindNavigation();
+                BindNavHtmlCode();
             }
+        }
+
+        private void BindNavHtmlCode() 
+        {
+            ZHY.BLL.Navigation bll = new ZHY.BLL.Navigation();
+            divNav.InnerHtml = bll.genereateHTMLCodeGreen();
         }
 
         /// <summary>
@@ -28,11 +35,17 @@ namespace Web.template.syihy_1
             DataRow[] dr1 = ds.Tables[0].Select("NavStatus='A' and NavParantId=0");
             string lmId = "";
             string lmName = "";
+            int i = 0;
             foreach (DataRow d1 in dr1)
             {
-                lmId = d1[0].ToString();
-                lmName = d1[2].ToString();
+                lmId = d1["NavId"].ToString();
+                lmName = d1["NavName"].ToString();
                 MenuItem fatherMenuItem = CreateMenuItem(lmId, lmName);
+                if(i==0)
+                {
+                    fatherMenuItem.Selected = true;
+                    i++;
+                }
                 CreateChildMenuItem(lmId, ds, fatherMenuItem);
                 this.muNavigation.Items.Add(fatherMenuItem);
             }
@@ -67,8 +80,8 @@ namespace Web.template.syihy_1
             string childlmName = "";
             foreach (DataRow d2 in dr2)
             {
-                childlmId = d2[0].ToString();
-                childlmName = d2[2].ToString();
+                childlmId = d2["NavId"].ToString();
+                childlmName = d2["NavName"].ToString();
                 MenuItem childMenuItem = CreateMenuItem(childlmId, childlmName);
                 CreateChildMenuItem(childlmId, ds, childMenuItem);
                 fatherMenuItem.ChildItems.Add(childMenuItem);

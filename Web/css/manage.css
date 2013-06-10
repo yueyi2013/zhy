@@ -258,4 +258,8 @@ div
     overflow: hidden;
 }
 
-
+.MstGridViewHeaderCss
+{
+    background:url('../images/admin/main/tab_14.gif');    
+    
+}

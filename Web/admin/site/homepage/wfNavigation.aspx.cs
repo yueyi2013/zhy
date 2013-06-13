@@ -95,7 +95,8 @@ namespace Web.admin.site.homepage
             model.NavId = ConvertInt32(this.txtMenuID.Text, 0);
             model.NavOrder = ConvertInt32(this.txtMenuOrder.Text, 0);
             model.NavLink = this.txtMenuPicPath.Text;
-            model.NavDesc = this.txtMenuDes.Text; 
+            model.NavDesc = this.txtMenuDes.Text;
+            model.NavStatus = this.chkStatus.Checked ? "A" : "I";
             ZHY.BLL.Navigation bll = new ZHY.BLL.Navigation();
 
             if (this.hfOp.Value == "1")

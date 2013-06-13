@@ -119,6 +119,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoCode\News\NewsTop.cs" />
     <Compile Include="FriendLink.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Member.cs" />
@@ -126,7 +127,7 @@
     <Compile Include="NewsCategory.cs" />
     <Compile Include="NewsInfo.cs" />
     <Compile Include="NewsSite.cs" />
-    <Compile Include="NewsTop.cs" />
+    <Compile Include="News\NewsTop.cs" />
     <Compile Include="ProDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -148,6 +149,7 @@
     <Compile Include="Right.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="SystemConfig.cs" />
+    <Compile Include="SystemConfig\SetupDatabase.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -195,7 +197,6 @@
     <Folder Include="AutoCode\PersonManage\" />
     <Folder Include="AutoCode\SystemConfig\" />
     <Folder Include="PersonManage\" />
-    <Folder Include="SystemConfig\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

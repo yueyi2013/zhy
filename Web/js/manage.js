@@ -21,6 +21,22 @@ function GetAllCheckBox(parentItem) {
     }
 }
 
+var timer;
+function showMessage() {
+    var obj = document.getElementById("mydiv");
+    obj.style.display = "block";
+}
+function begin() {//调用此函数，显示正在加载提示 
+    timer = setInterval(showMessage, 0);
+}
+function end() {//调用此函数，关闭加载提示 
+    clearInterval(timer);
+    hideMessage();
+}
+function hideMessage() {
+    document.getElementById("mydiv").style.display = "none";
+} 
+
 function validateFileupload(picFile) {
     var name = picFile.id;
     var num = 0;

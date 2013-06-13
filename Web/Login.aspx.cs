@@ -38,7 +38,7 @@ namespace ZHY.Web
             }
 
             #region 检查验证码
-            if ((Session["CheckCode"] != null) || (Session["CheckCode"].ToString() != ""))
+            if ((Session["CheckCode"] != null)&&(Session["CheckCode"].ToString().Trim() != ""))
             {
                 if (Session["CheckCode"].ToString().ToLower() != this.CheckCode.Value.ToLower())
                 {

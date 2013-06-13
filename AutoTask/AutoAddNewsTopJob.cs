@@ -27,10 +27,11 @@ namespace AutoTask
             ZHY.BLL.NewsTop bllNewsTop = new ZHY.BLL.NewsTop();
             bllNewsTop.Delete();
             int top = int.Parse(ConfigHelper.GetConfigString("indexNewsTop"));
-            IList<ZHY.Model.RSSChannelItem> list = bll.loadNewsTop(10);
+            IList<ZHY.Model.RSSChannelItem> list = bll.loadNewsTop(top);
             foreach (ZHY.Model.RSSChannelItem item in list)
             {
                 ZHY.Model.NewsTop model = new ZHY.Model.NewsTop();
+                model.NTId = item.RCItemId;
                 model.NTTitle = item.RCItemTitle;
                 model.NTAuthor = item.RCItemAuthor;
                 model.NTPubDate = item.RCItemPubDate;

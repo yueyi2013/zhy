@@ -26,6 +26,10 @@ namespace ZHY.Web
         /// </summary>
         public int pageAll = 0;
         /// <summary>
+        /// 是否是前台页面
+        /// </summary>
+        public bool isSitePage = false;
+        /// <summary>
         /// 每页记录数
         /// </summary>
         public Label lblPageSize;
@@ -98,7 +102,12 @@ namespace ZHY.Web
                     pageIndex = ConvertInt32(this.txtPageIndex.Text, 0);
                     break;
             }
-            MstGridViewBind();
+            if(isSitePage)
+            {
+                MstDataListBind();
+            }else{                
+                MstGridViewBind();            
+            }
         }
 
         /// <summary>
@@ -144,7 +153,13 @@ namespace ZHY.Web
 
         private void BindPageParams()
         {
-            pageSize = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("pageSize"));
+            pageSize = isSitePage?Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("IndexPageSize")):Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("PageSize"));
+            pageAll = pageRecord % this.pageSize == 0 ? pageRecord / this.pageSize : pageRecord / this.pageSize + 1;
+        }
+
+        private void BindIndexPageParams()
+        {
+            pageSize = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("IndexPageSize"));
             pageAll = pageRecord % this.pageSize == 0 ? pageRecord / this.pageSize : pageRecord / this.pageSize + 1;
         }
 
@@ -166,6 +181,19 @@ namespace ZHY.Web
             ButtonEnabled();
         }
 
+        /// <summary>
+        /// DataList数据绑定
+        /// </summary>
+        protected virtual void MstDataListBind()
+        {
+            BindIndexPageParams();
+            this.lblPageAll.Text = pageAll.ToString();
+            this.lblPageIndex.Text = pageIndex.ToString();
+            this.lblPageSize.Text = pageSize.ToString();
+            this.lblPageRecord.Text = pageRecord.ToString();
+            ButtonEnabled();
+        }
+
         protected virtual void MstTextInit()
         {
 
@@ -176,10 +204,6 @@ namespace ZHY.Web
 
         }
 
-        protected virtual void MstDataListBind()
-        {
-
-        }
         #endregion
         
         #region 数据操作

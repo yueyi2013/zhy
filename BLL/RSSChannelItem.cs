@@ -39,6 +39,24 @@ namespace ZHY.BLL
         }
 
         /// <summary>
+        /// 调用分页存储过程
+        /// </summary>
+        /// <param name="PageIndex"></param>
+        /// <param name="name"></param>
+        /// <param name="CountAll"></param>
+        /// <returns></returns>
+        public DataSet GetList(int PageIndex, int rcId, ref int CountAll)
+        {
+            string strGetFields = " [RCItemId],[RCId],[RCItemTitle],[RCItemLink],[RCItemCategory],[RCItemAuthor],[RCItemPubDate],[RCItemDescription],[RCItemComments],[NavCreateAt],[NavCreateBy],[NavUpdateDT],[NavUpdateBy] ";
+            string tablename = " RSSChannelItem ";
+            int pageSize = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("IndexPageSize"));
+            int intOrder = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("intOrder"));
+            string strOrder = " NavUpdateDT";
+            string strWhere = " RCId = '" + rcId + "'";
+            return dal.GetList(tablename, strGetFields, PageIndex, pageSize, strWhere, strOrder, intOrder, ref CountAll);
+        }
+
+        /// <summary>
         /// 获取最新的RSS
         /// </summary>
         /// <param name="tops"></param>

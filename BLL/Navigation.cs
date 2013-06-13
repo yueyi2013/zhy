@@ -46,16 +46,9 @@ namespace ZHY.BLL
             List<Model.Navigation> list = this.GetModelList("NavParantId=0 and NavStatus='A' order by NavOrder");
             //Ò»¼¶²Ëµ¥À¸
             StringBuilder sbMainHtml = new StringBuilder("<ul>");
-            var i=0;
             foreach (Model.Navigation item in list)
             {
-                if(i==0)
-                {
-                    sbMainHtml.AppendFormat("<li id=\"tray-active\"><a href=\"#\">{0}</a></li>",item.NavName);
-                    i++;
-                }else{
-                    sbMainHtml.AppendFormat("<li><a href=\"{0}\">{1}</a></li>", item.NavLink,item.NavName);                    
-                }
+                sbMainHtml.AppendFormat("<li><a href=\"{0}\">{1}</a></li>", item.NavLink, item.NavName);
             }
             sbMainHtml.Append("</ul>");
             return sbMainHtml.ToString();

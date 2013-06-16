@@ -36,7 +36,7 @@
                         <table cellspacing="0" cellpadding="0" width="100%" border="0">
                             <tr>
                                 <td width="80" align="right">
-                                    父菜单名称：
+                                    父菜单名称：<asp:HiddenField ID="hfMenuID" runat="server" Value="0" />
                                 </td>
                                 <td align="left">
                                     <asp:TextBox ID="txtMenuName" runat="server" Width="200px"></asp:TextBox>
@@ -151,7 +151,7 @@
                             </tr>
                             <tr>
                                 <td align="right">
-                                    功能点：
+                                    功能列表：
                                 </td>
                                 <td align="left">
                                     <asp:DropDownList ID="ddlFun" runat="server" DataTextField="FunName" DataValueField="FunID">
@@ -182,6 +182,5 @@
                 </fieldset>
             </td>
         </tr>
-    </table>
-    <asp:HiddenField ID="hfMenuID" runat="server" Value="0" />
+    </table>    
 </asp:Content>

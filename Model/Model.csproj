@@ -118,6 +118,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoCode\Blog\ArticalType.cs" />
+    <Compile Include="AutoCode\Blog\Article.cs" />
+    <Compile Include="AutoCode\Blog\ArticleCategory.cs" />
+    <Compile Include="AutoCode\Blog\ArticleComment.cs" />
+    <Compile Include="AutoCode\SysManage\RightConfig.cs" />
     <Compile Include="FriendLink.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Member.cs" />
@@ -177,11 +182,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AutoCode\PersonManage\" />
-    <Folder Include="AutoCode\SystemConfig\" />
+    <Folder Include="AutoCode\PsnManage\" />
     <Folder Include="iBatisModel\" />
     <Folder Include="PersonManage\" />
-    <Folder Include="SystemConfig\" />
+    <Folder Include="SysManage\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

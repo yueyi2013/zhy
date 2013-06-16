@@ -23,6 +23,16 @@ namespace Web
         }
 
         /// <summary>
+        /// 标题
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        protected string HtmlDecode(string title)
+        {
+            return Server.HtmlDecode(title);
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         private void BindNewsList()

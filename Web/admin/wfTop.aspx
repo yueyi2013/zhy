@@ -39,7 +39,8 @@
             </table></td>
           </tr>
         </table></td>
-        <td width="155" background="../images/admin/top/main_08.gif">&nbsp;</td>
+        <td width="155" background="../images/admin/top/main_08.gif">&nbsp;
+        </td>
         <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td height="23" valign="bottom"><img src="../images/admin/top/main_12.gif" width="367" height="23" border="0" usemap="#Map" /></td>

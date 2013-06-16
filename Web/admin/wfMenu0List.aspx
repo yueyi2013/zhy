@@ -60,7 +60,7 @@
                             </tr>                          
                             <tr>
                                 <td align="right">
-                                    排序：
+                                    菜单排序：
                                 </td>
                                 <td align="left">
                                     <asp:TextBox ID="txtMenuOrder" runat="server" Width="200px"></asp:TextBox>
@@ -68,7 +68,7 @@
                             </tr>
                             <tr>
                                 <td align="right">
-                                    图标：
+                                    图标路径：
                                 </td>
                                 <td align="left">
                                     <asp:TextBox ID="txtMenuPicPath" runat="server" Width="200px" Text="Menu023.gif"></asp:TextBox>
@@ -76,7 +76,7 @@
                             </tr>
                             <tr>
                                 <td align="right">
-                                    功能点：
+                                    功能列表：
                                 </td>
                                 <td align="left">
                                     <asp:DropDownList ID="ddlFun" runat="server" DataTextField="FunName" DataValueField="FunID">
@@ -97,8 +97,7 @@
                                 <td>
                                     <asp:HiddenField ID="hfOp" runat="server" Value="0" />
                                     <asp:Button ID="btnAdd" runat="server" Text="新增" CssClass="buttonCss" 
-                                        CausesValidation="false" onclick="btnAdd_Click"
-                                     />&nbsp;&nbsp;
+                                        CausesValidation="false" onclick="btnAdd_Click"/>&nbsp;&nbsp;
                                     <asp:Button ID="btnModify" runat="server" Text="保存" CssClass="buttonCss" CausesValidation="false"
                                         OnClick="btnModify_Click" />&nbsp;&nbsp;
                                     <asp:Button ID="btnDelete" runat="server" Text="删除" OnClientClick="return Confirm()"

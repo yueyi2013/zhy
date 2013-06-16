@@ -83,6 +83,9 @@
     <Content Include="admin\down.html" />
     <Content Include="admin\site\ads\wfSiteFlash.aspx" />
     <Content Include="admin\site\ads\wfWebSiteAds.aspx" />
+    <Content Include="admin\site\blog\wfArticalTypeList.aspx" />
+    <Content Include="admin\site\blog\wfArticleCategoryList.aspx" />
+    <Content Include="admin\site\blog\wfBlogList.aspx" />
     <Content Include="admin\site\homepage\wfNavigation.aspx" />
     <Content Include="admin\site\mem\wfMemberList.aspx" />
     <Content Include="admin\site\news\wfCollectNews.aspx" />
@@ -92,6 +95,8 @@
     <Content Include="admin\site\rss\wfChannelList.aspx" />
     <Content Include="admin\site\rss\wfRssItemList.aspx" />
     <Content Include="admin\site\rss\wfRssList.aspx" />
+    <Content Include="admin\sys\wfRightConfig.aspx" />
+    <Content Include="admin\sys\wfRightList.aspx" />
     <Content Include="admin\sys\wfSystemConfig.aspx" />
     <Content Include="css\css.css" />
     <Content Include="css\site\main.css" />
@@ -421,6 +426,27 @@
     <Compile Include="admin\site\ads\wfWebSiteAds.aspx.designer.cs">
       <DependentUpon>wfWebSiteAds.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\site\blog\wfArticalTypeList.aspx.cs">
+      <DependentUpon>wfArticalTypeList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\site\blog\wfArticalTypeList.aspx.designer.cs">
+      <DependentUpon>wfArticalTypeList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\site\blog\wfArticleCategoryList.aspx.cs">
+      <DependentUpon>wfArticleCategoryList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\site\blog\wfArticleCategoryList.aspx.designer.cs">
+      <DependentUpon>wfArticleCategoryList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\site\blog\wfBlogList.aspx.cs">
+      <DependentUpon>wfBlogList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\site\blog\wfBlogList.aspx.designer.cs">
+      <DependentUpon>wfBlogList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\site\homepage\wfNavigation.aspx.cs">
       <DependentUpon>wfNavigation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -483,6 +509,20 @@
     </Compile>
     <Compile Include="admin\site\rss\wfRssList.aspx.designer.cs">
       <DependentUpon>wfRssList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\sys\wfRightConfig.aspx.cs">
+      <DependentUpon>wfRightConfig.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\sys\wfRightConfig.aspx.designer.cs">
+      <DependentUpon>wfRightConfig.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\sys\wfRightList.aspx.cs">
+      <DependentUpon>wfRightList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\sys\wfRightList.aspx.designer.cs">
+      <DependentUpon>wfRightList.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\sys\wfSystemConfig.aspx.cs">
       <DependentUpon>wfSystemConfig.aspx</DependentUpon>

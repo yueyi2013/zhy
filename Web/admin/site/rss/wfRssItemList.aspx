@@ -71,13 +71,13 @@
                                                 <ItemStyle Width="100px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="NavCreateAt" HeaderText="创建日期">
-                                                <ItemStyle Width="120px" />
+                                                <ItemStyle Width="150px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="NavCreateBy" HeaderText="创建人">
                                                 <ItemStyle Width="80px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="NavUpdateDT" HeaderText="更新日期">
-                                                <ItemStyle Width="120px" />
+                                                <ItemStyle Width="150px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="NavUpdateBy" HeaderText="更新人">
                                                 <ItemStyle Width="80px" />

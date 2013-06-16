@@ -82,14 +82,16 @@ namespace ZHY.Web.admin
         /// <param name="e"></param>
         protected void btnModify_Click(object sender, EventArgs e)
         {
+            ZHY.BLL.Menu bll = new ZHY.BLL.Menu();
             ZHY.Model.Menu model = new ZHY.Model.Menu();
             model.MenuName = this.txtMenuName.Text.Trim();
+            int menuId = ConvertInt32(this.txtMenuID.Text, 0);
             if (this.ddlMenuType.SelectedValue == "0")
             {
                 model.ParantID = 0;
             }
             else
-            {
+            {                
                 model.ParantID = ConvertInt32(this.txtMenuID.Text, 0);
             }
             model.MenuID = ConvertInt32(this.txtMenuID.Text,0);
@@ -97,11 +99,14 @@ namespace ZHY.Web.admin
             model.MenuPicPath = this.txtMenuPicPath.Text;
             model.MenuDes = this.txtMenuDes.Text;
             model.FunID = ConvertInt32(this.ddlFun.SelectedValue,0);
-            ZHY.BLL.Menu bll = new ZHY.BLL.Menu();
-            if (this.hfOp.Value=="1")
+            if (this.hfOp.Value == "1")
                 bll.Add(model);
-            else
+            else {
+                ZHY.Model.Menu pModel = bll.GetModel(menuId);
+                model.ParantID = pModel.ParantID;
                 bll.Update(model);
+            }
+                
             MessageBox.SelfInform(this.upMenu, this.GetType(), "保存成功！");
         }
 
@@ -141,6 +146,14 @@ namespace ZHY.Web.admin
             this.txtMenuDes.Text = model.MenuDes;
             this.txtMenuPicPath.Text = model.MenuPicPath;
             this.txtParantID.Text = model.ParantID.Value.ToString();
+            if (!this.txtParantID.Text.Equals("0"))
+            {
+                this.btnAdd.Enabled = false;
+            }
+            else {
+                this.btnAdd.Enabled = true;
+            
+            }
         }
 
         /// <summary>

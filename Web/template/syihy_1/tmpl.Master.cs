@@ -23,7 +23,7 @@ namespace Web.template.syihy_1
         {
             ZHY.BLL.Navigation bll = new ZHY.BLL.Navigation();
             divNav.InnerHtml = bll.genereateHTMLCodeGreen();
-        }
+        }        
 
         /// <summary>
         /// 绑定菜单

@@ -20,7 +20,7 @@
         </h2>
         <asp:DataList ID="dlNewsTop" runat="server" RepeatDirection="Vertical">
             <ItemTemplate>
-                <a target="_blank" href="forum/newsdetails.aspx?rciid=<%# Eval("NTId")%>" title='<%# DataBinder.Eval(Container, "DataItem.NTTitle")%>'><%# DataBinder.Eval(Container, "DataItem.NTTitle")%></a>         
+                <a target="_blank" href="forum/newsdetails.aspx?rciid=<%# Eval("NTId")%>" title='<%# DataBinder.Eval(Container, "DataItem.NTTitle")%>'><%# HtmlDecode(DataBinder.Eval(Container, "DataItem.NTTitle").ToString())%></a>         
             </ItemTemplate>
         </asp:DataList>
     </div>
@@ -45,7 +45,7 @@
                         <asp:DataList ID="dlNewsDetails" runat="server" RepeatDirection="Vertical" DataSource='<%# DataBinder.Eval(Container, "DataItem.RiList") %>'>
                             <ItemTemplate>
                                 <li>
-                                    <a target="_blank" href="forum/newsdetails.aspx?rciid=<%# Eval("RCItemId")%>" title='<%# DataBinder.Eval(Container, "DataItem.RCItemTitle")%>'><%# DataBinder.Eval(Container, "DataItem.RCItemTitle")%></a>
+                                    <a target="_blank" href="forum/newsdetails.aspx?rciid=<%# Eval("RCItemId")%>" title='<%# DataBinder.Eval(Container, "DataItem.RCItemTitle")%>'><%# HtmlDecode(DataBinder.Eval(Container, "DataItem.RCItemTitle").ToString())%></a>
                                 </li>                           
                             </ItemTemplate>
                         </asp:DataList>                     

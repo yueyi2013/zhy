@@ -28,13 +28,22 @@ namespace Web.forum
         {
             TreeNode root = new TreeNode("新闻列表", "0");
             ZHY.BLL.RSSChannel bll = new ZHY.BLL.RSSChannel();
+            ZHY.BLL.NewsCategory bllCat = new ZHY.BLL.NewsCategory();
+            IList<ZHY.Model.NewsCategory> listCat = bllCat.GetModelList("");
             IList<ZHY.Model.RSSChannel> list = bll.GetModelList("");
             foreach(ZHY.Model.RSSChannel model in list)
             {
-                TreeNode objTreeNode = new TreeNode();
-                objTreeNode.Text = model.RCTitle;
-                objTreeNode.Value = model.RCId.ToString();
-                root.ChildNodes.Add(objTreeNode);
+                foreach (ZHY.Model.NewsCategory item in listCat)
+                {
+                    if (model.RCTitle.Trim().Equals(item.NewsCategoryName.Trim()))
+                    {
+                        TreeNode objTreeNode = new TreeNode();
+                        objTreeNode.Text = model.RCTitle;
+                        objTreeNode.Value = model.RCId.ToString();
+                        root.ChildNodes.Add(objTreeNode);
+                        break;
+                    }
+                }
             }
             this.tvNews.Nodes.Add(root);
         }
@@ -66,7 +75,7 @@ namespace Web.forum
             this.lblPageRecord = this.lblPageRecord0;
             this.lblPageSize = this.lblPageSize0;
             this.txtPageIndex = this.txtPageIndex0;
-            base.isSitePage = true;
+            base.pageIndexType = 1;
             base.BindPageControls();
         }
 

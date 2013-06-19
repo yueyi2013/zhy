@@ -30,5 +30,24 @@ namespace ZHY.BLL
 
             return dal.GetList(tablename, strGetFields, PageIndex, pageSize, strWhere, strOrder, intOrder, ref CountAll);
         }
+
+        /// <summary>
+        /// 获取博客列表
+        /// </summary>
+        public DataSet GetIndexBlogList(int PageIndex, string name, ref int CountAll)
+        {
+            string strGetFields = " * ";
+            string tablename = " BlogListView ";
+            int pageSize = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("IndexPageBlogSize"));
+            int intOrder = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("intOrder"));
+            string strOrder = " ArPubDate ";
+            string strWhere = " 1=1 ";
+            if (!String.IsNullOrEmpty(name))
+            {
+                strWhere += "ArTitle like '%" + name + "'";
+            }
+
+            return dal.GetList(tablename, strGetFields, PageIndex, pageSize, strWhere, strOrder, intOrder, ref CountAll);
+        }
     }
 }

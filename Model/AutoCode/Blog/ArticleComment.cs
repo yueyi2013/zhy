@@ -14,6 +14,10 @@ namespace ZHY.Model
 		private decimal? _arid;
 		private string _acmcontent;
 		private DateTime? _acmdate= DateTime.Now;
+		private int? _acmtop;
+		private int? _acmdown;
+		private string _acmcmtpsn;
+		private string _acmstatus="A";
 		private DateTime? _createat= DateTime.Now;
 		private string _createby;
 		private DateTime? _updatedt= DateTime.Now;
@@ -49,6 +53,38 @@ namespace ZHY.Model
 		{
 			set{ _acmdate=value;}
 			get{return _acmdate;}
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		public int? ACMTop
+		{
+			set{ _acmtop=value;}
+			get{return _acmtop;}
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		public int? ACMDown
+		{
+			set{ _acmdown=value;}
+			get{return _acmdown;}
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		public string ACMCmtPsn
+		{
+			set{ _acmcmtpsn=value;}
+			get{return _acmcmtpsn;}
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		public string ACMStatus
+		{
+			set{ _acmstatus=value;}
+			get{return _acmstatus;}
 		}
 		/// <summary>
 		/// 

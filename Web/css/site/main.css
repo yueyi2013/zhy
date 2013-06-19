@@ -129,3 +129,46 @@ ul.ul-list span.date {padding-right:10px;}
 .ico-rss {padding-left:18px; background:url("../../images/site/ico-rss.gif") 0 50% no-repeat;}
 
 .smaller {font-size:85%;}
+
+
+/**/
+
+.PagingFirstButtonCss
+{
+    width:37px;
+    height:20px;
+    cursor:pointer;
+    background-image:url("../../images/page/first.gif");
+}
+
+.PagingNextButtonCss
+{
+    width:43px;
+    height:20px;
+    cursor:pointer;
+    background-image:url("../../images/page/next.gif");
+}
+
+.PagingBackButtonCss
+{
+    width:43px;
+    height:20px;
+    cursor:pointer;
+   background-image:url("../../images/page/back.gif");
+}
+
+.PagingLastButtonCss
+{
+    width:37px;
+    height:20px;
+    cursor:pointer;
+    background-image:url("../../images/page/last.gif");
+}
+
+.PagingGoButtonCss
+{
+    width:37px;
+    height:20px;
+    cursor:pointer;
+    background-image:url("../../images/page/go.gif");
+}

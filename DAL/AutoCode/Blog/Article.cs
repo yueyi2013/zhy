@@ -37,9 +37,9 @@ namespace ZHY.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into Articles(");
-			strSql.Append("ArTitle,ACId,ArTypeId,ArContent,ArAuthor,ArPubDate,ArClicks,ArIsTop,ArForbidComt,ArStatus,CreateAt,CreateBy,UpdateDT,UpdateBy)");
+			strSql.Append("ArTitle,ACId,ArTypeId,ArContent,ArAuthor,ArPubDate,ArClicks,ArCmtNumber,ArRecommend,ArIsTop,ArForbidComt,ArStatus,CreateAt,CreateBy,UpdateDT,UpdateBy)");
 			strSql.Append(" values (");
-			strSql.Append("@ArTitle,@ACId,@ArTypeId,@ArContent,@ArAuthor,@ArPubDate,@ArClicks,@ArIsTop,@ArForbidComt,@ArStatus,@CreateAt,@CreateBy,@UpdateDT,@UpdateBy)");
+			strSql.Append("@ArTitle,@ACId,@ArTypeId,@ArContent,@ArAuthor,@ArPubDate,@ArClicks,@ArCmtNumber,@ArRecommend,@ArIsTop,@ArForbidComt,@ArStatus,@CreateAt,@CreateBy,@UpdateDT,@UpdateBy)");
 			strSql.Append(";select @@IDENTITY");
 			SqlParameter[] parameters = {
 					new SqlParameter("@ArTitle", SqlDbType.VarChar,200),
@@ -49,6 +49,8 @@ namespace ZHY.DAL
 					new SqlParameter("@ArAuthor", SqlDbType.Char,32),
 					new SqlParameter("@ArPubDate", SqlDbType.DateTime),
 					new SqlParameter("@ArClicks", SqlDbType.Int,4),
+					new SqlParameter("@ArCmtNumber", SqlDbType.Int,4),
+					new SqlParameter("@ArRecommend", SqlDbType.Char,1),
 					new SqlParameter("@ArIsTop", SqlDbType.Char,1),
 					new SqlParameter("@ArForbidComt", SqlDbType.Char,1),
 					new SqlParameter("@ArStatus", SqlDbType.Char,1),
@@ -63,13 +65,15 @@ namespace ZHY.DAL
 			parameters[4].Value = model.ArAuthor;
 			parameters[5].Value = model.ArPubDate;
 			parameters[6].Value = model.ArClicks;
-			parameters[7].Value = model.ArIsTop;
-			parameters[8].Value = model.ArForbidComt;
-			parameters[9].Value = model.ArStatus;
-			parameters[10].Value = model.CreateAt;
-			parameters[11].Value = model.CreateBy;
-			parameters[12].Value = model.UpdateDT;
-			parameters[13].Value = model.UpdateBy;
+			parameters[7].Value = model.ArCmtNumber;
+			parameters[8].Value = model.ArRecommend;
+			parameters[9].Value = model.ArIsTop;
+			parameters[10].Value = model.ArForbidComt;
+			parameters[11].Value = model.ArStatus;
+			parameters[12].Value = model.CreateAt;
+			parameters[13].Value = model.CreateBy;
+			parameters[14].Value = model.UpdateDT;
+			parameters[15].Value = model.UpdateBy;
 
 			object obj = DbHelperSQL.GetSingle(strSql.ToString(),parameters);
 			if (obj == null)
@@ -95,6 +99,8 @@ namespace ZHY.DAL
 			strSql.Append("ArAuthor=@ArAuthor,");
 			strSql.Append("ArPubDate=@ArPubDate,");
 			strSql.Append("ArClicks=@ArClicks,");
+			strSql.Append("ArCmtNumber=@ArCmtNumber,");
+			strSql.Append("ArRecommend=@ArRecommend,");
 			strSql.Append("ArIsTop=@ArIsTop,");
 			strSql.Append("ArForbidComt=@ArForbidComt,");
 			strSql.Append("ArStatus=@ArStatus,");
@@ -111,6 +117,8 @@ namespace ZHY.DAL
 					new SqlParameter("@ArAuthor", SqlDbType.Char,32),
 					new SqlParameter("@ArPubDate", SqlDbType.DateTime),
 					new SqlParameter("@ArClicks", SqlDbType.Int,4),
+					new SqlParameter("@ArCmtNumber", SqlDbType.Int,4),
+					new SqlParameter("@ArRecommend", SqlDbType.Char,1),
 					new SqlParameter("@ArIsTop", SqlDbType.Char,1),
 					new SqlParameter("@ArForbidComt", SqlDbType.Char,1),
 					new SqlParameter("@ArStatus", SqlDbType.Char,1),
@@ -126,14 +134,16 @@ namespace ZHY.DAL
 			parameters[4].Value = model.ArAuthor;
 			parameters[5].Value = model.ArPubDate;
 			parameters[6].Value = model.ArClicks;
-			parameters[7].Value = model.ArIsTop;
-			parameters[8].Value = model.ArForbidComt;
-			parameters[9].Value = model.ArStatus;
-			parameters[10].Value = model.CreateAt;
-			parameters[11].Value = model.CreateBy;
-			parameters[12].Value = model.UpdateDT;
-			parameters[13].Value = model.UpdateBy;
-			parameters[14].Value = model.ArId;
+			parameters[7].Value = model.ArCmtNumber;
+			parameters[8].Value = model.ArRecommend;
+			parameters[9].Value = model.ArIsTop;
+			parameters[10].Value = model.ArForbidComt;
+			parameters[11].Value = model.ArStatus;
+			parameters[12].Value = model.CreateAt;
+			parameters[13].Value = model.CreateBy;
+			parameters[14].Value = model.UpdateDT;
+			parameters[15].Value = model.UpdateBy;
+			parameters[16].Value = model.ArId;
 
 			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
 			if (rows > 0)
@@ -197,7 +207,7 @@ namespace ZHY.DAL
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select  top 1 ArId,ArTitle,ACId,ArTypeId,ArContent,ArAuthor,ArPubDate,ArClicks,ArIsTop,ArForbidComt,ArStatus,CreateAt,CreateBy,UpdateDT,UpdateBy from Articles ");
+			strSql.Append("select  top 1 ArId,ArTitle,ACId,ArTypeId,ArContent,ArAuthor,ArPubDate,ArClicks,ArCmtNumber,ArRecommend,ArIsTop,ArForbidComt,ArStatus,CreateAt,CreateBy,UpdateDT,UpdateBy from Articles ");
 			strSql.Append(" where ArId=@ArId");
 			SqlParameter[] parameters = {
 					new SqlParameter("@ArId", SqlDbType.Decimal)
@@ -257,6 +267,14 @@ namespace ZHY.DAL
 				{
 					model.ArClicks=int.Parse(row["ArClicks"].ToString());
 				}
+				if(row["ArCmtNumber"]!=null && row["ArCmtNumber"].ToString()!="")
+				{
+					model.ArCmtNumber=int.Parse(row["ArCmtNumber"].ToString());
+				}
+				if(row["ArRecommend"]!=null)
+				{
+					model.ArRecommend=row["ArRecommend"].ToString();
+				}
 				if(row["ArIsTop"]!=null)
 				{
 					model.ArIsTop=row["ArIsTop"].ToString();
@@ -295,7 +313,7 @@ namespace ZHY.DAL
 		public DataSet GetList(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select ArId,ArTitle,ACId,ArTypeId,ArContent,ArAuthor,ArPubDate,ArClicks,ArIsTop,ArForbidComt,ArStatus,CreateAt,CreateBy,UpdateDT,UpdateBy ");
+			strSql.Append("select ArId,ArTitle,ACId,ArTypeId,ArContent,ArAuthor,ArPubDate,ArClicks,ArCmtNumber,ArRecommend,ArIsTop,ArForbidComt,ArStatus,CreateAt,CreateBy,UpdateDT,UpdateBy ");
 			strSql.Append(" FROM Articles ");
 			if(strWhere.Trim()!="")
 			{
@@ -315,7 +333,7 @@ namespace ZHY.DAL
 			{
 				strSql.Append(" top "+Top.ToString());
 			}
-			strSql.Append(" ArId,ArTitle,ACId,ArTypeId,ArContent,ArAuthor,ArPubDate,ArClicks,ArIsTop,ArForbidComt,ArStatus,CreateAt,CreateBy,UpdateDT,UpdateBy ");
+			strSql.Append(" ArId,ArTitle,ACId,ArTypeId,ArContent,ArAuthor,ArPubDate,ArClicks,ArCmtNumber,ArRecommend,ArIsTop,ArForbidComt,ArStatus,CreateAt,CreateBy,UpdateDT,UpdateBy ");
 			strSql.Append(" FROM Articles ");
 			if(strWhere.Trim()!="")
 			{

@@ -26,9 +26,9 @@ namespace ZHY.Web
         /// </summary>
         public int pageAll = 0;
         /// <summary>
-        /// 是否是前台页面
+        /// 分页类型
         /// </summary>
-        public bool isSitePage = false;
+        public int pageIndexType = 0;
         /// <summary>
         /// 每页记录数
         /// </summary>
@@ -102,11 +102,18 @@ namespace ZHY.Web
                     pageIndex = ConvertInt32(this.txtPageIndex.Text, 0);
                     break;
             }
-            if(isSitePage)
+            switch (pageIndexType)
             {
-                MstDataListBind();
-            }else{                
-                MstGridViewBind();            
+                case 0:
+                    MstGridViewBind();
+                    break;
+                case 1:
+                    MstDataListBind();
+                    break;
+                case 2:
+                    MstRepeaterBind();
+                    break;
+
             }
         }
 
@@ -153,13 +160,19 @@ namespace ZHY.Web
 
         private void BindPageParams()
         {
-            pageSize = isSitePage?Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("IndexPageSize")):Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("PageSize"));
+            pageSize = pageIndexType==1?Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("IndexPageSize")):Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("PageSize"));
             pageAll = pageRecord % this.pageSize == 0 ? pageRecord / this.pageSize : pageRecord / this.pageSize + 1;
         }
 
         private void BindIndexPageParams()
         {
             pageSize = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("IndexPageSize"));
+            pageAll = pageRecord % this.pageSize == 0 ? pageRecord / this.pageSize : pageRecord / this.pageSize + 1;
+        }
+
+        private void BindIndexPageBlogParams()
+        {
+            pageSize = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("IndexPageBlogSize"));
             pageAll = pageRecord % this.pageSize == 0 ? pageRecord / this.pageSize : pageRecord / this.pageSize + 1;
         }
 
@@ -187,6 +200,19 @@ namespace ZHY.Web
         protected virtual void MstDataListBind()
         {
             BindIndexPageParams();
+            this.lblPageAll.Text = pageAll.ToString();
+            this.lblPageIndex.Text = pageIndex.ToString();
+            this.lblPageSize.Text = pageSize.ToString();
+            this.lblPageRecord.Text = pageRecord.ToString();
+            ButtonEnabled();
+        }
+
+        /// <summary>
+        /// Repeater数据绑定
+        /// </summary>
+        protected virtual void MstRepeaterBind()
+        {
+            BindIndexPageBlogParams();
             this.lblPageAll.Text = pageAll.ToString();
             this.lblPageIndex.Text = pageIndex.ToString();
             this.lblPageSize.Text = pageSize.ToString();

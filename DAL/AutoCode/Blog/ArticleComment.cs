@@ -37,14 +37,18 @@ namespace ZHY.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into ArticleComments(");
-			strSql.Append("ArId,ACMContent,ACMDate,CreateAt,CreateBy,UpdateDT,UpdateBy)");
+			strSql.Append("ArId,ACMContent,ACMDate,ACMTop,ACMDown,ACMCmtPsn,ACMStatus,CreateAt,CreateBy,UpdateDT,UpdateBy)");
 			strSql.Append(" values (");
-			strSql.Append("@ArId,@ACMContent,@ACMDate,@CreateAt,@CreateBy,@UpdateDT,@UpdateBy)");
+			strSql.Append("@ArId,@ACMContent,@ACMDate,@ACMTop,@ACMDown,@ACMCmtPsn,@ACMStatus,@CreateAt,@CreateBy,@UpdateDT,@UpdateBy)");
 			strSql.Append(";select @@IDENTITY");
 			SqlParameter[] parameters = {
 					new SqlParameter("@ArId", SqlDbType.Decimal,9),
 					new SqlParameter("@ACMContent", SqlDbType.VarChar,1024),
 					new SqlParameter("@ACMDate", SqlDbType.DateTime),
+					new SqlParameter("@ACMTop", SqlDbType.Int,4),
+					new SqlParameter("@ACMDown", SqlDbType.Int,4),
+					new SqlParameter("@ACMCmtPsn", SqlDbType.VarChar,64),
+					new SqlParameter("@ACMStatus", SqlDbType.Char,1),
 					new SqlParameter("@CreateAt", SqlDbType.DateTime),
 					new SqlParameter("@CreateBy", SqlDbType.VarChar,64),
 					new SqlParameter("@UpdateDT", SqlDbType.DateTime),
@@ -52,10 +56,14 @@ namespace ZHY.DAL
 			parameters[0].Value = model.ArId;
 			parameters[1].Value = model.ACMContent;
 			parameters[2].Value = model.ACMDate;
-			parameters[3].Value = model.CreateAt;
-			parameters[4].Value = model.CreateBy;
-			parameters[5].Value = model.UpdateDT;
-			parameters[6].Value = model.UpdateBy;
+			parameters[3].Value = model.ACMTop;
+			parameters[4].Value = model.ACMDown;
+			parameters[5].Value = model.ACMCmtPsn;
+			parameters[6].Value = model.ACMStatus;
+			parameters[7].Value = model.CreateAt;
+			parameters[8].Value = model.CreateBy;
+			parameters[9].Value = model.UpdateDT;
+			parameters[10].Value = model.UpdateBy;
 
 			object obj = DbHelperSQL.GetSingle(strSql.ToString(),parameters);
 			if (obj == null)
@@ -77,6 +85,10 @@ namespace ZHY.DAL
 			strSql.Append("ArId=@ArId,");
 			strSql.Append("ACMContent=@ACMContent,");
 			strSql.Append("ACMDate=@ACMDate,");
+			strSql.Append("ACMTop=@ACMTop,");
+			strSql.Append("ACMDown=@ACMDown,");
+			strSql.Append("ACMCmtPsn=@ACMCmtPsn,");
+			strSql.Append("ACMStatus=@ACMStatus,");
 			strSql.Append("CreateAt=@CreateAt,");
 			strSql.Append("CreateBy=@CreateBy,");
 			strSql.Append("UpdateDT=@UpdateDT,");
@@ -86,6 +98,10 @@ namespace ZHY.DAL
 					new SqlParameter("@ArId", SqlDbType.Decimal,9),
 					new SqlParameter("@ACMContent", SqlDbType.VarChar,1024),
 					new SqlParameter("@ACMDate", SqlDbType.DateTime),
+					new SqlParameter("@ACMTop", SqlDbType.Int,4),
+					new SqlParameter("@ACMDown", SqlDbType.Int,4),
+					new SqlParameter("@ACMCmtPsn", SqlDbType.VarChar,64),
+					new SqlParameter("@ACMStatus", SqlDbType.Char,1),
 					new SqlParameter("@CreateAt", SqlDbType.DateTime),
 					new SqlParameter("@CreateBy", SqlDbType.VarChar,64),
 					new SqlParameter("@UpdateDT", SqlDbType.DateTime),
@@ -94,11 +110,15 @@ namespace ZHY.DAL
 			parameters[0].Value = model.ArId;
 			parameters[1].Value = model.ACMContent;
 			parameters[2].Value = model.ACMDate;
-			parameters[3].Value = model.CreateAt;
-			parameters[4].Value = model.CreateBy;
-			parameters[5].Value = model.UpdateDT;
-			parameters[6].Value = model.UpdateBy;
-			parameters[7].Value = model.ACMId;
+			parameters[3].Value = model.ACMTop;
+			parameters[4].Value = model.ACMDown;
+			parameters[5].Value = model.ACMCmtPsn;
+			parameters[6].Value = model.ACMStatus;
+			parameters[7].Value = model.CreateAt;
+			parameters[8].Value = model.CreateBy;
+			parameters[9].Value = model.UpdateDT;
+			parameters[10].Value = model.UpdateBy;
+			parameters[11].Value = model.ACMId;
 
 			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
 			if (rows > 0)
@@ -162,7 +182,7 @@ namespace ZHY.DAL
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select  top 1 ACMId,ArId,ACMContent,ACMDate,CreateAt,CreateBy,UpdateDT,UpdateBy from ArticleComments ");
+			strSql.Append("select  top 1 ACMId,ArId,ACMContent,ACMDate,ACMTop,ACMDown,ACMCmtPsn,ACMStatus,CreateAt,CreateBy,UpdateDT,UpdateBy from ArticleComments ");
 			strSql.Append(" where ACMId=@ACMId");
 			SqlParameter[] parameters = {
 					new SqlParameter("@ACMId", SqlDbType.Decimal)
@@ -206,6 +226,22 @@ namespace ZHY.DAL
 				{
 					model.ACMDate=DateTime.Parse(row["ACMDate"].ToString());
 				}
+				if(row["ACMTop"]!=null && row["ACMTop"].ToString()!="")
+				{
+					model.ACMTop=int.Parse(row["ACMTop"].ToString());
+				}
+				if(row["ACMDown"]!=null && row["ACMDown"].ToString()!="")
+				{
+					model.ACMDown=int.Parse(row["ACMDown"].ToString());
+				}
+				if(row["ACMCmtPsn"]!=null)
+				{
+					model.ACMCmtPsn=row["ACMCmtPsn"].ToString();
+				}
+				if(row["ACMStatus"]!=null)
+				{
+					model.ACMStatus=row["ACMStatus"].ToString();
+				}
 				if(row["CreateAt"]!=null && row["CreateAt"].ToString()!="")
 				{
 					model.CreateAt=DateTime.Parse(row["CreateAt"].ToString());
@@ -232,7 +268,7 @@ namespace ZHY.DAL
 		public DataSet GetList(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select ACMId,ArId,ACMContent,ACMDate,CreateAt,CreateBy,UpdateDT,UpdateBy ");
+			strSql.Append("select ACMId,ArId,ACMContent,ACMDate,ACMTop,ACMDown,ACMCmtPsn,ACMStatus,CreateAt,CreateBy,UpdateDT,UpdateBy ");
 			strSql.Append(" FROM ArticleComments ");
 			if(strWhere.Trim()!="")
 			{
@@ -252,7 +288,7 @@ namespace ZHY.DAL
 			{
 				strSql.Append(" top "+Top.ToString());
 			}
-			strSql.Append(" ACMId,ArId,ACMContent,ACMDate,CreateAt,CreateBy,UpdateDT,UpdateBy ");
+			strSql.Append(" ACMId,ArId,ACMContent,ACMDate,ACMTop,ACMDown,ACMCmtPsn,ACMStatus,CreateAt,CreateBy,UpdateDT,UpdateBy ");
 			strSql.Append(" FROM ArticleComments ");
 			if(strWhere.Trim()!="")
 			{

@@ -78,7 +78,7 @@ namespace ZHY.BLL
 					objModel = dal.GetModel(ACMId);
 					if (objModel != null)
 					{
-						//int ModelCache = Globals.SafeInt(BLL.SysManage.ConfigSystem.GetValueByCache("CacheTime"), 30);
+						//nt ModelCache = Globals.SafeInt(BLL.SysManage.ConfigSystem.GetValueByCache("CacheTime"), 30);
                         int ModelCache = LTP.Common.ConfigHelper.GetConfigInt("ModelCache");
                         Maticsoft.Common.DataCache.SetCache(CacheKey, objModel, DateTime.Now.AddMinutes(ModelCache), TimeSpan.Zero);
 					}

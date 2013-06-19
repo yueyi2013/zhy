@@ -18,6 +18,8 @@ namespace ZHY.Model
 		private string _arauthor;
 		private DateTime? _arpubdate= DateTime.Now;
 		private int? _arclicks=0;
+		private int? _arcmtnumber=0;
+		private string _arrecommend="N";
 		private string _aristop="N";
 		private string _arforbidcomt="N";
 		private string _arstatus="A";
@@ -88,6 +90,22 @@ namespace ZHY.Model
 		{
 			set{ _arclicks=value;}
 			get{return _arclicks;}
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		public int? ArCmtNumber
+		{
+			set{ _arcmtnumber=value;}
+			get{return _arcmtnumber;}
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		public string ArRecommend
+		{
+			set{ _arrecommend=value;}
+			get{return _arrecommend;}
 		}
 		/// <summary>
 		/// Y-es,N-o

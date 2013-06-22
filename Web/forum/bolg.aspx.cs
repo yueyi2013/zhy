@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ZHY.Web;
+using ZHY.Common;
 
 namespace Web.forum
 {
@@ -54,6 +55,42 @@ namespace Web.forum
             base.MstRepeaterBind();
         }
 
+        protected void rpBolgList_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName.Equals("ACName"))
+            {
+
+            }
+            else if (e.CommandName.Equals("ACName")) 
+            {
+
+            }
+            else if (e.CommandName.Equals("ArTitle")) 
+            {
+
+            }
+            else if (e.CommandName.Equals("ArAuthor"))
+            {
+
+            }
+            else if (e.CommandName.Equals("ArClicks"))
+            {
+
+            }
+            else if (e.CommandName.Equals("ArCmtNumber"))
+            {
+
+            }
+            else if (e.CommandName.Equals("ACMTops"))
+            {
+
+            }
+            else if (e.CommandName.Equals("ACMDowns"))
+            {
+
+            }
+        }
+
         /// <summary>
         /// 绑定分页控件
         /// </summary>
@@ -78,6 +115,79 @@ namespace Web.forum
             this.hfACID.Value = this.tvBolgCat.SelectedNode.Value;
             this.lblCategory.Text = this.tvBolgCat.SelectedNode.Text;
             MstRepeaterBind();
+        }
+
+        /// <summary>
+        /// 分类
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        protected string GetACName(string value)
+        {
+            return "[" + value + "]";
+        }
+
+        /// <summary>
+        /// 阅读数
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        protected string GetArClicks(string value)
+        {
+            return "阅读(" + value + ")";
+        }
+
+        /// <summary>
+        /// 评论数
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        protected string GetCmtNumber(string value)
+        {
+            return "评论(" + value + ")";
+        }
+
+        /// <summary>
+        /// 顶
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        protected string GetACMTops(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return "顶(0)";
+            }
+            return "顶(" + value + ")";
+        }
+
+        /// <summary>
+        /// 踩
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        protected string GetACMDowns(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+            {
+                return "踩0)";
+            }
+            return "踩(" + value + ")";
+        }
+
+        /// <summary>
+        /// 内容解析
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        protected string ParseContent(string value)
+        {
+            string str = HttpUtility.HtmlDecode(CompressionUtil.Decompress(value));
+            if(str.Length>100)
+            {
+                return str.Substring(0, 100)+"...";
+            }
+            return str;
         }
     }
 }

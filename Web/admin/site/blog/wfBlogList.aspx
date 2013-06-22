@@ -4,7 +4,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<fieldset style="width: 800px">
+<fieldset style="width: 900px">
     <legend>博客管理</legend>
     <asp:UpdatePanel ID="MyUpdatePanelHead" runat="server" UpdateMode="Conditional">
         <Triggers>
@@ -62,18 +62,18 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:BoundField DataField="ArTitle" HeaderText="文章标题">
-                                                <ItemStyle Width="300px" />
+                                                <ItemStyle Width="400px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="ArAuthor" HeaderText="作者">
                                                 <ItemStyle Width="100px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="ArPubDate" HeaderText="发布日期">
-                                                <ItemStyle Width="150px" />
+                                                <ItemStyle Width="200px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="ArClicks" HeaderText="点击数">
                                                 <ItemStyle Width="100px" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="ArIsTop" HeaderText="是否置顶">
+                                            <asp:BoundField DataField="ArIsTop" HeaderText="置顶">
                                                 <ItemStyle Width="100px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="ArStatus" HeaderText="状态">

@@ -14,8 +14,8 @@ namespace ZHY.Model
 		private decimal? _arid;
 		private string _acmcontent;
 		private DateTime? _acmdate= DateTime.Now;
-		private int? _acmtop;
-		private int? _acmdown;
+		private int? _acmtop=0;
+		private int? _acmdown=0;
 		private string _acmcmtpsn;
 		private string _acmstatus="A";
 		private DateTime? _createat= DateTime.Now;

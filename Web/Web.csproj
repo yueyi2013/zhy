@@ -89,6 +89,7 @@
     <Content Include="admin\site\blog\wfCommentList.aspx" />
     <Content Include="admin\site\homepage\wfNavigation.aspx" />
     <Content Include="admin\site\mem\wfMemberList.aspx" />
+    <Content Include="admin\site\mem\wfMemMenuList.aspx" />
     <Content Include="admin\site\news\wfCollectNews.aspx" />
     <Content Include="admin\site\news\wfNewsCategory.aspx" />
     <Content Include="admin\site\news\wfNewsList.aspx" />
@@ -115,7 +116,9 @@
     <Content Include="forum\news.aspx" />
     <Content Include="forum\newsdetails.aspx" />
     <Content Include="forum\memberlogin.aspx" />
+    <Content Include="forum\regactive.aspx" />
     <Content Include="forum\register.aspx" />
+    <Content Include="forum\regsuccess.aspx" />
     <Content Include="forum\tecnicalsuport.aspx" />
     <Content Include="Global.asax" />
     <Content Include="images\admin\down\main_45.gif" />
@@ -137,6 +140,9 @@
     <Content Include="images\page\go.gif" />
     <Content Include="images\page\last.gif" />
     <Content Include="images\page\next.gif" />
+    <Content Include="images\reg\register06.gif" />
+    <Content Include="images\reg\register04.gif" />
+    <Content Include="images\reg\register05.gif" />
     <Content Include="images\site\bg.gif" />
     <Content Include="images\site\browser.gif" />
     <Content Include="images\site\btn-purchase.gif" />
@@ -481,6 +487,13 @@
     <Compile Include="admin\site\mem\wfMemberList.aspx.designer.cs">
       <DependentUpon>wfMemberList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\site\mem\wfMemMenuList.aspx.cs">
+      <DependentUpon>wfMemMenuList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\site\mem\wfMemMenuList.aspx.designer.cs">
+      <DependentUpon>wfMemMenuList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\site\news\wfCollectNews.aspx.cs">
       <DependentUpon>wfCollectNews.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -807,12 +820,26 @@
     <Compile Include="forum\memberlogin.aspx.designer.cs">
       <DependentUpon>memberlogin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="forum\regactive.aspx.cs">
+      <DependentUpon>regactive.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forum\regactive.aspx.designer.cs">
+      <DependentUpon>regactive.aspx</DependentUpon>
+    </Compile>
     <Compile Include="forum\register.aspx.cs">
       <DependentUpon>register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="forum\register.aspx.designer.cs">
       <DependentUpon>register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="forum\regsuccess.aspx.cs">
+      <DependentUpon>regsuccess.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forum\regsuccess.aspx.designer.cs">
+      <DependentUpon>regsuccess.aspx</DependentUpon>
     </Compile>
     <Compile Include="forum\tecnicalsuport.aspx.cs">
       <DependentUpon>tecnicalsuport.aspx</DependentUpon>

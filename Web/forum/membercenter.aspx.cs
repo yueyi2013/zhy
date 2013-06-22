@@ -15,9 +15,21 @@ namespace Web.forum
             {
                 if (Session["memUser"] == null || string.IsNullOrEmpty(Session["memUser"].ToString())) 
                 {
-                    Response.Redirect("memberlogin.aspx");
+                    Response.Redirect("~/forum/memberlogin.aspx");
                 }
+
+                BindMemberMenuList();
             }
+        }
+
+        /// <summary>
+        /// 绑定会员菜单栏
+        /// </summary>
+        private void BindMemberMenuList()
+        {
+            ZHY.BLL.MemberMenu bll = new ZHY.BLL.MemberMenu();
+            this.blNav.DataSource = bll.GetList("MMStatus='A'");
+            this.blNav.DataBind();
         }
     }
 }

@@ -5,10 +5,10 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cpBody" runat="server">
 
-<table>
+    <table>
 <tr>
 <!--分类-->
-<td style="width:100px">
+<td style="width:200px; text-align:left; vertical-align:top">
 
     <asp:TreeView ID="tvBolgCat" runat="server" 
                     onselectednodechanged="tvBolgCat_SelectedNodeChanged" >
@@ -23,15 +23,30 @@
         </Triggers>
         <ContentTemplate> 
         <asp:Label ID="lblCategory" runat="server"></asp:Label>   
-            <asp:Repeater ID="rpBolgList" runat="server">
+            <asp:Repeater ID="rpBolgList" runat="server" 
+                onitemcommand="rpBolgList_ItemCommand">
                 <HeaderTemplate>
                     <table>
                 </HeaderTemplate>
                 <ItemTemplate>
                     <tr>
-                        <td>[<%# Eval("ATName")%>]&nbsp;&nbsp;<%# Eval("ArTitle")%></td>
-                        <td><img alt="" src="#"/>&nbsp;&nbsp; <%# Eval("ArContent")%></td>
-                        <td><%# Eval("ArAuthor")%>&nbsp;&nbsp; <%# Eval("ArPubDate")%> <%# Eval("ArClicks")%> <%# Eval("ArCmtNumber")%> <%# Eval("ACMTop")%> <%# Eval("ACMDown")%></td>
+                        <td>
+                        <asp:LinkButton ID="lbACName" runat="server" CausesValidation="false" CommandName="ACName" Text='<%# GetACName(Eval("ACName").ToString())%>'/>
+                        &nbsp;&nbsp;
+                        <asp:LinkButton ID="lbArTitle" runat="server" CausesValidation="false" CommandName="ArTitle" Text='<%# Eval("ArTitle")%>'/></td>
+                    </tr>
+                    <tr>
+                        <td><img alt="" src="#"/>&nbsp;&nbsp; <%# ParseContent(Eval("ArContent").ToString())%></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:LinkButton ID="lbAuthor" runat="server" CausesValidation="false" CommandName="ArAuthor" Text='<%# Eval("ArAuthor")%>'/>&nbsp;&nbsp; 
+                            <%# Eval("ArPubDate")%> 
+                            <asp:LinkButton ID="lbArClicks" runat="server" CausesValidation="false" CommandName="ArClicks" Text='<%# GetArClicks(Eval("ArClicks").ToString())%>'/> &nbsp;&nbsp; 
+                            <asp:LinkButton ID="lbArCmtNumber" runat="server" CausesValidation="false" CommandName="ArCmtNumber" Text='<%# GetCmtNumber(Eval("ArCmtNumber").ToString())%>'/>&nbsp;&nbsp; 
+                            <asp:LinkButton ID="lbACMTops" runat="server" CausesValidation="false" CommandName="ACMTops" Text='<%# GetACMTops(Eval("ACMTops").ToString())%>'/>&nbsp;&nbsp; 
+                            <asp:LinkButton ID="lbACMDowns" runat="server" CausesValidation="false" CommandName="ACMDowns" Text='<%# GetACMDowns(Eval("ACMDowns").ToString())%>'/>&nbsp;&nbsp; 
+                         </td>                        
                     </tr>
                 </ItemTemplate>
                 <FooterTemplate>

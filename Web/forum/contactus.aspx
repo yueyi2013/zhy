@@ -3,7 +3,7 @@
 <link rel="stylesheet" media="screen,projection" type="text/css" href="../css/site/main.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cpBody" runat="server">
-<div id="contact" class="main_box">
+<div id="contact" style=" text-align:left">
         	<h1>联系我们</h1>
             <div class="col_12 float_l">
             	<p>专业提供各类网站建设。</p>

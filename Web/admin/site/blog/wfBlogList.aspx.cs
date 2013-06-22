@@ -46,7 +46,7 @@ namespace Web.admin.site.blog
         /// </summary>
         protected override void MstGridViewBind()
         {
-            ZHY.BLL.NewsInfo bll = new ZHY.BLL.NewsInfo();
+            ZHY.BLL.Article bll = new ZHY.BLL.Article();
             string name = this.txtName.Text;
             this.MstGridView.DataSource = bll.GetList(pageIndex, name, ref pageRecord);
             this.MstGridView.DataBind();
@@ -136,12 +136,12 @@ namespace Web.admin.site.blog
         {
             foreach (GridViewRow gvr in MstGridView.Rows)
             {
-                string newsId = MstGridView.DataKeys[gvr.RowIndex].Value.ToString();
+                string arId = MstGridView.DataKeys[gvr.RowIndex].Value.ToString();
                 CheckBox chk = (CheckBox)gvr.FindControl("chkItem");
                 if (chk.Checked)
                 {
-                    ZHY.BLL.NewsInfo bll = new ZHY.BLL.NewsInfo();
-                    bll.Delete(ConvertInt32(newsId, 0));
+                    ZHY.BLL.Article bll = new ZHY.BLL.Article();
+                    bll.Delete(ConvertInt32(arId, 0));
                 }
             }
             MstGridViewBind();
@@ -274,12 +274,12 @@ namespace Web.admin.site.blog
         /// </summary>
         private void InitData(int rssId)
         {
-            ZHY.BLL.NewsInfo bll = new ZHY.BLL.NewsInfo();
-            ZHY.Model.NewsInfo model = bll.GetModel(rssId);
-            this.hfArId.Value = model.NewsId.ToString();
-            this.txtNewsTitle.Text = model.NewsTitle;
-            this.txtNewsAuthor.Text = model.NewsAuthor;
-            this.ftContent.Text = HttpUtility.HtmlDecode(CompressionUtil.Decompress(model.NewsContents));
+            ZHY.BLL.Article bll = new ZHY.BLL.Article();
+            ZHY.Model.Article model = bll.GetModel(rssId);
+            this.hfArId.Value = model.ArId.ToString();
+            this.txtNewsTitle.Text = model.ArTitle;
+            this.txtNewsAuthor.Text = model.ArAuthor;
+            this.ftContent.Text = HttpUtility.HtmlDecode(CompressionUtil.Decompress(model.ArContent));
         }
         #endregion
     }

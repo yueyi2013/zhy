@@ -197,8 +197,8 @@ var texts = "";
 
 function fDisplayFalsh() {
 
-    var focus_width = 400
-    var focus_height = 200
+    var focus_width = 500
+    var focus_height = 250
     var text_height = 0
     var swf_height = focus_height + text_height
     if (pics != "") {

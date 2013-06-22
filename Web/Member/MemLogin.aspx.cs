@@ -30,5 +30,10 @@ namespace Web.Member
             }
 
         }
+
+        protected void imgbtnLogin_Click(object sender, ImageClickEventArgs e)
+        {
+
+        }
     }
 }

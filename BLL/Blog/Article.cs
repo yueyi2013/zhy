@@ -17,7 +17,7 @@ namespace ZHY.BLL
         /// <returns></returns>
         public DataSet GetList(int PageIndex, string name, ref int CountAll)
         {
-            string strGetFields = " ArTitle,ACId,ArTypeId,ArContent,ArAuthor,ArPubDate,ArClicks,ArIsTop,ArForbidComt,ArStatus,CreateAt,CreateBy,UpdateDT,UpdateBy ";
+            string strGetFields = " ArId,ArTitle,ACId,ArTypeId,ArContent,ArAuthor,ArPubDate,ArClicks,ArIsTop,ArForbidComt,ArStatus,CreateAt,CreateBy,UpdateDT,UpdateBy ";
             string tablename = " Articles ";
             int pageSize = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("pageSize"));
             int intOrder = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("intOrder"));

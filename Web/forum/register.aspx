@@ -1,14 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/template/syihy_1/tmpl.Master" AutoEventWireup="true" CodeBehind="register.aspx.cs" Inherits="Web.forum.register1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" media="screen,projection" type="text/css" href="../css/site/main.css" />
-    <script language="javascript" type="text/javascript">
-        function validateNumber(oSrc, args) {
-            var RegPWord = /^([\w]){5,16}$/;
-            if (!RegPWord.exec(args.Value)) {
-                args.IsValid = false;
-            }
-        }
-    </script>
+    <script src="../js/manage.js" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cpBody" runat="server">
 <br />
@@ -35,23 +28,11 @@
 				        <td width="150" class="right" valign="top"><dfn>*</dfn>E-mail：</td>
 				<td>
 					<div class="oneline">
-                        <asp:UpdatePanel ID="upVldEmail" runat="server" UpdateMode="Conditional">
-                            <Triggers>
-                                <asp:AsyncPostBackTrigger ControlID="lbReg" EventName="Click" />
-                                <asp:AsyncPostBackTrigger ControlID="txtEmail" EventName="TextChanged" />
-                            </Triggers>
-                        <ContentTemplate>
-                            <asp:TextBox ID="txtEmail" runat="server" CssClass="inputbox" MaxLength="100" 
-                                ontextchanged="txtEmail_TextChanged" AutoPostBack="True"></asp:TextBox>
-                            <asp:UpdateProgress ID="UpdateProgress1" runat="server" DynamicLayout="true" AssociatedUpdatePanelID="upVldEmail">
-                                <ProgressTemplate>
-                                    &nbsp;正在验证,请稍后......
-                                </ProgressTemplate>
-                            </asp:UpdateProgress>
-                            <asp:Label ID="lblEmailMsg" runat="server" BackColor="Transparent" ForeColor="Red"></asp:Label>
-                        </ContentTemplate>
-                        </asp:UpdatePanel>
-					</div>
+                        <asp:TextBox ID="txtEmail" runat="server" CssClass="inputbox" MaxLength="100" ></asp:TextBox>
+                        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="请输入邮箱地址！" ControlToValidate="txtEmail" Display="Dynamic"></asp:RequiredFieldValidator>
+					    <asp:CustomValidator ID="cvEmail" runat="server" ClientValidationFunction="validateEmail"
+                            ControlToValidate="txtEmail" Display="Dynamic" ErrorMessage="请输入真实的Email地址！"></asp:CustomValidator>
+                    </div>
 					<div class="twoline">
 						（有效的E-mail地址才能收到激活码，帐户在激活后才能享受网站服务。）
 					</div>

@@ -110,6 +110,7 @@
     <Content Include="forum\bolg.aspx" />
     <Content Include="forum\contactus.aspx" />
     <Content Include="forum\food.aspx" />
+    <Content Include="forum\help.aspx" />
     <Content Include="forum\membercenter.aspx" />
     <Content Include="forum\membervalidate.aspx" />
     <Content Include="forum\myblog.aspx" />
@@ -777,6 +778,13 @@
     </Compile>
     <Compile Include="forum\food.aspx.designer.cs">
       <DependentUpon>food.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="forum\help.aspx.cs">
+      <DependentUpon>help.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forum\help.aspx.designer.cs">
+      <DependentUpon>help.aspx</DependentUpon>
     </Compile>
     <Compile Include="forum\membercenter.aspx.cs">
       <DependentUpon>membercenter.aspx</DependentUpon>
@@ -3369,7 +3377,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>2009</DevelopmentServerPort>
+          <DevelopmentServerPort>2915</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

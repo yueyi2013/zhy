@@ -23,13 +23,13 @@
         <!--Top Start-->
         <tr><td>
         <div id="header">
-            <h1 id="logo"><a href="www.syihy.com">SYIHY.COM</a></h1>
+            <h1 id="logo"><a href="../../index.aspx">SYIHY.COM</a></h1>
             <hr class="noscreen" />
             <div id="nav">
-                <a href="www.syihy.com" id="nav-active">首页</a> <span>|</span> 
-                <a href="#">登录</a> <span>|</span> 
-                <a href="#">注册</a> <span>|</span> 
-                <a href="#">帮助</a>
+                <a href="../../index.aspx" id="nav-active">首页</a> <span>|</span> 
+                <a href="../../forum/memberlogin.aspx">登录</a> <span>|</span> 
+                <a href="../../forum/register.aspx">注册</a> <span>|</span> 
+                <a href="../../forum/help.aspx">帮助</a>
             </div>
         </div>
         

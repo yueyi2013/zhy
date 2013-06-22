@@ -22,15 +22,6 @@ namespace Web.forum {
         protected global::System.Web.UI.UpdatePanel upLogin;
         
         /// <summary>
-        /// upVldEmail 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.UpdatePanel upVldEmail;
-        
-        /// <summary>
         /// txtEmail 控件。
         /// </summary>
         /// <remarks>
@@ -40,22 +31,22 @@ namespace Web.forum {
         protected global::System.Web.UI.WebControls.TextBox txtEmail;
         
         /// <summary>
-        /// UpdateProgress1 控件。
+        /// RequiredFieldValidator3 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.UpdateProgress UpdateProgress1;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator3;
         
         /// <summary>
-        /// lblEmailMsg 控件。
+        /// cvEmail 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEmailMsg;
+        protected global::System.Web.UI.WebControls.CustomValidator cvEmail;
         
         /// <summary>
         /// txtNewPassword 控件。

@@ -20,10 +20,5 @@ namespace Web.forum
 
         }
 
-        protected void txtEmail_TextChanged(object sender, EventArgs e)
-        {
-            System.Threading.Thread.Sleep(3000);
-            this.lblEmailMsg.Text = "无效的邮箱地址。";
-        }
     }
 }

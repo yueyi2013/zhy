@@ -331,7 +331,19 @@ function validate() {
     return true;
 }
 
+function validateEmail(oSrc, args) {
+    var RegEmali = /^([a-z0-9][a-z0-9_\-\.]*)@([a-z0-9][a-z0-9\.\-]{0,20})\.([a-z]{2,4})$/;
+    if (!RegEmali.exec(args.Value)) {
+        args.IsValid = false;
+    }
+};
 
+function validateNumber(oSrc, args) {
+    var RegPWord = /^([\w]){5,16}$/;
+    if (!RegPWord.exec(args.Value)) {
+        args.IsValid = false;
+    }
+}
 
 function focusNext(nextName, evt, num, t, lastName) {
     evt = (evt) ? evt : event;

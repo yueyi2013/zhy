@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Collections;
 
-namespace MailSender
+namespace ZHY.Mail
 {
     [Serializable()]
     class MailModel

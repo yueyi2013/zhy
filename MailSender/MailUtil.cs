@@ -12,7 +12,7 @@ using System.IO;
 using System.ComponentModel;
 using System.Net.Mime;
 
-namespace MailSender
+namespace ZHY.Mail
 {
     class MailUtil
     {

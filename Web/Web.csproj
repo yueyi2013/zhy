@@ -3338,6 +3338,10 @@
       <Project>{0988C62E-247F-471F-A183-DB509C7A3839}</Project>
       <Name>DBUtility</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MailSender\Mail.csproj">
+      <Project>{D40D6BA0-6F3E-4B5D-95B6-62FF04FF09C1}</Project>
+      <Name>Mail</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{53995DBB-9836-4647-AD22-865884FDEB9E}</Project>
       <Name>Model</Name>

@@ -107,6 +107,11 @@ function ClearZero() {
     document.getElementById("ctl00$ContentPlaceHolder1$btnModify").disabled = "disabled";
 }
 
+function DisableRegButton(opr) {
+    opr.disabled = "disabled";
+    document.getElementById("regMem").innerText = "注册中...";
+ }
+
 function Confirm() {
     if (confirm('您确定要删除选中的记录吗？')) {
         ClearZero();

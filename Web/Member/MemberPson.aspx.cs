@@ -42,11 +42,7 @@ namespace Web.Member
             model.MemAccount = this.txtMemAccount.Text;
             model.MemPsw = this.txtMemPsw.Text;
             //  model.LevelID = Sysfun.ConvertToInt32(this.txtLevelID.Text);
-            model.MemRealName = this.txtMemRealName.Text;
-            model.MemMobile = this.txtMemMobile.Text;
-            model.MemShotNum = this.txtMemShotNum.Text;
-            model.MemUnitTel = this.txtMemUnitTel.Text;
-            model.MemMedium = this.txtMemMedium.Text;
+            
             // model.MemStatus = this.txtMemStatus.Text;
 
             ZHY.BLL.Member bll = new ZHY.BLL.Member();

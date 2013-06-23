@@ -7,7 +7,7 @@ using System.Collections;
 namespace ZHY.Mail
 {
     [Serializable()]
-    class MailModel
+   public class MailModel
     {
         private string smtpName;
 

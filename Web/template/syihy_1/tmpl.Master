@@ -7,6 +7,7 @@
     <title>syihy.com</title>
     <meta name="keywords" content="SYIHY,新闻,博客,blog,评论,下载,download" />
     <meta name="description" content="SYIHY深度各类博客,国内新闻,国际新闻,经济新闻,台湾新闻,教育新闻,游戏,娱乐,下载中心,IT blog,download" />
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="../../css/site/main.css" />
     <script language="javascript" type="text/javascript">
          self.moveTo(0, 0)
          self.resizeTo(screen.availWidth, screen.availHeight)

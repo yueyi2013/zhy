@@ -13,7 +13,7 @@ namespace Web.forum
         {
             if(!IsPostBack)
             {
-                if (Session["memUser"] == null || string.IsNullOrEmpty(Session["memUser"].ToString())) 
+                if (Session["MemUser"] == null || string.IsNullOrEmpty(Session["MemUser"].ToString())) 
                 {
                     Response.Redirect("~/forum/memberlogin.aspx");
                 }

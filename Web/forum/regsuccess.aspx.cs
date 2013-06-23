@@ -11,7 +11,10 @@ namespace Web.forum
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(IsPostBack)
+            {
+               this.lblUser.Text = Request.QueryString["user"];
+            }
         }
     }
 }

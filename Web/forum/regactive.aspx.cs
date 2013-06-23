@@ -11,7 +11,10 @@ namespace Web.forum
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if(!IsPostBack)
+            {
+                this.lblEmail.Text = Request.QueryString["MemEmail"].ToString();
+            }
         }
     }
 }

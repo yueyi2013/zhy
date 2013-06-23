@@ -126,6 +126,7 @@
     <Compile Include="BookISBN.cs" />
     <Compile Include="CompressionUtil.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="FileOperation.cs" />
     <Compile Include="HtmlPaserUtil.cs" />
     <Compile Include="HttpProc.cs" />
     <Compile Include="MailSender.cs" />

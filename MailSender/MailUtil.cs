@@ -14,7 +14,7 @@ using System.Net.Mime;
 
 namespace ZHY.Mail
 {
-    class MailUtil
+    public class MailUtil
     {
 
         public static MailModel jobMail = null;

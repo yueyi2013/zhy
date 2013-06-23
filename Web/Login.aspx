@@ -6,7 +6,7 @@
     <title>syihy.com</title>
 <%--    <link href="css/manage.css" rel="stylesheet" type="text/css" />
 --%><link href="css/css.css" rel="stylesheet" type="text/css" />
-    <script src="js/manage.js" type="text/javascript"></script>
+    <script src="js/main.js" type="text/javascript"></script>
 
 </head>
 <body>

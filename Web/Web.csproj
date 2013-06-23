@@ -976,13 +976,6 @@
     <Compile Include="Member\NewsList.aspx.designer.cs">
       <DependentUpon>NewsList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Member\Register.aspx.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Member\Register.aspx.designer.cs">
-      <DependentUpon>Register.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Code\MessageBox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProPublish.aspx.cs">
@@ -3347,7 +3340,6 @@
     <Content Include="Member\MemberPson.aspx" />
     <Content Include="Member\MemLogin.aspx" />
     <Content Include="Member\MemPassword.aspx" />
-    <Content Include="Member\Register.aspx" />
     <Content Include="ProPublish.aspx" />
     <Content Include="ValidateCode.aspx" />
   </ItemGroup>

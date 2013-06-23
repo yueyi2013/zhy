@@ -108,6 +108,9 @@
     <Content Include="Default.aspx" />
     <Content Include="admin\Main0.Master" />
     <None Include="inc\navigation.inc" />
+    <Content Include="error\403.htm" />
+    <Content Include="error\404.htm" />
+    <Content Include="error\general.htm" />
     <Content Include="forum\active.aspx" />
     <Content Include="forum\bolg.aspx" />
     <Content Include="forum\changeemail.aspx" />
@@ -3375,6 +3378,7 @@
   <ItemGroup>
     <Folder Include="admin\fckEditor\editor\dialog\fck_about\" />
     <Folder Include="images\article\" />
+    <Folder Include="images\error\404\" />
     <Folder Include="images\flash\" />
     <Folder Include="index\" />
     <Folder Include="UserControls\Buttons\" />

@@ -100,6 +100,7 @@
     <Content Include="admin\sys\wfAdminList.aspx" />
     <Content Include="admin\sys\wfRightConfig.aspx" />
     <Content Include="admin\sys\wfRightList.aspx" />
+    <Content Include="admin\sys\wfSysMailList.aspx" />
     <Content Include="admin\sys\wfSystemConfig.aspx" />
     <Content Include="admin\sys\wfUserList.aspx" />
     <Content Include="css\css.css" />
@@ -107,7 +108,9 @@
     <Content Include="Default.aspx" />
     <Content Include="admin\Main0.Master" />
     <None Include="inc\navigation.inc" />
+    <Content Include="forum\active.aspx" />
     <Content Include="forum\bolg.aspx" />
+    <Content Include="forum\changeemail.aspx" />
     <Content Include="forum\contactus.aspx" />
     <Content Include="forum\food.aspx" />
     <Content Include="forum\help.aspx" />
@@ -174,7 +177,9 @@
     <Content Include="images\site\tray-separator.gif" />
     <Content Include="images\site\tray.gif" />
     <Content Include="images\site\ul-01.gif" />
+    <None Include="inc\sysmailcontent.inc" />
     <Content Include="index.aspx" />
+    <Content Include="js\main.js" />
     <Content Include="Member\NewsDetails.aspx" />
     <Content Include="Member\NewsList.aspx" />
     <Content Include="template\demo_aqua\css\slimbox2.css" />
@@ -565,6 +570,13 @@
     <Compile Include="admin\sys\wfRightList.aspx.designer.cs">
       <DependentUpon>wfRightList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\sys\wfSysMailList.aspx.cs">
+      <DependentUpon>wfSysMailList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\sys\wfSysMailList.aspx.designer.cs">
+      <DependentUpon>wfSysMailList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\sys\wfSystemConfig.aspx.cs">
       <DependentUpon>wfSystemConfig.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -758,12 +770,26 @@
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\GeneralMenu.cs" />
+    <Compile Include="forum\active.aspx.cs">
+      <DependentUpon>active.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forum\active.aspx.designer.cs">
+      <DependentUpon>active.aspx</DependentUpon>
+    </Compile>
     <Compile Include="forum\bolg.aspx.cs">
       <DependentUpon>bolg.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="forum\bolg.aspx.designer.cs">
       <DependentUpon>bolg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="forum\changeemail.aspx.cs">
+      <DependentUpon>changeemail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forum\changeemail.aspx.designer.cs">
+      <DependentUpon>changeemail.aspx</DependentUpon>
     </Compile>
     <Compile Include="forum\contactus.aspx.cs">
       <DependentUpon>contactus.aspx</DependentUpon>
@@ -3217,7 +3243,6 @@
     <Content Include="js\jquery\iutil.js" />
     <Content Include="js\jquery\jquery.js" />
     <Content Include="js\jquery_last.js" />
-    <Content Include="js\manage.js" />
     <Content Include="js\colorpicker.js" />
     <Content Include="js\My97DatePicker4.0\calendar.js" />
     <Content Include="js\My97DatePicker4.0\config.js" />

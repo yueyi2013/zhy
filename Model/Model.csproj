@@ -124,6 +124,7 @@
     <Compile Include="AutoCode\Blog\ArticleComment.cs" />
     <Compile Include="AutoCode\Member\MemberMenu.cs" />
     <Compile Include="AutoCode\SysManage\RightConfig.cs" />
+    <Compile Include="AutoCode\SysManage\SystemMail.cs" />
     <Compile Include="FriendLink.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Member.cs" />

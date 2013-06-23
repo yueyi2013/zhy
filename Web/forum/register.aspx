@@ -1,7 +1,23 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/template/syihy_1/tmpl.Master" AutoEventWireup="true" CodeBehind="register.aspx.cs" Inherits="Web.forum.register1" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" media="screen,projection" type="text/css" href="../css/site/main.css" />
-    <script src="../js/manage.js" type="text/javascript"></script>
+    <script language="javascript" type="text/javascript">
+
+        function validateEmail(oSrc, args) {
+            var RegEmali = /^([a-z0-9][a-z0-9_\-\.]*)@([a-z0-9][a-z0-9\.\-]{0,20})\.([a-z]{2,4})$/;
+            if (!RegEmali.exec(args.Value)) {
+                args.IsValid = false;
+            }
+        };
+
+        function validateUIPsw(oSrc, args) {
+            var RegPWord = /^([\w]){5,16}$/;
+            if (!RegPWord.exec(args.Value)) {
+                args.IsValid = false;
+            }
+        }
+
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cpBody" runat="server">
 <br />
@@ -45,7 +61,7 @@
 					<div class="oneline">
                         <asp:TextBox ID="txtNewPassword" runat="server" CssClass="inputbox" MaxLength="50"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="请输入密码！" ControlToValidate="txtNewPassword" Display="Dynamic"></asp:RequiredFieldValidator>
-                        <asp:CustomValidator ID="cvNewPsw" runat="server" ClientValidationFunction="validateNumber"
+                        <asp:CustomValidator ID="cvNewPsw" runat="server" ClientValidationFunction="validateUIPsw"
                             ControlToValidate="txtNewPassWord" Display="Dynamic" ErrorMessage="密码只能由英文字母或数字组成并且不能少于1位大于16位！"></asp:CustomValidator>
                         <ul id="pwd-strong" style="display:none;"><li>弱</li><li>中</li><li>强</li></ul>
 					</div><div class="clear"></div>

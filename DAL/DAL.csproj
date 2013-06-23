@@ -139,6 +139,7 @@
     <Compile Include="AutoCode\Member\MemberMenu.cs" />
     <Compile Include="AutoCode\News\NewsTop.cs" />
     <Compile Include="AutoCode\SysManage\RightConfig.cs" />
+    <Compile Include="AutoCode\SysManage\SystemMail.cs" />
     <Compile Include="BaseDAL.cs" />
     <Compile Include="Blog\ArticalType.cs" />
     <Compile Include="Blog\Article.cs" />
@@ -174,6 +175,7 @@
     <Compile Include="Right.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="SysManage\RightConfig.cs" />
+    <Compile Include="SysManage\SystemMail.cs" />
     <Compile Include="SystemConfig.cs" />
     <Compile Include="SysManage\SetupDatabase.cs" />
     <Compile Include="User.cs" />

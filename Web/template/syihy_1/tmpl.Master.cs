@@ -14,6 +14,22 @@ namespace Web.template.syihy_1
         {
             if(!IsPostBack)
             {
+               if (Session["MemUser"] != null)
+                {
+                    ZHY.Model.Member model = (ZHY.Model.Member)Session["MemUser"];
+                    this.hlLogin.Visible = true;
+                    this.hlLogin.Text = model.MemAccount;
+                    this.hlLogin.ForeColor = System.Drawing.Color.Red;
+                    this.hlLogin.NavigateUrl = "~/forum/member/membercenter.aspx";
+                    this.lbExit.Visible = true;
+                }
+                else {
+                    this.lbExit.Visible = false;
+                    this.hlLogin.Visible = true;
+                    this.hlLogin.Text = "登录";
+                    this.hlLogin.ForeColor = System.Drawing.Color.Black;
+                    this.hlLogin.NavigateUrl = "~/forum/memberlogin.aspx";                
+                }
                 //BindNavigation();
                 BindNavHtmlCode();
             }
@@ -86,6 +102,17 @@ namespace Web.template.syihy_1
                 CreateChildMenuItem(childlmId, ds, childMenuItem);
                 fatherMenuItem.ChildItems.Add(childMenuItem);
             }
+        }
+
+        protected void lbExit_Click(object sender, EventArgs e)
+        {
+            if (Session["MemUser"] != null)
+                Session["MemUser"] = null;
+            this.lbExit.Visible = false;
+            this.hlLogin.Visible = true;
+            this.hlLogin.Text = "登录";
+            this.hlLogin.ForeColor = System.Drawing.Color.Black;
+            this.hlLogin.NavigateUrl = "~/forum/memberlogin.aspx";
         }
     }
 }

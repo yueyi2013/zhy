@@ -1,0 +1,19 @@
+USE [syihy]
+GO
+
+/****** Object:  Table [dbo].[QRTZ_BLOB_TRIGGERS]    Script Date: 06/24/2013 19:55:49 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[QRTZ_BLOB_TRIGGERS](
+	[SCHED_NAME] [nvarchar](100) NOT NULL,
+	[TRIGGER_NAME] [nvarchar](150) NOT NULL,
+	[TRIGGER_GROUP] [nvarchar](150) NOT NULL,
+	[BLOB_DATA] [image] NULL
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+
+GO
+

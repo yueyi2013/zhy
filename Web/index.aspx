@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/template/syihy_1/tmpl.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="Web.index" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <script src="js/manage.js" type="text/javascript"></script>   
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"> 
+    <script src="js/main.js" type="text/javascript"></script>
     <link rel="stylesheet" media="screen,projection" type="text/css" href="css/site/main.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cpBody" runat="server">

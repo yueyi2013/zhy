@@ -40,7 +40,7 @@
                             验证码：
                         </td>
                         <td>
-                            <asp:TextBox ID="txtValidate" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="CheckCode" runat="server"></asp:TextBox>
                             &nbsp; <a id="A2" href="" onclick="ChangeCode();return false;">
                                 <asp:Image ID="ImageCheck" runat="server" ImageUrl="../ValidateCode.aspx?GUID=GUID"
                                     ImageAlign="AbsMiddle" ToolTip="看不清，换一个" Width="40px" Height="25px"></asp:Image></a>

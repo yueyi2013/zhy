@@ -105,6 +105,7 @@
     <Content Include="admin\sys\wfUserList.aspx" />
     <Content Include="css\css.css" />
     <Content Include="css\site\main.css" />
+    <Content Include="dbscripts\procedures\GetLeftMenu.sql" />
     <Content Include="Default.aspx" />
     <Content Include="admin\Main0.Master" />
     <None Include="inc\navigation.inc" />
@@ -117,7 +118,7 @@
     <Content Include="forum\contactus.aspx" />
     <Content Include="forum\food.aspx" />
     <Content Include="forum\help.aspx" />
-    <Content Include="forum\membercenter.aspx" />
+    <Content Include="forum\member\membercenter.aspx" />
     <Content Include="forum\membervalidate.aspx" />
     <Content Include="forum\myblog.aspx" />
     <Content Include="forum\news.aspx" />
@@ -183,8 +184,6 @@
     <None Include="inc\sysmailcontent.inc" />
     <Content Include="index.aspx" />
     <Content Include="js\main.js" />
-    <Content Include="Member\NewsDetails.aspx" />
-    <Content Include="Member\NewsList.aspx" />
     <Content Include="template\demo_aqua\css\slimbox2.css" />
     <Content Include="template\demo_aqua\images\about.png" />
     <Content Include="template\demo_aqua\images\closelabel.gif" />
@@ -815,11 +814,11 @@
     <Compile Include="forum\help.aspx.designer.cs">
       <DependentUpon>help.aspx</DependentUpon>
     </Compile>
-    <Compile Include="forum\membercenter.aspx.cs">
+    <Compile Include="forum\member\membercenter.aspx.cs">
       <DependentUpon>membercenter.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="forum\membercenter.aspx.designer.cs">
+    <Compile Include="forum\member\membercenter.aspx.designer.cs">
       <DependentUpon>membercenter.aspx</DependentUpon>
     </Compile>
     <Compile Include="forum\membervalidate.aspx.cs">
@@ -915,69 +914,6 @@
     </Compile>
     <Compile Include="Logout.aspx.designer.cs">
       <DependentUpon>Logout.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Member\CarDetails.aspx.cs">
-      <DependentUpon>CarDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Member\CarDetails.aspx.designer.cs">
-      <DependentUpon>CarDetails.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Member\CarInfoList.aspx.cs">
-      <DependentUpon>CarInfoList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Member\CarInfoList.aspx.designer.cs">
-      <DependentUpon>CarInfoList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Member\CarInput.aspx.cs">
-      <DependentUpon>CarInput.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Member\CarInput.aspx.designer.cs">
-      <DependentUpon>CarInput.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Member\CarPublish.aspx.cs">
-      <DependentUpon>CarPublish.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Member\CarPublish.aspx.designer.cs">
-      <DependentUpon>CarPublish.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Member\MemberPson.aspx.cs">
-      <DependentUpon>MemberPson.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Member\MemberPson.aspx.designer.cs">
-      <DependentUpon>MemberPson.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Member\MemLogin.aspx.cs">
-      <DependentUpon>MemLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Member\MemLogin.aspx.designer.cs">
-      <DependentUpon>MemLogin.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Member\MemPassword.aspx.cs">
-      <DependentUpon>MemPassword.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Member\MemPassword.aspx.designer.cs">
-      <DependentUpon>MemPassword.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Member\NewsDetails.aspx.cs">
-      <DependentUpon>NewsDetails.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Member\NewsDetails.aspx.designer.cs">
-      <DependentUpon>NewsDetails.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Member\NewsList.aspx.cs">
-      <DependentUpon>NewsList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Member\NewsList.aspx.designer.cs">
-      <DependentUpon>NewsList.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\MessageBox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -3336,13 +3272,6 @@
     <None Include="inc\lanmu_right.inc" />
     <Content Include="Index0.Master" />
     <None Include="js\images\Thumbs.db" />
-    <Content Include="Member\CarDetails.aspx" />
-    <Content Include="Member\CarInfoList.aspx" />
-    <Content Include="Member\CarInput.aspx" />
-    <Content Include="Member\CarPublish.aspx" />
-    <Content Include="Member\MemberPson.aspx" />
-    <Content Include="Member\MemLogin.aspx" />
-    <Content Include="Member\MemPassword.aspx" />
     <Content Include="ProPublish.aspx" />
     <Content Include="ValidateCode.aspx" />
   </ItemGroup>
@@ -3377,6 +3306,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="admin\fckEditor\editor\dialog\fck_about\" />
+    <Folder Include="dbscripts\commondata\" />
+    <Folder Include="dbscripts\tables\quartz\" />
+    <Folder Include="dbscripts\triggers\" />
+    <Folder Include="dbscripts\views\" />
     <Folder Include="images\article\" />
     <Folder Include="images\error\404\" />
     <Folder Include="images\flash\" />

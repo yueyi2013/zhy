@@ -27,11 +27,13 @@
             <h1 id="logo"><a href="../../index.aspx">SYIHY.COM</a></h1>
             <hr class="noscreen" />
             <div id="nav">
-                <a href="../../index.aspx" id="nav-active">首页</a> <span>|</span> 
-                <a href="../../forum/memberlogin.aspx">登录</a> <span>|</span> 
-                <a href="../../forum/register.aspx">注册</a> <span>|</span> 
-                <a href="../../forum/help.aspx">帮助</a>
+                <a href="../../index.aspx" id="nav-active">首页</a> <span>|</span>                
+                <asp:HyperLink ID="hlLogin" runat="server" NavigateUrl="~/forum/memberlogin.aspx" Text="登录"></asp:HyperLink><span>|</span>          
+                <asp:HyperLink ID="hlReg" runat="server" NavigateUrl="~/forum/register.aspx" Text="注册"></asp:HyperLink><span>|</span>                
+                <a href="../../forum/help.aspx">帮助</a><span>|</span>
+                <asp:LinkButton ID="lbExit" runat="server" onclick="lbExit_Click" Visible ="false" >退出</asp:LinkButton>
             </div>
+            
         </div>
         
         </td></tr>

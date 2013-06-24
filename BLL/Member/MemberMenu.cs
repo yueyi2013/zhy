@@ -31,6 +31,13 @@ namespace ZHY.BLL
             return dal.GetList(tablename, strGetFields, PageIndex, pageSize, strWhere, strOrder, intOrder, ref CountAll);
         }
 
+        /// <summary>
+        /// 获得数据列表
+        /// </summary>
+        public DataSet GetList(string strWhere, string filedOrder) 
+        {
+            return dal.GetList(strWhere, filedOrder);
+        }
         #endregion
     }
 }

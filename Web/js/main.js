@@ -167,18 +167,6 @@ function gs(d, a) {
     return curVal;
 }
 
-//验证数字
-function validateNumber(oSrc, args) {
-
-    alert("验证数字！");
-    var RegPWord = /^\d+(\.\d+)?$/;
-    if (!RegPWord.exec(args.Value)) {
-        args.IsValid = false;
-    } else {
-        args.IsValid = true;
-    }
-}
-
 //验证选择
 function validateInput(oSrc, args) {
     if (args.Value == "1") {

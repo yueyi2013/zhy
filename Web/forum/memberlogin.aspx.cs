@@ -20,6 +20,25 @@ namespace Web.forum
 
         protected void imgbtnLogin_Click(object sender, ImageClickEventArgs e)
         {
+            #region 检查验证码
+            if ((Session["CheckCode"] != null) && (Session["CheckCode"].ToString().Trim() != ""))
+            {
+                if (Session["CheckCode"].ToString().ToLower() != this.CheckCode.Text.ToLower())
+                {
+                    //this..Text = "所填写的验证码与所给的不符 !";
+                    Session["CheckCode"] = null;
+                    return;
+                }
+                else
+                {
+                    Session["CheckCode"] = null;
+                }
+            }
+            else
+            {
+                return;
+            }
+            #endregion
             //System.Threading.Thread.Sleep(3000);
             string memaccount = this.txtUserName.Text;
             string mempsw = this.txtUserPsw.Text;
@@ -28,7 +47,7 @@ namespace Web.forum
             if (bll.ValidateMember(memaccount, mempsw, model))
             {
                 Session["MemUser"] = model;
-                Response.Redirect("~/forum/membercenter.aspx");
+                Response.Redirect("member/membercenter.aspx");
             }
             else
             {

@@ -36,9 +36,9 @@ namespace ZHY.DAL
                 }
                 model.MemAccount = ds.Tables[0].Rows[0]["MemAccount"].ToString();
                 model.MemPsw = ds.Tables[0].Rows[0]["MemPsw"].ToString();
-                if (ds.Tables[0].Rows[0]["LevelID"].ToString() != "")
+                if (ds.Tables[0].Rows[0]["PsnLevelId"].ToString() != "")
                 {
-                    model.PsnLevelId = int.Parse(ds.Tables[0].Rows[0]["LevelID"].ToString());
+                    model.PsnLevelId = int.Parse(ds.Tables[0].Rows[0]["PsnLevelId"].ToString());
                 }
                 model.MemStatus = ds.Tables[0].Rows[0]["MemStatus"].ToString();
                 return true;

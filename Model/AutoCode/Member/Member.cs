@@ -13,7 +13,7 @@ namespace ZHY.Model
 		private decimal _memid;
 		private string _memaccount;
 		private string _mempsw="123456789";
-		private int? _psnlevelid;
+		private int? _psnlevelid=0;
 		private string _memmail;
 		private string _memstatus="I";
 		private DateTime? _createat= DateTime.Now;

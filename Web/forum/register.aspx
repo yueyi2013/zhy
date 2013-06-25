@@ -70,7 +70,7 @@
 				<td class="right" valign="top"><dfn>*</dfn>密码：</td>
 				<td>
 					<div class="oneline">
-                        <asp:TextBox ID="txtNewPassword" runat="server" CssClass="inputbox" MaxLength="50"></asp:TextBox>
+                        <asp:TextBox ID="txtNewPassword" runat="server" CssClass="inputbox" MaxLength="50" TextMode="Password"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="请输入密码！" ControlToValidate="txtNewPassword" Display="Dynamic"></asp:RequiredFieldValidator>
                         <asp:CustomValidator ID="cvNewPsw" runat="server" ClientValidationFunction="validateUIPsw"
                             ControlToValidate="txtNewPassWord" Display="Dynamic" ErrorMessage="密码只能由英文字母或数字组成并且不能少于1位大于16位！"></asp:CustomValidator>
@@ -86,7 +86,7 @@
 				<td class="right" valign="top"><dfn>*</dfn>再次输入密码：</td>
 				<td>
 					<div class="oneline">
-                        <asp:TextBox ID="txtTwoPassword" runat="server" CssClass="inputbox" MaxLength="50"></asp:TextBox>
+                        <asp:TextBox ID="txtTwoPassword" runat="server" CssClass="inputbox" MaxLength="50" TextMode="Password"></asp:TextBox>
                         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="请输入确认密码！" ControlToValidate="txtTwoPassword" Display="Dynamic"></asp:RequiredFieldValidator>
 					    <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="txtNewPassWord"
                             ControlToValidate="txtTwoPassword" Display="Dynamic" ErrorMessage="两次密码输入不一致，请重新输入！"></asp:CompareValidator>

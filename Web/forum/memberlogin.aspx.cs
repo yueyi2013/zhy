@@ -47,7 +47,7 @@ namespace Web.forum
             if (bll.ValidateMember(memaccount, mempsw, model))
             {
                 Session["MemUser"] = model;
-                Response.Redirect("member/membercenter.aspx");
+                Response.Redirect("mem/membercenter.aspx");
             }
             else
             {

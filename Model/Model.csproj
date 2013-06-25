@@ -142,9 +142,9 @@
     <Compile Include="RSSChannelItem.cs" />
     <Compile Include="RSSSite.cs" />
     <Compile Include="SiteFlash.cs" />
+    <Compile Include="AutoCode\SysManage\Function.cs" />
     <Compile Include="SysNode.cs" />
     <Compile Include="Detail.cs" />
-    <Compile Include="Function.cs" />
     <Compile Include="LanMu.cs" />
     <Compile Include="LMStyle.cs" />
     <Compile Include="Menu.cs" />

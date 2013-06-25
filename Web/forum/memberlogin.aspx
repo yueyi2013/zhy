@@ -32,7 +32,7 @@
                             密码：
                         </td>
                         <td><asp:Label ID="lblGUID" runat="server" Style="display: none"></asp:Label>
-                            <asp:TextBox ID="txtUserPsw" runat="server" Width="200px"></asp:TextBox>
+                            <asp:TextBox ID="txtUserPsw" runat="server" Width="200px" TextMode="Password"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>

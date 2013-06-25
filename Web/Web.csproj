@@ -118,7 +118,7 @@
     <Content Include="forum\contactus.aspx" />
     <Content Include="forum\food.aspx" />
     <Content Include="forum\help.aspx" />
-    <Content Include="forum\member\membercenter.aspx" />
+    <Content Include="forum\mem\membercenter.aspx" />
     <Content Include="forum\membervalidate.aspx" />
     <Content Include="forum\myblog.aspx" />
     <Content Include="forum\news.aspx" />
@@ -814,11 +814,11 @@
     <Compile Include="forum\help.aspx.designer.cs">
       <DependentUpon>help.aspx</DependentUpon>
     </Compile>
-    <Compile Include="forum\member\membercenter.aspx.cs">
+    <Compile Include="forum\mem\membercenter.aspx.cs">
       <DependentUpon>membercenter.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="forum\member\membercenter.aspx.designer.cs">
+    <Compile Include="forum\mem\membercenter.aspx.designer.cs">
       <DependentUpon>membercenter.aspx</DependentUpon>
     </Compile>
     <Compile Include="forum\membervalidate.aspx.cs">

@@ -40,6 +40,7 @@ namespace ZHY.DAL
                 {
                     model.PsnLevelId = int.Parse(ds.Tables[0].Rows[0]["PsnLevelId"].ToString());
                 }
+                model.MemMail = ds.Tables[0].Rows[0]["MemMail"].ToString();
                 model.MemStatus = ds.Tables[0].Rows[0]["MemStatus"].ToString();
                 return true;
             }

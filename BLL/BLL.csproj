@@ -126,6 +126,7 @@
     <Compile Include="AutoCode\Member\Member.cs" />
     <Compile Include="AutoCode\Member\MemberMenu.cs" />
     <Compile Include="AutoCode\News\NewsTop.cs" />
+    <Compile Include="AutoCode\SysManage\Function.cs" />
     <Compile Include="AutoCode\SysManage\RightConfig.cs" />
     <Compile Include="AutoCode\SysManage\SystemMail.cs" />
     <Compile Include="Blog\ArticalType.cs" />
@@ -152,7 +153,7 @@
     <Compile Include="SiteFlash.cs" />
     <Compile Include="SysManage.cs" />
     <Compile Include="Detail.cs" />
-    <Compile Include="Function.cs" />
+    <Compile Include="SysManage\Function.cs" />
     <Compile Include="LanMu.cs" />
     <Compile Include="LMStyle.cs" />
     <Compile Include="Menu.cs" />

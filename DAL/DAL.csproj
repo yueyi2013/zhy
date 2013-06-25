@@ -167,7 +167,7 @@
     <Compile Include="SiteFlash.cs" />
     <Compile Include="SysManage.cs" />
     <Compile Include="Detail.cs" />
-    <Compile Include="Function.cs" />
+    <Compile Include="SysManage\Function.cs" />
     <Compile Include="LanMu.cs" />
     <Compile Include="LMStyle.cs" />
     <Compile Include="Menu.cs" />
@@ -175,6 +175,7 @@
     <Compile Include="ProPicture.cs" />
     <Compile Include="Right.cs" />
     <Compile Include="Role.cs" />
+    <Compile Include="AutoCode\SysManage\Function.cs" />
     <Compile Include="SysManage\RightConfig.cs" />
     <Compile Include="SysManage\SystemMail.cs" />
     <Compile Include="SystemConfig.cs" />

@@ -98,14 +98,19 @@
     <Content Include="admin\site\rss\wfRssItemList.aspx" />
     <Content Include="admin\site\rss\wfRssList.aspx" />
     <Content Include="admin\sys\wfAdminList.aspx" />
+    <Content Include="admin\sys\wfGenSQLCode.aspx" />
     <Content Include="admin\sys\wfRightConfig.aspx" />
     <Content Include="admin\sys\wfRightList.aspx" />
+    <Content Include="admin\sys\wfRoleList.aspx" />
     <Content Include="admin\sys\wfSysMailList.aspx" />
     <Content Include="admin\sys\wfSystemConfig.aspx" />
     <Content Include="admin\sys\wfUserList.aspx" />
     <Content Include="css\css.css" />
     <Content Include="css\site\main.css" />
+    <Content Include="dbscripts\data\commondata.sql" />
     <Content Include="dbscripts\procedures\GetLeftMenu.sql" />
+    <Content Include="dbscripts\procedures\Pagination.sql" />
+    <Content Include="dbscripts\views\BlogListView.sql" />
     <Content Include="Default.aspx" />
     <Content Include="admin\Main0.Master" />
     <None Include="inc\navigation.inc" />
@@ -558,6 +563,13 @@
     <Compile Include="admin\sys\wfAdminList.aspx.designer.cs">
       <DependentUpon>wfAdminList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\sys\wfGenSQLCode.aspx.cs">
+      <DependentUpon>wfGenSQLCode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\sys\wfGenSQLCode.aspx.designer.cs">
+      <DependentUpon>wfGenSQLCode.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\sys\wfRightConfig.aspx.cs">
       <DependentUpon>wfRightConfig.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -571,6 +583,13 @@
     </Compile>
     <Compile Include="admin\sys\wfRightList.aspx.designer.cs">
       <DependentUpon>wfRightList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\sys\wfRoleList.aspx.cs">
+      <DependentUpon>wfRoleList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\sys\wfRoleList.aspx.designer.cs">
+      <DependentUpon>wfRoleList.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\sys\wfSysMailList.aspx.cs">
       <DependentUpon>wfSysMailList.aspx</DependentUpon>
@@ -3306,10 +3325,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="admin\fckEditor\editor\dialog\fck_about\" />
-    <Folder Include="dbscripts\commondata\" />
     <Folder Include="dbscripts\tables\quartz\" />
     <Folder Include="dbscripts\triggers\" />
-    <Folder Include="dbscripts\views\" />
     <Folder Include="images\article\" />
     <Folder Include="images\error\404\" />
     <Folder Include="images\flash\" />

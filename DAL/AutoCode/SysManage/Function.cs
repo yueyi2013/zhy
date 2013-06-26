@@ -37,19 +37,27 @@ namespace ZHY.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into Functions(");
-			strSql.Append("FunCode,FunName,FunPage,FunDes)");
+			strSql.Append("FunCode,FunName,FunPage,FunDes,CreateAt,CreateBy,UpdateDT,UpdateBy)");
 			strSql.Append(" values (");
-			strSql.Append("@FunCode,@FunName,@FunPage,@FunDes)");
+			strSql.Append("@FunCode,@FunName,@FunPage,@FunDes,@CreateAt,@CreateBy,@UpdateDT,@UpdateBy)");
 			strSql.Append(";select @@IDENTITY");
 			SqlParameter[] parameters = {
 					new SqlParameter("@FunCode", SqlDbType.VarChar,128),
 					new SqlParameter("@FunName", SqlDbType.VarChar,256),
 					new SqlParameter("@FunPage", SqlDbType.VarChar,128),
-					new SqlParameter("@FunDes", SqlDbType.VarChar,512)};
+					new SqlParameter("@FunDes", SqlDbType.VarChar,512),
+					new SqlParameter("@CreateAt", SqlDbType.DateTime),
+					new SqlParameter("@CreateBy", SqlDbType.VarChar,64),
+					new SqlParameter("@UpdateDT", SqlDbType.DateTime),
+					new SqlParameter("@UpdateBy", SqlDbType.VarChar,64)};
 			parameters[0].Value = model.FunCode;
 			parameters[1].Value = model.FunName;
 			parameters[2].Value = model.FunPage;
 			parameters[3].Value = model.FunDes;
+			parameters[4].Value = model.CreateAt;
+			parameters[5].Value = model.CreateBy;
+			parameters[6].Value = model.UpdateDT;
+			parameters[7].Value = model.UpdateBy;
 
 			object obj = DbHelperSQL.GetSingle(strSql.ToString(),parameters);
 			if (obj == null)
@@ -71,19 +79,31 @@ namespace ZHY.DAL
 			strSql.Append("FunCode=@FunCode,");
 			strSql.Append("FunName=@FunName,");
 			strSql.Append("FunPage=@FunPage,");
-			strSql.Append("FunDes=@FunDes");
+			strSql.Append("FunDes=@FunDes,");
+			strSql.Append("CreateAt=@CreateAt,");
+			strSql.Append("CreateBy=@CreateBy,");
+			strSql.Append("UpdateDT=@UpdateDT,");
+			strSql.Append("UpdateBy=@UpdateBy");
 			strSql.Append(" where FunID=@FunID");
 			SqlParameter[] parameters = {
 					new SqlParameter("@FunCode", SqlDbType.VarChar,128),
 					new SqlParameter("@FunName", SqlDbType.VarChar,256),
 					new SqlParameter("@FunPage", SqlDbType.VarChar,128),
 					new SqlParameter("@FunDes", SqlDbType.VarChar,512),
+					new SqlParameter("@CreateAt", SqlDbType.DateTime),
+					new SqlParameter("@CreateBy", SqlDbType.VarChar,64),
+					new SqlParameter("@UpdateDT", SqlDbType.DateTime),
+					new SqlParameter("@UpdateBy", SqlDbType.VarChar,64),
 					new SqlParameter("@FunID", SqlDbType.Int,4)};
 			parameters[0].Value = model.FunCode;
 			parameters[1].Value = model.FunName;
 			parameters[2].Value = model.FunPage;
 			parameters[3].Value = model.FunDes;
-			parameters[4].Value = model.FunID;
+			parameters[4].Value = model.CreateAt;
+			parameters[5].Value = model.CreateBy;
+			parameters[6].Value = model.UpdateDT;
+			parameters[7].Value = model.UpdateBy;
+			parameters[8].Value = model.FunID;
 
 			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
 			if (rows > 0)
@@ -147,7 +167,7 @@ namespace ZHY.DAL
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select  top 1 FunID,FunCode,FunName,FunPage,FunDes from Functions ");
+			strSql.Append("select  top 1 FunID,FunCode,FunName,FunPage,FunDes,CreateAt,CreateBy,UpdateDT,UpdateBy from Functions ");
 			strSql.Append(" where FunID=@FunID");
 			SqlParameter[] parameters = {
 					new SqlParameter("@FunID", SqlDbType.Int,4)
@@ -195,6 +215,22 @@ namespace ZHY.DAL
 				{
 					model.FunDes=row["FunDes"].ToString();
 				}
+				if(row["CreateAt"]!=null && row["CreateAt"].ToString()!="")
+				{
+					model.CreateAt=DateTime.Parse(row["CreateAt"].ToString());
+				}
+				if(row["CreateBy"]!=null)
+				{
+					model.CreateBy=row["CreateBy"].ToString();
+				}
+				if(row["UpdateDT"]!=null && row["UpdateDT"].ToString()!="")
+				{
+					model.UpdateDT=DateTime.Parse(row["UpdateDT"].ToString());
+				}
+				if(row["UpdateBy"]!=null)
+				{
+					model.UpdateBy=row["UpdateBy"].ToString();
+				}
 			}
 			return model;
 		}
@@ -205,7 +241,7 @@ namespace ZHY.DAL
 		public DataSet GetList(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select FunID,FunCode,FunName,FunPage,FunDes ");
+			strSql.Append("select FunID,FunCode,FunName,FunPage,FunDes,CreateAt,CreateBy,UpdateDT,UpdateBy ");
 			strSql.Append(" FROM Functions ");
 			if(strWhere.Trim()!="")
 			{
@@ -225,7 +261,7 @@ namespace ZHY.DAL
 			{
 				strSql.Append(" top "+Top.ToString());
 			}
-			strSql.Append(" FunID,FunCode,FunName,FunPage,FunDes ");
+			strSql.Append(" FunID,FunCode,FunName,FunPage,FunDes,CreateAt,CreateBy,UpdateDT,UpdateBy ");
 			strSql.Append(" FROM Functions ");
 			if(strWhere.Trim()!="")
 			{

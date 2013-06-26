@@ -139,6 +139,8 @@
     <Compile Include="AutoCode\Member\Member.cs" />
     <Compile Include="AutoCode\Member\MemberMenu.cs" />
     <Compile Include="AutoCode\News\NewsTop.cs" />
+    <Compile Include="AutoCode\PsnManage\Role.cs" />
+    <Compile Include="AutoCode\PsnManage\User.cs" />
     <Compile Include="AutoCode\SysManage\RightConfig.cs" />
     <Compile Include="AutoCode\SysManage\SystemMail.cs" />
     <Compile Include="BaseDAL.cs" />
@@ -174,13 +176,13 @@
     <Compile Include="Product.cs" />
     <Compile Include="ProPicture.cs" />
     <Compile Include="Right.cs" />
-    <Compile Include="Role.cs" />
+    <Compile Include="PsnManage\Role.cs" />
     <Compile Include="AutoCode\SysManage\Function.cs" />
     <Compile Include="SysManage\RightConfig.cs" />
     <Compile Include="SysManage\SystemMail.cs" />
     <Compile Include="SystemConfig.cs" />
     <Compile Include="SysManage\SetupDatabase.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="PsnManage\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -210,9 +212,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AutoCode\PsnManage\" />
     <Folder Include="iBatisDAO\" />
-    <Folder Include="PsnManage\" />
     <Folder Include="sqlfiles\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -15,6 +15,10 @@ namespace ZHY.Model
 		private string _funname;
 		private string _funpage;
 		private string _fundes;
+		private DateTime? _createat= DateTime.Now;
+		private string _createby;
+		private DateTime? _updatedt= DateTime.Now;
+		private string _updateby;
 		/// <summary>
 		/// 
 		/// </summary>
@@ -54,6 +58,38 @@ namespace ZHY.Model
 		{
 			set{ _fundes=value;}
 			get{return _fundes;}
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		public DateTime? CreateAt
+		{
+			set{ _createat=value;}
+			get{return _createat;}
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		public string CreateBy
+		{
+			set{ _createby=value;}
+			get{return _createby;}
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		public DateTime? UpdateDT
+		{
+			set{ _updatedt=value;}
+			get{return _updatedt;}
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		public string UpdateBy
+		{
+			set{ _updateby=value;}
+			get{return _updateby;}
 		}
 		#endregion Model
 

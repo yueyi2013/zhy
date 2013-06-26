@@ -92,12 +92,11 @@ function changecolor(parameter) {
         parameter.parentElement.parentElement.style.background = "";
         m = m - 1;
     }
-
     if (m == 1) {
 
-        document.getElementById("ctl00$ContentPlaceHolder1$btnModify").disabled = "";
+        document.getElementById("ctl00_ContentPlaceHolder1_btnModify").disabled = "";
     } else {
-        document.getElementById("ctl00$ContentPlaceHolder1$btnModify").disabled = "disabled";
+        document.getElementById("ctl00_ContentPlaceHolder1_btnModify").disabled = "disabled";
     }
 
 }

@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Main.Master" AutoEventWireup="true"
-    CodeBehind="wfMemberList.aspx.cs" Inherits="ZHY.Web.admin.wfMemberList" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Main0.Master" AutoEventWireup="true" CodeBehind="wfPsnLevelList.aspx.cs" Inherits="Web.admin.sys.wfPsnLevelList" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<fieldset style="width: 800px">
+    <legend>等级配置</legend>
     <asp:UpdatePanel ID="MyUpdatePanelHead" runat="server" UpdateMode="Conditional">
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="btnSave" EventName="Click" />
@@ -21,17 +21,19 @@
         <tr>
             <td align="left" valign="top">
                 <table cellspacing="0" cellpadding="0" width="100%">
+                    
                     <tr>
                         <td>
-                            <asp:Button ID="btnAdd" runat="server" Text="增加" CssClass="buttonCss" CausesValidation="false" />
+                           <asp:Button ID="btnAdd" runat="server" Text="增加" CssClass="buttonCss" 
+                                CausesValidation="false"/>
                             <asp:Button ID="btnModify" runat="server" Text="修改" CssClass="buttonCss" CausesValidation="false"
                                 OnClick="btnModify_Click" Enabled="false" />
                             <asp:Button ID="btnDelete" runat="server" Text="批量删除" OnClientClick="return Confirm()"
                                 CssClass="buttonCss" CausesValidation="false" OnClick="btnDelete_Click" />
-                            <ajaxToolkit:ModalPopupExtender ID="mpMstAdd" runat="server" TargetControlID="btnAdd"
+                            <ajaxtoolkit:modalpopupextender ID="mpMstAdd" runat="server" TargetControlID="btnAdd"
                                 PopupControlID="PanelBody" BackgroundCssClass="modalBackground" DropShadow="true"
                                 PopupDragHandleControlID="PanelDrag" Drag="true">
-                            </ajaxToolkit:ModalPopupExtender>
+                            </ajaxtoolkit:modalpopupextender>
                         </td>
                     </tr>
                     <tr>
@@ -45,8 +47,8 @@
                                 </Triggers>
                                 <ContentTemplate>
                                     <asp:GridView ID="MstGridView" runat="server" AutoGenerateColumns="False" Width="98%"
-                                        AllowPaging="false" DataKeyNames="FunID" HeaderStyle-CssClass="MstGridViewHeaderCss" OnRowCommand="MstGridView_RowCommand"
-                                        HeaderStyle-HorizontalAlign="Center">
+                                        AllowPaging="false" DataKeyNames="UserID" OnRowCommand="MstGridView_RowCommand"
+                                        HeaderStyle-HorizontalAlign="Center" HeaderStyle-CssClass="MstGridViewHeaderCss" OnRowDataBound="MstGridView_RowDataBound">
                                         <Columns>
                                             <asp:TemplateField>
                                                 <HeaderStyle Width="30px" HorizontalAlign="Center" />
@@ -59,29 +61,17 @@
                                                     <asp:CheckBox ID="chkItem" runat="server" onclick="changecolor(this)" />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:BoundField DataField="MemAccount" HeaderText="会员帐号">
-                                                <ItemStyle Width="60px" />
+                                            <asp:BoundField DataField="PsnLevelTypeId" HeaderText="等级类型">
+                                                <ItemStyle Width="150px" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="LevelID" HeaderText="会员等级">
-                                                <ItemStyle Width="50px" />
+                                            <asp:BoundField DataField="PsnLevelCode" HeaderText="等级代码">
+                                                <ItemStyle Width="150px" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="MemRealName" HeaderText="真实姓名">
-                                                <ItemStyle Width="100px" />
+                                            <asp:BoundField DataField="PsnLevelName" HeaderText="等级名">
+                                                <ItemStyle Width="150px" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="MemMobile" HeaderText="手机">
-                                                <ItemStyle Width="100px" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="MemShotNum" HeaderText="虚拟号">
-                                                <ItemStyle Width="50px" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="MemUnitTel" HeaderText="单位电话">
-                                                <ItemStyle Width="50px" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="MemMedium" HeaderText="中介名称">
+                                            <asp:BoundField DataField="PsnLevelDesc" HeaderText="等级描述">
                                                 <ItemStyle Width="200px" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="MemStatus" HeaderText="会员状态">
-                                                <ItemStyle Width="50px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="CreateAt" HeaderText="创建日期">
                                                 <ItemStyle Width="250px" />
@@ -113,7 +103,7 @@
                                     <asp:TextBox ID="txtPageIndex0" runat="server" Width="40px" Text="1"></asp:TextBox>页
                                     <asp:Button ID="btnGo0" runat="server" Text="GO" CssClass="buttonCss" CausesValidation="false"
                                         OnClick="Button_Click" />
-                                    <asp:CustomValidator ID="cvGo" runat="server" ClientValidationFunction="validateNumber"
+                                    <asp:CustomValidator ID="cvGo" runat="server" ClientValidationFunction=""
                                         ControlToValidate="txtPageIndex0" Display="none" ValidateEmptyText="true" ErrorMessage="<font size='2'>请填写大于0的数字！</font>">
                                     </asp:CustomValidator>
                                     <ajaxToolkit:ValidatorCalloutExtender ID="vceGo" runat="server" TargetControlID="cvGo"
@@ -128,7 +118,7 @@
         </tr>
     </table>
     <%--新增弹出框--%>
-    <asp:Panel ID="PanelBody" runat="server" Style="width: 350px; display: none;" CssClass="modalPopup">
+    <asp:Panel ID="PanelBody" runat="server" Style="width: 300px; display: none;" CssClass="modalPopup">
         <asp:UpdatePanel ID="MyUpdatePanelPanelDrag" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <asp:Panel ID="PanelDrag" runat="server" CssClass="modalDragPopup">
@@ -146,48 +136,37 @@
             <ContentTemplate>
                 <table cellspacing="0" cellpadding="0" width="100%" border="0">
                     <tr>
-                        <td height="25" width="30%" align="right">
-                            帐户名 ：
+	                    <td height="25" width="20%" align="right">
+		                    等级类型:<asp:HiddenField ID="hfPsnLevelId" runat="server" Value="0" />
                         </td>
-                        <td height="25" width="*" align="left">
-                            <asp:TextBox ID="txtMemAccount" runat="server" Width="200px"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td height="25" width="30%" align="right">
-                            密码 ：
-                        </td>
-                        <td height="25" width="*" align="left">
-                            <asp:TextBox ID="txtMemPsw" runat="server" Width="200px"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td height="25" width="30%" align="right">
-                            等级 ：
-                        </td>
-                        <td height="25" width="*" align="left">
-                            <asp:DropDownList ID="ddlPsnLevel" runat="server" DataTextField="" DataValueField="">
+	                    <td height="25" width="*" align="left">
+                            <asp:DropDownList ID="ddlLevelType" runat="server" DataTextField="PsnLevelTypeName" DataValueField="PsnLevelTypeId">
                             </asp:DropDownList>
-                        </td>
+	                    </td>
                     </tr>
                     <tr>
-                        <td height="25" width="30%" align="right">
-                            验证邮箱 ：
+	                    <td height="25" width="20%" align="right">
+		                    等级代码:
                         </td>
-                        <td height="25" width="*" align="left">
-                            <asp:TextBox ID="txtMemMail" runat="server" Width="200px"></asp:TextBox>
-                        </td>
+	                    <td height="25" width="*" align="left">
+                            <asp:TextBox id="txtPsnLevelCode" runat="server" Width="200px"></asp:TextBox>
+	                    </td>
                     </tr>
-                    <tr>
-                        <td height="25" width="30%" align="right">
-                            会员状态 ：<asp:HiddenField ID="hfMemID" runat="server" Value="0" />
-                        </td>
-                        <td height="25" width="*" align="left">
-                            <asp:RadioButtonList ID="rbStatus" runat="server" RepeatDirection="Horizontal">
-                                <asp:ListItem Value="A" Text="生效" Selected="True"></asp:ListItem>
-                                <asp:ListItem Value="I" Text="不生效"></asp:ListItem>
-                            </asp:RadioButtonList>
-                        </td>
+	                <tr>
+	                    <td height="25" width="20%" align="right">
+		                    等级名:
+	                    </td>
+	                    <td height="25" width="*" align="left">
+		                    <asp:TextBox id="txtPsnLevelName" runat="server" Width="200px"></asp:TextBox>
+	                    </td>
+                    </tr>
+	                <tr>
+	                    <td height="25" width="20%" align="right">
+		                    等级描述:
+	                    </td>
+	                    <td height="25" width="*" align="left">
+		                   <asp:TextBox id="txtPsnLevelDesc" runat="server" Width="200px" TextMode="MultiLine"></asp:TextBox>
+	                    </td>
                     </tr>
                 </table>
             </ContentTemplate>
@@ -200,4 +179,5 @@
                 CssClass="buttonCss" CausesValidation="false" />&nbsp;&nbsp;
         </div>
     </asp:Panel>
+    </fieldset>
 </asp:Content>

@@ -333,8 +333,10 @@ function validateEmail(oSrc, args) {
     }
 };
 
+//验证数字
 function validateNumber(oSrc, args) {
-    var RegPWord = /^([\w]){5,16}$/;
+
+    var RegPWord = /^\d+(\.\d+)?$/;
     if (!RegPWord.exec(args.Value)) {
         args.IsValid = false;
     }

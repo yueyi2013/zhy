@@ -124,6 +124,8 @@
     <Compile Include="AutoCode\Blog\ArticleComment.cs" />
     <Compile Include="AutoCode\Member\Member.cs" />
     <Compile Include="AutoCode\Member\MemberMenu.cs" />
+    <Compile Include="AutoCode\PsnManage\PersonLevel.cs" />
+    <Compile Include="AutoCode\PsnManage\PsnLevelType.cs" />
     <Compile Include="AutoCode\PsnManage\Role.cs" />
     <Compile Include="AutoCode\PsnManage\User.cs" />
     <Compile Include="AutoCode\SysManage\RightConfig.cs" />

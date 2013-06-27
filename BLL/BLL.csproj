@@ -126,6 +126,8 @@
     <Compile Include="AutoCode\Member\Member.cs" />
     <Compile Include="AutoCode\Member\MemberMenu.cs" />
     <Compile Include="AutoCode\News\NewsTop.cs" />
+    <Compile Include="AutoCode\PsnManage\PersonLevel.cs" />
+    <Compile Include="AutoCode\PsnManage\PsnLevelType.cs" />
     <Compile Include="AutoCode\PsnManage\Role.cs" />
     <Compile Include="AutoCode\PsnManage\User.cs" />
     <Compile Include="AutoCode\SysManage\Function.cs" />
@@ -149,6 +151,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ProTypeDetail.cs" />
+    <Compile Include="PsnManage\PersonLevel.cs" />
+    <Compile Include="PsnManage\PsnLevelType.cs" />
     <Compile Include="RSSChannel.cs" />
     <Compile Include="RSSChannelItem.cs" />
     <Compile Include="RSSSite.cs" />

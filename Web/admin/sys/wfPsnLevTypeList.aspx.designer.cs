@@ -7,10 +7,10 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace ZHY.Web.admin {
+namespace Web.admin.sys {
     
     
-    public partial class wfMemberList {
+    public partial class wfPsnLevTypeList {
         
         /// <summary>
         /// MyUpdatePanelHead 控件。
@@ -256,58 +256,31 @@ namespace ZHY.Web.admin {
         protected global::System.Web.UI.UpdatePanel MyUpdatePanelPanelBody;
         
         /// <summary>
-        /// txtMemAccount 控件。
+        /// hfPsnLevelTypeId 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMemAccount;
+        protected global::System.Web.UI.WebControls.HiddenField hfPsnLevelTypeId;
         
         /// <summary>
-        /// txtMemPsw 控件。
+        /// txtPsnLevelTypeName 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMemPsw;
+        protected global::System.Web.UI.WebControls.TextBox txtPsnLevelTypeName;
         
         /// <summary>
-        /// ddlPsnLevel 控件。
+        /// txtPsnLevelTypeDesc 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPsnLevel;
-        
-        /// <summary>
-        /// txtMemMail 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMemMail;
-        
-        /// <summary>
-        /// hfMemID 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfMemID;
-        
-        /// <summary>
-        /// rbStatus 控件。
-        /// </summary>
-        /// <remarks>
-        /// 自动生成的字段。
-        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rbStatus;
+        protected global::System.Web.UI.WebControls.TextBox txtPsnLevelTypeDesc;
         
         /// <summary>
         /// btnSave 控件。

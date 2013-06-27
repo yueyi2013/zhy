@@ -99,6 +99,8 @@
     <Content Include="admin\site\rss\wfRssList.aspx" />
     <Content Include="admin\sys\wfAdminList.aspx" />
     <Content Include="admin\sys\wfGenSQLCode.aspx" />
+    <Content Include="admin\sys\wfPsnLevelList.aspx" />
+    <Content Include="admin\sys\wfPsnLevTypeList.aspx" />
     <Content Include="admin\sys\wfRightConfig.aspx" />
     <Content Include="admin\sys\wfRightList.aspx" />
     <Content Include="admin\sys\wfRoleList.aspx" />
@@ -569,6 +571,20 @@
     </Compile>
     <Compile Include="admin\sys\wfGenSQLCode.aspx.designer.cs">
       <DependentUpon>wfGenSQLCode.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\sys\wfPsnLevelList.aspx.cs">
+      <DependentUpon>wfPsnLevelList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\sys\wfPsnLevelList.aspx.designer.cs">
+      <DependentUpon>wfPsnLevelList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\sys\wfPsnLevTypeList.aspx.cs">
+      <DependentUpon>wfPsnLevTypeList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\sys\wfPsnLevTypeList.aspx.designer.cs">
+      <DependentUpon>wfPsnLevTypeList.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\sys\wfRightConfig.aspx.cs">
       <DependentUpon>wfRightConfig.aspx</DependentUpon>

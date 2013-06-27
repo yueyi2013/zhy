@@ -20,6 +20,41 @@ namespace Maticsoft.DBUtility
         {            
         }
 
+        #region 执行SQLfile
+        public static void ExecuteCommand(ArrayList varSqlList)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {                
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    connection.Open();
+                    SqlTransaction varTrans = connection.BeginTransaction();
+                    cmd.Connection = connection;
+                    cmd.Transaction = varTrans;
+                    try
+                    {
+                        foreach (string varcommandText in varSqlList)
+                        {
+                            cmd.CommandText = varcommandText;
+                            cmd.ExecuteNonQuery();
+                        }
+                        varTrans.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        varTrans.Rollback();
+                        throw ex;
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
+
+        #endregion
+
         #region 公用方法
         /// <summary>
         /// 判断是否存在某表的某个字段

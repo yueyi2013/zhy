@@ -68,5 +68,23 @@ namespace Web.admin.sys
         {
             GennerateSQLCode();
         }
+
+        protected void btnCreateDB_Click(object sender, EventArgs e)
+        {
+            ZHY.BLL.SetupDatabase bll = new ZHY.BLL.SetupDatabase();
+            string dbName = this.txtDBName.Text;
+
+            string sqlFilePath = Server.MapPath("~/dbscripts/tables/PersonType.sql");
+
+            if (bll.CreateDBTables(sqlFilePath, dbName))
+            {
+
+            }
+            else { 
+            
+            
+            }
+
+        }
     }
 }

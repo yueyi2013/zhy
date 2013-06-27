@@ -22,6 +22,15 @@ namespace Web.admin.sys {
         protected global::System.Web.UI.WebControls.Button btnGen;
         
         /// <summary>
+        /// btnCreateDB 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCreateDB;
+        
+        /// <summary>
         /// MyUpdatePanelBody 控件。
         /// </summary>
         /// <remarks>
@@ -29,6 +38,15 @@ namespace Web.admin.sys {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel MyUpdatePanelBody;
+        
+        /// <summary>
+        /// txtDBName 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtDBName;
         
         /// <summary>
         /// divSQLCode 控件。

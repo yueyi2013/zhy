@@ -59,6 +59,47 @@ namespace ZHY.Common
             }
         }
 
-       
+        public static ArrayList GetSqlFile(string varFileName, string dbname)
+        {
+            ArrayList alSql = new ArrayList();
+            if (!File.Exists(varFileName))
+            {
+                return alSql;
+            }
+            using (StreamReader rs = new StreamReader(varFileName, System.Text.Encoding.Default))//注意编码
+            {
+                string commandText = "";
+                string varLine = "";
+                try { 
+                    while (rs.Peek() > -1)
+                    {
+                        varLine = rs.ReadLine();
+                        if (varLine == "")
+                        {
+                            continue;
+                        }
+                        if (varLine != "GO" && varLine != "go")
+                        {
+                            commandText += varLine;
+                            commandText = commandText.Replace("@database_name=N'dbhr'", string.Format("@database_name=N'{0}'", dbname));
+                            commandText += "\r\n";
+                        }
+                        else
+                        {
+                            alSql.Add(commandText);
+                            commandText = "";
+                        }
+                    }
+                }catch
+                {
+                    return alSql;
+
+                }finally{
+                    rs.Close();
+                }                
+            }
+            
+            return alSql;
+        }
     }
 }

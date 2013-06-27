@@ -5,23 +5,32 @@ using System.Text;
 using System.IO;
 using Maticsoft.DBUtility;//请先添加引用
 using System.Diagnostics;
+using ZHY.Common;
 
 namespace ZHY.DAL
 {
     public class SetupDatabase
     {
-        public void ExecuteSQL(string sqlFilePath)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sqlFilePath"></param>
+        /// <returns></returns>
+        public bool CreateDBTables(string sqlFilePath,string dbName)
         {
-            using (StreamReader strRead = File.OpenText(sqlFilePath))
+            try
             {
-                string strContent = strRead.ReadToEnd();
-                strRead.Close();
-                DbHelperSQL.ExecuteSql(strContent);
+                DbHelperSQL.ExecuteCommand(FileOperation.GetSqlFile(sqlFilePath, dbName));
+                return true;
             }
+            catch {
+                return false;
+            }
+            
         }
 
         //U为用户名,P为密码,S为目标服务器的ip,infile为数据库脚本所在的路径
-        public bool ExecuteSQL(string userName,string psw,string targetIP,string inFile,string dbName)
+        public bool CreateDBTables(string userName, string psw, string targetIP, string inFile, string dbName)
         {
             try
             {
@@ -40,7 +49,5 @@ namespace ZHY.DAL
             }
             
         }
-
-
     }
 }

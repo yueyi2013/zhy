@@ -128,6 +128,8 @@
     <Compile Include="AutoCode\PsnManage\PsnLevelType.cs" />
     <Compile Include="AutoCode\PsnManage\Role.cs" />
     <Compile Include="AutoCode\PsnManage\User.cs" />
+    <Compile Include="AutoCode\SiteFile\SiteFile.cs" />
+    <Compile Include="AutoCode\SiteFile\SiteFileType.cs" />
     <Compile Include="AutoCode\SysManage\RightConfig.cs" />
     <Compile Include="AutoCode\SysManage\SystemMail.cs" />
     <Compile Include="FriendLink.cs" />
@@ -189,6 +191,7 @@
     <Folder Include="iBatisModel\" />
     <Folder Include="Member\" />
     <Folder Include="PersonManage\" />
+    <Folder Include="SiteFile\" />
     <Folder Include="SysManage\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

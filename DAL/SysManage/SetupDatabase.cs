@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Data;
 using System.Text;
 using System.IO;
 using Maticsoft.DBUtility;//请先添加引用
@@ -27,6 +27,60 @@ namespace ZHY.DAL
                 return false;
             }
             
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sqlFilePath"></param>
+        /// <returns></returns>
+        public bool CreateDBTablesBySqlCode(string sqlCode, string dbName)
+        {
+            try
+            {
+                DbHelperSQL.ExecuteCommand(FileOperation.GetSqlFileBySQLCode(sqlCode, dbName));
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public DataSet ExecuteQuerySQL(string sqlCode)
+        {
+            try
+            {
+
+                return DbHelperSQL.Query(sqlCode);
+            }
+            catch
+            {
+                return new DataSet();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public int ExecuteNonQuerySQL(string sqlCode)
+        {
+            try
+            {
+
+                return DbHelperSQL.ExecuteSql(sqlCode);
+            }
+            catch
+            {
+                return 0;
+            }
         }
 
         //U为用户名,P为密码,S为目标服务器的ip,infile为数据库脚本所在的路径

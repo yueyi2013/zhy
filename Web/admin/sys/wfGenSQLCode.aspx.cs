@@ -73,18 +73,58 @@ namespace Web.admin.sys
         {
             ZHY.BLL.SetupDatabase bll = new ZHY.BLL.SetupDatabase();
             string dbName = this.txtDBName.Text;
-
-            string sqlFilePath = Server.MapPath("~/dbscripts/tables/PersonType.sql");
-
-            if (bll.CreateDBTables(sqlFilePath, dbName))
+            string sqlFilesName = this.txtSQLCode.Text;
+            StringBuilder sbInfo = new StringBuilder();
+            if(this.rbSQLCodeType.SelectedItem.Value.Equals("0"))
             {
-
+                ExecuteSQLCode(sqlFilesName, sbInfo,dbName, bll);
+            }else{
+                ExecuteSQLFile(sqlFilesName, sbInfo, dbName, bll);
             }
-            else { 
-            
-            
-            }
+            this.divSQLCode.InnerHtml = sbInfo.ToString();
+        }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        private void ExecuteSQLFile(string sqlFilesName, StringBuilder sbInfo, string dbName, ZHY.BLL.SetupDatabase bll)
+        {
+            string[] strName = { };
+            if (!string.IsNullOrEmpty(sqlFilesName))
+            {
+                strName = sqlFilesName.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            }
+            foreach (string str in strName)
+            {
+                StringBuilder sb = new StringBuilder();
+                sbInfo.Append(str);
+                if (bll.CreateDBTables(Server.MapPath(sb.AppendFormat("~/dbscripts/tables/{0}", str).ToString()), dbName))
+                {
+                    sbInfo.Append("&nbsp;&nbsp;<font color='red'>创建成功！</font>");
+                }
+                else
+                {
+                    sbInfo.Append("&nbsp;&nbsp;<font color='red'>创建失败！</font>");
+                }
+                sbInfo.Append("<br/>");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void ExecuteSQLCode(string sqlFilesName, StringBuilder sbInfo, string dbName, ZHY.BLL.SetupDatabase bll)
+        {            
+            sbInfo.Append(sqlFilesName);
+            sbInfo.Append("<br/>");
+            if (bll.CreateDBTablesBySqlCode(sqlFilesName, dbName))
+            {
+                sbInfo.Append("&nbsp;&nbsp;<font color='red'>创建成功！</font>");
+            }
+            else
+            {
+                sbInfo.Append("&nbsp;&nbsp;<font color='red'>创建失败！</font>");
+            }            
         }
     }
 }

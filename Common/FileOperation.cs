@@ -8,6 +8,15 @@ namespace ZHY.Common
 {
     public class FileOperation
     {
+
+
+        private static string[] GetFilePathList(string fileDir) 
+        {
+            ArrayList list = new ArrayList();
+            string[] strPath = Directory.GetFiles(fileDir);
+            return strPath;
+        }
+
         /// <summary>
         /// 保存邮件地址
         /// </summary>
@@ -57,6 +66,32 @@ namespace ZHY.Common
                     objReader.Close();
                 }
             }
+        }
+
+        public static ArrayList GetSqlFileBySQLCode(string sqlCode, string dbname) 
+        {
+            string[] strSQL = sqlCode.Split(new char[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries);
+            string commandText = "";
+            ArrayList alSql = new ArrayList();
+            foreach (string varLine in strSQL)
+            {
+                if (varLine == "")
+                {
+                    continue;
+                }
+                if (varLine != "GO" && varLine != "go")
+                {
+                    commandText += varLine;
+                    commandText = commandText.Replace("@database_name=N'dbhr'", string.Format("@database_name=N'{0}'", dbname));
+                    commandText += "\r\n";
+                }
+                else
+                {
+                    alSql.Add(commandText);
+                    commandText = "";
+                }
+            }
+            return alSql;
         }
 
         public static ArrayList GetSqlFile(string varFileName, string dbname)

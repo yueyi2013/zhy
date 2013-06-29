@@ -81,6 +81,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\down.html" />
+    <Content Include="admin\sitefile\wfSiteFileList.aspx" />
+    <Content Include="admin\sitefile\wfSiteFileTypeList.aspx" />
     <Content Include="admin\site\ads\wfSiteFlash.aspx" />
     <Content Include="admin\site\ads\wfWebSiteAds.aspx" />
     <Content Include="admin\site\blog\wfArticalTypeList.aspx" />
@@ -98,6 +100,7 @@
     <Content Include="admin\site\rss\wfRssItemList.aspx" />
     <Content Include="admin\site\rss\wfRssList.aspx" />
     <Content Include="admin\sys\wfAdminList.aspx" />
+    <Content Include="admin\sys\wfExecSQlCode.aspx" />
     <Content Include="admin\sys\wfGenSQLCode.aspx" />
     <Content Include="admin\sys\wfPsnLevelList.aspx" />
     <Content Include="admin\sys\wfPsnLevTypeList.aspx" />
@@ -446,6 +449,20 @@
     <Compile Include="admin\Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
+    <Compile Include="admin\sitefile\wfSiteFileList.aspx.cs">
+      <DependentUpon>wfSiteFileList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\sitefile\wfSiteFileList.aspx.designer.cs">
+      <DependentUpon>wfSiteFileList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\sitefile\wfSiteFileTypeList.aspx.cs">
+      <DependentUpon>wfSiteFileTypeList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\sitefile\wfSiteFileTypeList.aspx.designer.cs">
+      <DependentUpon>wfSiteFileTypeList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\site\ads\wfSiteFlash.aspx.cs">
       <DependentUpon>wfSiteFlash.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -564,6 +581,13 @@
     </Compile>
     <Compile Include="admin\sys\wfAdminList.aspx.designer.cs">
       <DependentUpon>wfAdminList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\sys\wfExecSQlCode.aspx.cs">
+      <DependentUpon>wfExecSQlCode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\sys\wfExecSQlCode.aspx.designer.cs">
+      <DependentUpon>wfExecSQlCode.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\sys\wfGenSQLCode.aspx.cs">
       <DependentUpon>wfGenSQLCode.aspx</DependentUpon>

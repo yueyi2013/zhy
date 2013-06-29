@@ -147,6 +147,8 @@
     <Compile Include="AutoCode\PsnManage\PsnLevelType.cs" />
     <Compile Include="AutoCode\PsnManage\Role.cs" />
     <Compile Include="AutoCode\PsnManage\User.cs" />
+    <Compile Include="AutoCode\SiteFile\SiteFile.cs" />
+    <Compile Include="AutoCode\SiteFile\SiteFileType.cs" />
     <Compile Include="AutoCode\SysManage\RightConfig.cs" />
     <Compile Include="AutoCode\SysManage\SystemMail.cs" />
     <Compile Include="BaseDAL.cs" />
@@ -174,6 +176,8 @@
     <Compile Include="RSSChannel.cs" />
     <Compile Include="RSSChannelItem.cs" />
     <Compile Include="RSSSite.cs" />
+    <Compile Include="SiteFile\SiteFile.cs" />
+    <Compile Include="SiteFile\SiteFileType.cs" />
     <Compile Include="SiteFlash.cs" />
     <Compile Include="SysManage.cs" />
     <Compile Include="Detail.cs" />

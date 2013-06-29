@@ -168,6 +168,15 @@ namespace ZHY.Web.admin
             this.hfOp.Value = "1";
             this.txtMenuID.Text = menuId;
             this.txtParantID.Text = parantId;
+            if (!this.txtParantID.Text.Equals("0"))
+            {
+                this.ddlMenuType.SelectedItem.Value = "1";
+                this.ddlMenuType.Enabled = false;
+            }
+            else {
+                this.ddlMenuType.SelectedItem.Value = "0";
+                this.ddlMenuType.Enabled = false;
+            }
         }
     }
 }

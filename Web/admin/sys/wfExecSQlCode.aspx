@@ -18,7 +18,7 @@
                         SQL语句：
                     </td>
                     <td align="left" valign="top">
-                        <asp:TextBox ID="txtSQLCode" runat="server" Width="100%" TextMode="MultiLine" Height="100"></asp:TextBox>
+                        <asp:TextBox ID="txtSQLCode" Font-Bold="true" runat="server" Width="100%" TextMode="MultiLine" Height="100"></asp:TextBox>
                     </td>
                     </tr>
                 <tr>
@@ -35,9 +35,9 @@
                     返回结果：
                 </td>                
                 <td>
-                    <asp:GridView ID="gvResult" runat="server" Width="98%">
-                    </asp:GridView>
-                    <asp:Label ID="lblResult" runat="server" Text=""></asp:Label>
+                <asp:GridView ID="gvResult" runat="server" Width="98%">
+                </asp:GridView>                    
+                <asp:Label ID="lblResult" runat="server" Text=""></asp:Label>
                 </td></tr>
             </table>
         </ContentTemplate>

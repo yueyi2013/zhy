@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ZHY.Web;
 
 namespace Web.admin.sys
 {
-    public partial class wfExecSQlCode : System.Web.UI.Page
+    public partial class wfExecSQlCode : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,6 +30,9 @@ namespace Web.admin.sys
                 this.gvResult.DataSource = bll.ExecuteQuerySQL(sqlCode);
                 this.gvResult.DataBind();
                 this.gvResult.Visible = true;
+                this.lblResult.Visible = false;
+                if (this.gvResult.DataSource==null)
+                    SelfInform(this.MyUpdatePanelBody, this.GetType(), "执行失败，请检查SQL语句！");
             }
             else {
                 int result = bll.ExecuteNonQuerySQL(sqlCode);

@@ -10,7 +10,7 @@ namespace ZHY.Common
     {
 
 
-        private static string[] GetFilePathList(string fileDir) 
+        public static string[] GetFilePathList(string fileDir) 
         {
             ArrayList list = new ArrayList();
             string[] strPath = Directory.GetFiles(fileDir);

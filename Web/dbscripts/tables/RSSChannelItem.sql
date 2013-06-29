@@ -1,6 +1,3 @@
-USE [syihy]
-GO
-
 /****** Object:  Table [dbo].[RSSChannelItem]    Script Date: 06/24/2013 20:01:19 ******/
 SET ANSI_NULLS ON
 GO

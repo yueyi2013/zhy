@@ -100,7 +100,7 @@ namespace ZHY.Web.admin
         //    this.MstGridView.SelectedRow.Attributes.Add("style", "background-color:#F9E3AA");
         //}
 
-        private void BindMenu() 
+        private void BindMenu0() 
         {
             ZHY.BLL.Menu bll = new ZHY.BLL.Menu();
             this.ddlParantMenu.DataSource = bll.GetList("ParantID=0");

@@ -1,6 +1,3 @@
-USE [syihy]
-GO
-
 /****** Object:  Table [dbo].[Functions]    Script Date: 06/24/2013 20:00:12 ******/
 SET ANSI_NULLS ON
 GO

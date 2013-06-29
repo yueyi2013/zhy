@@ -554,6 +554,26 @@ namespace Maticsoft.DBUtility
                 return ds;
             }
         }
+
+        public static DataSet Query(string SQLString, string srcTable)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                DataSet ds = new DataSet();
+                try
+                {
+                    connection.Open();
+                    SqlDataAdapter command = new SqlDataAdapter(SQLString, connection);
+                    command.FillSchema(ds, SchemaType.Mapped, srcTable);
+                }
+                catch (System.Data.SqlClient.SqlException ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                return ds;
+            }
+        }
+
         public static DataSet Query(string SQLString, int Times)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Data;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Text;
+using System.Reflection;
+using System.Data.SqlClient;
+using ZHY.Common;
 
 namespace Web.admin.sys
 {
@@ -14,54 +17,72 @@ namespace Web.admin.sys
         {
             if(!IsPostBack)
             {
-
+                BindTables();
             }
+        }
+
+        private void GenDataSQL(string tableName, StringBuilder strSql, ZHY.BLL.SetupDatabase bll) 
+        {
+            bll = new ZHY.BLL.SetupDatabase();
+            DataSet dsSch = bll.ExecuteQuerySQL("select * from " + tableName, tableName);
+            DataSet ds = bll.ExecuteQuerySQL("select * from " + tableName);
+            int cols = ds.Tables[0].Columns.Count;           
+
+            foreach(DataRow dr in ds.Tables[0].Rows)
+            {
+                StringBuilder strColSql = new StringBuilder();
+                StringBuilder strRowSql = new StringBuilder();
+                strColSql.AppendFormat("insert into {0}(", tableName);
+                strRowSql.AppendFormat(" values (");
+                int m = 0;
+                //绑定列名
+                foreach (DataColumn dc in dsSch.Tables[0].Columns)
+                {
+                    if (dc.AutoIncrement)
+                    {
+                        continue;
+                    }
+                    if (m == 0)
+                    {
+                        strColSql.Append(dc.ColumnName);
+                        strRowSql.AppendFormat("'{0}'", dr[dc.ColumnName]);
+                        m++;
+                        continue;
+                    }
+                    strColSql.AppendFormat(",{0}", dc.ColumnName); 
+                    strRowSql.AppendFormat(",{0}",dc.DataType.Name.Equals(SqlDbType.DateTime.ToString())?"getdate()":"'"+dr[dc.ColumnName]+"'");
+                }
+                strColSql.AppendFormat(")");
+                strSql.Append(strColSql.ToString());
+                strSql.Append(strRowSql.ToString());
+                strSql.Append(");");
+                strSql.Append("<br/>");
+            }
+        }
+        
+        /// <summary>
+        /// 绑定表
+        /// </summary>
+        private void BindTables()
+        {
+            ZHY.BLL.SetupDatabase bll = new ZHY.BLL.SetupDatabase();
+            this.lbTables.DataSource = bll.ExecuteQuerySQL("select * from INFORMATION_SCHEMA.TABLES order by TABLE_NAME");
+            this.lbTables.DataBind();
         }
 
 
         private void GennerateSQLCode()
         {            
             StringBuilder strSql = new StringBuilder();
-            
-            this.divSQLCode.InnerHtml = strSql.ToString();
-        }
-
-        private void FunctionList(StringBuilder strSql) 
-        {
-            ZHY.BLL.Function bll = new ZHY.BLL.Function();
-            List<ZHY.Model.Function> list = bll.DataTableToList(bll.GetAllList().Tables[0]);
-            foreach (ZHY.Model.Function model in list)
+            ZHY.BLL.SetupDatabase bll = new ZHY.BLL.SetupDatabase();
+            foreach(ListItem item in this.lbTables.Items)
             {
-                strSql.Append("insert into Functions(");
-                strSql.Append("FunCode,FunName,FunPage,FunDes,CreateAt,CreateBy,UpdateDT,UpdateBy");
-                strSql.Append(")");
-                strSql.Append(" values (");
-                strSql.Append("'" + model.FunCode + "',");
-                strSql.Append("'" + model.FunName + "',");
-                strSql.Append("'" + model.FunPage + "',");
-                strSql.Append("'" + model.FunDes + "',");
-                strSql.Append("getdate(),");
-                strSql.Append("'" + model.CreateBy + "',");
-                strSql.Append("getdate(),");
-                strSql.Append("'" + model.UpdateBy + "'");
-                strSql.Append(");");
-                strSql.Append("<br/>");
-            }
-        }
-
-        private void MenuList(StringBuilder strSql)
-        {
-
-        }
-
-        private void AdminList(StringBuilder strSql)
-        {
-
-        }
-
-        private void MemberList(StringBuilder strSql)
-        {
-
+                if (item.Selected)
+                {
+                    GenDataSQL(item.Value, strSql, bll);
+                }
+            }            
+            this.divSQLCode.InnerHtml = strSql.ToString();
         }
 
         protected void btnGen_Click(object sender, EventArgs e)
@@ -125,6 +146,29 @@ namespace Web.admin.sys
             {
                 sbInfo.Append("&nbsp;&nbsp;<font color='red'>创建失败！</font>");
             }            
+        }
+
+        protected void btnBatchCreate_Click(object sender, EventArgs e)
+        {
+            string fileDir = Server.MapPath("~/"+this.txtSQLCode.Text);
+            string[] str = FileOperation.GetFilePathList(fileDir);
+            ZHY.BLL.SetupDatabase bll = new ZHY.BLL.SetupDatabase();
+            string dbName = this.txtDBName.Text;
+            StringBuilder sbInfo = new StringBuilder();
+            foreach(string path in str)
+            {
+                sbInfo.Append(path);
+                if (bll.CreateDBTables(path, dbName))
+                {
+                    sbInfo.Append("&nbsp;&nbsp;<font color='red'>创建成功！</font>");
+                }
+                else
+                {
+                    sbInfo.Append("&nbsp;&nbsp;<font color='red'>创建失败！</font>");
+                }
+                sbInfo.Append("<br/>");
+            }
+            this.divSQLCode.InnerHtml = sbInfo.ToString();
         }
     }
 }

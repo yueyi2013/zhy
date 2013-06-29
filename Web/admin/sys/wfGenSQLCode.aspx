@@ -5,11 +5,12 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <fieldset style="width: 800px">
     <legend>公共数据脚本</legend>
-        <asp:Button ID="btnGen" runat="server" Text="开始生成" CausesValidation="false" 
+        <asp:Button ID="btnGen" runat="server" Text="生成SQL代码" CausesValidation="false" 
         CssClass="buttonCss" onclick="btnGen_Click" />
         <asp:Button ID="btnCreateDB" runat="server" Text="创建表结构" CausesValidation="false" 
         CssClass="buttonCss" onclick="btnCreateDB_Click" />
-
+        <asp:Button ID="btnBatchCreate" runat="server" Text="批量创建表" CausesValidation="false" 
+        CssClass="buttonCss" onclick="btnBatchCreate_Click" />
         <hr style="width:100%"/>
         <asp:UpdatePanel ID="MyUpdatePanelBody" runat="server" UpdateMode="Conditional">
             <Triggers>
@@ -23,6 +24,12 @@
                         </td>
                         <td>
                             <asp:TextBox ID="txtDBName" runat="server"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>数据库表：</td>
+                        <td>
+                            <asp:ListBox ID="lbTables" SelectionMode="Multiple" runat="server" DataTextField="TABLE_NAME" DataValueField="TABLE_NAME"></asp:ListBox>
                         </td>
                     </tr>
                     <tr>

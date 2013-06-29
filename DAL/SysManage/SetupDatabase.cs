@@ -70,6 +70,23 @@ namespace ZHY.DAL
         /// 
         /// </summary>
         /// <returns></returns>
+        public DataSet ExecuteQuerySQL(string sqlCode, string srcTable)
+        {
+            try
+            {
+
+                return DbHelperSQL.Query(sqlCode, srcTable);
+            }
+            catch
+            {
+                return new DataSet();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public int ExecuteNonQuerySQL(string sqlCode)
         {
             try

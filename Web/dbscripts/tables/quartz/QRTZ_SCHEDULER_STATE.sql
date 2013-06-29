@@ -1,6 +1,3 @@
-USE [syihy]
-GO
-
 /****** Object:  Table [dbo].[QRTZ_SCHEDULER_STATE]    Script Date: 06/24/2013 19:57:39 ******/
 SET ANSI_NULLS ON
 GO

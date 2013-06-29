@@ -38,6 +38,17 @@ namespace ZHY.BLL
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="sqlCode"></param>
+        /// <param name="srcTable"></param>
+        /// <returns></returns>
+        public DataSet ExecuteQuerySQL(string sqlCode, string srcTable)
+        {
+            return dal.ExecuteQuerySQL(sqlCode, srcTable);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         public int ExecuteNonQuerySQL(string sqlCode)
         {

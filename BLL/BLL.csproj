@@ -130,6 +130,9 @@
     <Compile Include="AutoCode\PsnManage\PsnLevelType.cs" />
     <Compile Include="AutoCode\PsnManage\Role.cs" />
     <Compile Include="AutoCode\PsnManage\User.cs" />
+    <Compile Include="AutoCode\Rss\RSSChannel.cs" />
+    <Compile Include="AutoCode\Rss\RSSChannelItem.cs" />
+    <Compile Include="AutoCode\Rss\RSSSite.cs" />
     <Compile Include="AutoCode\SiteFile\SiteFile.cs" />
     <Compile Include="AutoCode\SiteFile\SiteFileType.cs" />
     <Compile Include="AutoCode\SysManage\Function.cs" />
@@ -155,9 +158,9 @@
     <Compile Include="ProTypeDetail.cs" />
     <Compile Include="PsnManage\PersonLevel.cs" />
     <Compile Include="PsnManage\PsnLevelType.cs" />
-    <Compile Include="RSSChannel.cs" />
-    <Compile Include="RSSChannelItem.cs" />
-    <Compile Include="RSSSite.cs" />
+    <Compile Include="Rss\RSSChannel.cs" />
+    <Compile Include="Rss\RSSChannelItem.cs" />
+    <Compile Include="Rss\RSSSite.cs" />
     <Compile Include="SiteFile\SiteFile.cs" />
     <Compile Include="SiteFile\SiteFileType.cs" />
     <Compile Include="SiteFlash.cs" />

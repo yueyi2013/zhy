@@ -51,6 +51,7 @@
     <Compile Include="AutoAddNewsListJob.cs" />
     <Compile Include="AutoAddNewsTopJob.cs" />
     <Compile Include="AutoLoadNewsFeedJob.cs" />
+    <Compile Include="listener\LoadNewsFeedListener.cs" />
     <Compile Include="SampleJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchedulerControl.cs" />
@@ -67,11 +68,8 @@
       <Project>{E3D8759A-C5EB-402D-9F10-F5C6029A8D1A}</Project>
       <Name>Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Model\Model.csproj">
-      <Project>{53995DBB-9836-4647-AD22-865884FDEB9E}</Project>
-      <Name>Model</Name>
-    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

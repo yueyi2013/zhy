@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[Functions]    Script Date: 06/24/2013 20:00:12 ******/
+/****** Object:  Table [dbo].[Functions]    Script Date: 06/30/2013 09:17:42 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -14,6 +14,10 @@ CREATE TABLE [dbo].[Functions](
 	[FunName] [varchar](256) NULL,
 	[FunPage] [varchar](128) NULL,
 	[FunDes] [varchar](512) NULL,
+	[CreateAt] [datetime] NULL,
+	[CreateBy] [varchar](64) NULL,
+	[UpdateDT] [datetime] NULL,
+	[UpdateBy] [varchar](64) NULL,
  CONSTRAINT [PK_Functions] PRIMARY KEY CLUSTERED 
 (
 	[FunID] ASC
@@ -24,4 +28,11 @@ GO
 
 SET ANSI_PADDING OFF
 GO
+
+ALTER TABLE [dbo].[Functions] ADD  CONSTRAINT [DF_Functions_CreateAt]  DEFAULT (getdate()) FOR [CreateAt]
+GO
+
+ALTER TABLE [dbo].[Functions] ADD  CONSTRAINT [DF_Functions_UpdateDT]  DEFAULT (getdate()) FOR [UpdateDT]
+GO
+
 

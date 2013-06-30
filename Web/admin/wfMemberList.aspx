@@ -45,7 +45,7 @@
                                 </Triggers>
                                 <ContentTemplate>
                                     <asp:GridView ID="MstGridView" runat="server" AutoGenerateColumns="False" Width="98%"
-                                        AllowPaging="false" DataKeyNames="FunID" HeaderStyle-CssClass="MstGridViewHeaderCss" OnRowCommand="MstGridView_RowCommand"
+                                        AllowPaging="false" DataKeyNames="MemID" HeaderStyle-CssClass="MstGridViewHeaderCss" OnRowCommand="MstGridView_RowCommand"
                                         HeaderStyle-HorizontalAlign="Center">
                                         <Columns>
                                             <asp:TemplateField>

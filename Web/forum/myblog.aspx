@@ -3,4 +3,17 @@
     <link rel="stylesheet" media="screen,projection" type="text/css" href="../css/site/main.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cpBody" runat="server">
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<td style="width:20%"> </td>
+    <asp:Image ID="imgPhoto" runat="server" />
+
+<td></td></tr>
+
+</table>
+
+
+
+
+
 </asp:Content>

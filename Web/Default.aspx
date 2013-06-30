@@ -1,114 +1,88 @@
-<%@ Page Title="" Language="C#" MasterPageFile="~/Index0.Master" AutoEventWireup="true"
-    CodeBehind="Default.aspx.cs" Inherits="ZHY.Web.Default" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+ï»¿<%@ Page Title="" Language="C#" MasterPageFile="~/template/syihy_1/tmpl.Master" AutoEventWireup="true" CodeBehind="default.aspx.cs" Inherits="Web.index" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"> 
+    <script src="js/main.js" type="text/javascript"></script>
+    <link rel="stylesheet" media="screen,projection" type="text/css" href="css/site/main.css" />
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cphCarInfo" runat="server">
-    <table cellpadding="0" cellspacing="0" width="100%">
-        <tr>
-            <td>
-                <fieldset>
-                    <legend>²éÑ¯Ìõ¼þ</legend>
-                <asp:Label ID="Label5" runat="server" Text="Àà±ð£º"></asp:Label>
-                <asp:DropDownList ID="ddlTypeList" runat="server">
-                </asp:DropDownList>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Label ID="Label6" runat="server" Text="Æ·ÅÆ£º"></asp:Label>
-                <asp:TextBox ID="txtBrand" runat="server" Width="100px"> </asp:TextBox>&nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Label ID="Label7" runat="server" Text="±¨¼Û£º"></asp:Label>
-                <asp:DropDownList ID="ddlPrice" runat="server">
-                    <asp:ListItem Text="ÇëÑ¡Ôñ" Value="0"></asp:ListItem>
-                    <asp:ListItem Text="10ÍòÒÔÏÂ" Value="10"></asp:ListItem>
-                    <asp:ListItem Text="10ÍòÖÁ30Íò" Value="10,30"></asp:ListItem>
-                    <asp:ListItem Text="30ÍòÖÁ50Íò" Value="30,50"></asp:ListItem>
-                    <asp:ListItem Text="50ÍòÖÁ70Íò" Value="50,70"></asp:ListItem>
-                    <asp:ListItem Text="70ÍòÖÁ90Íò" Value="70,90"></asp:ListItem>
-                    <asp:ListItem Text="90ÍòÒÔÉÏ" Value="90"></asp:ListItem>
-                </asp:DropDownList>
-                &nbsp;&nbsp;&nbsp;&nbsp;
-                <asp:Label ID="Label8" runat="server" Text="Äê·Ý£º"></asp:Label>
-                <input type="text" id="txtYearF" onfocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyyÄê'})"
-                    class="Wdate" style="width: 90px" />ÖÁ
-                <input type="text" id="txtYearT" onfocus="WdatePicker({skin:'whyGreen',dateFmt:'yyyyÄê'})"
-                    class="Wdate" style="width: 90px" />
-                &nbsp;
-                <asp:Button ID="btnSearch" runat="server" Text="²éÑ¯" OnClick="btnSearch_Click" />
-                </fieldset>
-            </td>
-        </tr>
-        <tr>
-            <td align="center" valign="top">
-                <fieldset>
-               <legend>Æû³µÕ¹Ê¾</legend>
-                <asp:UpdatePanel ID="MyUpdatePanelHead" runat="server" UpdateMode="Conditional">
-                    <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="btnSearch" EventName="Click" />
-                    </Triggers>
-                    <ContentTemplate>
-                        <asp:DataList ID="dlCarList" runat="server" RepeatColumns="6" RepeatDirection="Horizontal" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle"
-                            Width="100%">
+<asp:Content ID="Content2" ContentPlaceHolderID="cpBody" runat="server">
+
+<table cellpadding="0" cellspacing="0" width="100%">
+<tr>
+<!--ä¸»ä½“1--Flash-->
+<td>
+    <div id="col" class="box">
+    <div id="ribbon"></div>
+    <div id="divflashContent" runat="server"></div>
+    <script type="text/javascript">fDisplayFalsh();</script>
+    <!--æ˜¾ç¤ºé¦–é¢Falsh-->
+    <div id="col-text">
+        <h2 id="slogan">
+            <asp:Label ID="lblNewsTitle" runat="server" Text="æœ€æ–°æ¶ˆæ¯"></asp:Label>
+        </h2>
+        <asp:DataList ID="dlNewsTop" runat="server" RepeatDirection="Vertical">
+            <ItemTemplate>
+                <a target="_blank" href="forum/newsdetails.aspx?rciid=<%# Eval("NTId")%>" title='<%# DataBinder.Eval(Container, "DataItem.NTTitle")%>'><%# HtmlDecode(DataBinder.Eval(Container, "DataItem.NTTitle").ToString())%></a>         
+            </ItemTemplate>
+        </asp:DataList>
+    </div>
+    </div>    
+</td>
+</tr>
+<!--æ–°é—»-->
+<tr><td>
+    <div id="col-bottom"></div>
+    <hr class="noscreen" />
+    <div id="cols3-top"></div>
+    <div id="cols3" class="box">
+    <asp:DataList ID="dlNewsList" runat="server" RepeatColumns="3" RepeatDirection="Horizontal"
+     ItemStyle-HorizontalAlign="Left" ItemStyle-VerticalAlign="Top" >
+         <ItemTemplate>
+                <div id="cols3" class="box">
+                <div class="col">
+                    <h3>
+                        <a href="forum/news.aspx"><%# DataBinder.Eval(Container, "DataItem.NewsCategoryName")%></a>
+                    </h3>                    
+                    <ul class="ul-01">
+                        <asp:DataList ID="dlNewsDetails" runat="server" RepeatDirection="Vertical" DataSource='<%# DataBinder.Eval(Container, "DataItem.RiList") %>'>
                             <ItemTemplate>
-                                <table align="left" cellpadding="0" cellspacing="0" width="100%">
-                                    <tr>
-                                        <td align="center">
-                                        <a href='/Member/CarDetails.aspx?proID = <%# Eval("ProID") %>' target="_blank">
-                                            <asp:Image ID="Image1" runat="server" ImageUrl='<%# GetPicURL(Eval("ProPicURL").ToString())%>' Height="100" Width="140"/>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="center">
-                                             <a href='/Member/CarDetails.aspx?proID = <%# Eval("ProID") %>' target="_blank" ><%# Eval("ProName") %></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="center">
-                                            <asp:Label ID="Label4" runat="server" Text="±¨¼Û:" ForeColor="Red"></asp:Label>
-                                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("ProPrice") %>'></asp:Label>
-                                            <asp:Label ID="Label9" runat="server" Text="ÍòÔª" ForeColor="Red"></asp:Label>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <br />
+                                <li>
+                                    <a target="_blank" href="forum/newsdetails.aspx?rciid=<%# Eval("RCItemId")%>" title='<%# DataBinder.Eval(Container, "DataItem.RCItemTitle")%>'><%# HtmlDecode(DataBinder.Eval(Container, "DataItem.RCItemTitle").ToString())%></a>
+                                </li>                           
                             </ItemTemplate>
-                        </asp:DataList>
-                    </ContentTemplate>
-                </asp:UpdatePanel>
-                </fieldset>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <fieldset>
-                    <legend>ÍÆ¼ö³µÐÍ</legend>
-                    <asp:DataList ID="dlCarList0" runat="server" 
-                        RepeatColumns="5" RepeatDirection="Horizontal" Width="100%" ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Middle">
-                        <ItemTemplate>
-                            <table align="left" cellpadding="0" cellspacing="0">
-                                    <tr>
-                                        <td align="center">
-                                            <asp:Image ID="Image1" runat="server" ImageUrl="upload/product/2010_02/12205836788721.jpg"/>
-                                            
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="center">
-                                          <a href='/Member/CarDetails.aspx?proID = <%# Eval("ProID") %>' ><%# Eval("ProName") %></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="center">
-                                            <asp:Label ID="Label4" runat="server" Text="±¨¼Û:" ForeColor="Red"></asp:Label>
-                                            <asp:Label ID="Label1" runat="server" Text='<%# Eval("ProPrice") %>'></asp:Label>
-                                            <asp:Label ID="Label9" runat="server" Text="ÍòÔª" ForeColor="Red"></asp:Label>
-                                        </td>
-                                    </tr>
-                                </table>
-                            <br />
-                        </ItemTemplate>
-                    </asp:DataList>
-                </fieldset>
-            </td>
-        </tr>
-    </table>
+                        </asp:DataList>                     
+                    </ul>
+                    <div class="col-more"><a href="forum/news.aspx"><img src="images/site/cols3-more.gif" alt="" /></a></div>
+                </div>
+                </div>
+         </ItemTemplate>
+    </asp:DataList>
+    </div>
+    <hr />
+</td></tr>
+
+<!--ç§Ÿæˆ¿-->
+<tr><td>
+
+
+
+
+</td></tr>
+
+<!--æ¸¸æˆ-->
+<tr><td>
+
+
+
+
+</td></tr>
+<!--åšå®¢-->
+<tr><td>
+
+
+
+
+</td></tr>
+</table>
+
+
+
 </asp:Content>

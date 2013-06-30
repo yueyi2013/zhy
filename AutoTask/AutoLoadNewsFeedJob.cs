@@ -23,16 +23,8 @@ namespace AutoTask
 		/// </summary>
 		public virtual void  Execute(IJobExecutionContext context)
 		{
-
-            ZHY.BLL.RSSSite bllRSSSite = new ZHY.BLL.RSSSite();
-            IList<ZHY.Model.RSSSite> list = bllRSSSite.GetModelList("");
-            ZHY.BLL.RSSChannel bll = new ZHY.BLL.RSSChannel();
-            foreach(ZHY.Model.RSSSite model in list)
-            {
-                ZHY.Model.RSSChannel chlModel = bll.FetchRssFeeds(model.RSSURL);
-                chlModel.RSSId = model.RSSId;
-                bll.SaveBatchRssFeeds(chlModel);
-            }
+            ZHY.BLL.RSSSite bll = new ZHY.BLL.RSSSite();
+            bll.AutoTaskLoadFeeds();
             _log.Info("Job finish at :"+DateTime.Now);
 		}
     }

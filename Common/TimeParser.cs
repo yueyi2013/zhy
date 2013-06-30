@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Globalization;
 
 namespace LTP.Common
 {
@@ -60,6 +61,24 @@ namespace LTP.Common
             catch
             { }
             return dateDiff;
+        }
+
+        /// <summary>
+        /// Gets the date/time value from db presentation. Subclasses can overwrite this behaviour.
+        /// </summary>
+        /// <param name="columnValue">Value to map from database.</param>
+        /// <returns></returns>
+        public virtual DateTimeOffset? GetDateTimeFromDbValue(object columnValue)
+        {
+            if (columnValue != null && columnValue != DBNull.Value)
+            {
+                var ticks = Convert.ToInt64(columnValue, CultureInfo.CurrentCulture);
+                if (ticks > 0)
+                {
+                    return new DateTimeOffset(ticks, TimeSpan.Zero);
+                }
+            }
+            return null;
         }
         #endregion
     }

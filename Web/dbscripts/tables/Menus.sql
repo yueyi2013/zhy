@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[Menus]    Script Date: 06/24/2013 20:03:05 ******/
+/****** Object:  Table [dbo].[Menus]    Script Date: 06/30/2013 10:52:47 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -16,6 +16,10 @@ CREATE TABLE [dbo].[Menus](
 	[ParantID] [int] NULL,
 	[MenuOrder] [int] NULL,
 	[FunID] [int] NULL,
+	[CreateAt] [datetime] NULL,
+	[CreateBy] [varchar](64) NULL,
+	[UpdateDT] [datetime] NULL,
+	[UpdateBy] [varchar](64) NULL,
  CONSTRAINT [PK_Menus] PRIMARY KEY CLUSTERED 
 (
 	[MenuID] ASC
@@ -29,4 +33,17 @@ GO
 
 ALTER TABLE [dbo].[Menus] ADD  CONSTRAINT [DF__Menus__ParantID__7D78A4E7]  DEFAULT ((0)) FOR [ParantID]
 GO
+
+ALTER TABLE [dbo].[Menus] ADD  CONSTRAINT [DF_Menus_CreateAt]  DEFAULT (getdate()) FOR [CreateAt]
+GO
+
+ALTER TABLE [dbo].[Menus] ADD  CONSTRAINT [DF_Menus_CreateBy]  DEFAULT ('syihy.com') FOR [CreateBy]
+GO
+
+ALTER TABLE [dbo].[Menus] ADD  CONSTRAINT [DF_Menus_UpdateDT]  DEFAULT (getdate()) FOR [UpdateDT]
+GO
+
+ALTER TABLE [dbo].[Menus] ADD  CONSTRAINT [DF_Menus_UpdateBy]  DEFAULT ('syihy.com') FOR [UpdateBy]
+GO
+
 

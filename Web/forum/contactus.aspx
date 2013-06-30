@@ -13,7 +13,7 @@
             	<h4>我们的地址</h4>
                 中国 - 浙江省杭州市拱墅区祥符镇拱苑小区 银泰旁 <br />
               	<br />
-                <strong>Email: <a href="#">zhouhonggnay@qq.com</a></strong>
+                <strong>Email: <a href="#">709757455@qq.com</a></strong>
                 <div class="h30"></div>
                 
                 <h4>我们的位置</h4>

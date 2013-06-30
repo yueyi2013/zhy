@@ -1,4 +1,5 @@
 using System;
+using ZHY.Common;
 namespace ZHY.Model
 {
 	/// <summary>
@@ -36,15 +37,19 @@ namespace ZHY.Model
 			get{return _funcode;}
 		}
 		/// <summary>
-		/// 
+		/// 功能名称
 		/// </summary>
 		public string FunName
 		{
-			set{ _funname=value;}
-			get{return _funname;}
+			set{
+                _funname = CompressionUtil.Compress(value);
+            }
+            get { 
+                return CompressionUtil.Decompress(_funname);
+            }
 		}
 		/// <summary>
-		/// 
+		/// 功能描述
 		/// </summary>
 		public string FunPage
 		{
@@ -56,8 +61,10 @@ namespace ZHY.Model
 		/// </summary>
 		public string FunDes
 		{
-			set{ _fundes=value;}
-			get{return _fundes;}
+			set{
+                _fundes = CompressionUtil.Compress(value);
+            }
+            get { return CompressionUtil.Compress(_fundes); }
 		}
 		/// <summary>
 		/// 

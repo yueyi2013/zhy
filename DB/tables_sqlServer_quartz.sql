@@ -1,7 +1,7 @@
 --# thanks to George Papastamatopoulos for submitting this ... and Marko Lahma for
 --# updating it.
 
-USE [enter_db_name_here]
+USE [yueyi2013]
 GO
 IF EXISTS (SELECT * FROM dbo.sysobjects WHERE id = OBJECT_ID(N'[dbo].[FK_QRTZ_TRIGGERS_QRTZ_JOB_DETAILS]') AND OBJECTPROPERTY(id, N'ISFOREIGNKEY') = 1)
 ALTER TABLE [dbo].[QRTZ_TRIGGERS] DROP CONSTRAINT FK_QRTZ_TRIGGERS_QRTZ_JOB_DETAILS

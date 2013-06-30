@@ -1,57 +1,114 @@
-using System;
-using System.Data;
-using System.Configuration;
-using System.Collections;
+Ôªøusing System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
-using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
+using System.Text;
+using System.Data;
+using ZHY.Common;
 
-namespace ZHY.Web
+namespace Web
 {
-    public partial class Default : System.Web.UI.Page
+    public partial class index : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if(!IsPostBack)
             {
-                BindCarInfo();
-                BindCarRecom();
+                InitFlash();
+                BindNewsTop();
+                BindNewsList();
             }
         }
 
-        protected void btnSearch_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Ê†áÈ¢ò
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        protected string HtmlDecode(string title)
         {
-            BindCarInfo();
+            return Server.HtmlDecode(title);
         }
 
         /// <summary>
-        /// ∞Û∂®∆˚≥µ¡–±Ì
+        /// 
         /// </summary>
-        private void BindCarInfo()
+        private void BindNewsList()
         {
-            ZHY.BLL.Product bll = new ZHY.BLL.Product();
-            this.dlCarList.DataSource = bll.GetList(30, "ProStatus=2", "ProInputDate");
-            this.dlCarList.DataBind();
+            ZHY.BLL.NewsCategory bll = new ZHY.BLL.NewsCategory();
+            this.dlNewsList.DataSource = bll.GetNewsListWithCat("indexNewsList");
+            this.dlNewsList.DataBind();
+        }
+
+        private void BindNewsTop() 
+        {
+            ZHY.BLL.NewsTop bll = new ZHY.BLL.NewsTop();
+            bll.GetAllList();
+            this.dlNewsTop.DataSource = bll.GetAllList();
+            this.dlNewsTop.DataBind();  
         }
 
         /// <summary>
-        /// ∞Û∂®Õ∆ºˆ≥µ–Õ
+        /// ÁªëÂÆöTop News
         /// </summary>
-        private void BindCarRecom() 
+        private void BindNewsTopModel()
         {
-            ZHY.BLL.Product bll = new ZHY.BLL.Product();
-            dlCarList0.DataSource = bll.GetList(20, "ProStatus=2 and ProRecommend = 1", "ProInputDate");
-            dlCarList0.DataBind();
+            ZHY.BLL.NewsTop bll = new ZHY.BLL.NewsTop();
+            IList<ZHY.Model.NewsTop> list = bll.GetModelList("");
+            if (list.Count > 0) 
+            {
+                ZHY.Model.NewsTop model = list[0];
+                this.lblNewsTitle.Text = model.NTTitle;
+                string con = HttpUtility.HtmlDecode(CompressionUtil.Decompress(model.NTContent));
+                if (con.Length > 100)
+                {
+                    //this.lblContent.Text = con.Substring(0,100)+"......";
+                }
+                else
+                {
+                   // this.lblContent.Text = con;
+                }
+                
+            }                      
         }
 
-        protected string GetPicURL(string url)
+        /// <summary>
+        /// ÂàùÂßãÂåñÈ¶ñÈ°µÂπøÂëä
+        /// </summary>
+        private void InitFlash()
         {
-            if (string.IsNullOrEmpty(url))
-                return "../upload/product/SmallPic/default.jpg";
-            return "../upload/product/SmallPic/" + url;
+            StringBuilder strContent = new StringBuilder();
+            this.divflashContent.InnerHtml = "";
+            strContent.Append("<script type=\"text/javascript\">\r\n");
+            ZHY.BLL.SiteFlash bll = new ZHY.BLL.SiteFlash();
+            DataSet ds = bll.GetList("");
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                string pics = "", links = "", texts = "";
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    if (pics == "")
+                        pics = ds.Tables[0].Rows[i]["SFPicPath"].ToString();
+                    else
+                        pics = pics + "|" + ds.Tables[0].Rows[i]["SFPicPath"].ToString();
+                    if (links == "")
+                        links = ds.Tables[0].Rows[i]["SFDetailsURL"].ToString();
+                    else
+                        links = links + "|" + ds.Tables[0].Rows[i]["SFDetailsURL"].ToString();
+                    if (texts == "")
+                        texts = ds.Tables[0].Rows[i]["SFConTitle"].ToString();
+                    else
+                        texts = texts + "|" + ds.Tables[0].Rows[i]["SFConTitle"].ToString();
+                }
+                strContent.Append(" pics=\"" + @pics + "\"; \r\n");
+                strContent.Append(" links=\"" + @links + "\"; \r\n");
+                strContent.Append(" texts=\"" + @texts + "\"; \r\n");
+            }
+            strContent.Append("</script>\r\n");
+            this.divflashContent.InnerHtml = strContent.ToString();
+
         }
     }
 }

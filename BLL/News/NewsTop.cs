@@ -42,6 +42,29 @@ namespace ZHY.BLL
 
             return dal.Delete();
         }
+
+        /// <summary>
+        /// 每天自动添加TOP新闻
+        /// </summary>
+        public void AutoTaskAddTopNews()
+        {
+            ZHY.BLL.RSSChannelItem bll = new ZHY.BLL.RSSChannelItem();
+            Delete();
+            int top = int.Parse(ConfigHelper.GetConfigString("indexNewsTop"));
+            IList<ZHY.Model.RSSChannelItem> list = bll.loadNewsTop(top);
+            foreach (ZHY.Model.RSSChannelItem item in list)
+            {
+                ZHY.Model.NewsTop model = new ZHY.Model.NewsTop();
+                model.NTId = item.RCItemId;
+                model.NTTitle = item.RCItemTitle;
+                model.NTAuthor = item.RCItemAuthor;
+                model.NTPubDate = item.RCItemPubDate;
+                model.NTContent = item.RCItemDescription;
+                model.CreateBy = ZHY.Common.Constants.SYSTEM_NAME;
+                model.UpdateBy = ZHY.Common.Constants.SYSTEM_NAME;
+                Add(model);
+            }
+        }
         #endregion
 	}
 }

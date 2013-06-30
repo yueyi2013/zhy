@@ -79,12 +79,19 @@
         </td></tr>
          <!--Body End-->
         <!--Foot-->
+        <tr>
+            <td>
+                <asp:DataList ID="dlFriendLink" runat="server" RepeatColumns="12" RepeatDirection="Horizontal">
+                </asp:DataList>
+            </td>
+        </tr>
         <tr><td>
         
         <div id="footer" style="text-align:center">
 		    &copy; Copyright 2013. syihy.com rights reserved
 	    </div>
-        </td></tr>
+        </td>
+        </tr>
         <!--Foot End-->
         </table>
         

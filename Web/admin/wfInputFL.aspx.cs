@@ -23,11 +23,11 @@ namespace Web.admin
             ZHY.Model.FriendLink model = new ZHY.Model.FriendLink();
             // model.FLID = Sysfun.ConvertToInt32(this.txtFLID.Text);
             model.FLName = this.txtFLName.Text;
-            model.FLSite = this.txtFLSite.Text;
+            //model.FLSite = this.txtFLSite.Text;
             //model.FLPic = this.txtFLPic.Text;
             // model.FLOrder = Sysfun.ConvertToInt32(this.txtFLOrder.Text);
             //model.FLViewMethod = this.txtFLViewMethod.Text;
-            model.FLDes = this.txtFLDes.Text;
+            //model.FLDes = this.txtFLDes.Text;
 
             ZHY.BLL.FriendLink bll = new ZHY.BLL.FriendLink();
             bll.Update(model);
@@ -57,12 +57,12 @@ namespace Web.admin
             ZHY.BLL.FriendLink bll = new ZHY.BLL.FriendLink();
             ZHY.Model.FriendLink model = bll.GetModel(FLID);
             //this.lblFLID.Text = model.FLID.ToString();
-            this.txtFLName.Text = model.FLName;
-            this.txtFLSite.Text = model.FLSite;
+            //this.txtFLName.Text = model.FLName;
+            //this.txtFLSite.Text = model.FLSite;
            // this.txtFLPic.Text = model.FLPic;
             //this.txtFLOrder.Text = model.FLOrder.ToString();
            // this.txtFLViewMethod.Text = model.FLViewMethod;
-            this.txtFLDes.Text = model.FLDes;
+            //this.txtFLDes.Text = model.FLDes;
 
         }
 

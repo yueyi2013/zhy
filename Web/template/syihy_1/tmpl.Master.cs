@@ -35,6 +35,13 @@ namespace Web.template.syihy_1
             }
         }
 
+        private void BindFriendLink()
+        {
+            ZHY.BLL.FriendLink bll = new ZHY.BLL.FriendLink();
+            this.dlFriendLink.DataSource = bll.GetList(12,"","");
+            this.dlFriendLink.DataBind();
+        }
+
         private void BindNavHtmlCode() 
         {
             ZHY.BLL.Navigation bll = new ZHY.BLL.Navigation();

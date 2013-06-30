@@ -122,6 +122,7 @@
     <Compile Include="AutoCode\Blog\Article.cs" />
     <Compile Include="AutoCode\Blog\ArticleCategory.cs" />
     <Compile Include="AutoCode\Blog\ArticleComment.cs" />
+    <Compile Include="AutoCode\index\FriendLink.cs" />
     <Compile Include="AutoCode\Member\Member.cs" />
     <Compile Include="AutoCode\Member\MemberMenu.cs" />
     <Compile Include="AutoCode\PsnManage\PersonLevel.cs" />
@@ -132,7 +133,6 @@
     <Compile Include="AutoCode\SiteFile\SiteFileType.cs" />
     <Compile Include="AutoCode\SysManage\RightConfig.cs" />
     <Compile Include="AutoCode\SysManage\SystemMail.cs" />
-    <Compile Include="FriendLink.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Navigation.cs" />
     <Compile Include="NewsCategory.cs" />
@@ -189,6 +189,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="iBatisModel\" />
+    <Folder Include="index\" />
     <Folder Include="Member\" />
     <Folder Include="PersonManage\" />
     <Folder Include="SiteFile\" />

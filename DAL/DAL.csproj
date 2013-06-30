@@ -140,6 +140,7 @@
     <Compile Include="AutoCode\Blog\Article.cs" />
     <Compile Include="AutoCode\Blog\ArticleCategory.cs" />
     <Compile Include="AutoCode\Blog\ArticleComment.cs" />
+    <Compile Include="AutoCode\index\FriendLink.cs" />
     <Compile Include="AutoCode\Member\Member.cs" />
     <Compile Include="AutoCode\Member\MemberMenu.cs" />
     <Compile Include="AutoCode\News\NewsTop.cs" />
@@ -156,7 +157,7 @@
     <Compile Include="Blog\Article.cs" />
     <Compile Include="Blog\ArticleCategory.cs" />
     <Compile Include="Blog\ArticleComment.cs" />
-    <Compile Include="FriendLink.cs" />
+    <Compile Include="index\FriendLink.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Member\Member.cs" />
     <Compile Include="Member\MemberMenu.cs" />

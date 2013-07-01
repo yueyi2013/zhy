@@ -21,7 +21,7 @@
     </tr>
     <tr>
     <td>
-    功能列表：<input id="btnSelectAll" style="cursor: hand" onclick="GetAllCheckBox0(ctl00_ContentPlaceHolder1_btnSelectAll)" type="checkbox" runat="server" />全选
+    功能列表：<input id="btnSelectAll" style="cursor: hand" onclick="GetAllCheckBox0(ContentPlaceHolder1_btnSelectAll)" type="checkbox" runat="server" />全选
     <div id="divFunList">
         <asp:UpdatePanel ID="MyUpdatePanelBody" runat="server" UpdateMode="Conditional">
             <Triggers>                  

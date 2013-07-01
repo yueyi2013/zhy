@@ -9,7 +9,7 @@ function GetAllCheckBox(parentItem) {
                 items[i].checked = true;
                 items[i].parentElement.parentElement.style.background = "#6699ff";
                 parentItem.parentElement.parentElement.style.background = "#ffffff";
-                document.getElementById("ctl00$ContentPlaceHolder1$btnModify").disabled = "disabled";
+                document.getElementById("ContentPlaceHolder1_btnModify").disabled = "disabled";
             }
         }
         else {
@@ -94,9 +94,9 @@ function changecolor(parameter) {
     }
     if (m == 1) {
 
-        document.getElementById("ctl00_ContentPlaceHolder1_btnModify").disabled = "";
+        document.getElementById("ContentPlaceHolder1_btnModify").disabled = "";
     } else {
-        document.getElementById("ctl00_ContentPlaceHolder1_btnModify").disabled = "disabled";
+        document.getElementById("ContentPlaceHolder1_btnModify").disabled = "disabled";
     }
 
 }

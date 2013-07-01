@@ -42,10 +42,10 @@ namespace ZHY.Model
 		public string FunName
 		{
 			set{
-                _funname = CompressionUtil.Compress(value);
+                _funname = value;
             }
-            get { 
-                return CompressionUtil.Decompress(_funname);
+            get {
+                return _funname;
             }
 		}
 		/// <summary>
@@ -62,9 +62,9 @@ namespace ZHY.Model
 		public string FunDes
 		{
 			set{
-                _fundes = CompressionUtil.Compress(value);
+                _fundes = value;
             }
-            get { return CompressionUtil.Compress(_fundes); }
+            get { return _fundes; }
 		}
 		/// <summary>
 		/// 

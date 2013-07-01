@@ -61,7 +61,7 @@
                                                 <HeaderStyle Width="30px" HorizontalAlign="Center" />
                                                 <ItemStyle Width="30px" HorizontalAlign="Center" />
                                                 <HeaderTemplate>
-                                                    <input id="btnSelectAll" style="cursor: hand" onclick="GetAllCheckBox(ctl00_cphMain_MstGridView_ctl01_btnSelectAll)"
+                                                    <input id="btnSelectAll" style="cursor: hand" onclick="GetAllCheckBox(ctl00$ContentPlaceHolder1$MstGridView$ctl01$btnSelectAll)"
                                                         type="checkbox" runat="server" />
                                                 </HeaderTemplate>
                                                 <ItemTemplate>

@@ -125,7 +125,7 @@ namespace ZHY.BLL
         /// <param name="item"></param>
         public void LoadRssItemContent(string itemRUL, string contentId, ZHY.Model.RSSChannelItem item)
         {
-            string htmlSource = RSSFeeds.loadRssFeeds(itemRUL, "");
+            string htmlSource = RSSFeeds.loadRssFeeds(itemRUL, "gb2312");
             string tagSourcec = "";
             if (!string.IsNullOrEmpty(htmlSource))
             {

@@ -80,9 +80,6 @@
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Mobile" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="UrlRewritingNet.UrlRewriter, Version=2.0.60829.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\dll\UrlRewritingNet.UrlRewriter.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\down.html" />
@@ -601,13 +598,6 @@
     </Compile>
     <Compile Include="admin\sys\wfUserList.aspx.designer.cs">
       <DependentUpon>wfUserList.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="admin\wfCarInput.aspx.cs">
-      <DependentUpon>wfCarInput.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\wfCarInput.aspx.designer.cs">
-      <DependentUpon>wfCarInput.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\wfDetailList.aspx.cs">
       <DependentUpon>wfDetailList.aspx</DependentUpon>
@@ -1138,7 +1128,6 @@
     <Content Include="admin\fckEditor\fckstyles.xml" />
     <Content Include="admin\fckEditor\fcktemplates.xml" />
     <Content Include="admin\index.htm" />
-    <Content Include="admin\wfCarInput.aspx" />
     <Content Include="admin\wfDetailList.aspx" />
     <Content Include="admin\wfFriendLinkList.aspx" />
     <Content Include="admin\wfImageEdit.aspx" />
@@ -1163,79 +1152,6 @@
     <Content Include="admin\wfUserList.aspx" />
     <Content Include="css\manage.css" />
     <Content Include="css\validator.css" />
-    <Content Include="js\CheckBox.js" />
-    <Content Include="js\extjs.js" />
-    <Content Include="js\formValidator.js" />
-    <Content Include="js\formValidatorRegex.js" />
-    <Content Include="js\formValidator_min.js" />
-    <Content Include="js\images\color_indic.gif" />
-    <Content Include="js\images\crosshairs.png" />
-    <Content Include="js\images\h.png" />
-    <Content Include="js\images\hue.png" />
-    <Content Include="js\images\pickerbg.png" />
-    <Content Include="js\images\position.png" />
-    <Content Include="js\images\select.gif" />
-    <Content Include="js\images\sv.png" />
-    <Content Include="js\jquery-1.2.6.js" />
-    <Content Include="js\jquery.min.js" />
-    <Content Include="js\jquery\color_picker\color_picker-ie6.css" />
-    <Content Include="js\jquery\color_picker\color_picker-ie7.css" />
-    <Content Include="js\jquery\color_picker\color_picker.css" />
-    <Content Include="js\jquery\color_picker\color_picker.js" />
-    <Content Include="js\jquery\color_picker\howto_color_picker.txt" />
-    <Content Include="js\jquery\color_picker\images\color_indic.gif" />
-    <Content Include="js\jquery\color_picker\images\hue.png" />
-    <Content Include="js\jquery\color_picker\images\pickerbg.png" />
-    <Content Include="js\jquery\color_picker\images\select.gif" />
-    <Content Include="js\jquery\idrag.js" />
-    <Content Include="js\jquery\idrop.js" />
-    <Content Include="js\jquery\ifx.js" />
-    <Content Include="js\jquery\islider.js" />
-    <Content Include="js\jquery\iutil.js" />
-    <Content Include="js\jquery\jquery.js" />
-    <Content Include="js\jquery_last.js" />
-    <Content Include="js\colorpicker.js" />
-    <Content Include="js\My97DatePicker4.0\calendar.js" />
-    <Content Include="js\My97DatePicker4.0\config.js" />
-    <Content Include="js\My97DatePicker4.0\demo.htm" />
-    <Content Include="js\My97DatePicker4.0\demo2.htm" />
-    <Content Include="js\My97DatePicker4.0\lang\en.js" />
-    <Content Include="js\My97DatePicker4.0\lang\zh-cn.js" />
-    <Content Include="js\My97DatePicker4.0\lang\zh-tw.js" />
-    <Content Include="js\My97DatePicker4.0\My97DatePicker.htm" />
-    <Content Include="js\My97DatePicker4.0\readme.txt" />
-    <Content Include="js\My97DatePicker4.0\skin\blue\bg.jpg" />
-    <Content Include="js\My97DatePicker4.0\skin\blue\btnbg.jpg" />
-    <Content Include="js\My97DatePicker4.0\skin\blue\datepicker.css" />
-    <Content Include="js\My97DatePicker4.0\skin\blue\down.jpg" />
-    <Content Include="js\My97DatePicker4.0\skin\blue\left.gif" />
-    <Content Include="js\My97DatePicker4.0\skin\blue\navLeft.gif" />
-    <Content Include="js\My97DatePicker4.0\skin\blue\navRight.gif" />
-    <Content Include="js\My97DatePicker4.0\skin\blue\qs.jpg" />
-    <Content Include="js\My97DatePicker4.0\skin\blue\right.gif" />
-    <Content Include="js\My97DatePicker4.0\skin\blue\up.jpg" />
-    <Content Include="js\My97DatePicker4.0\skin\datePicker.gif" />
-    <Content Include="js\My97DatePicker4.0\skin\default\datepicker.css" />
-    <Content Include="js\My97DatePicker4.0\skin\default\down.jpg" />
-    <Content Include="js\My97DatePicker4.0\skin\default\left.gif" />
-    <Content Include="js\My97DatePicker4.0\skin\default\navLeft.gif" />
-    <Content Include="js\My97DatePicker4.0\skin\default\navRight.gif" />
-    <Content Include="js\My97DatePicker4.0\skin\default\qs.jpg" />
-    <Content Include="js\My97DatePicker4.0\skin\default\right.gif" />
-    <Content Include="js\My97DatePicker4.0\skin\default\up.jpg" />
-    <Content Include="js\My97DatePicker4.0\skin\WdatePicker.css" />
-    <Content Include="js\My97DatePicker4.0\skin\whyGreen\bg.jpg" />
-    <Content Include="js\My97DatePicker4.0\skin\whyGreen\datepicker.css" />
-    <Content Include="js\My97DatePicker4.0\skin\whyGreen\down.jpg" />
-    <Content Include="js\My97DatePicker4.0\skin\whyGreen\left.gif" />
-    <Content Include="js\My97DatePicker4.0\skin\whyGreen\navLeft.gif" />
-    <Content Include="js\My97DatePicker4.0\skin\whyGreen\navRight.gif" />
-    <Content Include="js\My97DatePicker4.0\skin\whyGreen\qs.jpg" />
-    <Content Include="js\My97DatePicker4.0\skin\whyGreen\right.gif" />
-    <Content Include="js\My97DatePicker4.0\skin\whyGreen\up.jpg" />
-    <Content Include="js\My97DatePicker4.0\WdatePicker.js" />
-    <Content Include="js\register.js" />
-    <Content Include="js\update.js" />
     <Content Include="Login.aspx" />
     <Content Include="Logout.aspx" />
     <None Include="admin\fckEditor\editor\dialog\fck_spellerpages\spellerpages\server-scripts\spellchecker.cfm" />
@@ -1244,7 +1160,6 @@
     <Content Include="admin\Main.Master" />
     <Content Include="Providers.config" />
     <Content Include="Index0.Master" />
-    <None Include="js\images\Thumbs.db" />
     <Content Include="ValidateCode.aspx" />
   </ItemGroup>
   <ItemGroup>

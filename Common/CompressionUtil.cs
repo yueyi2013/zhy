@@ -9,6 +9,20 @@ namespace ZHY.Common
 {
     public class CompressionUtil
     {
+
+
+        public static string Compress(string str,string encode)
+        {
+            //因输入的字符串不是Base64所以转换为Base64,因为HTTP如果不传递Base64则会发生http 400错误
+            return Convert.ToBase64String(Compress(Convert.FromBase64String(Convert.ToBase64String(Encoding.GetEncoding(encode).GetBytes(str)))));
+        }
+
+        public static string Decompress(string str, string encode)
+        {
+            return Encoding.GetEncoding(encode).GetString(Decompress(Convert.FromBase64String(str)));
+        }
+
+
         public static string Compress(string str)
 
         {

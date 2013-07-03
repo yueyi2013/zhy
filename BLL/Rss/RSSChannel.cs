@@ -38,7 +38,7 @@ namespace ZHY.BLL
             string strWhere = " 1=1 ";
             if (!String.IsNullOrEmpty(name))
             {
-                strWhere += "RCTitle like '%" + name + "'";
+                strWhere += " and RCTitle like '%" + name + "'";
             }
 
             return dal.GetList(tablename, strGetFields, PageIndex, pageSize, strWhere, strOrder, intOrder, ref CountAll);
@@ -166,13 +166,13 @@ namespace ZHY.BLL
                 }
             }
 
-            item.RCItemDescription = CompressionUtil.Compress(HttpUtility.HtmlEncode(tagSourcec));
+            item.RCItemDescription = CompressionUtil.Compress(HttpUtility.HtmlEncode(tagSourcec), "gb2312");
 
             if (model != null&&model.SCAttrValue.Equals(Constants.SYSTEM_CONFIG_ATT_GROUP_NEWS_VALUE_Y))
             {
                 if (!string.IsNullOrEmpty(tagSourcec) && sntCount == 1)
                 {
-                    this.AlertEmail(Constants.SYSTEM_CONFIG_ATT_NAME_MAIL_SEND_COMP_SUBJECT, HttpUtility.HtmlDecode(CompressionUtil.Decompress(item.RCItemDescription)));
+                    this.AlertEmail(Constants.SYSTEM_CONFIG_ATT_NAME_MAIL_SEND_COMP_SUBJECT, HttpUtility.HtmlDecode(CompressionUtil.Decompress(item.RCItemDescription, "gb2312")));
                     sntCount++;
                 }
             }

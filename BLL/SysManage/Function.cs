@@ -28,7 +28,7 @@ namespace ZHY.BLL
             string strWhere = " 1=1 ";
             if (!String.IsNullOrEmpty(name))
             {
-                strWhere += "FunName like '%" + name + "'";
+                strWhere += " and FunName like '%" + name + "'";
             }
            
             return dal.GetList(tablename, strGetFields, PageIndex, pageSize, strWhere, strOrder, intOrder, ref CountAll);

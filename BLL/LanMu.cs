@@ -33,7 +33,7 @@ namespace ZHY.BLL
             string strWhere = " 1=1 ";
             if (!String.IsNullOrEmpty(LMName))
             {
-                strWhere += "LMName like '%" + LMName + "'";
+                strWhere += " and LMName like '%" + LMName + "'";
             }
             if (!string.IsNullOrEmpty(LMParantID))
             {

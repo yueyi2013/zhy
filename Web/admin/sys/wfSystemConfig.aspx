@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<fieldset style="width: 800px">
+<fieldset style="width: 850px">
     <legend>系统管理</legend>
     <asp:UpdatePanel ID="MyUpdatePanelHead" runat="server" UpdateMode="Conditional">
         <Triggers>
@@ -76,7 +76,7 @@
                                                 <ItemStyle Width="100px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="SCDescription" HeaderText="描述">
-                                                <ItemStyle Width="100px" />
+                                                <ItemStyle Width="150px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="SCStatus" HeaderText="状态">
                                                 <ItemStyle Width="80px" />

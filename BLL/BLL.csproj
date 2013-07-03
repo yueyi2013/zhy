@@ -138,7 +138,9 @@
     <Compile Include="AutoCode\SiteFile\SiteFileType.cs" />
     <Compile Include="AutoCode\SysManage\Function.cs" />
     <Compile Include="AutoCode\SysManage\RightConfig.cs" />
+    <Compile Include="AutoCode\SysManage\SystemConfig.cs" />
     <Compile Include="AutoCode\SysManage\SystemMail.cs" />
+    <Compile Include="BaseBLL.cs" />
     <Compile Include="Blog\ArticalType.cs" />
     <Compile Include="Blog\Article.cs" />
     <Compile Include="Blog\ArticleCategory.cs" />
@@ -178,7 +180,7 @@
     <Compile Include="PsnManage\Role.cs" />
     <Compile Include="SysManage\RightConfig.cs" />
     <Compile Include="SysManage\SystemMail.cs" />
-    <Compile Include="SystemConfig.cs" />
+    <Compile Include="SysManage\SystemConfig.cs" />
     <Compile Include="SysManage\SetupDatabase.cs" />
     <Compile Include="PsnManage\User.cs" />
   </ItemGroup>
@@ -190,6 +192,10 @@
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{9FE00521-3A8B-42B1-814E-585E99407B2E}</Project>
       <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MailSender\Mail.csproj">
+      <Project>{D40D6BA0-6F3E-4B5D-95B6-62FF04FF09C1}</Project>
+      <Name>Mail</Name>
     </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{53995DBB-9836-4647-AD22-865884FDEB9E}</Project>

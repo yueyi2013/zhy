@@ -144,9 +144,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="ProTypeDetail.cs" />
-    <Compile Include="RSSChannel.cs" />
-    <Compile Include="RSSChannelItem.cs" />
-    <Compile Include="RSSSite.cs" />
+    <Compile Include="AutoCode\Rss\RSSChannel.cs" />
+    <Compile Include="AutoCode\Rss\RSSChannelItem.cs" />
+    <Compile Include="AutoCode\Rss\RSSSite.cs" />
     <Compile Include="SiteFlash.cs" />
     <Compile Include="AutoCode\SysManage\Function.cs" />
     <Compile Include="SysNode.cs" />
@@ -158,7 +158,7 @@
     <Compile Include="ProPicture.cs" />
     <Compile Include="ProType.cs" />
     <Compile Include="Right.cs" />
-    <Compile Include="SystemConfig.cs" />
+    <Compile Include="AutoCode\SysManage\SystemConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

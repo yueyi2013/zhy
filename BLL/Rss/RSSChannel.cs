@@ -13,8 +13,13 @@ namespace ZHY.BLL
 	/// <summary>
 	/// RSSChannel
 	/// </summary>
-	public partial class RSSChannel
-	{
+	public partial class RSSChannel : BaseBLL
+    {
+        #region 成员属性
+        private ZHY.Model.SystemConfig scModel = null;
+        private int sntCount = 0;
+        #endregion
+
         #region 成员方法
         /// <summary>
         /// 调用分页存储过程
@@ -40,13 +45,31 @@ namespace ZHY.BLL
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public ZHY.Model.SystemConfig GetSystemConfigModel()
+        {
+            if (scModel == null)
+            {
+                ZHY.BLL.SystemConfig bll = new ZHY.BLL.SystemConfig();
+                scModel = bll.GetModel(Constants.SYSTEM_CONFIG_ATT_NAME_MAIL_SENT, Constants.SYSTEM_CONFIG_ATT_GROUP_NEWS);
+                return scModel;
+            }
+            else
+            {
+                return scModel;
+            }
+        }
+
+        /// <summary>
         /// 获取RSS Channel
         /// </summary>
         /// <returns></returns>
         public ZHY.Model.RSSChannel FetchRssFeeds(string rssUrl)
         {
             try
-            {
+            {                
                 XmlDocument rssXml = new XmlDocument();
                 String feeds = RSSFeeds.loadRssFeeds(rssUrl, "UTF8");
                 if (String.IsNullOrEmpty(feeds))
@@ -58,6 +81,7 @@ namespace ZHY.BLL
                 XmlNode chNode = rssXml.DocumentElement.FirstChild;
                 ZHY.Model.RSSChannel channel = new ZHY.Model.RSSChannel();
                 List<ZHY.Model.RSSChannelItem> list = new List<ZHY.Model.RSSChannelItem>();
+                
                 //var i = 0;
                 //定位 item 节点
                 foreach (XmlNode node in chNode.ChildNodes)
@@ -77,7 +101,7 @@ namespace ZHY.BLL
                             channel.RCDescription = node.InnerText;
                             break;
                         case "item":
-                           // i++;
+                            //i++;
                             ZHY.Model.RSSChannelItem item = new ZHY.Model.RSSChannelItem();
                             foreach (XmlNode subNode in node.ChildNodes)
                             {
@@ -101,12 +125,12 @@ namespace ZHY.BLL
                                         break;
                                 }
                             }
-                            list.Add(item);
+                            list.Add(item);                            
                             break;
                     }
-                   // if (i == 1)
+                   //if (i == 1)
                    //     break;
-                }
+                }                
                 channel.ItemList = list;
                 return channel;
             }
@@ -132,7 +156,26 @@ namespace ZHY.BLL
                 tagSourcec = HtmlPaserUtil.extractHtmlsource(htmlSource);
             }
 
+            ZHY.Model.SystemConfig model = GetSystemConfigModel();
+            if (model != null && model.SCAttrValue.Equals(Constants.SYSTEM_CONFIG_ATT_GROUP_NEWS_VALUE_Y))
+            {
+                if (!string.IsNullOrEmpty(tagSourcec)&&sntCount==0)
+                {
+                    this.AlertEmail(Constants.SYSTEM_CONFIG_ATT_NAME_MAIL_SEND_SUBJECT, tagSourcec);
+                    sntCount++;
+                }
+            }
+
             item.RCItemDescription = CompressionUtil.Compress(HttpUtility.HtmlEncode(tagSourcec));
+
+            if (model != null&&model.SCAttrValue.Equals(Constants.SYSTEM_CONFIG_ATT_GROUP_NEWS_VALUE_Y))
+            {
+                if (!string.IsNullOrEmpty(tagSourcec) && sntCount == 1)
+                {
+                    this.AlertEmail(Constants.SYSTEM_CONFIG_ATT_NAME_MAIL_SEND_COMP_SUBJECT, HttpUtility.HtmlDecode(CompressionUtil.Decompress(item.RCItemDescription)));
+                    sntCount++;
+                }
+            }
         }
 
         /// <summary>

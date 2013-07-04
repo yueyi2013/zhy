@@ -1,6 +1,3 @@
-USE [syihy]
-GO
-
 /****** Object:  View [dbo].[BlogListView]    Script Date: 06/24/2013 20:04:22 ******/
 SET ANSI_NULLS ON
 GO

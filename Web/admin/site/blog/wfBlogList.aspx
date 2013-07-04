@@ -142,23 +142,23 @@
             <ContentTemplate>
                 <table cellspacing="0" cellpadding="0" width="100%" border="0">
                     <tr>
-                        <td height="25" width="30%" align="right">
+                        <td height="25" width="10%" align="right">
                             文章标题：
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox ID="txtNewsTitle" runat="server" Width="200px"></asp:TextBox>
+                            <asp:TextBox ID="txtNewsTitle" runat="server" Width="98%"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <td height="25" width="30%" align="right">
+                        <td height="25" align="right">
                             作者：
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox ID="txtNewsAuthor" runat="server" Width="200px"></asp:TextBox>
+                            <asp:TextBox ID="txtNewsAuthor" runat="server" Width="98%"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <td height="25" width="30%" align="right">
+                        <td height="25" align="right">
                             发布日期：
                         </td>
                         <td height="25" width="*" align="left">
@@ -167,7 +167,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td height="25" width="30%" align="right">
+                        <td height="25" align="right">
                             种类：
                         </td>
                         <td height="25" width="*" align="left">
@@ -176,7 +176,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td height="25" width="30%" align="right">
+                        <td height="25" align="right">
                             类型：
                         </td>
                         <td height="25" width="*" align="left">
@@ -186,7 +186,7 @@
                     </tr>
                     
                     <tr>
-                        <td height="25" width="30%" align="right">
+                        <td height="25" align="right">
                             内容： <asp:HiddenField ID="hfArId" runat="server" Value="0"/>
                         </td>
                         <td height="25" width="*" align="left">

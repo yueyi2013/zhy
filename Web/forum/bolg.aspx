@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cpBody" runat="server">
 
-    <table>
+<table cellpadding="0" cellspacing="0" width="100%">
 <tr>
 <!--分类-->
 <td style="width:200px; text-align:left; vertical-align:top">
@@ -36,7 +36,7 @@
                         <asp:LinkButton ID="lbArTitle" runat="server" CausesValidation="false" CommandName="ArTitle" Text='<%# Eval("ArTitle")%>'/></td>
                     </tr>
                     <tr>
-                        <td><img alt="" src="#"/>&nbsp;&nbsp; <%# ParseContent(Eval("ArContent").ToString())%></td>
+                        <td><img alt="" src="#"/>&nbsp;&nbsp;<a href='bolgdetails.aspx?bgid=<%# Eval("ArId")%>'><%# ParseContent(Eval("ArContent").ToString())%></a> </td>
                     </tr>
                     <tr>
                         <td>

@@ -52,7 +52,7 @@ namespace ZHY.BLL
                 {
                     if (item.NewsCategoryName.Trim().Equals(rcItem.RCTitle.Trim()))
                     {
-                        item.RiList =riBll.DataTableToList(riBll.GetList(top, "RCId=" + rcItem.RCId, "NavUpdateDT").Tables[0]);
+                        item.RiList =riBll.DataTableToList(riBll.GetList(top, "RCId=" + rcItem.RCId, "NavUpdateDT desc").Tables[0]);
                     }
                 }                
             }

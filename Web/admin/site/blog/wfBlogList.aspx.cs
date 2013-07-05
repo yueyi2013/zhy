@@ -220,13 +220,13 @@ namespace Web.admin.site.blog
         private void Add()
         {
             ZHY.Model.Article model = new ZHY.Model.Article();
-            model.ArAuthor = this.txtNewsTitle.Text;
+            model.ArAuthor = this.txtNewsAuthor.Text;
             model.ArContent = this.txtNewsAuthor.Text;
             model.ArPubDate = DateTime.Parse(this.txtPublishDate.Value);
-            model.ArTitle = this.txtNewsAuthor.Text;
+            model.ArTitle = this.txtNewsTitle.Text;
             model.ArTypeId = int.Parse(this.ddlArticalType.SelectedValue);
             model.ACId = int.Parse(this.ddlArticalCategory.SelectedValue);
-            model.ArContent = CompressionUtil.Compress(HttpUtility.HtmlEncode(this.ftContent.Text));
+            model.ArContent = CompressionUtil.Compress(HttpUtility.HtmlEncode(this.ftContent.Text), "gb2312");
             ZHY.Model.User user = getLoginUser();
             model.CreateBy = user.UserName;
             model.UpdateBy = user.UserName;
@@ -244,13 +244,13 @@ namespace Web.admin.site.blog
             ZHY.Model.Article model = bll.GetModel(ID);
             if (model != null)
             {
-                model.ArAuthor = this.txtNewsTitle.Text;
-                model.ArContent = this.txtNewsAuthor.Text;
+                model.ArAuthor = this.txtNewsAuthor.Text;
+                model.ArContent = this.ftContent.Text;
                 model.ArPubDate = DateTime.Parse(this.txtPublishDate.Value);
-                model.ArTitle = this.txtNewsAuthor.Text;
+                model.ArTitle = this.txtNewsTitle.Text;
                 model.ArTypeId = int.Parse(this.ddlArticalType.SelectedValue);
                 model.ACId = int.Parse(this.ddlArticalCategory.SelectedValue);
-                model.ArContent = CompressionUtil.Compress(HttpUtility.HtmlEncode(this.ftContent.Text));
+                model.ArContent = CompressionUtil.Compress(HttpUtility.HtmlEncode(this.ftContent.Text), "gb2312");
                 ZHY.Model.User user = getLoginUser();
                 model.UpdateBy = user.UserName;
                 model.UpdateDT = DateTime.Now;
@@ -279,7 +279,7 @@ namespace Web.admin.site.blog
             this.hfArId.Value = model.ArId.ToString();
             this.txtNewsTitle.Text = model.ArTitle;
             this.txtNewsAuthor.Text = model.ArAuthor;
-            this.ftContent.Text = HttpUtility.HtmlDecode(CompressionUtil.Decompress(model.ArContent));
+            this.ftContent.Text = HttpUtility.HtmlDecode(CompressionUtil.Decompress(model.ArContent, "gb2312"));
         }
         #endregion
     }

@@ -59,7 +59,7 @@ namespace ZHY.BLL
         /// <returns></returns>
         public IList<ZHY.Model.RSSChannelItem> loadNewsTop(int tops) 
         {
-            return this.DataTableToList(this.GetList(tops, "", "NavUpdateDT").Tables[0]);
+            return this.DataTableToList(this.GetList(tops, "", "NavUpdateDT desc").Tables[0]);
         }
 
         #endregion

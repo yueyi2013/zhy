@@ -124,6 +124,7 @@
     <Content Include="error\general.htm" />
     <Content Include="forum\active.aspx" />
     <Content Include="forum\bolg.aspx" />
+    <Content Include="forum\bolgdetails.aspx" />
     <Content Include="forum\changeemail.aspx" />
     <Content Include="forum\contactus.aspx" />
     <Content Include="forum\food.aspx" />
@@ -141,6 +142,45 @@
     <Content Include="Global.asax" />
     <Content Include="default.aspx" />
     <Content Include="js\main.js" />
+    <Content Include="js\My97DatePicker4.0\calendar.js" />
+    <Content Include="js\My97DatePicker4.0\config.js" />
+    <Content Include="js\My97DatePicker4.0\demo.htm" />
+    <Content Include="js\My97DatePicker4.0\demo2.htm" />
+    <Content Include="js\My97DatePicker4.0\lang\en.js" />
+    <Content Include="js\My97DatePicker4.0\lang\zh-cn.js" />
+    <Content Include="js\My97DatePicker4.0\lang\zh-tw.js" />
+    <Content Include="js\My97DatePicker4.0\My97DatePicker.htm" />
+    <Content Include="js\My97DatePicker4.0\readme.txt" />
+    <Content Include="js\My97DatePicker4.0\skin\blue\bg.jpg" />
+    <Content Include="js\My97DatePicker4.0\skin\blue\btnbg.jpg" />
+    <Content Include="js\My97DatePicker4.0\skin\blue\datepicker.css" />
+    <Content Include="js\My97DatePicker4.0\skin\blue\down.jpg" />
+    <Content Include="js\My97DatePicker4.0\skin\blue\left.gif" />
+    <Content Include="js\My97DatePicker4.0\skin\blue\navLeft.gif" />
+    <Content Include="js\My97DatePicker4.0\skin\blue\navRight.gif" />
+    <Content Include="js\My97DatePicker4.0\skin\blue\qs.jpg" />
+    <Content Include="js\My97DatePicker4.0\skin\blue\right.gif" />
+    <Content Include="js\My97DatePicker4.0\skin\blue\up.jpg" />
+    <Content Include="js\My97DatePicker4.0\skin\datePicker.gif" />
+    <Content Include="js\My97DatePicker4.0\skin\default\datepicker.css" />
+    <Content Include="js\My97DatePicker4.0\skin\default\down.jpg" />
+    <Content Include="js\My97DatePicker4.0\skin\default\left.gif" />
+    <Content Include="js\My97DatePicker4.0\skin\default\navLeft.gif" />
+    <Content Include="js\My97DatePicker4.0\skin\default\navRight.gif" />
+    <Content Include="js\My97DatePicker4.0\skin\default\qs.jpg" />
+    <Content Include="js\My97DatePicker4.0\skin\default\right.gif" />
+    <Content Include="js\My97DatePicker4.0\skin\default\up.jpg" />
+    <Content Include="js\My97DatePicker4.0\skin\WdatePicker.css" />
+    <Content Include="js\My97DatePicker4.0\skin\whyGreen\bg.jpg" />
+    <Content Include="js\My97DatePicker4.0\skin\whyGreen\datepicker.css" />
+    <Content Include="js\My97DatePicker4.0\skin\whyGreen\down.jpg" />
+    <Content Include="js\My97DatePicker4.0\skin\whyGreen\left.gif" />
+    <Content Include="js\My97DatePicker4.0\skin\whyGreen\navLeft.gif" />
+    <Content Include="js\My97DatePicker4.0\skin\whyGreen\navRight.gif" />
+    <Content Include="js\My97DatePicker4.0\skin\whyGreen\qs.jpg" />
+    <Content Include="js\My97DatePicker4.0\skin\whyGreen\right.gif" />
+    <Content Include="js\My97DatePicker4.0\skin\whyGreen\up.jpg" />
+    <Content Include="js\My97DatePicker4.0\WdatePicker.js" />
     <Content Include="template\demo_aqua\css\slimbox2.css" />
     <Content Include="template\demo_aqua\images\about.png" />
     <Content Include="template\demo_aqua\images\closelabel.gif" />
@@ -777,6 +817,13 @@
     </Compile>
     <Compile Include="forum\bolg.aspx.designer.cs">
       <DependentUpon>bolg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="forum\bolgdetails.aspx.cs">
+      <DependentUpon>bolgdetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forum\bolgdetails.aspx.designer.cs">
+      <DependentUpon>bolgdetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="forum\changeemail.aspx.cs">
       <DependentUpon>changeemail.aspx</DependentUpon>

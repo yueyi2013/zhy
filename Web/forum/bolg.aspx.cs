@@ -182,7 +182,7 @@ namespace Web.forum
         /// <returns></returns>
         protected string ParseContent(string value)
         {
-            string str = HttpUtility.HtmlDecode(CompressionUtil.Decompress(value));
+            string str = HttpUtility.HtmlDecode(CompressionUtil.Decompress(value, "gb2312"));
             if(str.Length>100)
             {
                 return str.Substring(0, 100)+"...";

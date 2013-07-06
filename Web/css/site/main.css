@@ -165,6 +165,18 @@ ul.ul-list span.date {padding-right:10px;}
     background-image:url("../../images/page/last.gif");
 }
 
+a
+{
+    color: #000000;
+    text-decoration: none;
+}
+
+a:hover
+{
+    color: #000000;
+    text-decoration: underline;
+}
+
 .PagingGoButtonCss
 {
     width:37px;

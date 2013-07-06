@@ -136,6 +136,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AutoCode\Ad\AdBilling.cs" />
+    <Compile Include="AutoCode\Ad\AdCategory.cs" />
+    <Compile Include="AutoCode\Ad\AdCode.cs" />
+    <Compile Include="AutoCode\Ad\Advertisement.cs" />
     <Compile Include="AutoCode\Blog\ArticalType.cs" />
     <Compile Include="AutoCode\Blog\Article.cs" />
     <Compile Include="AutoCode\Blog\ArticleCategory.cs" />

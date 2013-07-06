@@ -33,7 +33,7 @@
                         <td>
                         <asp:LinkButton ID="lbACName" runat="server" CausesValidation="false" CommandName="ACName" Text='<%# GetACName(Eval("ACName").ToString())%>'/>
                         &nbsp;&nbsp;
-                        <asp:LinkButton ID="lbArTitle" runat="server" CausesValidation="false" CommandName="ArTitle" Text='<%# Eval("ArTitle")%>'/></td>
+                        <asp:LinkButton ID="lbArTitle" runat="server" CausesValidation="false" Font-Bold="true" ForeColor="Black" Font-Size="Medium" CommandName="ArTitle" Text='<%# Eval("ArTitle")%>'/></td>
                     </tr>
                     <tr>
                         <td><img alt="" src="#"/>&nbsp;&nbsp;<a href='bolgdetails.aspx?bgid=<%# Eval("ArId")%>'><%# ParseContent(Eval("ArContent").ToString())%></a> </td>
@@ -46,7 +46,8 @@
                             <asp:LinkButton ID="lbArCmtNumber" runat="server" CausesValidation="false" CommandName="ArCmtNumber" Text='<%# GetCmtNumber(Eval("ArCmtNumber").ToString())%>'/>&nbsp;&nbsp; 
                             <asp:LinkButton ID="lbACMTops" runat="server" CausesValidation="false" CommandName="ACMTops" Text='<%# GetACMTops(Eval("ACMTops").ToString())%>'/>&nbsp;&nbsp; 
                             <asp:LinkButton ID="lbACMDowns" runat="server" CausesValidation="false" CommandName="ACMDowns" Text='<%# GetACMDowns(Eval("ACMDowns").ToString())%>'/>&nbsp;&nbsp; 
-                         </td>                        
+                            <hr style=" width:100%" />
+                        </td>                        
                     </tr>
                 </ItemTemplate>
                 <FooterTemplate>

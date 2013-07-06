@@ -8,13 +8,35 @@
             
         </td>
         <td>
-            <table>
-                <tr><td>
-                    <asp:Label ID="lblTitle" runat="server" Font-Size="X-Large" Font-Bold="true"></asp:Label></td></tr>
-                <tr><td>
-                    <div id="divBlog" runat="server"/>
-                </td></tr>
-                <tr><td></td></tr>
+            <table cellpadding="0" cellspacing="0" width="100%">
+                <tr>
+                    <td>
+                        <asp:Label ID="lblTitle" runat="server" Font-Size="X-Large" Font-Bold="true"></asp:Label>
+                    </td>                    
+                </tr>
+                <tr>
+                    <td>
+                        <div id="divBlog" runat="server"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                       <table>
+                            <tr>
+                                <td>用户名：</td>
+                                <td>
+                                    <asp:Label ID="lblUser" runat="server" ></asp:Label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>评论：</td>
+                                <td>
+                                    <asp:TextBox ID="txtComments" runat="server" TextMode="MultiLine" Width="300px" Height="100px"></asp:TextBox>                                
+                                </td>
+                            </tr>
+                       </table>
+                    </td>
+                </tr>
             </table>
                   
         </td>

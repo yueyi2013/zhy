@@ -286,6 +286,26 @@ namespace ZHY.Web
                 return defaultValue;
             }
         }
+
+        /// <summary>
+        /// HTML编码
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public string HtmlDecode(string code)
+        {
+            return Server.HtmlDecode(code);
+        }
+
+        /// <summary>
+        /// HTML编码
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public string HtmlEncode(string code)
+        {
+            return Server.HtmlEncode(code);
+        }
         #endregion
 
         #region 提示信息

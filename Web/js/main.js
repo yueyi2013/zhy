@@ -21,6 +21,13 @@ function GetAllCheckBox(parentItem) {
     }
 }
 
+function copyButton(value) {
+
+    window.clipboardData.setData("Text", value);
+    alert("复制成功！");
+
+ }
+
 var timer;
 function showMessage() {
     var obj = document.getElementById("mydiv");

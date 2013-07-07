@@ -16,6 +16,7 @@ namespace Web.admin.site.ads
             if (!IsPostBack)
             {
                 MstGridViewBind();
+                BindAds();
             }
         }
 
@@ -89,6 +90,16 @@ namespace Web.admin.site.ads
 
             }
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void BindAds() 
+        {
+            ZHY.BLL.Advertisement bll = new ZHY.BLL.Advertisement();
+            this.ddlAd.DataSource = bll.GetList(" Status = 'A'");
+            this.ddlAd.DataBind();
         }
         #endregion
 

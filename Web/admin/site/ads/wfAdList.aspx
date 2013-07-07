@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Main0.Master" AutoEventWireup="true" CodeBehind="wfAdList.aspx.cs" Inherits="Web.admin.site.ads.wfAdList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Main0.Master" AutoEventWireup="true"   CodeBehind="wfAdList.aspx.cs" Inherits="Web.admin.site.ads.wfAdList" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -60,47 +60,52 @@
                                                     <asp:CheckBox ID="chkItem" runat="server" onclick="changecolor(this)" />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:BoundField DataField="AdLogo" HeaderText="广告logo">
-                                                <ItemStyle Width="200px" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="AdName" HeaderText=" 广告名称">
+                                            <asp:ImageField HeaderText="Logo" DataImageUrlField="AdLogo">
+                                                <HeaderStyle Width="100px" HorizontalAlign="Center" />
+                                                <ItemStyle Width="100px" HorizontalAlign="Center" />                                                
+                                            </asp:ImageField>
+                                            <asp:BoundField DataField="AdName" HeaderText=" 名称">
                                                 <ItemStyle Width="100px" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="AdCategoryId" HeaderText="广告分类">
-                                                <ItemStyle Width="200px" />
+                                            <asp:BoundField DataField="AdCategoryId" HeaderText="分类">
+                                                <ItemStyle Width="50px" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="AdBgCode" HeaderText="计费类型">
+                                            <asp:BoundField DataField="AdBgCode" HeaderText="计费">
+                                                <ItemStyle Width="50px" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="AdUnitPrice" HeaderText="单价">
+                                                <ItemStyle Width="50px" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="AdUnit" HeaderText="单位">
+                                                <ItemStyle Width="50px" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="AdBillingCycle" HeaderText="结算">
+                                                <ItemStyle Width="50px" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="AdSource" HeaderText="来源">
                                                 <ItemStyle Width="100px" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="AdUnitPrice" HeaderText="广告单价">
-                                                <ItemStyle Width="100px" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="AdUnit" HeaderText="广告单价">
-                                                <ItemStyle Width="100px" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="AdBillingCycle" HeaderText="广告单价">
-                                                <ItemStyle Width="100px" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="AdSource" HeaderText="广告单价">
-                                                <ItemStyle Width="100px" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="AdCode" HeaderText="广告单价">
-                                                <ItemStyle Width="100px" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="AdDesc" HeaderText="广告单价">
+                                            </asp:BoundField>                                            
+                                            <asp:TemplateField HeaderText = "代码">
+                                                <HeaderStyle Width="30px" HorizontalAlign="Center" />
+                                                <ItemStyle Width="30px" HorizontalAlign="Center" />                                                
+                                                <ItemTemplate>
+                                                    <input type="button" id="copyBtn" value="获取" onclick="copyButton('<%# HtmlDecode(Eval("AdCode").ToString())%>')"/>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField DataField="AdDesc" HeaderText="描述">
                                                 <ItemStyle Width="100px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="Status" HeaderText="状态">
-                                                <ItemStyle Width="100px" />
+                                                <ItemStyle Width="50px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="CreateAt" HeaderText="创建日期">
-                                                <ItemStyle Width="250px" />
+                                                <ItemStyle Width="100px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="CreateBy" HeaderText="创建人">
                                                 <ItemStyle Width="80px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="UpdateDT" HeaderText="更新日期">
-                                                <ItemStyle Width="250px" />
+                                                <ItemStyle Width="100px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="UpdateBy" HeaderText="更新人">
                                                 <ItemStyle Width="80px" />
@@ -160,7 +165,7 @@
                             广告分类：
                         </td>
                         <td height="25" width="*" align="left">                            
-                            <asp:DropDownList ID="ddlAdCategory" runat="server" DataValueField="AdId" DataTextField="AdName">
+                            <asp:DropDownList ID="ddlAdCategory" runat="server" DataValueField="AdCategoryId" DataTextField="AdCategoryName">
                             </asp:DropDownList>
                         </td>
                     </tr>
@@ -174,7 +179,7 @@
                     </tr>
                     <tr>
                         <td height="25" align="right">
-                            广告名：
+                            广告名称：
                         </td>
                         <td height="25" width="*" align="left">
                             <asp:TextBox id="txtAdName" runat="server" Width="300px"></asp:TextBox>
@@ -226,7 +231,7 @@
                             广告代码：
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox id="txtAdCode" runat="server"  Width="300px" TextMode="MultiLine"></asp:TextBox>
+                            <asp:TextBox id="txtAdCode" runat="server"  Width="300px"  TextMode="MultiLine"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>

@@ -218,7 +218,7 @@ namespace Web.admin.site.ads
             model.AdUnitPrice = decimal.Parse(this.txtAdUnitPrice.Text);
             model.AdUnit = this.txtAdUnit.Text;
             model.AdBillingCycle = this.txtAdBillingCycle.Text;
-            model.AdSource = this.txtAdSource.Text;
+            model.AdSource = HtmlEncode(this.txtAdSource.Text);
             model.AdCode = this.txtAdCode.Text;
             model.AdDesc = this.txtAdDesc.Text;
             model.Status = this.rbStatus.SelectedItem.Value;
@@ -247,7 +247,7 @@ namespace Web.admin.site.ads
                 model.AdUnit = this.txtAdUnit.Text;
                 model.AdBillingCycle = this.txtAdBillingCycle.Text;
                 model.AdSource = this.txtAdSource.Text;
-                model.AdCode = this.txtAdCode.Text;
+                model.AdCode = HtmlEncode(this.txtAdCode.Text);
                 model.AdDesc = this.txtAdDesc.Text;
                 model.Status = this.rbStatus.SelectedItem.Value;
                 ZHY.Model.User user = getLoginUser();
@@ -275,6 +275,7 @@ namespace Web.admin.site.ads
         {
             ZHY.BLL.Advertisement bll = new ZHY.BLL.Advertisement();
             ZHY.Model.Advertisement model = bll.GetModel(rssId);
+            this.hfAdId.Value = model.AdId.ToString();
             this.txtAdLogo.Text = model.AdLogo;
             this.txtAdName.Text = model.AdName;
             this.ddlAdCategory.SelectedItem.Value = model.AdCategoryId.ToString();
@@ -283,10 +284,11 @@ namespace Web.admin.site.ads
             this.txtAdUnit.Text = model.AdUnit;
             this.txtAdBillingCycle.Text = model.AdBillingCycle;
             this.txtAdSource.Text = model.AdSource;
-            this.txtAdCode.Text = model.AdCode;
+            this.txtAdCode.Text = HtmlDecode(model.AdCode);
             this.txtAdDesc.Text = model.AdDesc;
             this.rbStatus.SelectedItem.Value = model.Status;            
         }
+        
         #endregion
     }
 }

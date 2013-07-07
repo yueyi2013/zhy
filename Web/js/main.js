@@ -374,3 +374,15 @@ function focusNext(nextName, evt, num, t, lastName) {
     }
     return true;
 }
+
+function selectedMenu(item) {
+
+    var menuValue = document.getElementById("ContentPlaceHolder1_ddlMenuType").value;
+    if (menuValue=="0")
+    {
+        document.getElementById("ContentPlaceHolder1_ddlFun").disabled = true;
+    } else if (menuValue == "1")
+    {
+        document.getElementById("ContentPlaceHolder1_ddlFun").disabled = false;
+    }
+ }

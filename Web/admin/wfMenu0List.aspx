@@ -9,7 +9,7 @@
     <table cellspacing="0" cellpadding="0" border="0" width="100%">
         <tr align="left" valign="top">
             <td align="left" valign="top" width="150px">
-                <asp:TreeView ID="tvMenu" runat="server" OnSelectedNodeChanged="tvMenu_OnSelectedNodeChanged">
+                <asp:TreeView ID="tvMenu" runat="server" ExpandDepth="0" OnSelectedNodeChanged="tvMenu_OnSelectedNodeChanged">
                 </asp:TreeView>
             </td>
             <td align="left" valign="top">
@@ -24,7 +24,7 @@
                                     菜单类型：
                                 </td>
                                 <td align="left">
-                                    <asp:DropDownList ID="ddlMenuType" runat="server">
+                                    <asp:DropDownList ID="ddlMenuType" runat="server" onchange="selectedMenu(this)">
                                         <asp:ListItem Text="一级菜单" Value="0" Selected="True"></asp:ListItem>
                                         <asp:ListItem Text="二级菜单" Value="1"></asp:ListItem>
                                     </asp:DropDownList>

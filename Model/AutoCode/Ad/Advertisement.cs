@@ -19,7 +19,7 @@ namespace ZHY.Model
 		private string _adunit;
 		private string _adbillingcycle;
 		private string _adsource;
-		private string _adcodeid;
+		private string _adcode;
 		private string _addesc;
 		private string _status="A";
 		private DateTime? _createat= DateTime.Now;
@@ -101,10 +101,10 @@ namespace ZHY.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public string AdCodeId
+		public string AdCode
 		{
-			set{ _adcodeid=value;}
-			get{return _adcodeid;}
+			set{ _adcode=value;}
+			get{return _adcode;}
 		}
 		/// <summary>
 		/// 

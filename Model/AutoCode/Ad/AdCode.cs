@@ -14,6 +14,7 @@ namespace ZHY.Model
 		private int? _adid;
 		private string _adcodecont;
 		private string _adcodedesc;
+		private string _addefault="N";
 		private string _status="A";
 		private DateTime? _createat= DateTime.Now;
 		private string _createby="syihy.com";
@@ -50,6 +51,14 @@ namespace ZHY.Model
 		{
 			set{ _adcodedesc=value;}
 			get{return _adcodedesc;}
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		public string AdDefault
+		{
+			set{ _addefault=value;}
+			get{return _addefault;}
 		}
 		/// <summary>
 		/// 

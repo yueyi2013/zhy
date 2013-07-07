@@ -119,6 +119,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Ad\AdBilling.cs" />
+    <Compile Include="Ad\AdCategory.cs" />
+    <Compile Include="Ad\AdCode.cs" />
+    <Compile Include="Ad\Advertisement.cs" />
     <Compile Include="AutoCode\Ad\AdBilling.cs" />
     <Compile Include="AutoCode\Ad\AdCategory.cs" />
     <Compile Include="AutoCode\Ad\AdCode.cs" />

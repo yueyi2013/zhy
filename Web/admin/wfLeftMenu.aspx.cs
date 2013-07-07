@@ -65,7 +65,7 @@ namespace ZHY.Web.admin
         {
             User user = (User)Session["User"];
             ZHY.BLL.Menu bll = new ZHY.BLL.Menu();
-            DataTable dtP = bll.GetList("ParantID=0").Tables[0];
+            DataTable dtP = bll.GetList("ParantID=0 order by MenuOrder").Tables[0];
             DataTable dt = bll.GetList(user.RoleID.Value);
             //循环将父级菜单添加到Accordion控件的标题中
 

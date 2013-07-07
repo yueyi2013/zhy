@@ -85,6 +85,10 @@
     <Content Include="admin\down.html" />
     <Content Include="admin\sitefile\wfSiteFileList.aspx" />
     <Content Include="admin\sitefile\wfSiteFileTypeList.aspx" />
+    <Content Include="admin\site\ads\wfAdBiList.aspx" />
+    <Content Include="admin\site\ads\wfAdCatList.aspx" />
+    <Content Include="admin\site\ads\wfAdCodeList.aspx" />
+    <Content Include="admin\site\ads\wfAdList.aspx" />
     <Content Include="admin\site\ads\wfSiteFlash.aspx" />
     <Content Include="admin\site\ads\wfWebSiteAds.aspx" />
     <Content Include="admin\site\blog\wfArticalTypeList.aspx" />
@@ -449,6 +453,34 @@
     </Compile>
     <Compile Include="admin\sitefile\wfSiteFileTypeList.aspx.designer.cs">
       <DependentUpon>wfSiteFileTypeList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\site\ads\wfAdBiList.aspx.cs">
+      <DependentUpon>wfAdBiList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\site\ads\wfAdBiList.aspx.designer.cs">
+      <DependentUpon>wfAdBiList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\site\ads\wfAdCatList.aspx.cs">
+      <DependentUpon>wfAdCatList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\site\ads\wfAdCatList.aspx.designer.cs">
+      <DependentUpon>wfAdCatList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\site\ads\wfAdCodeList.aspx.cs">
+      <DependentUpon>wfAdCodeList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\site\ads\wfAdCodeList.aspx.designer.cs">
+      <DependentUpon>wfAdCodeList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\site\ads\wfAdList.aspx.cs">
+      <DependentUpon>wfAdList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\site\ads\wfAdList.aspx.designer.cs">
+      <DependentUpon>wfAdList.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\site\ads\wfSiteFlash.aspx.cs">
       <DependentUpon>wfSiteFlash.aspx</DependentUpon>

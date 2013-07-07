@@ -130,11 +130,11 @@ namespace ZHY.Web.admin
         {
             if (this.tvMenu.SelectedNode.Parent == null)
             {
-                this.ddlFun.Enabled = false;
+                //this.ddlFun.Enabled = false;
                 this.ddlMenuType.SelectedValue = "0";
             }
             else {
-                this.ddlFun.Enabled = true;
+                //this.ddlFun.Enabled = true;
                 this.txtMenuOrder.Enabled = true;
                 this.ddlMenuType.SelectedValue = "1";
             }
@@ -170,12 +170,12 @@ namespace ZHY.Web.admin
             this.txtParantID.Text = parantId;
             if (!this.txtParantID.Text.Equals("0"))
             {
-                this.ddlMenuType.SelectedItem.Value = "1";
+                this.ddlMenuType.SelectedItem.Value = "1";                
                 this.ddlMenuType.Enabled = false;
             }
             else {
                 this.ddlMenuType.SelectedItem.Value = "0";
-                this.ddlMenuType.Enabled = false;
+                this.ddlMenuType.Enabled = true;                
             }
         }
     }

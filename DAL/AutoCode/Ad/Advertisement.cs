@@ -37,9 +37,9 @@ namespace ZHY.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into Advertisement(");
-			strSql.Append("AdLogo,AdName,AdCategoryId,AdBgCode,AdUnitPrice,AdUnit,AdBillingCycle,AdSource,AdCodeId,AdDesc,Status,CreateAt,CreateBy,UpdateDT,UpdateBy)");
+			strSql.Append("AdLogo,AdName,AdCategoryId,AdBgCode,AdUnitPrice,AdUnit,AdBillingCycle,AdSource,AdCode,AdDesc,Status,CreateAt,CreateBy,UpdateDT,UpdateBy)");
 			strSql.Append(" values (");
-			strSql.Append("@AdLogo,@AdName,@AdCategoryId,@AdBgCode,@AdUnitPrice,@AdUnit,@AdBillingCycle,@AdSource,@AdCodeId,@AdDesc,@Status,@CreateAt,@CreateBy,@UpdateDT,@UpdateBy)");
+			strSql.Append("@AdLogo,@AdName,@AdCategoryId,@AdBgCode,@AdUnitPrice,@AdUnit,@AdBillingCycle,@AdSource,@AdCode,@AdDesc,@Status,@CreateAt,@CreateBy,@UpdateDT,@UpdateBy)");
 			strSql.Append(";select @@IDENTITY");
 			SqlParameter[] parameters = {
 					new SqlParameter("@AdLogo", SqlDbType.VarChar,512),
@@ -50,7 +50,7 @@ namespace ZHY.DAL
 					new SqlParameter("@AdUnit", SqlDbType.VarChar,32),
 					new SqlParameter("@AdBillingCycle", SqlDbType.VarChar,64),
 					new SqlParameter("@AdSource", SqlDbType.VarChar,128),
-					new SqlParameter("@AdCodeId", SqlDbType.VarChar,1024),
+					new SqlParameter("@AdCode", SqlDbType.VarChar,1024),
 					new SqlParameter("@AdDesc", SqlDbType.VarChar,512),
 					new SqlParameter("@Status", SqlDbType.Char,1),
 					new SqlParameter("@CreateAt", SqlDbType.DateTime),
@@ -65,7 +65,7 @@ namespace ZHY.DAL
 			parameters[5].Value = model.AdUnit;
 			parameters[6].Value = model.AdBillingCycle;
 			parameters[7].Value = model.AdSource;
-			parameters[8].Value = model.AdCodeId;
+			parameters[8].Value = model.AdCode;
 			parameters[9].Value = model.AdDesc;
 			parameters[10].Value = model.Status;
 			parameters[11].Value = model.CreateAt;
@@ -98,7 +98,7 @@ namespace ZHY.DAL
 			strSql.Append("AdUnit=@AdUnit,");
 			strSql.Append("AdBillingCycle=@AdBillingCycle,");
 			strSql.Append("AdSource=@AdSource,");
-			strSql.Append("AdCodeId=@AdCodeId,");
+			strSql.Append("AdCode=@AdCode,");
 			strSql.Append("AdDesc=@AdDesc,");
 			strSql.Append("Status=@Status,");
 			strSql.Append("CreateAt=@CreateAt,");
@@ -115,7 +115,7 @@ namespace ZHY.DAL
 					new SqlParameter("@AdUnit", SqlDbType.VarChar,32),
 					new SqlParameter("@AdBillingCycle", SqlDbType.VarChar,64),
 					new SqlParameter("@AdSource", SqlDbType.VarChar,128),
-					new SqlParameter("@AdCodeId", SqlDbType.VarChar,1024),
+					new SqlParameter("@AdCode", SqlDbType.VarChar,1024),
 					new SqlParameter("@AdDesc", SqlDbType.VarChar,512),
 					new SqlParameter("@Status", SqlDbType.Char,1),
 					new SqlParameter("@CreateAt", SqlDbType.DateTime),
@@ -131,7 +131,7 @@ namespace ZHY.DAL
 			parameters[5].Value = model.AdUnit;
 			parameters[6].Value = model.AdBillingCycle;
 			parameters[7].Value = model.AdSource;
-			parameters[8].Value = model.AdCodeId;
+			parameters[8].Value = model.AdCode;
 			parameters[9].Value = model.AdDesc;
 			parameters[10].Value = model.Status;
 			parameters[11].Value = model.CreateAt;
@@ -202,7 +202,7 @@ namespace ZHY.DAL
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select  top 1 AdId,AdLogo,AdName,AdCategoryId,AdBgCode,AdUnitPrice,AdUnit,AdBillingCycle,AdSource,AdCodeId,AdDesc,Status,CreateAt,CreateBy,UpdateDT,UpdateBy from Advertisement ");
+			strSql.Append("select  top 1 AdId,AdLogo,AdName,AdCategoryId,AdBgCode,AdUnitPrice,AdUnit,AdBillingCycle,AdSource,AdCode,AdDesc,Status,CreateAt,CreateBy,UpdateDT,UpdateBy from Advertisement ");
 			strSql.Append(" where AdId=@AdId");
 			SqlParameter[] parameters = {
 					new SqlParameter("@AdId", SqlDbType.Int,4)
@@ -266,9 +266,9 @@ namespace ZHY.DAL
 				{
 					model.AdSource=row["AdSource"].ToString();
 				}
-				if(row["AdCodeId"]!=null)
+				if(row["AdCode"]!=null)
 				{
-					model.AdCodeId=row["AdCodeId"].ToString();
+					model.AdCode=row["AdCode"].ToString();
 				}
 				if(row["AdDesc"]!=null)
 				{
@@ -304,7 +304,7 @@ namespace ZHY.DAL
 		public DataSet GetList(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select AdId,AdLogo,AdName,AdCategoryId,AdBgCode,AdUnitPrice,AdUnit,AdBillingCycle,AdSource,AdCodeId,AdDesc,Status,CreateAt,CreateBy,UpdateDT,UpdateBy ");
+			strSql.Append("select AdId,AdLogo,AdName,AdCategoryId,AdBgCode,AdUnitPrice,AdUnit,AdBillingCycle,AdSource,AdCode,AdDesc,Status,CreateAt,CreateBy,UpdateDT,UpdateBy ");
 			strSql.Append(" FROM Advertisement ");
 			if(strWhere.Trim()!="")
 			{
@@ -324,7 +324,7 @@ namespace ZHY.DAL
 			{
 				strSql.Append(" top "+Top.ToString());
 			}
-			strSql.Append(" AdId,AdLogo,AdName,AdCategoryId,AdBgCode,AdUnitPrice,AdUnit,AdBillingCycle,AdSource,AdCodeId,AdDesc,Status,CreateAt,CreateBy,UpdateDT,UpdateBy ");
+			strSql.Append(" AdId,AdLogo,AdName,AdCategoryId,AdBgCode,AdUnitPrice,AdUnit,AdBillingCycle,AdSource,AdCode,AdDesc,Status,CreateAt,CreateBy,UpdateDT,UpdateBy ");
 			strSql.Append(" FROM Advertisement ");
 			if(strWhere.Trim()!="")
 			{

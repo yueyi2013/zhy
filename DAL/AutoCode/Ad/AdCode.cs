@@ -37,14 +37,15 @@ namespace ZHY.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into AdCode(");
-			strSql.Append("AdId,AdCodeCont,AdCodeDesc,Status,CreateAt,CreateBy,UpdateDT,UpdateBy)");
+			strSql.Append("AdId,AdCodeCont,AdCodeDesc,AdDefault,Status,CreateAt,CreateBy,UpdateDT,UpdateBy)");
 			strSql.Append(" values (");
-			strSql.Append("@AdId,@AdCodeCont,@AdCodeDesc,@Status,@CreateAt,@CreateBy,@UpdateDT,@UpdateBy)");
+			strSql.Append("@AdId,@AdCodeCont,@AdCodeDesc,@AdDefault,@Status,@CreateAt,@CreateBy,@UpdateDT,@UpdateBy)");
 			strSql.Append(";select @@IDENTITY");
 			SqlParameter[] parameters = {
 					new SqlParameter("@AdId", SqlDbType.Int,4),
 					new SqlParameter("@AdCodeCont", SqlDbType.VarChar,1024),
 					new SqlParameter("@AdCodeDesc", SqlDbType.VarChar,128),
+					new SqlParameter("@AdDefault", SqlDbType.Char,1),
 					new SqlParameter("@Status", SqlDbType.Char,1),
 					new SqlParameter("@CreateAt", SqlDbType.DateTime),
 					new SqlParameter("@CreateBy", SqlDbType.VarChar,64),
@@ -53,11 +54,12 @@ namespace ZHY.DAL
 			parameters[0].Value = model.AdId;
 			parameters[1].Value = model.AdCodeCont;
 			parameters[2].Value = model.AdCodeDesc;
-			parameters[3].Value = model.Status;
-			parameters[4].Value = model.CreateAt;
-			parameters[5].Value = model.CreateBy;
-			parameters[6].Value = model.UpdateDT;
-			parameters[7].Value = model.UpdateBy;
+			parameters[3].Value = model.AdDefault;
+			parameters[4].Value = model.Status;
+			parameters[5].Value = model.CreateAt;
+			parameters[6].Value = model.CreateBy;
+			parameters[7].Value = model.UpdateDT;
+			parameters[8].Value = model.UpdateBy;
 
 			object obj = DbHelperSQL.GetSingle(strSql.ToString(),parameters);
 			if (obj == null)
@@ -79,6 +81,7 @@ namespace ZHY.DAL
 			strSql.Append("AdId=@AdId,");
 			strSql.Append("AdCodeCont=@AdCodeCont,");
 			strSql.Append("AdCodeDesc=@AdCodeDesc,");
+			strSql.Append("AdDefault=@AdDefault,");
 			strSql.Append("Status=@Status,");
 			strSql.Append("CreateAt=@CreateAt,");
 			strSql.Append("CreateBy=@CreateBy,");
@@ -89,6 +92,7 @@ namespace ZHY.DAL
 					new SqlParameter("@AdId", SqlDbType.Int,4),
 					new SqlParameter("@AdCodeCont", SqlDbType.VarChar,1024),
 					new SqlParameter("@AdCodeDesc", SqlDbType.VarChar,128),
+					new SqlParameter("@AdDefault", SqlDbType.Char,1),
 					new SqlParameter("@Status", SqlDbType.Char,1),
 					new SqlParameter("@CreateAt", SqlDbType.DateTime),
 					new SqlParameter("@CreateBy", SqlDbType.VarChar,64),
@@ -98,12 +102,13 @@ namespace ZHY.DAL
 			parameters[0].Value = model.AdId;
 			parameters[1].Value = model.AdCodeCont;
 			parameters[2].Value = model.AdCodeDesc;
-			parameters[3].Value = model.Status;
-			parameters[4].Value = model.CreateAt;
-			parameters[5].Value = model.CreateBy;
-			parameters[6].Value = model.UpdateDT;
-			parameters[7].Value = model.UpdateBy;
-			parameters[8].Value = model.AdCodeId;
+			parameters[3].Value = model.AdDefault;
+			parameters[4].Value = model.Status;
+			parameters[5].Value = model.CreateAt;
+			parameters[6].Value = model.CreateBy;
+			parameters[7].Value = model.UpdateDT;
+			parameters[8].Value = model.UpdateBy;
+			parameters[9].Value = model.AdCodeId;
 
 			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
 			if (rows > 0)
@@ -167,7 +172,7 @@ namespace ZHY.DAL
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select  top 1 AdCodeId,AdId,AdCodeCont,AdCodeDesc,Status,CreateAt,CreateBy,UpdateDT,UpdateBy from AdCode ");
+			strSql.Append("select  top 1 AdCodeId,AdId,AdCodeCont,AdCodeDesc,AdDefault,Status,CreateAt,CreateBy,UpdateDT,UpdateBy from AdCode ");
 			strSql.Append(" where AdCodeId=@AdCodeId");
 			SqlParameter[] parameters = {
 					new SqlParameter("@AdCodeId", SqlDbType.Int,4)
@@ -211,6 +216,10 @@ namespace ZHY.DAL
 				{
 					model.AdCodeDesc=row["AdCodeDesc"].ToString();
 				}
+				if(row["AdDefault"]!=null)
+				{
+					model.AdDefault=row["AdDefault"].ToString();
+				}
 				if(row["Status"]!=null)
 				{
 					model.Status=row["Status"].ToString();
@@ -241,7 +250,7 @@ namespace ZHY.DAL
 		public DataSet GetList(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select AdCodeId,AdId,AdCodeCont,AdCodeDesc,Status,CreateAt,CreateBy,UpdateDT,UpdateBy ");
+			strSql.Append("select AdCodeId,AdId,AdCodeCont,AdCodeDesc,AdDefault,Status,CreateAt,CreateBy,UpdateDT,UpdateBy ");
 			strSql.Append(" FROM AdCode ");
 			if(strWhere.Trim()!="")
 			{
@@ -261,7 +270,7 @@ namespace ZHY.DAL
 			{
 				strSql.Append(" top "+Top.ToString());
 			}
-			strSql.Append(" AdCodeId,AdId,AdCodeCont,AdCodeDesc,Status,CreateAt,CreateBy,UpdateDT,UpdateBy ");
+			strSql.Append(" AdCodeId,AdId,AdCodeCont,AdCodeDesc,AdDefault,Status,CreateAt,CreateBy,UpdateDT,UpdateBy ");
 			strSql.Append(" FROM AdCode ");
 			if(strWhere.Trim()!="")
 			{

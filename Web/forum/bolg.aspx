@@ -8,11 +8,11 @@
 <table cellpadding="0" cellspacing="0" width="100%">
 <tr>
 <!--分类-->
-<td style="width:200px; text-align:left; vertical-align:top">
+<td style="width:150px; text-align:left; vertical-align:top">
 
     <asp:TreeView ID="tvBolgCat" runat="server" 
-                    onselectednodechanged="tvBolgCat_SelectedNodeChanged" >
-                </asp:TreeView>
+                 onselectednodechanged="tvBolgCat_SelectedNodeChanged" >
+     </asp:TreeView>
 </td>
 <!--博客列表-->
 <td>

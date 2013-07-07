@@ -60,7 +60,7 @@
                                                     <asp:CheckBox ID="chkItem" runat="server" onclick="changecolor(this)" />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:ImageField HeaderText="Logo" DataImageUrlField="AdLogo">
+                                            <asp:ImageField HeaderText="Logo" DataImageUrlField="AdLogo" DataAlternateTextField ="AdName">
                                                 <HeaderStyle Width="100px" HorizontalAlign="Center" />
                                                 <ItemStyle Width="100px" HorizontalAlign="Center" />                                                
                                             </asp:ImageField>

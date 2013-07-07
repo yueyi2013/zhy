@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using ZHY.Web;
+using ZHY.Common;
 
 namespace Web.forum
 {
@@ -87,13 +88,27 @@ namespace Web.forum
         }
 
         /// <summary>
-        /// 标题
+        /// 截取新闻内容
         /// </summary>
-        /// <param name="title"></param>
+        /// <param name="con"></param>
         /// <returns></returns>
-        protected string HtmlDecode(string title)
+        public string GetNewsContent(string con) 
         {
-            return Server.HtmlDecode(title);
+            if (string.IsNullOrEmpty(con))
+            {
+                return "";
+            }
+            else {
+                string newCont = HtmlPaserUtil.ParseTags(HttpUtility.HtmlDecode(CompressionUtil.Decompress(con, "gb2312")));
+                if (!string.IsNullOrEmpty(newCont) && newCont.Length > 400)
+                {
+                    return newCont.Substring(0, 400)+"......";
+                }
+                else {
+                    return newCont;
+                }
+            }
+            
         }
     }
 }

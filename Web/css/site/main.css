@@ -227,3 +227,15 @@ a.btn_logintwo:link,a.btn_logintwo:visited,a.btn_logintwo:hover, a.btn_logintwo:
 .login_cont03 p.conttwo span.center{text-align:center;}
 .login_cont03 p.conttwo span.content{width:100%; padding:0; font-weight:normal; font-size:14px; text-align:center;}
 .login_cont03 p.conttwo a:hover{text-decoration:underline;}
+
+.indexTopAd
+{ 
+    top:0px;
+    position:fixed;
+    _position:absolute;
+    _bottom:auto;
+    _margin-top:0px;
+    _top:expression(eval(document.documentElement.scrollTop)); 
+    width:100%;
+    background:url("../../images/site/bg.gif");
+}

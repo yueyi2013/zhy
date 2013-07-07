@@ -2,27 +2,27 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <link rel="stylesheet" media="screen,projection" type="text/css" href="../css/site/main.css" />
-
+     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cpBody" runat="server">
     <table cellpadding="0" cellspacing="0" width="100%">
         <tr align="left" valign="top">
-            <td style="width:200px">
+            <td style="width:150px">
             <fieldset>
                     <legend>新闻分类</legend>
-                <asp:TreeView ID="tvNews" runat="server" 
-                    onselectednodechanged="tvNews_SelectedNodeChanged" >
-                </asp:TreeView>
+                        <asp:TreeView ID="tvNews" runat="server" 
+                            onselectednodechanged="tvNews_SelectedNodeChanged" >
+                        </asp:TreeView>                        
             </fieldset>
             </td>
             <td align="left" valign="top">
                 <fieldset>
                     <legend>新闻列表</legend>
-                <asp:UpdatePanel ID="MyUpdatePanelBody" runat="server" UpdateMode="Conditional">
+                    <asp:UpdatePanel ID="MyUpdatePanelBody" runat="server" UpdateMode="Conditional">
                     <Triggers>                        
                         <asp:AsyncPostBackTrigger ControlID="tvNews" EventName="SelectedNodeChanged" />                        
                     </Triggers>
-                <ContentTemplate>         
+                    <ContentTemplate>         
                     <asp:Label ID="lblCategory" runat="server"></asp:Label>           
                     <asp:DataList ID="dlNewsList" runat="server" 
                         ItemStyle-VerticalAlign="Top" ItemStyle-HorizontalAlign="Left" 
@@ -32,9 +32,10 @@
                         </HeaderTemplate>
                         <ItemTemplate>
                             <li>
-                                <a target="_blank" href="newsdetails.aspx?rciid=<%# Eval("RCItemId")%>" title='<%# DataBinder.Eval(Container, "DataItem.RCItemTitle")%>'><%# HtmlDecode(DataBinder.Eval(Container, "DataItem.RCItemTitle").ToString())%></a>
-                                &nbsp;&nbsp;&nbsp;发布日期：<%# Eval("RCItemPubDate")%>
-                            </li>       
+                                <p style=" font-size:larger; font-weight:bold"><a target="_blank" href="newsdetails.aspx?rciid=<%# Eval("RCItemId")%>" title='<%# DataBinder.Eval(Container, "DataItem.RCItemTitle")%>'> <%# HtmlDecode(DataBinder.Eval(Container, "DataItem.RCItemTitle").ToString())%></a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <font  style="font-size:small; color:Blue; text-align:right">发布日期：<%# Eval("RCItemPubDate")%></font></p><br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<%# GetNewsContent(DataBinder.Eval(Container, "DataItem.RCItemDescription").ToString())%><hr style="width:100%"/></li>       
                         </ItemTemplate>
                         <FooterTemplate></ul></FooterTemplate>
                     </asp:DataList>                    
@@ -68,19 +69,5 @@
             </td>
         </tr>
     </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </asp:Content>

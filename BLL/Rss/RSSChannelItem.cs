@@ -78,11 +78,15 @@ namespace ZHY.BLL
                 ZHY.BLL.SystemConfig bll = new ZHY.BLL.SystemConfig();
                 ZHY.Model.SystemConfig model = bll.GetModel(Constants.SYSTEM_CONFIG_ATT_NAME_NEWS_PURGE_DAYS, Constants.SYSTEM_CONFIG_ATT_GROUP_NEWS);
                 if (model != null)
-                    days = int.Parse(model.SCAttrValue);                
+                    days = int.Parse(model.SCAttrValue);
+                if (days>=0)
+                {
+                    days = Constants.DEFAULT_PURGE_NEWS_DAYS;
+                }
             }
-            catch { 
-                
-            
+            catch {
+
+                days = Constants.DEFAULT_PURGE_NEWS_DAYS;
             }
 
             return dal.DeleteExpireNews(days);

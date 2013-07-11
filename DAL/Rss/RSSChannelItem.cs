@@ -22,7 +22,7 @@ namespace ZHY.DAL
             strSql.Append("delete from RSSChannelItem ");
             strSql.Append(" where NavUpdateDT<@NavUpdateDT");
             SqlParameter[] parameters = {
-					new SqlParameter("@NavUpdateDT", SqlDbType.Int,4)
+					new SqlParameter("@NavUpdateDT", SqlDbType.DateTime)
 			};
             parameters[0].Value = DateTime.Now.AddDays(days);
 

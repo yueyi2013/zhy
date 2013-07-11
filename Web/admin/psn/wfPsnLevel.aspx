@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Main.Master" AutoEventWireup="true"
-    CodeBehind="wfMemberList.aspx.cs" Inherits="ZHY.Web.admin.wfMemberList" %>
-
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Main0.Master" AutoEventWireup="true" CodeBehind="wfPsnLevel.aspx.cs" Inherits="Web.admin.psn.wfPsnLevel" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<fieldset style="width: 900px">
+    <legend>人员等级</legend>
     <asp:UpdatePanel ID="MyUpdatePanelHead" runat="server" UpdateMode="Conditional">
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="btnSave" EventName="Click" />
@@ -23,7 +23,8 @@
                 <table cellspacing="0" cellpadding="0" width="100%">
                     <tr>
                         <td>
-                            <asp:Button ID="btnAdd" runat="server" Text="增加" CssClass="buttonCss" CausesValidation="false" />
+                            <asp:Button ID="btnAdd" runat="server" Text="增加" CssClass="buttonCss" 
+                                CausesValidation="false"/>
                             <asp:Button ID="btnModify" runat="server" Text="修改" CssClass="buttonCss" CausesValidation="false"
                                 OnClick="btnModify_Click" Enabled="false" />
                             <asp:Button ID="btnDelete" runat="server" Text="批量删除" OnClientClick="return Confirm()"
@@ -45,58 +46,72 @@
                                 </Triggers>
                                 <ContentTemplate>
                                     <asp:GridView ID="MstGridView" runat="server" AutoGenerateColumns="False" Width="98%"
-                                        AllowPaging="false" DataKeyNames="MemID" HeaderStyle-CssClass="MstGridViewHeaderCss" OnRowCommand="MstGridView_RowCommand"
-                                        HeaderStyle-HorizontalAlign="Center">
+                                        AllowPaging="false" DataKeyNames="AdId" OnRowCommand="MstGridView_RowCommand"
+                                        HeaderStyle-HorizontalAlign="Center" HeaderStyle-CssClass="MstGridViewHeaderCss" OnRowDataBound="MstGridView_RowDataBound">
                                         <Columns>
                                             <asp:TemplateField>
                                                 <HeaderStyle Width="30px" HorizontalAlign="Center" />
                                                 <ItemStyle Width="30px" HorizontalAlign="Center" />
                                                 <HeaderTemplate>
-                                                    <input id="btnSelectAll" style="cursor: hand" onclick="GetAllCheckBox(ctl00_ContentPlaceHolder1_MstGridView_ctl01_btnSelectAll)"
+                                                    <input id="btnSelectAll" style="cursor: hand" onclick="GetAllCheckBox(ctl00$ContentPlaceHolder1$MstGridView$ctl01$btnSelectAll)"
                                                         type="checkbox" runat="server" />
                                                 </HeaderTemplate>
                                                 <ItemTemplate>
                                                     <asp:CheckBox ID="chkItem" runat="server" onclick="changecolor(this)" />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:BoundField DataField="MemAccount" HeaderText="会员帐号">
-                                                <ItemStyle Width="60px" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="LevelID" HeaderText="会员等级">
-                                                <ItemStyle Width="50px" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="MemRealName" HeaderText="真实姓名">
+                                            <asp:ImageField HeaderText="Logo" DataImageUrlField="AdLogo" DataAlternateTextField ="AdName">
+                                                <HeaderStyle Width="100px" HorizontalAlign="Center" />
+                                                <ItemStyle Width="100px" HorizontalAlign="Center" />                                                
+                                            </asp:ImageField>
+                                            <asp:BoundField DataField="AdName" HeaderText=" 名称">
                                                 <ItemStyle Width="100px" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="MemMobile" HeaderText="手机">
+                                            <asp:BoundField DataField="AdCategoryId" HeaderText="分类">
+                                                <ItemStyle Width="50px" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="AdBgCode" HeaderText="计费">
+                                                <ItemStyle Width="50px" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="AdUnitPrice" HeaderText="单价">
+                                                <ItemStyle Width="50px" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="AdUnit" HeaderText="单位">
+                                                <ItemStyle Width="50px" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="AdBillingCycle" HeaderText="结算">
+                                                <ItemStyle Width="50px" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="AdSource" HeaderText="来源">
+                                                <ItemStyle Width="100px" />
+                                            </asp:BoundField>                                            
+                                            <asp:TemplateField HeaderText = "代码">
+                                                <HeaderStyle Width="30px" HorizontalAlign="Center" />
+                                                <ItemStyle Width="30px" HorizontalAlign="Center" />                                                
+                                                <ItemTemplate>
+                                                    <input type="button" id="copyBtn" value="获取" onclick="copyButton('<%# HtmlDecode(Eval("AdCode").ToString())%>')"/>
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                            <asp:BoundField DataField="AdDesc" HeaderText="描述">
                                                 <ItemStyle Width="100px" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="MemShotNum" HeaderText="虚拟号">
-                                                <ItemStyle Width="50px" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="MemUnitTel" HeaderText="单位电话">
-                                                <ItemStyle Width="50px" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="MemMedium" HeaderText="中介名称">
-                                                <ItemStyle Width="200px" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="MemStatus" HeaderText="会员状态">
+                                            <asp:BoundField DataField="Status" HeaderText="状态">
                                                 <ItemStyle Width="50px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="CreateAt" HeaderText="创建日期">
-                                                <ItemStyle Width="250px" />
+                                                <ItemStyle Width="100px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="CreateBy" HeaderText="创建人">
-                                                <ItemStyle Width="150px" />
+                                                <ItemStyle Width="80px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="UpdateDT" HeaderText="更新日期">
-                                                <ItemStyle Width="250px" />
+                                                <ItemStyle Width="100px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="UpdateBy" HeaderText="更新人">
-                                                <ItemStyle Width="150px" />
+                                                <ItemStyle Width="80px" />
                                             </asp:BoundField>
                                         </Columns>
-                                    </asp:GridView>                                    
+                                    </asp:GridView>                                   
                                     当前页索引：<asp:Label ID="lblPageIndex0" runat="server" ForeColor="Red"></asp:Label>/
                                     总页数：<asp:Label ID="lblPageAll0" runat="server" ForeColor="Red"></asp:Label>
                                     &nbsp;&nbsp;&nbsp;&nbsp; 每页:
@@ -128,7 +143,7 @@
         </tr>
     </table>
     <%--新增弹出框--%>
-    <asp:Panel ID="PanelBody" runat="server" Style="width: 350px; display: none;" CssClass="modalPopup">
+    <asp:Panel ID="PanelBody" runat="server" Style="width: 400px; display: none;" CssClass="modalPopup">
         <asp:UpdatePanel ID="MyUpdatePanelPanelDrag" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <asp:Panel ID="PanelDrag" runat="server" CssClass="modalDragPopup">
@@ -146,46 +161,95 @@
             <ContentTemplate>
                 <table cellspacing="0" cellpadding="0" width="100%" border="0">
                     <tr>
-                        <td height="25" width="30%" align="right">
-                            帐户名 ：
+                        <td height="25" align="right">
+                            广告分类：
                         </td>
-                        <td height="25" width="*" align="left">
-                            <asp:TextBox ID="txtMemAccount" runat="server" Width="200px"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td height="25" width="30%" align="right">
-                            密码 ：
-                        </td>
-                        <td height="25" width="*" align="left">
-                            <asp:TextBox ID="txtMemPsw" runat="server" Width="200px"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td height="25" width="30%" align="right">
-                            等级 ：
-                        </td>
-                        <td height="25" width="*" align="left">
-                            <asp:DropDownList ID="ddlPsnLevel" runat="server" DataTextField="" DataValueField="">
+                        <td height="25" width="*" align="left">                            
+                            <asp:DropDownList ID="ddlAdCategory" runat="server" DataValueField="AdCategoryId" DataTextField="AdCategoryName">
                             </asp:DropDownList>
                         </td>
                     </tr>
                     <tr>
-                        <td height="25" width="30%" align="right">
-                            验证邮箱 ：
+                        <td height="25" width="20%" align="right">
+                            广告logo：
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox ID="txtMemMail" runat="server" Width="200px"></asp:TextBox>
+                            <asp:TextBox id="txtAdLogo" runat="server" Width="300px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <td height="25" width="30%" align="right">
-                            会员状态 ：<asp:HiddenField ID="hfMemID" runat="server" Value="0" />
+                        <td height="25" align="right">
+                            广告名称：
+                        </td>
+                        <td height="25" width="*" align="left">
+                            <asp:TextBox id="txtAdName" runat="server" Width="300px"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="25" align="right">
+                            计费类型：
+                        </td>
+                        <td height="25" width="*" align="left">
+                            <asp:TextBox id="txtAdBgCode" runat="server" Width="300px"></asp:TextBox>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td height="25" align="right">
+                            广告单价： <asp:HiddenField ID="hfAdId" runat="server" Value="0"/>
+                        </td>
+                        <td height="25" width="*" align="left">
+                            <asp:TextBox id="txtAdUnitPrice" runat="server" Width="300px"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="25" align="right">
+                            计价单位：
+                        </td>
+                        <td height="25" width="*" align="left">
+                            <asp:TextBox id="txtAdUnit" runat="server" Width="300px"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="25" align="right">
+                            结算周期：
+                        </td>
+                        <td height="25" width="*" align="left">
+                            <asp:TextBox id="txtAdBillingCycle" runat="server" Width="300px"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="25" align="right">
+                            广告源：
+                        </td>
+                        <td height="25" width="*" align="left">
+                            <asp:TextBox id="txtAdSource" runat="server" Width="300px"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="25" align="right">
+                            广告代码：
+                        </td>
+                        <td height="25" width="*" align="left">
+                            <asp:TextBox id="txtAdCode" runat="server"  Width="300px"  TextMode="MultiLine"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="25" align="right">
+                            广告描述：
+                        </td>
+                        <td height="25" width="*" align="left">
+                            <asp:TextBox id="txtAdDesc" runat="server" Width="300px" TextMode="MultiLine"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="25" align="right">
+                            状态：
                         </td>
                         <td height="25" width="*" align="left">
                             <asp:RadioButtonList ID="rbStatus" runat="server" RepeatDirection="Horizontal">
-                                <asp:ListItem Value="A" Text="生效" Selected="True"></asp:ListItem>
-                                <asp:ListItem Value="I" Text="不生效"></asp:ListItem>
+                                <asp:ListItem Selected="True" Value="A" Text="生效"></asp:ListItem>
+                                <asp:ListItem Value="N" Text="不生效"></asp:ListItem>
                             </asp:RadioButtonList>
                         </td>
                     </tr>
@@ -200,4 +264,8 @@
                 CssClass="buttonCss" CausesValidation="false" />&nbsp;&nbsp;
         </div>
     </asp:Panel>
+    </fieldset>
+
+
+
 </asp:Content>

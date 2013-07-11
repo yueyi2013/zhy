@@ -1,4 +1,4 @@
-/****** Object:  Table [dbo].[Members]    Script Date: 06/24/2013 20:02:55 ******/
+/****** Object:  Table [dbo].[Members]    Script Date: 07/11/2013 21:37:24 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -39,6 +39,9 @@ GO
 ALTER TABLE [dbo].[Members] ADD  DEFAULT ('123456789') FOR [MemPsw]
 GO
 
+ALTER TABLE [dbo].[Members] ADD  CONSTRAINT [DF_Members_PsnLevelId]  DEFAULT ((0)) FOR [PsnLevelId]
+GO
+
 ALTER TABLE [dbo].[Members] ADD  DEFAULT ('I') FOR [MemStatus]
 GO
 
@@ -47,4 +50,3 @@ GO
 
 ALTER TABLE [dbo].[Members] ADD  DEFAULT (getdate()) FOR [UpdateDT]
 GO
-

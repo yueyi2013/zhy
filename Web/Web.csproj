@@ -83,6 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="admin\down.html" />
+    <Content Include="admin\psn\wfPsnLevel.aspx" />
     <Content Include="admin\sitefile\wfSiteFileList.aspx" />
     <Content Include="admin\sitefile\wfSiteFileTypeList.aspx" />
     <Content Include="admin\site\ads\wfAdBiList.aspx" />
@@ -131,6 +132,7 @@
     <Content Include="forum\bolgdetails.aspx" />
     <Content Include="forum\changeemail.aspx" />
     <Content Include="forum\contactus.aspx" />
+    <Content Include="forum\download.aspx" />
     <Content Include="forum\food.aspx" />
     <Content Include="forum\help.aspx" />
     <Content Include="forum\mem\membercenter.aspx" />
@@ -440,6 +442,13 @@
     <Compile Include="admin\Main.Master.designer.cs">
       <DependentUpon>Main.Master</DependentUpon>
     </Compile>
+    <Compile Include="admin\psn\wfPsnLevel.aspx.cs">
+      <DependentUpon>wfPsnLevel.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\psn\wfPsnLevel.aspx.designer.cs">
+      <DependentUpon>wfPsnLevel.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\sitefile\wfSiteFileList.aspx.cs">
       <DependentUpon>wfSiteFileList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -720,13 +729,6 @@
     <Compile Include="admin\wfLevelList.aspx.designer.cs">
       <DependentUpon>wfLevelList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="admin\wfMemberList.aspx.cs">
-      <DependentUpon>wfMemberList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="admin\wfMemberList.aspx.designer.cs">
-      <DependentUpon>wfMemberList.aspx</DependentUpon>
-    </Compile>
     <Compile Include="admin\wfMenu0List.aspx.cs">
       <DependentUpon>wfMenu0List.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -871,6 +873,13 @@
     <Compile Include="forum\contactus.aspx.designer.cs">
       <DependentUpon>contactus.aspx</DependentUpon>
     </Compile>
+    <Compile Include="forum\download.aspx.cs">
+      <DependentUpon>download.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forum\download.aspx.designer.cs">
+      <DependentUpon>download.aspx</DependentUpon>
+    </Compile>
     <Compile Include="forum\food.aspx.cs">
       <DependentUpon>food.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1012,7 +1021,6 @@
     <Content Include="admin\wfInputFL.aspx" />
     <Content Include="admin\wfLanMuList.aspx" />
     <Content Include="admin\wfLevelList.aspx" />
-    <Content Include="admin\wfMemberList.aspx" />
     <Content Include="admin\wfMenu0List.aspx" />
     <Content Include="admin\wfProTypeList.aspx" />
     <Content Include="admin\wfFunctionList.aspx" />

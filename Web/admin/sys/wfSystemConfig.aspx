@@ -67,10 +67,10 @@
                                                 <ItemStyle Width="100px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="SCAttrValue" HeaderText="属性值">
-                                                <ItemStyle Width="100px" />
+                                                <ItemStyle Width="80px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="SCAttrValue2" HeaderText="属性值2">
-                                                <ItemStyle Width="100px" />
+                                                <ItemStyle Width="120px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="SCAttrType" HeaderText="类型">
                                                 <ItemStyle Width="100px" />

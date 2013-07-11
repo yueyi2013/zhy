@@ -15,6 +15,7 @@ namespace ZHY.Model
 		private string _psnlevelcode;
 		private string _psnlevelname;
 		private string _psnleveldesc;
+		private string _status="A";
 		private DateTime? _createat= DateTime.Now;
 		private string _createby="syihy.com";
 		private DateTime? _updatedt= DateTime.Now;
@@ -58,6 +59,14 @@ namespace ZHY.Model
 		{
 			set{ _psnleveldesc=value;}
 			get{return _psnleveldesc;}
+		}
+		/// <summary>
+		/// 
+		/// </summary>
+		public string Status
+		{
+			set{ _status=value;}
+			get{return _status;}
 		}
 		/// <summary>
 		/// 

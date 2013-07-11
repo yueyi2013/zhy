@@ -3,6 +3,8 @@ using System.Data;
 using System.Collections.Generic;
 using Maticsoft.Common;
 using ZHY.Model;
+using ZHY.Common;
+
 namespace ZHY.BLL
 {
 	/// <summary>
@@ -62,6 +64,29 @@ namespace ZHY.BLL
             return this.DataTableToList(this.GetList(tops, "", "NavUpdateDT desc").Tables[0]);
         }
 
+
+        /// <summary>
+        /// 清理过期的新闻
+        /// </summary>
+        /// <param name="days"></param>
+        /// <returns></returns>
+        public bool DeleteExpireNews()
+        {
+            int days = Constants.DEFAULT_PURGE_NEWS_DAYS;
+            try
+            {
+                ZHY.BLL.SystemConfig bll = new ZHY.BLL.SystemConfig();
+                ZHY.Model.SystemConfig model = bll.GetModel(Constants.SYSTEM_CONFIG_ATT_NAME_NEWS_PURGE_DAYS, Constants.SYSTEM_CONFIG_ATT_GROUP_NEWS);
+                if (model != null)
+                    days = int.Parse(model.SCAttrValue);                
+            }
+            catch { 
+                
+            
+            }
+
+            return dal.DeleteExpireNews(days);
+        }
         #endregion
 
 	}

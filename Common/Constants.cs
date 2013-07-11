@@ -16,5 +16,7 @@ namespace ZHY.Common
         public static string SYSTEM_CONFIG_ATT_NAME_MAIL_RECEIVER_DEFAULT = "709757455@qq.com";
         public static string SYSTEM_CONFIG_ATT_NAME_MAIL_SEND_SUBJECT = "[SYIHY.COM]RSS JOB 提醒邮件";
         public static string SYSTEM_CONFIG_ATT_NAME_MAIL_SEND_COMP_SUBJECT = "[SYIHY.COM]RSS JOB 提醒邮件--压缩/解压后的内容";
+        public static string SYSTEM_CONFIG_ATT_NAME_NEWS_PURGE_DAYS = "PURGE_DAYS";
+        public static int DEFAULT_PURGE_NEWS_DAYS = -7;
     }
 }

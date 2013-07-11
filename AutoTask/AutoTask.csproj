@@ -51,6 +51,7 @@
     <Compile Include="AutoAddNewsListJob.cs" />
     <Compile Include="AutoAddNewsTopJob.cs" />
     <Compile Include="AutoLoadNewsFeedJob.cs" />
+    <Compile Include="AutoPurgeNewsJob.cs" />
     <Compile Include="listener\LoadNewsFeedListener.cs" />
     <Compile Include="SampleJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

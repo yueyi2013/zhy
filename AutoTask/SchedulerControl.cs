@@ -36,10 +36,11 @@ namespace AutoTask
             log.Info("------- Scheduling Job  -------------------");
 
             //Set auto load RSS job 
-            ScheduleSimpleJob("RssFeeds", "RssFeeds", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 60, true,typeof(AutoTask.AutoLoadNewsFeedJob));
+            ScheduleSimpleJob("RssFeeds", "RssFeeds", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 1, true,typeof(AutoTask.AutoLoadNewsFeedJob));
             //Set auto load Top news job
-            ScheduleSimpleJob("NewsTop", "NewsTop", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 120, true,typeof(AutoTask.AutoAddNewsTopJob));
-
+            ScheduleSimpleJob("NewsTop", "NewsTop", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 2, true,typeof(AutoTask.AutoAddNewsTopJob));
+            //Set auto purge news job
+            ScheduleSimpleJob("PurgeNews", "PurgeNews", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 24, true, typeof(AutoTask.AutoPurgeNewsJob));
             // Start up the scheduler (nothing can actually run until the 
             // scheduler has been started)
             sched.Start();
@@ -55,7 +56,7 @@ namespace AutoTask
         /// <param name="intervalMin"></param>
         /// <param name="isForever"></param>
         /// <param name="className"></param>
-        public void ScheduleSimpleJob(string jobId, string jobGroup, DateTime startTime, DateTime endTime, int intervalMin, bool isForever,Type classFullName)
+        public void ScheduleSimpleJob(string jobId, string jobGroup, DateTime startTime, DateTime endTime, int intervalHour, bool isForever,Type classFullName)
         {
             try
             {
@@ -69,14 +70,14 @@ namespace AutoTask
                     simpleTrigger = (ISimpleTrigger)TriggerBuilder.Create()
                                               .WithIdentity(jobId + "Trigger", jobGroup + "TriggerGroup")
                                               .StartAt(startTime)
-                                              .WithSimpleSchedule(x => x.WithIntervalInMinutes(intervalMin).RepeatForever())
+                                              .WithSimpleSchedule(x => x.WithIntervalInHours(intervalHour).RepeatForever())
                                               .Build();
                 }
                 else {
                     simpleTrigger = (ISimpleTrigger)TriggerBuilder.Create()
                                               .WithIdentity(jobId + "Trigger", jobGroup + "Trigger")
                                               .StartAt(startTime).EndAt(endTime)
-                                              .WithSimpleSchedule(x => x.WithIntervalInMinutes(intervalMin))
+                                              .WithSimpleSchedule(x => x.WithIntervalInHours(intervalHour))
                                               .Build();              
                 
                 }

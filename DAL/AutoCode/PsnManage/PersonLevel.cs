@@ -37,15 +37,16 @@ namespace ZHY.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into PersonLevel(");
-			strSql.Append("PsnLevelTypeId,PsnLevelCode,PsnLevelName,PsnLevelDesc,CreateAt,CreateBy,UpdateDT,UpdateBy)");
+			strSql.Append("PsnLevelTypeId,PsnLevelCode,PsnLevelName,PsnLevelDesc,Status,CreateAt,CreateBy,UpdateDT,UpdateBy)");
 			strSql.Append(" values (");
-			strSql.Append("@PsnLevelTypeId,@PsnLevelCode,@PsnLevelName,@PsnLevelDesc,@CreateAt,@CreateBy,@UpdateDT,@UpdateBy)");
+			strSql.Append("@PsnLevelTypeId,@PsnLevelCode,@PsnLevelName,@PsnLevelDesc,@Status,@CreateAt,@CreateBy,@UpdateDT,@UpdateBy)");
 			strSql.Append(";select @@IDENTITY");
 			SqlParameter[] parameters = {
 					new SqlParameter("@PsnLevelTypeId", SqlDbType.Int,4),
 					new SqlParameter("@PsnLevelCode", SqlDbType.VarChar,64),
 					new SqlParameter("@PsnLevelName", SqlDbType.VarChar,64),
 					new SqlParameter("@PsnLevelDesc", SqlDbType.VarChar,200),
+					new SqlParameter("@Status", SqlDbType.Char,1),
 					new SqlParameter("@CreateAt", SqlDbType.DateTime),
 					new SqlParameter("@CreateBy", SqlDbType.VarChar,64),
 					new SqlParameter("@UpdateDT", SqlDbType.DateTime),
@@ -54,10 +55,11 @@ namespace ZHY.DAL
 			parameters[1].Value = model.PsnLevelCode;
 			parameters[2].Value = model.PsnLevelName;
 			parameters[3].Value = model.PsnLevelDesc;
-			parameters[4].Value = model.CreateAt;
-			parameters[5].Value = model.CreateBy;
-			parameters[6].Value = model.UpdateDT;
-			parameters[7].Value = model.UpdateBy;
+			parameters[4].Value = model.Status;
+			parameters[5].Value = model.CreateAt;
+			parameters[6].Value = model.CreateBy;
+			parameters[7].Value = model.UpdateDT;
+			parameters[8].Value = model.UpdateBy;
 
 			object obj = DbHelperSQL.GetSingle(strSql.ToString(),parameters);
 			if (obj == null)
@@ -80,6 +82,7 @@ namespace ZHY.DAL
 			strSql.Append("PsnLevelCode=@PsnLevelCode,");
 			strSql.Append("PsnLevelName=@PsnLevelName,");
 			strSql.Append("PsnLevelDesc=@PsnLevelDesc,");
+			strSql.Append("Status=@Status,");
 			strSql.Append("CreateAt=@CreateAt,");
 			strSql.Append("CreateBy=@CreateBy,");
 			strSql.Append("UpdateDT=@UpdateDT,");
@@ -90,6 +93,7 @@ namespace ZHY.DAL
 					new SqlParameter("@PsnLevelCode", SqlDbType.VarChar,64),
 					new SqlParameter("@PsnLevelName", SqlDbType.VarChar,64),
 					new SqlParameter("@PsnLevelDesc", SqlDbType.VarChar,200),
+					new SqlParameter("@Status", SqlDbType.Char,1),
 					new SqlParameter("@CreateAt", SqlDbType.DateTime),
 					new SqlParameter("@CreateBy", SqlDbType.VarChar,64),
 					new SqlParameter("@UpdateDT", SqlDbType.DateTime),
@@ -99,11 +103,12 @@ namespace ZHY.DAL
 			parameters[1].Value = model.PsnLevelCode;
 			parameters[2].Value = model.PsnLevelName;
 			parameters[3].Value = model.PsnLevelDesc;
-			parameters[4].Value = model.CreateAt;
-			parameters[5].Value = model.CreateBy;
-			parameters[6].Value = model.UpdateDT;
-			parameters[7].Value = model.UpdateBy;
-			parameters[8].Value = model.PsnLevelId;
+			parameters[4].Value = model.Status;
+			parameters[5].Value = model.CreateAt;
+			parameters[6].Value = model.CreateBy;
+			parameters[7].Value = model.UpdateDT;
+			parameters[8].Value = model.UpdateBy;
+			parameters[9].Value = model.PsnLevelId;
 
 			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
 			if (rows > 0)
@@ -167,7 +172,7 @@ namespace ZHY.DAL
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select  top 1 PsnLevelId,PsnLevelTypeId,PsnLevelCode,PsnLevelName,PsnLevelDesc,CreateAt,CreateBy,UpdateDT,UpdateBy from PersonLevel ");
+			strSql.Append("select  top 1 PsnLevelId,PsnLevelTypeId,PsnLevelCode,PsnLevelName,PsnLevelDesc,Status,CreateAt,CreateBy,UpdateDT,UpdateBy from PersonLevel ");
 			strSql.Append(" where PsnLevelId=@PsnLevelId");
 			SqlParameter[] parameters = {
 					new SqlParameter("@PsnLevelId", SqlDbType.Int,4)
@@ -215,6 +220,10 @@ namespace ZHY.DAL
 				{
 					model.PsnLevelDesc=row["PsnLevelDesc"].ToString();
 				}
+				if(row["Status"]!=null)
+				{
+					model.Status=row["Status"].ToString();
+				}
 				if(row["CreateAt"]!=null && row["CreateAt"].ToString()!="")
 				{
 					model.CreateAt=DateTime.Parse(row["CreateAt"].ToString());
@@ -241,7 +250,7 @@ namespace ZHY.DAL
 		public DataSet GetList(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select PsnLevelId,PsnLevelTypeId,PsnLevelCode,PsnLevelName,PsnLevelDesc,CreateAt,CreateBy,UpdateDT,UpdateBy ");
+			strSql.Append("select PsnLevelId,PsnLevelTypeId,PsnLevelCode,PsnLevelName,PsnLevelDesc,Status,CreateAt,CreateBy,UpdateDT,UpdateBy ");
 			strSql.Append(" FROM PersonLevel ");
 			if(strWhere.Trim()!="")
 			{
@@ -261,7 +270,7 @@ namespace ZHY.DAL
 			{
 				strSql.Append(" top "+Top.ToString());
 			}
-			strSql.Append(" PsnLevelId,PsnLevelTypeId,PsnLevelCode,PsnLevelName,PsnLevelDesc,CreateAt,CreateBy,UpdateDT,UpdateBy ");
+			strSql.Append(" PsnLevelId,PsnLevelTypeId,PsnLevelCode,PsnLevelName,PsnLevelDesc,Status,CreateAt,CreateBy,UpdateDT,UpdateBy ");
 			strSql.Append(" FROM PersonLevel ");
 			if(strWhere.Trim()!="")
 			{

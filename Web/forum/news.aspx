@@ -10,20 +10,25 @@
             <td style="width:150px">
             <fieldset>
                     <legend>新闻分类</legend>
-                        <asp:TreeView ID="tvNews" runat="server" 
+                    <asp:TreeView ID="tvNews" runat="server" 
                             onselectednodechanged="tvNews_SelectedNodeChanged" >
-                        </asp:TreeView>                        
+                    </asp:TreeView>                        
             </fieldset>
             </td>
             <td align="left" valign="top">
                 <fieldset>
-                    <legend>新闻列表</legend>                    
+                    <legend>新闻列表</legend>                                      
                     <asp:UpdatePanel ID="MyUpdatePanelBody" runat="server" UpdateMode="Conditional">
                         <Triggers>                        
                             <asp:AsyncPostBackTrigger ControlID="tvNews" EventName="SelectedNodeChanged" />                        
                         </Triggers>
                     <ContentTemplate>         
-                    <asp:Label ID="lblCategory" runat="server"></asp:Label>                    
+                    <asp:Label ID="lblCategory" runat="server" Font-Bold="true"></asp:Label>     
+                    <asp:UpdateProgress ID="upgLoading" runat="server">
+                        <ProgressTemplate>
+                            &nbsp;<p style=" font-weight:bold; color:Blue; text-align:center">正在努力为您加载，请稍等......</p>
+                        </ProgressTemplate>
+                    </asp:UpdateProgress>                 
                     <asp:DataList ID="dlNewsList" runat="server"  CellPadding="0" CellSpacing="0"
                         ItemStyle-VerticalAlign="Top" ItemStyle-HorizontalAlign="Left" 
                         RepeatDirection="Horizontal" RepeatColumns="1">

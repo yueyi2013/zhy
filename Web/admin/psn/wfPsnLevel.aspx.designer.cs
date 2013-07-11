@@ -7,10 +7,10 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace ZHY.Web.admin {
+namespace Web.admin.psn {
     
     
-    public partial class wfMemberList {
+    public partial class wfPsnLevel {
         
         /// <summary>
         /// MyUpdatePanelHead 控件。
@@ -256,49 +256,103 @@ namespace ZHY.Web.admin {
         protected global::System.Web.UI.UpdatePanel MyUpdatePanelPanelBody;
         
         /// <summary>
-        /// txtMemAccount 控件。
+        /// ddlAdCategory 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMemAccount;
+        protected global::System.Web.UI.WebControls.DropDownList ddlAdCategory;
         
         /// <summary>
-        /// txtMemPsw 控件。
+        /// txtAdLogo 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMemPsw;
+        protected global::System.Web.UI.WebControls.TextBox txtAdLogo;
         
         /// <summary>
-        /// ddlPsnLevel 控件。
+        /// txtAdName 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPsnLevel;
+        protected global::System.Web.UI.WebControls.TextBox txtAdName;
         
         /// <summary>
-        /// txtMemMail 控件。
+        /// txtAdBgCode 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMemMail;
+        protected global::System.Web.UI.WebControls.TextBox txtAdBgCode;
         
         /// <summary>
-        /// hfMemID 控件。
+        /// hfAdId 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField hfMemID;
+        protected global::System.Web.UI.WebControls.HiddenField hfAdId;
+        
+        /// <summary>
+        /// txtAdUnitPrice 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAdUnitPrice;
+        
+        /// <summary>
+        /// txtAdUnit 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAdUnit;
+        
+        /// <summary>
+        /// txtAdBillingCycle 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAdBillingCycle;
+        
+        /// <summary>
+        /// txtAdSource 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAdSource;
+        
+        /// <summary>
+        /// txtAdCode 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAdCode;
+        
+        /// <summary>
+        /// txtAdDesc 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAdDesc;
         
         /// <summary>
         /// rbStatus 控件。

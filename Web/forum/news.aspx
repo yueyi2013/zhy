@@ -17,14 +17,14 @@
             </td>
             <td align="left" valign="top">
                 <fieldset>
-                    <legend>新闻列表</legend>
+                    <legend>新闻列表</legend>                    
                     <asp:UpdatePanel ID="MyUpdatePanelBody" runat="server" UpdateMode="Conditional">
-                    <Triggers>                        
-                        <asp:AsyncPostBackTrigger ControlID="tvNews" EventName="SelectedNodeChanged" />                        
-                    </Triggers>
+                        <Triggers>                        
+                            <asp:AsyncPostBackTrigger ControlID="tvNews" EventName="SelectedNodeChanged" />                        
+                        </Triggers>
                     <ContentTemplate>         
-                    <asp:Label ID="lblCategory" runat="server"></asp:Label>           
-                    <asp:DataList ID="dlNewsList" runat="server" 
+                    <asp:Label ID="lblCategory" runat="server"></asp:Label>                    
+                    <asp:DataList ID="dlNewsList" runat="server"  CellPadding="0" CellSpacing="0"
                         ItemStyle-VerticalAlign="Top" ItemStyle-HorizontalAlign="Left" 
                         RepeatDirection="Horizontal" RepeatColumns="1">
                         <HeaderTemplate>
@@ -35,9 +35,15 @@
                                 <p style=" font-size:larger; font-weight:bold"><a target="_blank" href="newsdetails.aspx?rciid=<%# Eval("RCItemId")%>" title='<%# DataBinder.Eval(Container, "DataItem.RCItemTitle")%>'> <%# HtmlDecode(DataBinder.Eval(Container, "DataItem.RCItemTitle").ToString())%></a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <font  style="font-size:small; color:Blue; text-align:right">发布日期：<%# Eval("RCItemPubDate")%></font></p><br/>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<%# GetNewsContent(DataBinder.Eval(Container, "DataItem.RCItemDescription").ToString())%><hr style="width:100%"/></li>       
+                                &nbsp;&nbsp;&nbsp;&nbsp;<%# GetNewsContent(DataBinder.Eval(Container, "DataItem.RCItemDescription").ToString())%><hr style="width:100%"/>
+                                
+                                </li>       
                         </ItemTemplate>
-                        <FooterTemplate></ul></FooterTemplate>
+                        <FooterTemplate>
+                        
+                            </ul>     
+                            
+                        </FooterTemplate>
                     </asp:DataList>                    
                     <asp:HiddenField ID="hfRCID" runat="server" Value="1" />
                      当前页索引：

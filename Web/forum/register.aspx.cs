@@ -68,8 +68,7 @@ namespace Web.forum
                 modelMem.MemPsw = this.txtNewPassword.Text;
                 modelMem.MemStatus = "P";
                 bllMem.Add(modelMem);
-                string[] str  = modelMem.MemMail.Split('@');
-                Response.Redirect("~/forum/regactive.aspx?MemEmail=" + str[0].Substring(0,1)+"*******"+str[1]);
+                Response.Redirect("~/forum/regactive.aspx?MemEmail=" + modelMem.MemMail);
             }
             else {
                 

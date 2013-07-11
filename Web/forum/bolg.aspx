@@ -45,7 +45,7 @@
                             <asp:LinkButton ID="lbArClicks" runat="server" CausesValidation="false" CommandName="ArClicks" Text='<%# GetArClicks(Eval("ArClicks").ToString())%>'/> &nbsp;&nbsp; 
                             <asp:LinkButton ID="lbArCmtNumber" runat="server" CausesValidation="false" CommandName="ArCmtNumber" Text='<%# GetCmtNumber(Eval("ArCmtNumber").ToString())%>'/>&nbsp;&nbsp; 
                             <asp:LinkButton ID="lbACMTops" runat="server" CausesValidation="false" CommandName="ACMTops" Text='<%# GetACMTops(Eval("ACMTops").ToString())%>'/>&nbsp;&nbsp; 
-                            <asp:LinkButton ID="lbACMDowns" runat="server" CausesValidation="false" CommandName="ACMDowns" Text='<%# GetACMDowns(Eval("ACMDowns").ToString())%>'/>&nbsp;&nbsp; 
+                            <asp:LinkButton ID="lbACMDowns" runat="server" CausesValidation="false" CommandName="ACMDowns" Text='<%# GetACMDowns(Eval("ACMDowns").ToString())%>'/>&nbsp;&nbsp;                             
                             <hr style=" width:100%" />
                         </td>                        
                     </tr>

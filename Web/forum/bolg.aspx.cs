@@ -170,7 +170,7 @@ namespace Web.forum
         {
             if (string.IsNullOrEmpty(value))
             {
-                return "踩0)";
+                return "踩(0)";
             }
             return "踩(" + value + ")";
         }

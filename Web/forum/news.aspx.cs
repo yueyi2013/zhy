@@ -82,6 +82,7 @@ namespace Web.forum
 
         protected void tvNews_SelectedNodeChanged(object sender, EventArgs e)
         {
+            //System.Threading.Thread.Sleep(3000);
             this.hfRCID.Value = this.tvNews.SelectedNode.Value;
             this.lblCategory.Text = this.tvNews.SelectedNode.Text;
             MstDataListBind();

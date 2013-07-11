@@ -19,6 +19,17 @@
     <div id="divContent" runat="server">
     
     </div>
+
+    <br />分享到腾讯微博：
+    <div id="divTXWB" runat="server">
+                            
+    </div>
+    <br />
+    分享到新浪微博：
+    <div id="divXLWB" runat="server">
+    
+    </div>
+    
 </td>
 </tr>
 

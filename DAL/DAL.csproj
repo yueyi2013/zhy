@@ -156,6 +156,7 @@
     <Compile Include="AutoCode\PsnManage\PsnLevelType.cs" />
     <Compile Include="AutoCode\PsnManage\Role.cs" />
     <Compile Include="AutoCode\PsnManage\User.cs" />
+    <Compile Include="AutoCode\Rss\Acc\RSSChannelItem.cs" />
     <Compile Include="AutoCode\Rss\RSSChannel.cs" />
     <Compile Include="AutoCode\Rss\RSSChannelItem.cs" />
     <Compile Include="AutoCode\Rss\RSSSite.cs" />

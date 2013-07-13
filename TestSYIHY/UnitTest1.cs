@@ -13,7 +13,7 @@ namespace TestSYIHY
         [TestMethod]
         public void TestMethod1()
         {
-            RSSFeeds.loadRssFeeds("http://world.people.com.cn/n/2013/0701/c1002-22036986.html", "gb2312");
+            //RSSFeeds.loadRssFeeds("http://world.people.com.cn/n/2013/0701/c1002-22036986.html", "gb2312");            
         }
     }
 }

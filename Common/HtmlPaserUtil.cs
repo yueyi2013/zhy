@@ -33,7 +33,12 @@ namespace ZHY.Common
                     
                     Div div = (Div)nodeList.ElementAt(i);
                     string id = div.GetAttribute("id");
+                    string cls = div.GetAttribute("class");
                     if (!string.IsNullOrEmpty(id) && id.Equals("p_content"))
+                    {
+                        return div.StringText;
+                    }
+                    else if (cls.Equals("c3"))
                     {
                         return div.StringText;
                     }

@@ -64,31 +64,28 @@ namespace ZHY.BLL
             return this.DataTableToList(this.GetList(tops, "", "NavUpdateDT desc").Tables[0]);
         }
 
+        /// <summary>
+        /// 加载过期的数据
+        /// </summary>
+        /// <returns></returns>
+        public IList<ZHY.Model.RSSChannelItem> loadExpireNews(int days) 
+        {            
+            DataSet ds = dal.loadExpireNews(days);
+            if(ds!=null&&ds.Tables.Count>0)
+            {
+                return DataTableToList(ds.Tables[0]);
+            }
+
+            return null; 
+        }
 
         /// <summary>
         /// 清理过期的新闻
         /// </summary>
         /// <param name="days"></param>
         /// <returns></returns>
-        public bool DeleteExpireNews()
-        {
-            int days = Constants.DEFAULT_PURGE_NEWS_DAYS;
-            try
-            {
-                ZHY.BLL.SystemConfig bll = new ZHY.BLL.SystemConfig();
-                ZHY.Model.SystemConfig model = bll.GetModel(Constants.SYSTEM_CONFIG_ATT_NAME_NEWS_PURGE_DAYS, Constants.SYSTEM_CONFIG_ATT_GROUP_NEWS);
-                if (model != null)
-                    days = int.Parse(model.SCAttrValue);
-                if (days>=0)
-                {
-                    days = Constants.DEFAULT_PURGE_NEWS_DAYS;
-                }
-            }
-            catch {
-
-                days = Constants.DEFAULT_PURGE_NEWS_DAYS;
-            }
-
+        public bool DeleteExpireNews(int days)
+        {            
             return dal.DeleteExpireNews(days);
         }
         #endregion

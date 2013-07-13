@@ -13,8 +13,9 @@ namespace AutoTask
        private static ILog _log = LogManager.GetLogger(typeof(SampleJob));
 
        public AutoPurgeNewsJob()
-		{
-		}
+	   {
+
+	   }
 		
 		/// <summary> 
 		/// Called by the <see cref="IScheduler" /> when a
@@ -23,8 +24,8 @@ namespace AutoTask
 		/// </summary>
 		public virtual void  Execute(IJobExecutionContext context)
 		{
-            ZHY.BLL.RSSChannelItem bll = new ZHY.BLL.RSSChannelItem();
-            bll.DeleteExpireNews();
+            ZHY.ACC.BLL.RSSChannelItem bll = new ZHY.ACC.BLL.RSSChannelItem();
+            bll.MoveNewsToAccessDB();
 		}
    }
 }

@@ -36,6 +36,24 @@ namespace ZHY.DAL
                 return false;
             }
         }
+
+        /// <summary>
+        /// 加载过期的数据
+        /// </summary>
+        /// <param name="days"></param>
+        /// <returns></returns>
+        public DataSet loadExpireNews(int days)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select RCItemId,RCId,RCItemTitle,RCItemLink,RCItemCategory,RCItemAuthor,RCItemPubDate,RCItemDescription,RCItemComments,NavCreateAt,NavCreateBy,NavUpdateDT,NavUpdateBy ");
+            strSql.Append(" FROM RSSChannelItem ");
+            strSql.Append(" where NavUpdateDT<@NavUpdateDT");
+            SqlParameter[] parameters = {
+					new SqlParameter("@NavUpdateDT", SqlDbType.DateTime)
+			};
+            parameters[0].Value = DateTime.Now.AddDays(days);
+            return DbHelperSQL.Query(strSql.ToString(),parameters);
+        }
 	}
 }
 

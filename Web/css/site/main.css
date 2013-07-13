@@ -239,3 +239,6 @@ a.btn_logintwo:link,a.btn_logintwo:visited,a.btn_logintwo:hover, a.btn_logintwo:
     width:100%;
     background:url("../../images/site/bg.gif");
 }
+
+.c3{margin:0 auto;font-size:14px;line-height:25px;padding:0 10px;}
+.c3 img{margin:20px auto;}

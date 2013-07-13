@@ -27,6 +27,11 @@ namespace Web.forum
         {
             ZHY.BLL.RSSChannelItem bll = new ZHY.BLL.RSSChannelItem();
             ZHY.Model.RSSChannelItem model = bll.GetModel(RCItemId);
+            if (model == null) 
+            {
+                ZHY.ACC.BLL.RSSChannelItem bllACC = new ZHY.ACC.BLL.RSSChannelItem();
+                model = bllACC.GetModel(RCItemId);
+            }
             if (model != null)
             {
                 this.lblTitle.Text = Server.HtmlDecode(model.RCItemTitle);

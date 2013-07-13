@@ -119,6 +119,7 @@
     <Content Include="admin\sys\wfUserList.aspx" />
     <Content Include="css\css.css" />
     <Content Include="css\site\main.css" />
+    <Content Include="dbscripts\accdb\yueyi2013.accdb" />
     <Content Include="dbscripts\data\commondata.sql" />
     <Content Include="dbscripts\procedures\GetLeftMenu.sql" />
     <Content Include="dbscripts\procedures\Pagination.sql" />
@@ -414,6 +415,7 @@
     <Content Include="template\login_admin_green\web\tab\images\tab_22.gif" />
     <Content Include="template\login_admin_green\web\tab\tab.htm" />
     <Content Include="template\login_admin_green\web\top.html" />
+    <Content Include="test.aspx" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1003,6 +1005,13 @@
     </Compile>
     <Compile Include="template\syihy_1\tmpl.Master.designer.cs">
       <DependentUpon>tmpl.Master</DependentUpon>
+    </Compile>
+    <Compile Include="test.aspx.cs">
+      <DependentUpon>test.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test.aspx.designer.cs">
+      <DependentUpon>test.aspx</DependentUpon>
     </Compile>
     <Compile Include="ValidateCode.aspx.cs">
       <DependentUpon>ValidateCode.aspx</DependentUpon>

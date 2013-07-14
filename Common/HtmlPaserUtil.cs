@@ -38,7 +38,8 @@ namespace ZHY.Common
                     {
                         return div.StringText;
                     }
-                    else if (cls.Equals("c3"))
+
+                    if (!string.IsNullOrEmpty(cls) && cls.Equals("c3"))
                     {
                         return div.StringText;
                     }

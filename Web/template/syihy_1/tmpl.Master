@@ -28,20 +28,7 @@
     <div id="main">        
         <asp:ScriptManager ID="smUIPage" runat="server">
         </asp:ScriptManager>
-        <div class="indexTopAd">
-            <script type="text/javascript"><!--
-               google_ad_client = "ca-pub-4317446198795334";
-               /* 首页广告 */
-               google_ad_slot = "8358991406";
-               google_ad_width = 970;
-               google_ad_height = 90;
-                //-->
-            </script>
-            <script type="text/javascript"
-                src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
-            </script>
-         <!--   <iframe name="alimamaifrm" frameborder="0" marginheight="0" marginwidth="0" border="0" scrolling="no" width="950" height="30" src="http://www.taobao.com/go/app/tbk_app/chongzhi_950_30.php?pid=mm_14162539_4076385_13374553&page=chongzhi_950_30.php&size_w=950&size_h=30&stru_phone=1&stru_game=1&stru_travel=1" ></iframe>-->
-        </div>
+        
         <table cellpadding="0" cellspacing="0" width="960px">
         <tr>
         <td>

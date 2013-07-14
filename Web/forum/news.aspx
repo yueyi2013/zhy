@@ -6,14 +6,26 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cpBody" runat="server">
     <table cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+            <td colspan="2">
+                 <!--#include file="../inc/ads/fk/xw_cps_950_150.inc"-->
+            </td>
+        </tr>
         <tr align="left" valign="top">
             <td style="width:150px">
-            <fieldset>
+                <fieldset>
                     <legend>新闻分类</legend>
+                    <asp:UpdatePanel ID="upNewsCategory" runat="server" UpdateMode="Conditional">
+                        <Triggers>                        
+                            <asp:AsyncPostBackTrigger ControlID="tvNews" EventName="SelectedNodeChanged" />                        
+                        </Triggers>
+                    <ContentTemplate>
                     <asp:TreeView ID="tvNews" runat="server" 
                             onselectednodechanged="tvNews_SelectedNodeChanged" >
-                    </asp:TreeView>                        
-            </fieldset>
+                    </asp:TreeView>    
+                    </ContentTemplate>
+                    </asp:UpdatePanel>                    
+                </fieldset>
             </td>
             <td align="left" valign="top">
                 <fieldset>

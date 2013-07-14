@@ -242,3 +242,19 @@ a.btn_logintwo:link,a.btn_logintwo:visited,a.btn_logintwo:hover, a.btn_logintwo:
 
 .c3{margin:0 auto;font-size:14px;line-height:25px;padding:0 10px;}
 .c3 img{margin:20px auto;}
+
+.content_bg
+{
+   margin-top:10px;
+}
+.left_content
+{
+    width: 600px;
+    float: left;
+    border-top: #EAEFF5 1px solid;
+}
+.right_content
+{
+    width: 360px;
+    float: right;
+}

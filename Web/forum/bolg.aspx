@@ -7,16 +7,24 @@
 
 <table cellpadding="0" cellspacing="0" width="100%">
 <tr>
+    <td align="center" colspan="2">
+      <!--#include file="../inc/ads/fk/bg_cps_950_100.inc"-->
+    </td>
+</tr>
+<tr>
 <!--分类-->
 <td style="width:150px; text-align:left; vertical-align:top">
-
+ <fieldset>
+    <legend>博客分类</legend>
     <asp:TreeView ID="tvBolgCat" runat="server" 
                  onselectednodechanged="tvBolgCat_SelectedNodeChanged" >
-     </asp:TreeView>
+    </asp:TreeView>
+</fieldset>
 </td>
 <!--博客列表-->
 <td>
-
+<fieldset>
+    <legend>博客列表</legend> 
     <asp:UpdatePanel ID="MyUpdatePanelBody" runat="server" UpdateMode="Conditional">
         <Triggers>                        
            <asp:AsyncPostBackTrigger ControlID="tvBolgCat" EventName="SelectedNodeChanged" />                      
@@ -36,7 +44,7 @@
                         <asp:LinkButton ID="lbArTitle" runat="server" CausesValidation="false" Font-Bold="true" ForeColor="Black" Font-Size="Medium" CommandName="ArTitle" Text='<%# Eval("ArTitle")%>'/></td>
                     </tr>
                     <tr>
-                        <td><img alt="" src="#"/>&nbsp;&nbsp;<a href='bolgdetails.aspx?bgid=<%# Eval("ArId")%>'><%# ParseContent(Eval("ArContent").ToString())%></a> </td>
+                        <td><img alt="" src="#"/>&nbsp;&nbsp;<a href='bolgdetails.aspx?bgid=<%# Eval("ArId")%>'><%# ParseContent(Eval("ArContent").ToString())%></a></td>
                     </tr>
                     <tr>
                         <td>
@@ -80,6 +88,7 @@
                         </ajaxToolkit:ValidatorCalloutExtender>
         </ContentTemplate>
     </asp:UpdatePanel>
+</fieldset>
 </td>
 </tr>
 </table>

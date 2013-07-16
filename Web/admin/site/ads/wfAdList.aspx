@@ -92,9 +92,6 @@
                                                     <input type="button" id="copyBtn" value="获取" onclick="copyButton('<%# HtmlDecode(Eval("AdCode").ToString())%>')"/>
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:BoundField DataField="AdDesc" HeaderText="描述">
-                                                <ItemStyle Width="100px" />
-                                            </asp:BoundField>
                                             <asp:BoundField DataField="Status" HeaderText="状态">
                                                 <ItemStyle Width="50px" />
                                             </asp:BoundField>
@@ -143,7 +140,7 @@
         </tr>
     </table>
     <%--新增弹出框--%>
-    <asp:Panel ID="PanelBody" runat="server" Style="width: 400px; display: none;" CssClass="modalPopup">
+    <asp:Panel ID="PanelBody" runat="server" Style="width: 500px; display: none;" CssClass="modalPopup">
         <asp:UpdatePanel ID="MyUpdatePanelPanelDrag" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <asp:Panel ID="PanelDrag" runat="server" CssClass="modalDragPopup">
@@ -174,7 +171,7 @@
                             广告logo：
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox id="txtAdLogo" runat="server" Width="300px"></asp:TextBox>
+                            <asp:TextBox id="txtAdLogo" runat="server" Width="400px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -182,7 +179,7 @@
                             广告名称：
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox id="txtAdName" runat="server" Width="300px"></asp:TextBox>
+                            <asp:TextBox id="txtAdName" runat="server" Width="400px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -190,7 +187,7 @@
                             计费类型：
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox id="txtAdBgCode" runat="server" Width="300px"></asp:TextBox>
+                            <asp:TextBox id="txtAdBgCode" runat="server" Width="400px"></asp:TextBox>
                         </td>
                     </tr>
                     
@@ -199,7 +196,7 @@
                             广告单价： <asp:HiddenField ID="hfAdId" runat="server" Value="0"/>
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox id="txtAdUnitPrice" runat="server" Width="300px"></asp:TextBox>
+                            <asp:TextBox id="txtAdUnitPrice" runat="server" Width="400px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -207,7 +204,7 @@
                             计价单位：
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox id="txtAdUnit" runat="server" Width="300px"></asp:TextBox>
+                            <asp:TextBox id="txtAdUnit" runat="server" Width="400px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -215,7 +212,7 @@
                             结算周期：
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox id="txtAdBillingCycle" runat="server" Width="300px"></asp:TextBox>
+                            <asp:TextBox id="txtAdBillingCycle" runat="server" Width="400px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -223,7 +220,7 @@
                             广告源：
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox id="txtAdSource" runat="server" Width="300px"></asp:TextBox>
+                            <asp:TextBox id="txtAdSource" runat="server" Width="400px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
@@ -231,15 +228,15 @@
                             广告代码：
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox id="txtAdCode" runat="server"  Width="300px"  TextMode="MultiLine"></asp:TextBox>
+                            <asp:TextBox id="txtAdCode" runat="server"  Width="400px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
-                        <td height="25" align="right">
+                        <td height="25" align="right" valign="top">
                             广告描述：
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox id="txtAdDesc" runat="server" Width="300px" TextMode="MultiLine"></asp:TextBox>
+                            <asp:TextBox id="txtAdDesc" runat="server" Width="400px" Height="150px" TextMode="MultiLine"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>

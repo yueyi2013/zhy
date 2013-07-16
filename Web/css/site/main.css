@@ -258,3 +258,36 @@ a.btn_logintwo:link,a.btn_logintwo:visited,a.btn_logintwo:hover, a.btn_logintwo:
     width: 360px;
     float: right;
 }
+
+.div_line
+{
+    height:100%;
+    border: 1px #ffcea2 solid;
+    border-top-color: rgb(255, 206, 162);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-right-color: rgb(255, 206, 162);
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-bottom-color: rgb(255, 206, 162);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: rgb(255, 206, 162);
+    border-left-style: solid;
+    border-left-width: 1px;    
+}
+
+.div_line_no_right
+{
+    height:100%;
+    border: 1px #ffcea2 solid;
+    border-top-color: rgb(255, 206, 162);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-bottom-color: rgb(255, 206, 162);
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-left-color: rgb(255, 206, 162);
+    border-left-style: solid;
+    border-left-width: 1px;    
+}

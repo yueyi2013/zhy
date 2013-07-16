@@ -8,7 +8,7 @@
     <table cellpadding="0" cellspacing="0" width="100%">
         <tr>
             <td colspan="2">
-                 <!--#include file="../inc/ads/fk/xw_cps_950_150.inc"-->
+                 <!--#include file="../inc/ads/zm/sh_cpa_960_90.inc"-->
             </td>
         </tr>
         <tr align="left" valign="top">
@@ -56,14 +56,12 @@
                                 
                                 </li>       
                         </ItemTemplate>
-                        <FooterTemplate>
-                        
-                            </ul>     
-                            
+                        <FooterTemplate>                        
+                            </ul>
                         </FooterTemplate>
-                    </asp:DataList>                    
-                    <asp:HiddenField ID="hfRCID" runat="server" Value="1" />
-                     当前页索引：
+                    </asp:DataList>     
+                        <asp:HiddenField ID="hfRCID" runat="server" Value="1" />
+                        当前页索引：
                         <asp:Label ID="lblPageIndex0" runat="server" ForeColor="Red"></asp:Label>/
                                     总页数：<asp:Label ID="lblPageAll0" runat="server" ForeColor="Red"></asp:Label>
                                     &nbsp;&nbsp;&nbsp;&nbsp; 每页:

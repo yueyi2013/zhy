@@ -148,6 +148,30 @@
     <Content Include="forum\tecnicalsuport.aspx" />
     <Content Include="Global.asax" />
     <Content Include="default.aspx" />
+    <Content Include="inc\ads\888\cpa_942_268.inc" />
+    <Content Include="inc\ads\ddg\cpa_yx_tc.inc" />
+    <Content Include="inc\ads\fk\cps_360_120.inc" />
+    <Content Include="inc\ads\fk\cps_sousuo.inc" />
+    <Content Include="inc\ads\fk\bg_cps_950_100.inc">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="inc\ads\ggr\taodianjing.inc">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="inc\ads\tb\taodianjing.inc">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="inc\ads\zm\ys_cpa_300_120.inc" />
+    <Content Include="inc\ads\zm\y_cpa_300_250.inc" />
+    <Content Include="inc\ads\zm\cpa_728_90.inc" />
+    <Content Include="inc\ads\ddg\cpa_960_380.inc" />
+    <Content Include="inc\ads\zm\sh_cpa_960_90.inc" />
+    <Content Include="inc\Foot.inc" />
+    <Content Include="inc\lanmu_right.inc" />
+    <Content Include="inc\navigation.inc" />
+    <Content Include="inc\sitepromise.inc" />
+    <Content Include="inc\sysmailcontent.inc" />
+    <Content Include="inc\ads\zm\cpa_960_60.inc" />
     <Content Include="js\main.js" />
     <Content Include="js\My97DatePicker4.0\calendar.js" />
     <Content Include="js\My97DatePicker4.0\config.js" />

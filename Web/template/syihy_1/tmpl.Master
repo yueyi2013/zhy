@@ -16,38 +16,36 @@
     </script>
     <!--新浪微博分享按钮-->
     <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js?appkey=2919819730" type="text/javascript" charset="utf-8"></script>
-    <!--腾讯微博分享按钮-->
-    <script src="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&debug=no"></script>
     <!--淘宝网-->
-    <script src="http://l.tbcdn.cn/apps/top/x/sdk.js?appkey=21567286"></script>
+    <script src="http://l.tbcdn.cn/apps/top/x/sdk.js?appkey=21567286" type="text/javascript"></script>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
+<div id="main">
     <form id="form1" runat="server">    
-    <div id="main">        
-        <asp:ScriptManager ID="smUIPage" runat="server">
-        </asp:ScriptManager>
-        
-        <table cellpadding="0" cellspacing="0" width="960px">
-        <tr>
-        <td>
             
-        </td>
-        </tr>
+        <asp:ScriptManager ID="smUIPage" runat="server">
+        </asp:ScriptManager>        
+        <table cellpadding="0" cellspacing="0">        
         <!--Top Start-->
+        <tr>
+            <td>
+                <asp:ContentPlaceHolder ID="bodyTop" runat="server">
+                </asp:ContentPlaceHolder>
+            </td>
+        </tr>
         <tr><td>
         <div id="header">
-            <h1 id="logo"><a href="../../">SYIHY.COM</a></h1>
+            <h1 id="logo"><a id="tray-active" href="../../">SYIHY.COM</a></h1>
             <hr class="noscreen" />
             <div id="nav">
-                <a href="../../default.aspx" id="nav-active">首页</a> <span>|</span>                
+                <a id="nav-active" href="../../default.aspx" >首页</a> <span>|</span>                
                 <asp:HyperLink ID="hlLogin" runat="server" NavigateUrl="~/forum/memberlogin.aspx" Text="登录"></asp:HyperLink><span>|</span>          
                 <asp:HyperLink ID="hlReg" runat="server" NavigateUrl="~/forum/register.aspx" Text="注册"></asp:HyperLink><span>|</span>                
                 <a href="../../forum/help.aspx">帮助</a><span>|</span>
                 <asp:LinkButton ID="lbExit" runat="server" onclick="lbExit_Click" Visible ="false" >退出</asp:LinkButton>
-            </div>
-            
+            </div>            
         </div>
         
         </td></tr>
@@ -108,11 +106,10 @@
         </tr>
         <!--Foot End-->
         </table>
-        <div>
-         <iframe name="alimamaifrm" frameborder="0" marginheight="0" marginwidth="0" border="0" scrolling="no" width="950" height="30" src="http://www.taobao.com/go/app/tbk_app/chongzhi_950_30.php?pid=mm_14162539_4076385_13374553&page=chongzhi_950_30.php&size_w=950&size_h=30&stru_phone=1&stru_game=1&stru_travel=1" ></iframe>
-        </div>
-    </div>
+    
     </form>
-    <script src="http://mat1.gtimg.com/app/openjs/openjs.js#autoboot=no&debug=no"></script>
+    <asp:ContentPlaceHolder ID="foot" runat="server">
+    </asp:ContentPlaceHolder>
+    </div>
 </body>
 </html>

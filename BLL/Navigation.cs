@@ -41,13 +41,16 @@ namespace ZHY.BLL
         }
 
 
-        public string genereateHTMLCodeGreen() 
+        public string genereateHTMLCodeGreen(string path) 
         {
             List<Model.Navigation> list = this.GetModelList("NavParantId=0 and NavStatus='A' order by NavOrder");
             //Ò»¼¶²Ëµ¥À¸
             StringBuilder sbMainHtml = new StringBuilder("<ul>");
             foreach (Model.Navigation item in list)
             {
+                if (item.NavLink.IndexOf(path)>0)
+                    sbMainHtml.AppendFormat("<li id=\"tray-active\"><a href=\"{0}\">{1}</a></li>", item.NavLink, item.NavName);
+                else
                 sbMainHtml.AppendFormat("<li><a href=\"{0}\">{1}</a></li>", item.NavLink, item.NavName);
             }
             sbMainHtml.Append("</ul>");

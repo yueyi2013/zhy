@@ -18,7 +18,7 @@ namespace Web.forum
             if (!IsPostBack)
             {
                 BindTreeNews();
-                MstDataListBind();
+                BindNewsItem();
             }
         }
 
@@ -27,7 +27,7 @@ namespace Web.forum
         /// </summary>
         private void BindTreeNews()
         {
-            TreeNode root = new TreeNode("新闻列表", "0");
+            //TreeNode root = new TreeNode("新闻列表", "0");
             ZHY.BLL.RSSChannel bll = new ZHY.BLL.RSSChannel();
             ZHY.BLL.NewsCategory bllCat = new ZHY.BLL.NewsCategory();
             IList<ZHY.Model.NewsCategory> listCat = bllCat.GetModelList("");
@@ -41,12 +41,21 @@ namespace Web.forum
                         TreeNode objTreeNode = new TreeNode();
                         objTreeNode.Text = model.RCTitle;
                         objTreeNode.Value = model.RCId.ToString();
-                        root.ChildNodes.Add(objTreeNode);
+                        this.tvNews.Nodes.Add(objTreeNode);
                         break;
                     }
                 }
             }
-            this.tvNews.Nodes.Add(root);
+        }
+
+        /// <summary>
+        /// 默认显示新闻
+        /// </summary>
+        private void BindNewsItem() {
+            ZHY.BLL.RSSChannelItem bll = new ZHY.BLL.RSSChannelItem();
+            this.dlNewsList.DataSource = bll.GetList(Constants.DEFAULT_NEWS_INDEX_TOPS, "", " NavUpdateDT desc");
+            this.dlNewsList.DataBind();
+        
         }
 
         /// <summary>

@@ -35,8 +35,11 @@ namespace ZHY.BLL
         }
 
         /// <summary>
-        /// 得到一个对象实体
+        /// 根据配置属性和属性组得到一个实体
         /// </summary>
+        /// <param name="SCAttrName">属性</param>
+        /// <param name="SCGroup">属性组</param>
+        /// <returns></returns>
         public ZHY.Model.SystemConfig GetModel(string SCAttrName, string SCGroup)
         {
 

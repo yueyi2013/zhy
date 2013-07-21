@@ -4,58 +4,79 @@
     <link rel="stylesheet" media="screen,projection" type="text/css" href="css/site/main.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cpBody" runat="server">
-
-<table cellpadding="0" cellspacing="0" width="100%">
+    <table cellpadding="0" cellspacing="0" width="100%">
 <tr>
 <!--主体1--Flash-->
 <td>
     <div id="col" class="box">
     <div id="ribbon"></div>
-    <div id="divflashContent" runat="server"></div>
-    <script type="text/javascript">fDisplayFalsh();</script>
-    <!--显示首面Falsh-->
     <div id="col-text">
-        <h2 id="slogan">
-            <asp:Label ID="lblNewsTitle" runat="server" Text="最新消息"></asp:Label>
-        </h2>
+    <!--#include file="inc/ads/google/336_280.inc"-->
+    </div>
+    <div style=" height:280px">              
+        <p style=" font-size:larger; font-weight:bold">
+            <asp:HyperLink ID="hlNew" runat="server" Target="_blank"></asp:HyperLink>
+        </p>
+        <asp:Label ID="lblContent" runat="server" ></asp:Label>
+        <asp:HyperLink ID="hlNewDetail" runat="server" Target="_blank" Text="更多>>>" Font-Bold="true" ForeColor="Blue"></asp:HyperLink>       
+
         <asp:DataList ID="dlNewsTop" runat="server" RepeatDirection="Vertical">
             <ItemTemplate>
                 <a target="_blank" href="forum/newsdetails.aspx?rciid=<%# Eval("NTId")%>" title='<%# DataBinder.Eval(Container, "DataItem.NTTitle")%>'><%# HtmlDecode(DataBinder.Eval(Container, "DataItem.NTTitle").ToString())%></a>         
             </ItemTemplate>
         </asp:DataList>
     </div>
+    
     </div>    
 </td>
 </tr>
 <!--新闻-->
-<tr><td>
-    <div id="col-bottom"></div>
-    <hr class="noscreen" />
-    <div id="cols3-top"></div>
-    <div id="cols3" class="box">
-    <asp:DataList ID="dlNewsList" runat="server" RepeatColumns="3" RepeatDirection="Horizontal"
-     ItemStyle-HorizontalAlign="Left" ItemStyle-VerticalAlign="Top" >
-         <ItemTemplate>
+<tr>
+    <td>
+        <div id="col-bottom"></div>
+        <hr class="noscreen" /> 
+        <asp:DataList ID="dlNewsList" runat="server" RepeatColumns="3" RepeatDirection="Vertical"
+            ItemStyle-HorizontalAlign="Center" ItemStyle-VerticalAlign="Top" Width="99%" CellSpacing="6">
+            <ItemTemplate>            
+                <div id="cols3-top"></div>
                 <div id="cols3" class="box">
-                <div class="col">
-                    <h3>
-                        <a href="forum/news.aspx"><%# DataBinder.Eval(Container, "DataItem.NewsCategoryName")%></a>
-                    </h3>                    
-                    <ul class="ul-01">
-                        <asp:DataList ID="dlNewsDetails" runat="server" RepeatDirection="Vertical" DataSource='<%# DataBinder.Eval(Container, "DataItem.RiList") %>'>
+                    <div class="col last" style="text-align:left">                    
+                        <h3>
+                            <a href="forum/news.aspx"><%# DataBinder.Eval(Container, "DataItem.NewsCategoryName")%></a>
+                        </h3>
+                    </div>                    
+                    <asp:Repeater ID="rpNewsList" runat="server" 
+                        DataSource='<%# DataBinder.Eval(Container, "DataItem.RiList") %>'>
+                            <HeaderTemplate>
+                               <div class="col-text">
+                                <table cellpadding="5" cellspacing="0" width="100%">
+                                   
+                            </HeaderTemplate>
                             <ItemTemplate>
-                                <li>
-                                    <a target="_blank" href="forum/newsdetails.aspx?rciid=<%# Eval("RCItemId")%>" title='<%# DataBinder.Eval(Container, "DataItem.RCItemTitle")%>'><%# HtmlDecode(DataBinder.Eval(Container, "DataItem.RCItemTitle").ToString())%></a>
-                                </li>                           
+                                <tr>
+                                    <td>
+                                        <img alt="" src="images/site/ul-01.gif" />
+                                    </td>
+                                    <td>
+                                        <a target="_blank" href="forum/newsdetails.aspx?rciid=<%# Eval("RCItemId")%>" title='<%# DataBinder.Eval(Container, "DataItem.RCItemTitle")%>'><%# CutTitleString(DataBinder.Eval(Container, "DataItem.RCItemTitle").ToString())%></a>
+                                    </td>
+                                </tr>
                             </ItemTemplate>
-                        </asp:DataList>                     
-                    </ul>
-                    <div class="col-more"><a href="forum/news.aspx"><img src="images/site/cols3-more.gif" alt="" /></a></div>
+                            <FooterTemplate>
+                                </table>    
+                                </div>
+                                <div class="col-more"><a href="forum/news.aspx"><img src="images/site/cols3-more.gif" alt="" /></a></div>
+                                                              
+                            </FooterTemplate>
+                    </asp:Repeater>                    
+                    <hr class="noscreen">
                 </div>
-                </div>
+                <div id="cols3-bottom"></div>
          </ItemTemplate>
+         <FooterTemplate>
+            
+         </FooterTemplate>
     </asp:DataList>
-    </div>
     <hr />
 </td></tr>
 
@@ -82,6 +103,8 @@
 </td></tr>
 </table>
 
-
-
 </asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="foot" runat="server">
+    <!--#include file="inc/ads/tb/chongzhi.inc"-->
+</asp:Content>
+

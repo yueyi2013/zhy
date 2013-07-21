@@ -1,0 +1,6 @@
+﻿<div style=" height:800px;width:355px;text-align:left;margin:1px 1px 1px 1px">
+<iframe width="100%" height="100% frameborder="0" ;" allowtransparency="true" src="about:blank" 
+id="txwbydq_01" srcolling="no"></iframe>  
+<script type="text/javascript">window.showTxWbYDQ(document.getElementById("txwbydq_01"), 
+{"width":"100%","height":"100%","appkey":"801388262","theme":0,"nobg":0,"ModuleConfigure":{"TitleModule":1,"PubModule":1,"TabModule":1,"TimelineModule":1},"TimelineDetail":{"HeadStyle":1,"PageStyle":0,"PicStyle":0,"TwitterNum":20},"PubModuleConfigure":{"InitialContent":"#阅读墙测试# 说点什么吧","InsertFunction":[0,1,2],"SourceUrl":"http://dev.t.qq.com/websites/read/","position":0},"TitleModuleConfigure":{"OfficialAccount":"api_weibo"},"TimelineModuleConfigure":[{"Condition":["腾讯","微博","开放平台"],"ConditionType":1,"ContentType":0,"Famous":0,"MessageType":1,"Name":"腾讯微博开放平台","SortType":0}],"filter":"null"} , function(d){/*回调函数,d的值格式为：{"action":"发表","ret":0,"errcode":0,"msg":"ok","data":{"id":231174038614579,"time":1371544700}},其中action的值可能为“发表、转播、评论”*/} );</script>
+</div>

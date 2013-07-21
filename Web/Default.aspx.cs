@@ -16,8 +16,8 @@ namespace Web
         {
             if(!IsPostBack)
             {
-                InitFlash();
-                BindNewsTop();
+                //InitFlash();
+                BindNewsTopModel();
                 BindNewsList();
             }
         }
@@ -30,6 +30,18 @@ namespace Web
         protected string HtmlDecode(string title)
         {
             return Server.HtmlDecode(title);
+        }
+
+        /// <summary>
+        /// 标题
+        /// </summary>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        protected string CutTitleString(string title)
+        {
+            if (!string.IsNullOrEmpty(title) && title.Length > Constants.SITE_INDEX_NEWS_LIST_TITLE_WORDS)
+                return title.Substring(0, Constants.SITE_INDEX_NEWS_LIST_TITLE_WORDS) + "...";
+            return title;
         }
 
         /// <summary>
@@ -56,21 +68,22 @@ namespace Web
         private void BindNewsTopModel()
         {
             ZHY.BLL.NewsTop bll = new ZHY.BLL.NewsTop();
-            IList<ZHY.Model.NewsTop> list = bll.GetModelList("");
+            IList<ZHY.Model.NewsTop> list = bll.DataTableToList(bll.GetList(1, "", " newid() ").Tables[0]);
             if (list.Count > 0) 
             {
                 ZHY.Model.NewsTop model = list[0];
-                this.lblNewsTitle.Text = model.NTTitle;
-                string con = HttpUtility.HtmlDecode(CompressionUtil.Decompress(model.NTContent));
-                if (con.Length > 100)
+                this.hlNew.Text = model.NTTitle;
+                this.hlNew.NavigateUrl = "~/forum/newsdetails.aspx?rciid=" + model.NTId;
+                this.hlNewDetail.NavigateUrl = "~/forum/newsdetails.aspx?rciid=" + model.NTId;
+                string newCont = HtmlPaserUtil.ParseTags(HttpUtility.HtmlDecode(CompressionUtil.Decompress(model.NTContent, "gb2312")));
+                if (!string.IsNullOrEmpty(newCont) && newCont.Length > Constants.SITE_INDEX_TOP_NEWS_WORDS)
                 {
-                    //this.lblContent.Text = con.Substring(0,100)+"......";
+                    this.lblContent.Text = newCont.Substring(0, Constants.SITE_INDEX_TOP_NEWS_WORDS) + "......";
                 }
                 else
                 {
-                   // this.lblContent.Text = con;
+                    this.lblContent.Text = newCont;
                 }
-                
             }                      
         }
 
@@ -78,7 +91,7 @@ namespace Web
         /// 初始化首页广告
         /// </summary>
         private void InitFlash()
-        {
+        {/*
             StringBuilder strContent = new StringBuilder();
             this.divflashContent.InnerHtml = "";
             strContent.Append("<script type=\"text/javascript\">\r\n");
@@ -108,7 +121,7 @@ namespace Web
             }
             strContent.Append("</script>\r\n");
             this.divflashContent.InnerHtml = strContent.ToString();
-
+            */
         }
     }
 }

@@ -11,22 +11,7 @@
                  <!--#include file="../inc/ads/zm/sh_cpa_960_90.inc"-->
             </td>
         </tr>
-        <tr align="left" valign="top">
-            <td style="width:150px">
-                <fieldset>
-                    <legend>新闻分类</legend>
-                    <asp:UpdatePanel ID="upNewsCategory" runat="server" UpdateMode="Conditional">
-                        <Triggers>                        
-                            <asp:AsyncPostBackTrigger ControlID="tvNews" EventName="SelectedNodeChanged" />                        
-                        </Triggers>
-                    <ContentTemplate>
-                    <asp:TreeView ID="tvNews" runat="server" 
-                            onselectednodechanged="tvNews_SelectedNodeChanged" >
-                    </asp:TreeView>    
-                    </ContentTemplate>
-                    </asp:UpdatePanel>                    
-                </fieldset>
-            </td>
+        <tr align="left" valign="top">            
             <td align="left" valign="top">
                 <fieldset>
                     <legend>新闻列表</legend>                                      
@@ -50,11 +35,11 @@
                         <ItemTemplate>
                             <li>
                                 <p style=" font-size:larger; font-weight:bold"><a target="_blank" href="newsdetails.aspx?rciid=<%# Eval("RCItemId")%>" title='<%# DataBinder.Eval(Container, "DataItem.RCItemTitle")%>'> <%# HtmlDecode(DataBinder.Eval(Container, "DataItem.RCItemTitle").ToString())%></a>
-                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                <font  style="font-size:small; color:Blue; text-align:right">发布日期：<%# Eval("RCItemPubDate")%></font></p><br/>
-                                &nbsp;&nbsp;&nbsp;&nbsp;<%# GetNewsContent(DataBinder.Eval(Container, "DataItem.RCItemDescription").ToString())%><hr style="width:100%"/>
-                                
-                                </li>       
+                                </p><br/>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<%# GetNewsContent(DataBinder.Eval(Container, "DataItem.RCItemDescription").ToString())%>
+                                <p style="color:Blue; text-align:right; font-size:smaller">发布日期：<%# Eval("RCItemPubDate")%></p>
+                                <hr style="width:100%"/>
+                            </li>       
                         </ItemTemplate>
                         <FooterTemplate>                        
                             </ul>
@@ -87,6 +72,25 @@
                 </ContentTemplate>
             </asp:UpdatePanel>
             </fieldset>
+            </td>
+            <td style="width:165px;">
+                <fieldset>
+                    <legend>新闻分类</legend>
+                    <asp:UpdatePanel ID="upNewsCategory" runat="server" UpdateMode="Conditional">
+                        <Triggers>                        
+                            <asp:AsyncPostBackTrigger ControlID="tvNews" EventName="SelectedNodeChanged" />                        
+                        </Triggers>
+                    <ContentTemplate>
+                        <asp:TreeView ID="tvNews" runat="server" Width="100px"
+                             NodeStyle-Font-Bold="true"
+                             NodeStyle-HorizontalPadding="30"
+                            onselectednodechanged="tvNews_SelectedNodeChanged" >                                     
+                        </asp:TreeView> 
+                    </ContentTemplate>
+                    </asp:UpdatePanel>
+                    <!--#include file="../inc/ads/google/160_600.inc"-->    
+                </fieldset>
+
             </td>
         </tr>
     </table>

@@ -158,6 +158,9 @@
     <Content Include="inc\ads\ggr\taodianjing.inc">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="inc\ads\google\970_90.inc" />
+    <Content Include="inc\ads\google\336_280.inc" />
+    <Content Include="inc\ads\google\160_600.inc" />
     <Content Include="inc\ads\tb\taodianjing.inc">
       <SubType>Designer</SubType>
     </Content>
@@ -166,7 +169,13 @@
     <Content Include="inc\ads\zm\cpa_728_90.inc" />
     <Content Include="inc\ads\ddg\cpa_960_380.inc" />
     <Content Include="inc\ads\zm\sh_cpa_960_90.inc" />
-    <Content Include="inc\Foot.inc" />
+    <Content Include="inc\api\qq\wb\yjfx.inc" />
+    <Content Include="inc\api\qq\wb\ydq_head.inc" />
+    <Content Include="inc\api\qq\wb\Q-Share.inc" />
+    <Content Include="inc\api\qq\wb\ydq_body.inc" />
+    <Content Include="inc\ads\tb\chongzhi.inc" />
+    <Content Include="inc\empty.inc" />
+    <Content Include="inc\flash\index.inc" />
     <Content Include="inc\lanmu_right.inc" />
     <Content Include="inc\navigation.inc" />
     <Content Include="inc\sitepromise.inc" />
@@ -1109,6 +1118,8 @@
   <ItemGroup>
     <Folder Include="dbscripts\tables\quartz\" />
     <Folder Include="dbscripts\triggers\" />
+    <Folder Include="inc\api\tb\" />
+    <Folder Include="inc\api\xl\wb\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

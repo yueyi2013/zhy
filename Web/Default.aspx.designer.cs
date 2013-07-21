@@ -13,22 +13,31 @@ namespace Web {
     public partial class index {
         
         /// <summary>
-        /// divflashContent 控件。
+        /// hlNew 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divflashContent;
+        protected global::System.Web.UI.WebControls.HyperLink hlNew;
         
         /// <summary>
-        /// lblNewsTitle 控件。
+        /// lblContent 控件。
         /// </summary>
         /// <remarks>
         /// 自动生成的字段。
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNewsTitle;
+        protected global::System.Web.UI.WebControls.Label lblContent;
+        
+        /// <summary>
+        /// hlNewDetail 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hlNewDetail;
         
         /// <summary>
         /// dlNewsTop 控件。

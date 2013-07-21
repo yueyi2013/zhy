@@ -31,7 +31,7 @@ namespace Web.template.syihy_1
                     this.hlLogin.NavigateUrl = "~/forum/memberlogin.aspx";                
                 }
                 //BindNavigation();
-                BindNavHtmlCode();
+                BindNavHtmlCode(Request.Path);
             }
         }
 
@@ -42,10 +42,10 @@ namespace Web.template.syihy_1
             this.dlFriendLink.DataBind();
         }
 
-        private void BindNavHtmlCode() 
+        private void BindNavHtmlCode(string path) 
         {
             ZHY.BLL.Navigation bll = new ZHY.BLL.Navigation();
-            divNav.InnerHtml = bll.genereateHTMLCodeGreen();
+            divNav.InnerHtml = bll.genereateHTMLCodeGreen(path);
         }        
 
         /// <summary>

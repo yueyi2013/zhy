@@ -8,7 +8,7 @@
 <table cellpadding="0" cellspacing="0" width="100%">
 <tr>
     <td align="center" colspan="2">
-      <!--#include file="../inc/ads/fk/bg_cps_950_100.inc"-->
+      <!--#include file="../inc/ads/google/970_90.inc"-->
     </td>
 </tr>
 <tr>

@@ -199,8 +199,8 @@ var texts = "";
 
 function fDisplayFalsh() {
 
-    var focus_width = 500
-    var focus_height = 250
+    var focus_width = 336
+    var focus_height = 280
     var text_height = 0
     var swf_height = focus_height + text_height
     if (pics != "") {
@@ -218,8 +218,8 @@ function fDisplayFalsh() {
 
 function fDisplayFalsh0() {
 
-    var focus_width = 600
-    var focus_height = 300
+    var focus_width = 336
+    var focus_height = 280
     var text_height = 0
     var swf_height = focus_height + text_height
     if (pics != "") {

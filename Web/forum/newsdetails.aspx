@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/template/syihy_1/tmpl.Master" AutoEventWireup="true" CodeBehind="newsdetails.aspx.cs" Inherits="Web.forum.newsdetails" %>
 <asp:Content ID="Content3" ContentPlaceHolderID="bodyTop" runat="server">
-<div class="indexTopAd">
-    <!--#include file="../inc/ads/google/970_90.inc"-->
-</div>
+
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" media="screen,projection" type="text/css" href="../css/site/main.css" />
@@ -30,8 +28,10 @@
         </div>
     </div>
     <div class="right_content" >
-        <!--#include file="../inc/ads/google/336_280.inc"-->
-        <!--#include file="../inc/api/qq/wb/ydq_body.inc"-->
+        <!--#include file="../inc/ads/google/336_280_1.inc"-->
+        <div style=" height:800px;width:336px">
+        <!--#include file="../inc/api/qq/wb/ydq_body_1.inc"-->
+        </div>
     </div>
     </td>
     </tr>

@@ -19,10 +19,12 @@ namespace ZHY.Common
         public static string SYSTEM_CONFIG_ATT_NAME_NEWS_PURGE_DAYS = "PURGE_DAYS";
         public static string SYSTEM_CONFIG_ATT_NAME_NEWS_INDEX_TOPS = "INDEX_TOPS";
 
+
+        public static string DEFAULT_SITE_USER_PASSWORD = "syihy001";
         public static int DEFAULT_NEWS_INDEX_TOPS = 20;
         public static int DEFAULT_PURGE_NEWS_DAYS = -7;
         //网站首页top新闻内容字数
-        public static int SITE_INDEX_TOP_NEWS_WORDS = 680;
+        public static int SITE_INDEX_TOP_NEWS_WORDS = 630;
         //网站首页新闻列表标题字数
         public static int SITE_INDEX_NEWS_LIST_TITLE_WORDS = 18;
     }

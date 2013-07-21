@@ -55,8 +55,8 @@ namespace Web.forum
             mail.Subject = "[SYIHY]账户激活通知";
             StringBuilder sbBoday = new StringBuilder();
             StringBuilder sbURL = new StringBuilder();
-            string uId = "U"+"0100000"+bllMem.GetMaxID();
-            sbURL.AppendFormat("https://www.syihy.com/forum/membervalidate.aspx?user={0}&active={1}&from={2}", uId, "A", "register");
+            string uId = this.txtUserName.Text;
+            sbURL.AppendFormat("您的初始登录密码是：{0}", Constants.DEFAULT_SITE_USER_PASSWORD);
             string content = FileOperation.GetFileContent(Server.MapPath("~/inc/sysmailcontent.inc"));
             sbBoday.AppendFormat(content, uId, sbURL.ToString(), 1, DateTime.Now.AddHours(1), 90);
             mail.MailContent =  sbBoday.ToString();
@@ -65,8 +65,8 @@ namespace Web.forum
                 ZHY.Model.Member modelMem = new ZHY.Model.Member();
                 modelMem.MemMail = mail.MailFromAddress;
                 modelMem.MemAccount = uId;
-                modelMem.MemPsw = this.txtNewPassword.Text;
-                modelMem.MemStatus = "P";
+                modelMem.MemPsw = Constants.DEFAULT_SITE_USER_PASSWORD;
+                modelMem.MemStatus = "A";
                 bllMem.Add(modelMem);
                 Response.Redirect("~/forum/regactive.aspx?MemEmail=" + modelMem.MemMail);
             }

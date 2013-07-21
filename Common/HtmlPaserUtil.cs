@@ -114,6 +114,13 @@ namespace ZHY.Common
 
         #endregion
 
+        #region 移除字符串空格
+        public static string RemoveStrSpace(string str)
+        {
+            return Regex.Replace(str, @"\s", "");
+        }
+        #endregion
+
         #region
         ///   取出文本中的图片地址
         /**/

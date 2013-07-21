@@ -142,6 +142,7 @@
     <Content Include="forum\news.aspx" />
     <Content Include="forum\newsdetails.aspx" />
     <Content Include="forum\memberlogin.aspx" />
+    <Content Include="forum\password.aspx" />
     <Content Include="forum\regactive.aspx" />
     <Content Include="forum\register.aspx" />
     <Content Include="forum\regsuccess.aspx" />
@@ -159,8 +160,11 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="inc\ads\google\970_90.inc" />
-    <Content Include="inc\ads\google\336_280.inc" />
+    <Content Include="inc\ads\google\336_280.inc">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="inc\ads\google\160_600.inc" />
+    <Content Include="inc\ads\google\336_280_1.inc" />
     <Content Include="inc\ads\tb\taodianjing.inc">
       <SubType>Designer</SubType>
     </Content>
@@ -174,6 +178,7 @@
     <Content Include="inc\api\qq\wb\Q-Share.inc" />
     <Content Include="inc\api\qq\wb\ydq_body.inc" />
     <Content Include="inc\ads\tb\chongzhi.inc" />
+    <Content Include="inc\api\qq\wb\ydq_body_1.inc" />
     <Content Include="inc\empty.inc" />
     <Content Include="inc\flash\index.inc" />
     <Content Include="inc\lanmu_right.inc" />
@@ -970,6 +975,13 @@
     </Compile>
     <Compile Include="forum\memberlogin.aspx.designer.cs">
       <DependentUpon>memberlogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="forum\password.aspx.cs">
+      <DependentUpon>password.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="forum\password.aspx.designer.cs">
+      <DependentUpon>password.aspx</DependentUpon>
     </Compile>
     <Compile Include="forum\regactive.aspx.cs">
       <DependentUpon>regactive.aspx</DependentUpon>

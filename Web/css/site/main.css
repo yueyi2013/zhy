@@ -113,7 +113,7 @@ ul.ul-list span.date {padding-right:10px;}
         #cols2 .col-right-text p {margin:0;}
 
 #cols3-top {height:5px; margin-top:5px; background:url("../../images/site/cols3-top.gif") 0 0 no-repeat; font-size:0; line-height:0; overflow:hidden;}
-#cols3-bottom {height:5px; margin-bottom:15px; background:url("../../images/site/cols3-bottom.gif") 0 0 no-repeat; font-size:0; line-height:0; overflow:hidden;}
+#cols3-bottom {height:5px; margin-bottom:0px; background:url("../../images/site/cols3-bottom.gif") 0 0 no-repeat; font-size:0; line-height:0; overflow:hidden;}
 #cols3 {background:url("../../images/site/cols3.gif") 0 0 repeat-y;}
 #cols3 .col h3 {
         background-color: #EEF8E4;

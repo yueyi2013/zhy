@@ -6,11 +6,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cpBody" runat="server">
     <table cellpadding="0" cellspacing="0" width="100%">
-        <tr>
-            <td colspan="2">
-                 <!--#include file="../inc/ads/zm/sh_cpa_960_90.inc"-->
-            </td>
-        </tr>
         <tr align="left" valign="top">            
             <td align="left" valign="top">
                 <fieldset>

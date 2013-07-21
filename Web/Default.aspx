@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"> 
     <script src="js/main.js" type="text/javascript"></script>
     <link rel="stylesheet" media="screen,projection" type="text/css" href="css/site/main.css" />
+     <!--#include file="inc/api/qq/wb/ydq_head.inc"-->
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cpBody" runat="server">
     <table cellpadding="0" cellspacing="0" width="100%">
@@ -81,11 +82,10 @@
 </td></tr>
 
 <!--租房-->
-<tr><td>
-
-
-
-
+<tr><td >
+    <div style=" width:98%; margin:5px 5px 5px 5px; height:800px; text-align:center">
+    <!--#include file="inc/api/qq/wb/ydq_body.inc"-->
+    </div>
 </td></tr>
 
 <!--游戏-->

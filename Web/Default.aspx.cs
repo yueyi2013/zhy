@@ -75,13 +75,16 @@ namespace Web
                 this.hlNew.Text = model.NTTitle;
                 this.hlNew.NavigateUrl = "~/forum/newsdetails.aspx?rciid=" + model.NTId;
                 this.hlNewDetail.NavigateUrl = "~/forum/newsdetails.aspx?rciid=" + model.NTId;
-                string newCont = HtmlPaserUtil.ParseTags(HttpUtility.HtmlDecode(CompressionUtil.Decompress(model.NTContent, "gb2312")));
+                string parStr = HtmlPaserUtil.ParseTags(HttpUtility.HtmlDecode(CompressionUtil.Decompress(model.NTContent, "gb2312")));
+
+                string newCont = HtmlPaserUtil.RemoveStrSpace(parStr);
+                
                 if (!string.IsNullOrEmpty(newCont) && newCont.Length > Constants.SITE_INDEX_TOP_NEWS_WORDS)
                 {
                     this.lblContent.Text = newCont.Substring(0, Constants.SITE_INDEX_TOP_NEWS_WORDS) + "......";
                 }
                 else
-                {
+                {                    
                     this.lblContent.Text = newCont;
                 }
             }                      

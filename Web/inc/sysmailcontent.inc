@@ -4,7 +4,11 @@
       感谢您注册SYIHY社区，您只需要点击下面链接，激活您的帐户，您便可以享受SYIHY各项服务。
     <br/>
     <br/>
-       <a href="{1}" target="_blank">{1}</a>
+    
+    {1}
+    请保管好您的密码,以免丢失。
+  
+    修改密码：<a href="https://www.syihy.com/forum/password.aspx" target="_blank">https://www.syihy.com/forum/password.aspx</a>
     <br/>
     <br/>
         (如果无法点击该URL链接地址，请将它复制并粘帖到浏览器的地址输入框，然后单击回车即可。该链接使用后将立即失效。)

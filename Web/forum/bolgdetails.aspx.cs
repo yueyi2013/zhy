@@ -19,7 +19,23 @@ namespace Web.forum
                 if (!string.IsNullOrEmpty(bgid))
                 {
                     BindBlog(bgid);
+                    CheckUserLogin();
                 }
+            }
+        }
+
+        /// <summary>
+        /// 检查用户是否已经登录
+        /// </summary>
+        private void CheckUserLogin()
+        {
+            if (Session["MemUser"] != null)
+            {
+                this.divComments.Disabled = true;
+                this.divLogin.Disabled = false;
+            }else{
+                this.divComments.Disabled = false;
+                this.divLogin.Disabled = true;
             }
         }
 
@@ -36,7 +52,7 @@ namespace Web.forum
             this.divTXWB.InnerHtml = sbWB.ToString();
 
             StringBuilder sbXL = new StringBuilder();
-            sbXL.AppendFormat("<wb:share-button appkey=\"2919819730\" "
+            sbXL.AppendFormat("<wb:share-button appkey=\"2919819730\" relateuid=\"2703774515\""
             + "relateuid=\"2703774515\" type=\"button\" "
             + "title=\"{0}\" size=\"big\" count=\"n\"></wb:share-button>", model.ArTitle);
             this.divXLWB.InnerHtml = sbXL.ToString();

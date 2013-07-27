@@ -70,7 +70,7 @@
             <td class="right" valign="top"><dfn>*</dfn>用户名：</td>
             <td>
                 <div class="oneline">
-                    <asp:TextBox ID="txtUserName" runat="server" MaxLength="30"></asp:TextBox>
+                    <asp:TextBox ID="txtUserName" runat="server" class="inputbox" MaxLength="30"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvUserName" runat="server" ControlToValidate="txtUserName" ErrorMessage="请输入用户名,长度不能超过30且由字母和数字组成！"></asp:RequiredFieldValidator>
                 </div>
             </td>

@@ -2,7 +2,6 @@
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <link rel="stylesheet" media="screen,projection" type="text/css" href="../css/site/main.css" />
-     
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cpBody" runat="server">
     <table cellpadding="0" cellspacing="0" width="100%">
@@ -84,8 +83,8 @@
                     </ContentTemplate>
                     </asp:UpdatePanel>
                     <!--#include file="../inc/ads/google/160_600.inc"-->    
+                    <!--#include file="../inc/ads/clicksor/160_600.inc"-->  
                 </fieldset>
-
             </td>
         </tr>
     </table>

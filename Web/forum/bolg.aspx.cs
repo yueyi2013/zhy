@@ -26,7 +26,6 @@ namespace Web.forum
         /// </summary>
         private void BindTreeBlogList()
         {
-            TreeNode root = new TreeNode("全部分类", "0");
             ZHY.BLL.ArticleCategory bll = new ZHY.BLL.ArticleCategory();
             IList<ZHY.Model.ArticleCategory> list = bll.GetModelList("");
             foreach (ZHY.Model.ArticleCategory model in list)
@@ -36,11 +35,10 @@ namespace Web.forum
                     TreeNode objTreeNode = new TreeNode();
                     objTreeNode.Text = model.ACName;
                     objTreeNode.Value = model.ACId.ToString();
-                    root.ChildNodes.Add(objTreeNode);
+                    this.tvBolgCat.Nodes.Add(objTreeNode);
                     break;
                 }
             }
-            this.tvBolgCat.Nodes.Add(root);
         }
 
         /// <summary>
@@ -182,12 +180,22 @@ namespace Web.forum
         /// <returns></returns>
         protected string ParseContent(string value)
         {
-            string str = HttpUtility.HtmlDecode(CompressionUtil.Decompress(value, "gb2312"));
-            if(str.Length>100)
+            if (string.IsNullOrEmpty(value))
             {
-                return str.Substring(0, 100)+"...";
+                return "";
             }
-            return str;
+            else
+            {
+                string newCont = HtmlPaserUtil.ParseTags(CompressionUtil.Decompress(value, "gb2312"));
+                if (!string.IsNullOrEmpty(newCont) && newCont.Length > 400)
+                {
+                    return newCont.Substring(0, 400) + "......";
+                }
+                else
+                {
+                    return newCont;
+                }
+            }
         }
     }
 }

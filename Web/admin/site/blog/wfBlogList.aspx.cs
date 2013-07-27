@@ -13,6 +13,7 @@ namespace Web.admin.site.blog
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //InitFTB(this.ftContent);
             BindPageControls();
             if (!IsPostBack)
             {
@@ -164,6 +165,7 @@ namespace Web.admin.site.blog
                     InitData(ConvertInt32(newsId, 0));
                     this.mpMstAdd.Show();
                     btnModify.Enabled = true;
+                    break;
                 }
             }
         }
@@ -226,7 +228,8 @@ namespace Web.admin.site.blog
             model.ArTitle = this.txtNewsTitle.Text;
             model.ArTypeId = int.Parse(this.ddlArticalType.SelectedValue);
             model.ACId = int.Parse(this.ddlArticalCategory.SelectedValue);
-            model.ArContent = CompressionUtil.Compress(HttpUtility.HtmlEncode(this.ftContent.Text), "gb2312");
+            model.ArContent = CompressionUtil.Compress(this.ftContent.Text, "gb2312");
+            model.ArStatus = this.rbStatus.SelectedItem.Value;
             ZHY.Model.User user = getLoginUser();
             model.CreateBy = user.UserName;
             model.UpdateBy = user.UserName;
@@ -250,7 +253,8 @@ namespace Web.admin.site.blog
                 model.ArTitle = this.txtNewsTitle.Text;
                 model.ArTypeId = int.Parse(this.ddlArticalType.SelectedValue);
                 model.ACId = int.Parse(this.ddlArticalCategory.SelectedValue);
-                model.ArContent = CompressionUtil.Compress(HttpUtility.HtmlEncode(this.ftContent.Text), "gb2312");
+                model.ArContent = CompressionUtil.Compress(this.ftContent.Text, "gb2312");
+                model.ArStatus = this.rbStatus.SelectedItem.Value;
                 ZHY.Model.User user = getLoginUser();
                 model.UpdateBy = user.UserName;
                 model.UpdateDT = DateTime.Now;
@@ -267,6 +271,8 @@ namespace Web.admin.site.blog
             this.txtNewsTitle.Text = "";
             this.txtNewsAuthor.Text = "";
             this.ftContent.Text = "";
+            this.rbStatus.SelectedItem.Value = "A";
+            this.txtPublishDate.Value = DateTime.Now.ToLongDateString();
         }
 
         /// <summary>
@@ -279,7 +285,9 @@ namespace Web.admin.site.blog
             this.hfArId.Value = model.ArId.ToString();
             this.txtNewsTitle.Text = model.ArTitle;
             this.txtNewsAuthor.Text = model.ArAuthor;
-            this.ftContent.Text = HttpUtility.HtmlDecode(CompressionUtil.Decompress(model.ArContent, "gb2312"));
+            this.txtPublishDate.Value = model.ArPubDate.Value.ToLongDateString();
+            this.ftContent.Text = CompressionUtil.Decompress(model.ArContent, "gb2312");
+            this.rbStatus.SelectedItem.Value = model.ArStatus;
         }
         #endregion
     }

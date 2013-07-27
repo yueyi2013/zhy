@@ -286,6 +286,20 @@ a.btn_logintwo:link,a.btn_logintwo:visited,a.btn_logintwo:hover, a.btn_logintwo:
     float: right;
 }
 
+.left_blog_content
+{
+    float: left;
+    width: 760px;
+    overflow: hidden;
+}
+
+.right_blog_content
+{
+    float: right;
+    width: 200px;
+    overflow: hidden;
+}
+
 .div_line
 {
     height:100%;

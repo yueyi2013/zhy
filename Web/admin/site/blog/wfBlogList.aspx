@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Main0.Master" AutoEventWireup="true" CodeBehind="wfBlogList.aspx.cs" Inherits="Web.admin.site.blog.wfBlogList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Main0.Master" AutoEventWireup="true" CodeBehind="wfBlogList.aspx.cs" Inherits="Web.admin.site.blog.wfBlogList" ValidateRequest="false" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <%@ Register Assembly="FreeTextBox" Namespace="FreeTextBoxControls" TagPrefix="FTB" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -44,6 +44,7 @@
                                     <asp:AsyncPostBackTrigger ControlID="btnDelete" EventName="Click" />
                                     <asp:AsyncPostBackTrigger ControlID="btnSearch" EventName="Click" />
                                     <asp:AsyncPostBackTrigger ControlID="btnClose" EventName="Click" />
+                                    <asp:AsyncPostBackTrigger ControlID="ftContent" EventName="SaveClick" />
                                 </Triggers>
                                 <ContentTemplate>
                                     <asp:GridView ID="MstGridView" runat="server" AutoGenerateColumns="False" Width="98%"
@@ -80,13 +81,13 @@
                                                 <ItemStyle Width="100px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="CreateAt" HeaderText="创建日期">
-                                                <ItemStyle Width="250px" />
+                                                <ItemStyle Width="150px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="CreateBy" HeaderText="创建人">
                                                 <ItemStyle Width="80px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="UpdateDT" HeaderText="更新日期">
-                                                <ItemStyle Width="250px" />
+                                                <ItemStyle Width="150px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="UpdateBy" HeaderText="更新人">
                                                 <ItemStyle Width="80px" />
@@ -124,7 +125,7 @@
         </tr>
     </table>
     <%--新增弹出框--%>
-    <asp:Panel ID="PanelBody" runat="server" Style="width: 700px; display: none;" CssClass="modalPopup">
+    <asp:Panel ID="PanelBody" runat="server" Style="width: 800px; display: none;" CssClass="modalPopup">
         <asp:UpdatePanel ID="MyUpdatePanelPanelDrag" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <asp:Panel ID="PanelDrag" runat="server" CssClass="modalDragPopup">
@@ -142,7 +143,7 @@
             <ContentTemplate>
                 <table cellspacing="0" cellpadding="0" width="100%" border="0">
                     <tr>
-                        <td height="25" width="10%" align="right">
+                        <td height="25" width="60px" align="right">
                             文章标题：
                         </td>
                         <td height="25" width="*" align="left">
@@ -154,43 +155,41 @@
                             作者：
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox ID="txtNewsAuthor" runat="server" Width="98%"></asp:TextBox>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td height="25" align="right">
-                            发布日期：
-                        </td>
-                        <td height="25" width="*" align="left">
-                            <input type="text" id="txtPublishDate" runat="server" class="Wdate"
-                                style="width: 200px" onfocus="WdatePicker({minDate:'%y-%M-#{%d}'})" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td height="25" align="right">
-                            种类：
-                        </td>
-                        <td height="25" width="*" align="left">
-                            <asp:DropDownList ID="ddlArticalCategory" runat="server" Width="200px" DataTextField="ACName" DataValueField="ACId">
+                            <asp:TextBox ID="txtNewsAuthor" runat="server" Width="100" Text="syihy.com"></asp:TextBox>
+                            &nbsp;&nbsp;发布日期：<input type="text" id="txtPublishDate" runat="server" class="Wdate"
+                                style="width: 100px" onfocus="WdatePicker({minDate:'%y-%M-#{%d}'})"/>
+                            &nbsp;&nbsp;种类：<asp:DropDownList ID="ddlArticalCategory" runat="server" Width="120px" DataTextField="ACName" DataValueField="ACId">
                             </asp:DropDownList>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td height="25" align="right">
-                            类型：
-                        </td>
-                        <td height="25" width="*" align="left">
-                            <asp:DropDownList ID="ddlArticalType" runat="server" Width="200px" DataTextField="ATName" DataValueField="ATId">
+                            &nbsp;&nbsp;类型：<asp:DropDownList ID="ddlArticalType" runat="server" Width="60px" DataTextField="ATName" DataValueField="ATId">
                             </asp:DropDownList>
+                            &nbsp;&nbsp;状态：<asp:RadioButtonList ID="rbStatus" runat="server" RepeatLayout="Flow" RepeatDirection="Horizontal">
+                                <asp:ListItem Selected="True" Text="生效" Value="A"></asp:ListItem>
+                                <asp:ListItem Text="失效" Value="I"></asp:ListItem>
+                            </asp:RadioButtonList>
                         </td>
-                    </tr>
-                    
+                    </tr>                    
                     <tr>
                         <td height="25" align="right">
                             内容： <asp:HiddenField ID="hfArId" runat="server" Value="0"/>
                         </td>
                         <td height="25" width="*" align="left">
-                            <FTB:FreeTextBox ID="ftContent" runat="server" Height="200" Width="600"/>
+                            <FTB:FreeTextBox id="ftContent" OnSaveClick="btnSave_Click" 
+			                    Focus="true"
+                                Language="zh-CN"
+			                    SupportFolder="~/aspnet_client/FreeTextBox/"
+			                    JavaScriptLocation="ExternalFile" 
+			                    ButtonImagesLocation="ExternalFile"
+			                    ToolbarImagesLocation="ExternalFile"
+			                    ToolbarStyleConfiguration="Office2000"			
+			                    toolbarlayout="ParagraphMenu,FontFacesMenu,FontSizesMenu,FontForeColorsMenu,FontForeColorPicker,FontBackColorsMenu,FontBackColorPicker|Bold,Italic,Underline,Strikethrough,Superscript,Subscript,RemoveFormat|JustifyLeft,JustifyRight,JustifyCenter,JustifyFull;BulletedList,NumberedList,Indent,Outdent;CreateLink,Unlink,InsertImage|Cut,Copy,Paste,Delete;Undo,Redo,Print,Save|SymbolsMenu,StylesMenu,InsertHtmlMenu|InsertRule,InsertDate,InsertTime|InsertTable,EditTable;InsertTableRowAfter,InsertTableRowBefore,DeleteTableRow;InsertTableColumnAfter,InsertTableColumnBefore,DeleteTableColumn|InsertForm,InsertTextBox,InsertTextArea,InsertRadioButton,InsertCheckBox,InsertDropDownList,InsertButton|InsertDiv,EditStyle,InsertImageFromGallery,Preview,SelectAll,WordClean,NetSpell"
+			                    runat="Server"
+                                Width="99%"
+			                    GutterBackColor="red"
+			                    DesignModeCss="designmode.css"	
+                                ImageGalleryPath="~/images/upload"
+                                ImageGalleryUrl="../../../ftb.imagegallery.aspx?rif={0}&cif={0}"	 
+			                />
+                            <script type="text/javascript" src="../../../aspnet_client/FreeTextBox/FTB-Pro.js"></script>
                         </td>
                     </tr>
                 </table>
@@ -201,7 +200,7 @@
                 CssClass="buttonCss" OnClientClick="javascript:ClearZero()" />
             &nbsp;&nbsp;
             <asp:Button ID="btnClose" runat="server" Text="关闭" Width="65px" OnClick="btnClose_Click"
-                CssClass="buttonCss" CausesValidation="false" />&nbsp;&nbsp;
+                CssClass="buttonCss" CausesValidation="false"/>&nbsp;&nbsp;
         </div>
     </asp:Panel>
     </fieldset>

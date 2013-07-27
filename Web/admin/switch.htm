@@ -1,0 +1,54 @@
+<html>
+<head>
+<title></title>
+<script type="text/javascript" language="javascript">
+
+    function switchSysBar() {
+        if (parent.document.getElementById('attachucp').cols=="177,10,*"){
+            document.getElementById('leftbar').style.display="";
+            parent.document.getElementById('attachucp').cols="0,10,*";
+        }else{
+            parent.document.getElementById('attachucp').cols = "177,10,*";	
+            document.getElementById('leftbar').style.display="none"
+        }
+    }
+
+    function load(){
+
+        if (parent.document.getElementById('attachucp').cols=="0,10,*"){
+
+            document.getElementById('leftbar').style.display = "";
+        }
+    }
+
+</script>
+
+</head>
+
+<body bgColor="#000000" leftMargin="0" topMargin="0" onload="load()" marginheight="0" marginwidth="0">
+
+<center>
+<table height="100%"  cellpadding="0"  cellspacing="0" width="100%" border="0">
+<tbody>
+  <tr>
+    <td width="1" bgColor="#009fef">
+     
+    </td>
+    <td id="leftbar" style="display: none" bgColor="#f5f4f4">
+       <a onclick="switchSysBar()" href="javascript:void(0);">
+        <img height="80"  alt="Õ¹¿ª×ó²à²Ëµ¥" src="../images/admin/left/show.jpg" width="8" border="0" />
+       </a>
+    </td>
+
+    <td id="rightbar" bgColor="#f5f4f4">
+     <a onclick="switchSysBar()"  href="javascript:void(0);">
+        <img height="80"  alt="Òþ²Ø×ó²à²Ëµ¥" src="../images/admin/left/hide.jpg" width="8" border="0">
+     </a>
+    </td>
+  </tr>
+</tbody>
+</table>
+</center>
+</body>
+</html>
+

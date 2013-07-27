@@ -3,6 +3,8 @@ using System.Data;
 using System.Collections.Generic;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using FreeTextBoxControls;
+using System.Drawing;
 
 namespace ZHY.Web
 {
@@ -462,6 +464,28 @@ namespace ZHY.Web
             objMenuItem.NavigateUrl = "wfLanMuList.aspx?lmId=" + lmId;
             objMenuItem.Target = "_parent";
             return objMenuItem;
+        }
+        #endregion
+
+        #region FreeTextBox 绑定
+        public void InitFTB(FreeTextBox ftb)
+        {
+            ftb.Language = "zh-CN";
+            ftb.ToolbarLayout = "ParagraphMenu,FontFacesMenu,FontSizesMenu,FontForeColorsMenu,FontForeColorPicker,FontBackColorsMenu,FontBackColorPicker|Bold,Italic,Underline,Strikethrough,Superscript,Subscript,RemoveFormat|JustifyLeft,JustifyRight,JustifyCenter,JustifyFull;BulletedList,NumberedList,Indent,Outdent;CreateLink,Unlink,InsertImage|Cut,Copy,Paste,Delete;Undo,Redo,Print,Save|SymbolsMenu,StylesMenu,InsertHtmlMenu|InsertRule,InsertDate,InsertTime|InsertTable,EditTable;InsertTableRowAfter,InsertTableRowBefore,DeleteTableRow;InsertTableColumnAfter,InsertTableColumnBefore,DeleteTableColumn|InsertForm,InsertTextBox,InsertTextArea,InsertRadioButton,InsertCheckBox,InsertDropDownList,InsertButton|InsertDiv,EditStyle,InsertImageFromGallery,Preview,SelectAll,WordClean,NetSpell";
+            //ftb.AutoGenerateToolbarsFromString = false; //由字符串自动生成工具栏按钮=false 
+            ftb.SupportFolder = "~/aspnet_client/FreeTextBox/"; //源代码 
+            //ftb.ImageGalleryUrl = path+"ftb.imagegallery.aspx?rif={0}&cif={0}"; //指定选择图片的aspx文件
+            ftb.JavaScriptLocation = ResourceLocation.ExternalFile; //设java脚本为外部文件 
+            ftb.ButtonImagesLocation = ResourceLocation.ExternalFile;//设按钮图片外部文件 
+            ftb.ToolbarImagesLocation = ResourceLocation.ExternalFile;//设按钮图片外部文件 
+            //ftb.BreakMode = BreakMode.LineBreak;//断行模式 
+            //ftb.StripAllScripting = true; //自动移除Java脚本.!!!非常重要!!!! 
+            //ftb.ButtonSet = ToolbarStyleConfiguration.Office2003; //按钮样式 
+            ftb.ToolbarStyleConfiguration = ToolbarStyleConfiguration.Office2000;
+            ftb.DesignModeCss = "designmode.css"; //设计模式时样式,很重要 
+            //ftb.RemoveServerNameFromUrls = false;
+            //ftb.BackColor = Color.FromArgb(229, 240, 253);
+            //ftb.GutterBackColor = Color.FromArgb(229, 240, 253);*/
         }
         #endregion
     }

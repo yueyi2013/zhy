@@ -60,16 +60,7 @@
             <div id="divNav" runat="server">
                 
             </div>
-            <div id="search" class="box">
-                <div class="box">
-                <div id="search-input">
-                    <input type="text" size="30" id="txtSearch" name="" value="Search" runat="server" />
-                </div>
-                <div id="search-submit">
-                    <asp:ImageButton ID="imgBtnSearch" runat="server" ImageUrl="~/images/site/search-submit.gif" ToolTip="OK" />
-                </div>
-                </div>
-            </div>
+            <!--#include file="../../inc/ads/clicksor/searchbox.inc"-->
         </div>
         </td>
         </tr>

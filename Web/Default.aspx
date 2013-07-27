@@ -90,9 +90,7 @@
 
 <!--游戏-->
 <tr><td>
-
-
-
+    
 
 </td></tr>
 <!--博客-->
@@ -106,5 +104,6 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="foot" runat="server">
     <!--#include file="inc/ads/tb/chongzhi.inc"-->
+    <!--#include file="inc/ads/clicksor/full_page_cbr.inc"-->
 </asp:Content>
 

@@ -285,7 +285,7 @@ namespace Web.admin.site.blog
             this.hfArId.Value = model.ArId.ToString();
             this.txtNewsTitle.Text = model.ArTitle;
             this.txtNewsAuthor.Text = model.ArAuthor;
-            this.txtPublishDate.Value = model.ArPubDate.Value.ToLongDateString();
+            this.txtPublishDate.Value = model.ArPubDate.Value.ToString("yyyy-MM-dd");
             this.ftContent.Text = CompressionUtil.Decompress(model.ArContent, "gb2312");
             this.rbStatus.SelectedItem.Value = model.ArStatus;
         }

@@ -795,6 +795,7 @@
     <Content Include="default.aspx" />
     <Content Include="inc\ads\888\cpa_942_268.inc" />
     <Content Include="inc\ads\clicksor\160_600.inc" />
+    <Content Include="inc\ads\clicksor\336_280.inc" />
     <Content Include="inc\ads\clicksor\searchbox.inc" />
     <Content Include="inc\ads\clicksor\txt_link_rb.inc" />
     <Content Include="inc\ads\clicksor\full_page_cbr.inc" />
@@ -827,6 +828,8 @@
     <Content Include="inc\api\qq\wb\ydq_body.inc" />
     <Content Include="inc\ads\tb\chongzhi.inc" />
     <Content Include="inc\api\qq\wb\ydq_body_1.inc" />
+    <Content Include="inc\api\qq\zone\hcfx.inc" />
+    <Content Include="inc\api\qq\zone\Qzone.inc" />
     <Content Include="inc\empty.inc" />
     <Content Include="inc\flash\index.inc" />
     <Content Include="inc\lanmu_right.inc" />

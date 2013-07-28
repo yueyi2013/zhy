@@ -137,7 +137,7 @@ namespace Web.admin.site.blog
                 CheckBox chk = (CheckBox)gvr.FindControl("chkItem");
                 if (chk.Checked)
                 {
-                    ZHY.BLL.NewsInfo bll = new ZHY.BLL.NewsInfo();
+                    ZHY.BLL.ArticleCategory bll = new ZHY.BLL.ArticleCategory();
                     bll.Delete(ConvertInt32(newsId, 0));
                 }
             }

@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" media="screen,projection" type="text/css" href="../css/site/main.css" />
-    <!--#include file="../inc/api/qq/wb/ydq_head.inc"-->
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cpBody" runat="server">
     <table cellpadding="0" cellspacing="0" width="100%">    
@@ -15,6 +15,9 @@
         作者：<asp:Label ID="lblAuthor" runat="server" Text="作者"></asp:Label>&nbsp;&nbsp;&nbsp;发布日期：<asp:Label ID="lblPubDate" runat="server"></asp:Label>
         <div id="divContent" runat="server">
     
+        </div>
+        <div id="divQzone" runat="server">
+        
         </div>
 
         <br />分享到腾讯微博：
@@ -29,9 +32,7 @@
     </div>
     <div class="right_content" >
         <!--#include file="../inc/ads/google/336_280_1.inc"-->
-        <div style=" height:800px;width:336px">
-        <!--#include file="../inc/api/qq/wb/ydq_body_1.inc"-->
-        </div>
+        <!--#include file="../inc/ads/clicksor/336_280.inc"-->
     </div>
     </td>
     </tr>

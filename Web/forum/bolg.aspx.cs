@@ -186,7 +186,7 @@ namespace Web.forum
             }
             else
             {
-                string newCont = HtmlPaserUtil.ParseTags(CompressionUtil.Decompress(value, "gb2312"));
+                string newCont = HtmlPaserUtil.RemoveStrSpace(HtmlPaserUtil.ParseTags(CompressionUtil.Decompress(value, "gb2312")));
                 if (!string.IsNullOrEmpty(newCont) && newCont.Length > 400)
                 {
                     return newCont.Substring(0, 400) + "......";

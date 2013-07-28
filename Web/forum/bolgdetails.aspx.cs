@@ -31,11 +31,11 @@ namespace Web.forum
         {
             if (Session["MemUser"] != null)
             {
-                this.divComments.Disabled = true;
-                this.divLogin.Disabled = false;
-            }else{
                 this.divComments.Disabled = false;
                 this.divLogin.Disabled = true;
+            }else{
+                this.divComments.Disabled = true;
+                this.divLogin.Disabled = false;
             }
         }
 
@@ -45,7 +45,7 @@ namespace Web.forum
             ZHY.BLL.Article bll = new ZHY.BLL.Article();
             ZHY.Model.Article model =  bll.GetModel(decimal.Parse(bgid));
             this.lblTitle.Text = model.ArTitle;
-            this.divBlog.InnerHtml = HttpUtility.HtmlDecode(CompressionUtil.Decompress(model.ArContent, "gb2312"));
+            this.divBlog.InnerHtml = CompressionUtil.Decompress(model.ArContent, "gb2312");
             sbWB.AppendFormat("<div id=\"qqwb_share__\" data-appkey=\"801383164\""
             +"data-icon=\"1\" data-counter=\"1\" data-counter_pos=\"right\""
             + "data-content=\"{0}\" data-richcontent=\"来自：{1}\" data-pic=\"{2}\"></div>", model.ArTitle, "syihy.com|作者：SYIHY|发布日期："+model.ArPubDate, "http://www.syihy.com/images/site/title.jpg");

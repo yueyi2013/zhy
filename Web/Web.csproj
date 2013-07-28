@@ -1145,6 +1145,7 @@
     <None Include="template\login_admin_green\psd.rar" />
     <None Include="template\login_admin_green\web\images\Thumbs.db" />
     <None Include="template\login_admin_green\web\tab\images\Thumbs.db" />
+    <Content Include="Web.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="admin\Main.Master.cs">

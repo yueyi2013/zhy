@@ -108,7 +108,7 @@ namespace ZHY.BLL
                                 switch (subNode.Name)
                                 {
                                     case "title":
-                                        item.RCItemTitle = subNode.InnerText;
+                                        item.RCItemTitle = subNode.InnerText.Replace("&nbsp;","");;
                                         break;
                                     case "link":
                                         item.RCItemLink = subNode.InnerText;

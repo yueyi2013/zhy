@@ -63,7 +63,7 @@ namespace Web.forum
             if (MailUtil.SendMail(mail, this.txtEmail.Text))
             {
                 ZHY.Model.Member modelMem = new ZHY.Model.Member();
-                modelMem.MemMail = mail.MailFromAddress;
+                modelMem.MemMail = this.txtEmail.Text;
                 modelMem.MemAccount = uId;
                 modelMem.MemPsw = Constants.DEFAULT_SITE_USER_PASSWORD;
                 modelMem.MemStatus = "A";

@@ -223,7 +223,6 @@ namespace Web.admin.site.blog
         {
             ZHY.Model.Article model = new ZHY.Model.Article();
             model.ArAuthor = this.txtNewsAuthor.Text;
-            model.ArContent = this.txtNewsAuthor.Text;
             model.ArPubDate = DateTime.Parse(this.txtPublishDate.Value);
             model.ArTitle = this.txtNewsTitle.Text;
             model.ArTypeId = int.Parse(this.ddlArticalType.SelectedValue);
@@ -248,7 +247,6 @@ namespace Web.admin.site.blog
             if (model != null)
             {
                 model.ArAuthor = this.txtNewsAuthor.Text;
-                model.ArContent = this.ftContent.Text;
                 model.ArPubDate = DateTime.Parse(this.txtPublishDate.Value);
                 model.ArTitle = this.txtNewsTitle.Text;
                 model.ArTypeId = int.Parse(this.ddlArticalType.SelectedValue);
@@ -272,7 +270,7 @@ namespace Web.admin.site.blog
             this.txtNewsAuthor.Text = "";
             this.ftContent.Text = "";
             this.rbStatus.SelectedItem.Value = "A";
-            this.txtPublishDate.Value = DateTime.Now.ToLongDateString();
+            this.txtPublishDate.Value = DateTime.Now.ToString("yyyy-MM-dd");
         }
 
         /// <summary>

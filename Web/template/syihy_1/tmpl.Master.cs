@@ -32,6 +32,14 @@ namespace Web.template.syihy_1
                 }
                 //BindNavigation();
                 BindNavHtmlCode(Request.Path);
+                if (Request.Path.IndexOf("default.aspx") > -1)
+                {
+                    this.lblPos.Visible = false;
+                    this.smpNav.Visible = false;
+                }else{
+                    this.lblPos.Visible = true;
+                    this.smpNav.Visible = true;
+                }
             }
         }
 

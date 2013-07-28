@@ -4,13 +4,10 @@
     <link rel="stylesheet" media="screen,projection" type="text/css" href="../css/site/main.css" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cpBody" runat="server">
-
 <table cellpadding="0" cellspacing="0" width="100%">
-    
     <tr align="left" valign="top">
-        <!--博客列表-->
-        <td>
-    <fieldset>
+        <td >
+        <fieldset>
         <legend>博客列表</legend> 
         <asp:UpdatePanel ID="MyUpdatePanelBody" runat="server" UpdateMode="Conditional">
             <Triggers>                        
@@ -21,7 +18,7 @@
                 <asp:Repeater ID="rpBolgList" runat="server" 
                     onitemcommand="rpBolgList_ItemCommand">
                     <HeaderTemplate>
-                        <table>
+                    <table style="table-layout:fixed;word-break: break-all; overflow:hidden">
                     </HeaderTemplate>
                     <ItemTemplate>
                         <tr>

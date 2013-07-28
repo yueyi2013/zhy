@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    <siteMapNode url="default.aspx" title="首页"  description="展示最新新闻动态">
+        <siteMapNode url="~/forum/news.aspx" title="新闻频道"  description="">
+          <siteMapNode url="~/forum/newsdetails.aspx" title="新闻详细"  description="" />
+        </siteMapNode>
+        <siteMapNode url="~/forum/bolg.aspx" title="博客频道"  description="">
+          <siteMapNode url="~/forum/bolgdetails.aspx" title="博客详细"  description="" />
+        </siteMapNode>
+        <siteMapNode url="~/forum/mem/membercenter.aspx" title="会员中心"  description="">
+          <siteMapNode url="~/forum/memberlogin.aspx" title="会员登录"  description="" />
+          <siteMapNode url="~/forum/register.aspx" title="用户注册"  description="" />
+        </siteMapNode>  
+        <siteMapNode url="~/forum/download.aspx" title="下载中心"  description="" />
+        <siteMapNode url="~/forum/contactus.aspx" title="联系我们"  description="" />
+        <siteMapNode url="~/forum/tecnicalsuport.aspx" title="技术支持"  description="" />
+        <siteMapNode url="~/forum/help.aspx" title="帮助"  description="" />        
+    </siteMapNode>
+</siteMap>

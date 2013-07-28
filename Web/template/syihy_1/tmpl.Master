@@ -66,20 +66,25 @@
         </tr>
         <!--End Navigation-->
         <!--Body Start-->
-        <tr><td align="center">
-        <div id="body">
-            <asp:UpdatePanel ID="upBody" runat="server" UpdateMode="Conditional">
-                <Triggers>
-                    <asp:AsyncPostBackTrigger ControlID="muNavigation" EventName="MenuItemClick" />
-                </Triggers>
-                <ContentTemplate>
-                     <asp:ContentPlaceHolder ID="cpBody" runat="server">
-        
-                     </asp:ContentPlaceHolder>   
-                 </ContentTemplate>
-            </asp:UpdatePanel>
-        </div>  
-        </td></tr>
+        <tr>
+            <td>
+                <asp:Label ID="lblPos" runat="server" Text="您的当前位置：" Font-Bold="true"></asp:Label> <asp:SiteMapPath ID="smpNav" runat="server" CssClass="sitemapcss"/>
+                <div id="body">
+                    <asp:UpdatePanel ID="upBody" runat="server" UpdateMode="Conditional">
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="muNavigation" EventName="MenuItemClick" />
+                        </Triggers>
+                        <ContentTemplate>
+                            <asp:ContentPlaceHolder ID="cpBody" runat="server">
+                            
+                                
+                            
+                            </asp:ContentPlaceHolder>   
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>  
+            </td>
+        </tr>
          <!--Body End-->
         <!--Foot-->
         <tr>

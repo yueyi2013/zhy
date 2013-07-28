@@ -25,7 +25,7 @@
 
 body {background:url("../../images/site/bg.gif") 0 0 repeat-x; font:0.8em/1.5 "arial", sans-serif;}
 
-h1, h2, h3, h4, h5, h6, p, address, blockquote, table, dl, fieldset {margin:15px 0;}
+h1, h2, h3, h4, h5, h6, p, address, blockquote, table, dl
 
 /* ----------------------------------------------------------------------------------------------------------
 2) HTML styles
@@ -334,3 +334,7 @@ a.btn_logintwo:link,a.btn_logintwo:visited,a.btn_logintwo:hover, a.btn_logintwo:
     border-left-style: solid;
     border-left-width: 1px;    
 }
+
+.sitemapcss{text-align:left;font-size:13px;line-height:18px;}
+.sitemapcss a {color: #002D82;text-decoration: none;}
+.sitemapcss a:hover {color: #c00;text-decoration: underline;}

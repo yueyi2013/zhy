@@ -8,9 +8,21 @@ namespace ZHY.DAL
 {
     public class BaseDAL
     {
+
+        #region 成员属性
+        private string dbErrorMessage = "";
+
+        public string DbErrorMessage
+        {
+            get { return dbErrorMessage; }
+            set { dbErrorMessage = value; }
+        }
+        #endregion
+
+
         #region 成员方法
         /// <summary>
-        /// 
+        /// 分页查询
         /// </summary>
         /// <param name="tablename">表名</param>
         /// <param name="strGetFields">查询列名</param>

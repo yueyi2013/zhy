@@ -56,7 +56,7 @@ namespace ZHY.BLL
         /// <summary>
         /// 邮件提醒（使用系统默认收件人）
         /// </summary>
-        /// <param name="subject">邮件主体</param>
+        /// <param name="subject">邮件主题</param>
         /// <param name="mailContent">邮件内容</param>
         /// <returns></returns>
         public bool AlertEmail(string subject,string mailContent) 

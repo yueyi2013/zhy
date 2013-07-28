@@ -165,6 +165,7 @@
     <Compile Include="AutoCode\SysManage\RightConfig.cs" />
     <Compile Include="AutoCode\SysManage\SystemConfig.cs" />
     <Compile Include="AutoCode\SysManage\SystemMail.cs" />
+    <Compile Include="BaseAccDAL.cs" />
     <Compile Include="BaseDAL.cs" />
     <Compile Include="Blog\ArticalType.cs" />
     <Compile Include="Blog\Article.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="ProTypeDetail.cs" />
     <Compile Include="PsnManage\PersonLevel.cs" />
     <Compile Include="PsnManage\PsnLevelType.cs" />
+    <Compile Include="Rss\Acc\RSSChannelItem.cs" />
     <Compile Include="Rss\RSSChannel.cs" />
     <Compile Include="Rss\RSSChannelItem.cs" />
     <Compile Include="Rss\RSSSite.cs" />

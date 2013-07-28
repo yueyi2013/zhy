@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using Maticsoft.Common;
 using ZHY.Model;
 using ZHY.Common;
+using ZHY.BLL;
+
 namespace ZHY.ACC.BLL
 {
 	/// <summary>
 	/// RSSChannelItem
 	/// </summary>
-	public partial class RSSChannelItem
+	public partial class RSSChannelItem : BaseBLL
 	{
         /// <summary>
         /// 将新闻备份至Access数据库
@@ -37,11 +39,17 @@ namespace ZHY.ACC.BLL
             }
             ZHY.BLL.RSSChannelItem bllItem = new ZHY.BLL.RSSChannelItem();
             IList<ZHY.Model.RSSChannelItem> list = bllItem.loadExpireNews(days);
+            string errorMsg = "";
             foreach(ZHY.Model.RSSChannelItem model in list)
             {
-                dal.Add(model);
+                if (!dal.Add(model, ref errorMsg))
+                {
+                    AlertEmail(Constants.SYSTEM_CONFIG_ATT_NAME_MAIL_PURGE_JOB_SUBJECT, "执行 MoveNewsToAccessDB() 方法时发生错误：" + errorMsg);
+                    break;
+                }
             }
-            bllItem.DeleteExpireNews(days);
+            if (list.Count>0)
+                bllItem.DeleteExpireNews(days);
         }
 	}
 }

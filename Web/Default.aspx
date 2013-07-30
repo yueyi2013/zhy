@@ -12,7 +12,7 @@
     <div id="col" class="box">
     <div id="ribbon"></div>
     <div id="col-text">
-    <!--#include file="inc/ads/google/336_280.inc"-->
+    <!--#include file="inc/ads/chitika/336_280.inc"-->
     </div>
     <div style=" height:280px">              
         <p style=" font-size:larger; font-weight:bold">
@@ -104,6 +104,5 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="foot" runat="server">
     <!--#include file="inc/ads/tb/chongzhi.inc"-->
-    <!--#include file="inc/ads/clicksor/full_page_cbr.inc"-->
 </asp:Content>
 

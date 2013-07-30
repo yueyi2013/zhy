@@ -31,7 +31,6 @@
         </div>
     </div>
     <div class="right_content" >
-        <!--#include file="../inc/ads/google/336_280_1.inc"-->
         <!--#include file="../inc/ads/clicksor/336_280.inc"-->
     </div>
     </td>

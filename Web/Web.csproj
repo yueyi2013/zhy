@@ -794,6 +794,7 @@
     <Content Include="Global.asax" />
     <Content Include="default.aspx" />
     <Content Include="inc\ads\888\cpa_942_268.inc" />
+    <Content Include="inc\ads\chitika\336_280.inc" />
     <Content Include="inc\ads\clicksor\160_600.inc" />
     <Content Include="inc\ads\clicksor\336_280.inc" />
     <Content Include="inc\ads\clicksor\searchbox.inc" />

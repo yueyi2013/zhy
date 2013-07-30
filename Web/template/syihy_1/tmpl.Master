@@ -68,7 +68,6 @@
         <!--Body Start-->
         <tr>
             <td>
-                <asp:Label ID="lblPos" runat="server" Text="您的当前位置：" Font-Bold="true"></asp:Label> <asp:SiteMapPath ID="smpNav" runat="server" CssClass="sitemapcss"/>
                 <div id="body">
                     <asp:UpdatePanel ID="upBody" runat="server" UpdateMode="Conditional">
                         <Triggers>

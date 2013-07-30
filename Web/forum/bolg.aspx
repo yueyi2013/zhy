@@ -92,7 +92,6 @@
                     </asp:TreeView>
                     </ContentTemplate>
                 </asp:UpdatePanel>
-                <!--#include file="../inc/ads/google/160_600.inc"-->    
                 <!--#include file="../inc/ads/clicksor/160_600.inc"-->  
         </fieldset>        
     </td>

@@ -11,5 +11,6 @@ clicksor_layer_ad_text_color = '';
 clicksor_text_link_bg = '';
 clicksor_text_link_color = '';
 clicksor_enable_inter=true;
+clicksor_enable_layer_pop = false;
 </script>
 <script type="text/javascript" src="http://ads.clicksor.com/newServing/showAd.php?nid=1&amp;pid=320206&amp;sid=533404"></script> <noscript><a href="http://www.yesads.com">online marketing</a></noscript>

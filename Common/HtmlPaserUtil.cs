@@ -52,6 +52,48 @@ namespace ZHY.Common
             return "";
         }
 
+        /// <summary>
+        /// 提取指定标签中的节点个数
+        /// </summary>
+        /// <param name="htmlSource"></param>
+        /// <returns></returns>
+        public static int extractHtmlTags(ref string htmlSource)
+        {
+            try
+            {
+                Parser htmlParser = Parser.CreateParser(htmlSource, "GB2312");
+                NodeFilter filter = new NodeClassFilter(typeof(Div));
+                NodeList nodeList = htmlParser.Parse(filter);
+                INode pageAt = null;
+                INode buttonAt = null;
+                int tags = 0;
+                for (int i = 0; i < nodeList.Size(); i++)
+                {
+
+                    Div div = (Div)nodeList.ElementAt(i);
+                    string cls = div.GetAttribute("class");
+                    
+                    if (!string.IsNullOrEmpty(cls) && cls.Equals("zdfy clearfix"))
+                    {
+                        pageAt = nodeList[i];
+                        tags = div.ChildCount;
+                        htmlSource = htmlSource.Replace(nodeList[i].ToHtml(), "");
+                    }
+
+                    if (nodeList[i].GetText().Equals("center"))
+                    {
+                        buttonAt = nodeList[i];
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
+            return 0;
+        }
+
 
         /**/
         ///   <summary>

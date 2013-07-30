@@ -1,12 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/template/syihy_1/tmpl.Master" AutoEventWireup="true" CodeBehind="bolgdetails.aspx.cs" Inherits="Web.forum.bolgdetails" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" media="screen,projection" type="text/css" href="../css/site/main.css" />
-    <!--#include file="../inc/api/qq/wb/ydq_head.inc"-->
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cpBody" runat="server">
-<!--#include file="../inc/ads/google/970_90.inc"-->
 <table cellpadding="0" cellspacing="0" width="98%">  
-    <tr>
+    <tr align="left" valign="top">
         <td>
             <div class="left_blog_content">
                 <asp:Label ID="lblTitle" runat="server" Font-Size="X-Large" Font-Bold="true"></asp:Label>                
@@ -49,7 +47,7 @@
                 * 以上用户言论只代表其个人观点，不代表SYIHY网站的观点或立场.
             </div>
             <div class="right_blog_content" >
-        
+                
             </div>
         </td>
     </tr>
@@ -57,4 +55,7 @@
 
     <!--#include file="../inc/api/qq/wb/Q-Share.inc"-->
     <!--#include file="../inc/api/qq/wb/yjfx.inc"-->
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="foot" runat="server">     
+     <!--#include file="../inc/ads/clicksor/txt_link_rb.inc"-->
 </asp:Content>

@@ -794,12 +794,15 @@
     <Content Include="Global.asax" />
     <Content Include="default.aspx" />
     <Content Include="inc\ads\888\cpa_942_268.inc" />
-    <Content Include="inc\ads\chitika\336_280.inc" />
+    <Content Include="inc\ads\chitika\336_280.inc">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="inc\ads\clicksor\160_600.inc" />
     <Content Include="inc\ads\clicksor\336_280.inc" />
     <Content Include="inc\ads\clicksor\searchbox.inc" />
     <Content Include="inc\ads\clicksor\txt_link_rb.inc" />
     <Content Include="inc\ads\clicksor\full_page_cbr.inc" />
+    <Content Include="inc\ads\clicksor\336_280_1.inc" />
     <Content Include="inc\ads\ddg\cpa_yx_tc.inc" />
     <Content Include="inc\ads\fk\cps_360_120.inc" />
     <Content Include="inc\ads\fk\cps_sousuo.inc" />

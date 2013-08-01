@@ -89,7 +89,7 @@ namespace ZHY.BLL
                     switch (node.Name)
                     {
                         case "title":
-                            channel.RCTitle = node.InnerText.Replace("&nbsp;","");
+                            channel.RCTitle = node.InnerText;
                             break;
                         case "link":
                             channel.RCLink = node.InnerText;
@@ -108,7 +108,7 @@ namespace ZHY.BLL
                                 switch (subNode.Name)
                                 {
                                     case "title":
-                                        item.RCItemTitle = subNode.InnerText.Replace("&nbsp;","");;
+                                        item.RCItemTitle = subNode.InnerText;
                                         break;
                                     case "link":
                                         item.RCItemLink = subNode.InnerText;
@@ -149,12 +149,7 @@ namespace ZHY.BLL
         /// <param name="item"></param>
         public void LoadRssItemContent(string itemRUL, string contentId, ZHY.Model.RSSChannelItem item)
         {
-            string htmlSource = RSSFeeds.loadRssFeeds(itemRUL, "gb2312");
-            string tagSourcec = "";
-            if (!string.IsNullOrEmpty(htmlSource))
-            {
-                tagSourcec = HtmlPaserUtil.extractHtmlsource(htmlSource);
-            }
+            string tagSourcec = HtmlPaserUtil.extractHtmlBatchContent(itemRUL);
 
             ZHY.Model.SystemConfig model = GetSystemConfigModel();
             if (model != null && model.SCAttrValue.Equals(Constants.SYSTEM_CONFIG_ATT_GROUP_NEWS_VALUE_Y))

@@ -39,6 +39,7 @@ namespace Web
         /// <returns></returns>
         protected string CutTitleString(string title)
         {
+            title = HtmlDecode(title);
             if (!string.IsNullOrEmpty(title) && title.Length > Constants.SITE_INDEX_NEWS_LIST_TITLE_WORDS)
                 return title.Substring(0, Constants.SITE_INDEX_NEWS_LIST_TITLE_WORDS) + "...";
             return title;
@@ -72,7 +73,7 @@ namespace Web
             if (list.Count > 0) 
             {
                 ZHY.Model.NewsTop model = list[0];
-                this.hlNew.Text = model.NTTitle;
+                this.hlNew.Text = HtmlDecode(model.NTTitle);
                 this.hlNew.NavigateUrl = "~/forum/newsdetails.aspx?rciid=" + model.NTId;
                 this.hlNewDetail.NavigateUrl = "~/forum/newsdetails.aspx?rciid=" + model.NTId;
                 string parStr = HtmlPaserUtil.ParseTags(HttpUtility.HtmlDecode(CompressionUtil.Decompress(model.NTContent, "gb2312")));

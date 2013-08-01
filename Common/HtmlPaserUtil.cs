@@ -53,11 +53,49 @@ namespace ZHY.Common
         }
 
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="itemRUL"></param>
+        /// <returns></returns>
+        public static string extractHtmlBatchContent(string itemRUL) 
+        {
+            string htmlSource = RSSFeeds.loadRssFeeds(itemRUL, "gb2312");
+            if (string.IsNullOrEmpty(htmlSource)) {
+
+                return "";
+            }
+            string result = extractHtmlsource(htmlSource);
+            int pagecount = extractHtmlPageTags(ref result);
+            if (pagecount > 0)
+            {
+                int len = itemRUL.Length;
+                string pageUrl = itemRUL.Substring(0, len - 5);
+                StringBuilder sbContent = new StringBuilder(result);
+                for (int i = 2; i <= pagecount;i++ )
+                {
+                    htmlSource = RSSFeeds.loadRssFeeds(pageUrl+"-"+i+".html", "gb2312");
+                    result = extractHtmlsource(htmlSource);
+                    extractHtmlPageTags(ref result);
+                    if (result.Equals(sbContent.ToString()))
+                    {
+                        continue;
+                    }
+                    sbContent.Append(result);
+                }
+                return sbContent.ToString();
+            }
+            else {
+
+                return result;
+            }
+        }
+
+        /// <summary>
         /// 提取指定标签中的节点个数
         /// </summary>
         /// <param name="htmlSource"></param>
         /// <returns></returns>
-        public static int extractHtmlTags(ref string htmlSource)
+        public static int extractHtmlPageTags(ref string htmlSource)
         {
             try
             {
@@ -65,7 +103,6 @@ namespace ZHY.Common
                 NodeFilter filter = new NodeClassFilter(typeof(Div));
                 NodeList nodeList = htmlParser.Parse(filter);
                 INode pageAt = null;
-                INode buttonAt = null;
                 int tags = 0;
                 for (int i = 0; i < nodeList.Size(); i++)
                 {
@@ -79,12 +116,11 @@ namespace ZHY.Common
                         tags = div.ChildCount;
                         htmlSource = htmlSource.Replace(nodeList[i].ToHtml(), "");
                     }
-
-                    if (nodeList[i].GetText().Equals("center"))
-                    {
-                        buttonAt = nodeList[i];
-                    }
                 }
+
+                htmlSource = DropHtmlTag(htmlSource,"center");
+
+                return tags;
             }
             catch (Exception ex)
             {
@@ -94,6 +130,58 @@ namespace ZHY.Common
             return 0;
         }
 
+        /// <summary>
+        /// 去掉html内容中的指定的html标签
+        /// </summary>
+        /// <param name="content">html内容</param>
+        /// <param name="tagName">html标签</param>
+        /// <returns>去掉标签的内容</returns>
+        public static string DropHtmlTag(string content, string tagName)
+        {
+            //去掉<tagname>和</tagname>
+            return DropIgnoreCase(content, "<[/]{0,1}" + tagName + "[^>]*>" + ".*?" + "<[/]{0,1}" + tagName + "[^>]*>");
+        }
+
+        /// <summary>
+        /// 删除字符串中指定的内容,不区分大小写
+        /// </summary>
+        /// <param name="src">要修改的字符串</param>
+        /// <param name="pattern">要删除的正则表达式模式</param>
+        /// <returns>已删除指定内容的字符串</returns>
+        public static string DropIgnoreCase(string src, string pattern)
+        {
+            return ReplaceIgnoreCase(src, pattern, "");
+        }
+
+        #region 不区分大小写替换字符串
+        /// <summary>
+        /// 不区分大小写替换字符串
+        /// </summary>
+        /// <param name="src">源字符串</param>
+        /// <param name="pattern">要匹配的正则表达式模式</param>
+        /// <param name="replacement">替换字符串</param>
+        /// <returns>已修改的字符串</returns>
+        public static string ReplaceIgnoreCase(string src, string pattern, string replacement)
+        {
+            return Replace(src, pattern, replacement, RegexOptions.IgnoreCase);
+        }
+        #endregion
+
+        #region 正则替换字符串
+        /// <summary>
+        ///  正则替换字符串
+        /// </summary>
+        /// <param name="src">要修改的字符串</param>
+        /// <param name="pattern">要匹配的正则表达式模式</param>
+        /// <param name="replacement">替换字符串</param>
+        /// <param name="options">匹配模式</param>
+        /// <returns>已修改的字符串</returns>
+        public static string Replace(string src, string pattern, string replacement, RegexOptions options)
+        {
+            Regex regex = new Regex(pattern, options | RegexOptions.Compiled);
+            return regex.Replace(src, replacement);
+        }
+        #endregion
 
         /**/
         ///   <summary>

@@ -93,6 +93,7 @@
     <Content Include="admin\site\ads\wfWebSiteAds.aspx" />
     <Content Include="admin\site\blog\wfArticalTypeList.aspx" />
     <Content Include="admin\site\blog\wfArticleCategoryList.aspx" />
+    <Content Include="admin\site\blog\wfBlog.aspx" />
     <Content Include="admin\site\blog\wfBlogList.aspx" />
     <Content Include="admin\site\blog\wfCommentList.aspx" />
     <Content Include="admin\site\homepage\wfNavigation.aspx" />
@@ -794,6 +795,8 @@
     <Content Include="Global.asax" />
     <Content Include="default.aspx" />
     <Content Include="inc\ads\888\cpa_942_268.inc" />
+    <Content Include="inc\ads\admimsy\300_250.inc" />
+    <Content Include="inc\ads\chitika\160_600.inc" />
     <Content Include="inc\ads\chitika\336_280.inc">
       <SubType>Designer</SubType>
     </Content>
@@ -818,6 +821,7 @@
     </Content>
     <Content Include="inc\ads\google\160_600.inc" />
     <Content Include="inc\ads\google\336_280_1.inc" />
+    <Content Include="inc\ads\lrs\336_280.inc" />
     <Content Include="inc\ads\tb\taodianjing.inc">
       <SubType>Designer</SubType>
     </Content>
@@ -826,6 +830,7 @@
     <Content Include="inc\ads\zm\cpa_728_90.inc" />
     <Content Include="inc\ads\ddg\cpa_960_380.inc" />
     <Content Include="inc\ads\zm\sh_cpa_960_90.inc" />
+    <Content Include="inc\api\baidu\share.inc" />
     <Content Include="inc\api\qq\wb\yjfx.inc" />
     <Content Include="inc\api\qq\wb\ydq_head.inc" />
     <Content Include="inc\api\qq\wb\Q-Share.inc" />
@@ -1235,6 +1240,13 @@
     </Compile>
     <Compile Include="admin\site\blog\wfArticleCategoryList.aspx.designer.cs">
       <DependentUpon>wfArticleCategoryList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\site\blog\wfBlog.aspx.cs">
+      <DependentUpon>wfBlog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\site\blog\wfBlog.aspx.designer.cs">
+      <DependentUpon>wfBlog.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\site\blog\wfBlogList.aspx.cs">
       <DependentUpon>wfBlogList.aspx</DependentUpon>

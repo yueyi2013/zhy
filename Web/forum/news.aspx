@@ -83,6 +83,7 @@
                     </ContentTemplate>
                     </asp:UpdatePanel>
                     <!--#include file="../inc/ads/clicksor/160_600.inc"-->  
+                    <!--#include file="../inc/ads/chitika/160_600.inc"-->  
                 </fieldset>
             </td>
         </tr>

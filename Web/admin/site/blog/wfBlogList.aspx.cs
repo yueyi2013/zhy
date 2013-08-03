@@ -281,6 +281,8 @@ namespace Web.admin.site.blog
             ZHY.BLL.Article bll = new ZHY.BLL.Article();
             ZHY.Model.Article model = bll.GetModel(rssId);
             this.hfArId.Value = model.ArId.ToString();
+            this.ddlArticalCategory.SelectedItem.Value = model.ACId.ToString();
+            this.ddlArticalType.SelectedItem.Value = model.ArTypeId.ToString();
             this.txtNewsTitle.Text = model.ArTitle;
             this.txtNewsAuthor.Text = model.ArAuthor;
             this.txtPublishDate.Value = model.ArPubDate.Value.ToString("yyyy-MM-dd");

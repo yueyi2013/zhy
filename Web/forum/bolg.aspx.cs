@@ -47,7 +47,7 @@ namespace Web.forum
         protected override void MstRepeaterBind()
         {
             ZHY.BLL.Article bll = new ZHY.BLL.Article();
-            string name = "";
+            string name = this.hfACID.Value;
             this.rpBolgList.DataSource = bll.GetIndexBlogList(pageIndex, name, ref pageRecord);
             this.rpBolgList.DataBind();
             base.MstRepeaterBind();
@@ -110,7 +110,7 @@ namespace Web.forum
 
         protected void tvBolgCat_SelectedNodeChanged(object sender, EventArgs e)
         {
-            this.hfACID.Value = this.tvBolgCat.SelectedNode.Value;
+            this.hfACID.Value = this.tvBolgCat.SelectedNode.Text;
             this.lblCategory.Text = this.tvBolgCat.SelectedNode.Text;
             MstRepeaterBind();
         }

@@ -44,7 +44,7 @@ namespace ZHY.BLL
             string strWhere = " 1=1 ";
             if (!String.IsNullOrEmpty(name))
             {
-                strWhere += " and ArTitle like '%" + name + "'";
+                strWhere += " and ACName =  '" + name + "'";
             }
 
             return dal.GetList(tablename, strGetFields, PageIndex, pageSize, strWhere, strOrder, intOrder, ref CountAll);

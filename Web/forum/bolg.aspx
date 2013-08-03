@@ -15,6 +15,11 @@
             </Triggers>
             <ContentTemplate> 
                 <asp:Label ID="lblCategory" runat="server"></asp:Label>   
+                <asp:UpdateProgress ID="upgLoading" runat="server">
+                    <ProgressTemplate>
+                      &nbsp;<p style=" font-weight:bold; color:Blue; text-align:center">正在努力为您加载，请稍等......</p>
+                    </ProgressTemplate>
+                </asp:UpdateProgress>
                 <asp:Repeater ID="rpBolgList" runat="server" 
                     onitemcommand="rpBolgList_ItemCommand">
                     <HeaderTemplate>
@@ -48,7 +53,7 @@
                          </table>
                     </FooterTemplate>
                 </asp:Repeater>
-                <asp:HiddenField ID="hfACID" runat="server" Value="0" />
+                <asp:HiddenField ID="hfACID" runat="server" />
                     当前页索引：
                         <asp:Label ID="lblPageIndex0" runat="server" ForeColor="Red"></asp:Label>/
                                     总页数：<asp:Label ID="lblPageAll0" runat="server" ForeColor="Red"></asp:Label>

@@ -12,7 +12,7 @@
     <div id="col" class="box">
     <div id="ribbon"></div>
     <div id="col-text">
-    <!--#include file="inc/ads/chitika/336_280.inc"-->
+    <!--#include file="inc/ads/admimsy/300_250.inc"-->
     </div>
     <div style=" height:280px">              
         <p style=" font-size:larger; font-weight:bold">

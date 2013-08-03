@@ -47,9 +47,13 @@ namespace Web.forum
 
                 StringBuilder sbXL = new StringBuilder();
                 sbXL.AppendFormat("<wb:share-button appkey=\"2919819730\" "
-                +"relateuid=\"2703774515\" type=\"button\" "
-                + "title=\"{0}\" size=\"big\" count=\"n\"></wb:share-button>", model.RCItemTitle);                
-                this.divXLWB.InnerHtml=sbXL.ToString();
+                + "relateuid=\"2703774515\" type=\"button\" "
+                + "title=\"{0}\" size=\"big\" count=\"n\"></wb:share-button>", model.RCItemTitle);
+                this.divXLWB.InnerHtml = sbXL.ToString();
+            }
+            else {
+
+                Response.Redirect("news.aspx");
             }
         }
     }

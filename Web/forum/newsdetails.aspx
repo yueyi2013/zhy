@@ -29,6 +29,7 @@
         <div id="divXLWB" runat="server">
     
         </div>
+        <!--#include file="../inc/api/baidu/share.inc"-->
     </div>
     <div class="right_content" >
         <!--#include file="../inc/ads/clicksor/336_280.inc"-->

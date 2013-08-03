@@ -44,6 +44,10 @@ namespace Web.forum
             StringBuilder sbWB = new StringBuilder();            
             ZHY.BLL.Article bll = new ZHY.BLL.Article();
             ZHY.Model.Article model =  bll.GetModel(decimal.Parse(bgid));
+            if (model==null)
+            {
+                Response.Redirect("bolg.aspx");
+            }
             this.lblTitle.Text = model.ArTitle;
             this.divBlog.InnerHtml = CompressionUtil.Decompress(model.ArContent, "gb2312");
             sbWB.AppendFormat("<div id=\"qqwb_share__\" data-appkey=\"801383164\""

@@ -10,6 +10,6 @@
 namespace download.syihy.com {
     
     
-    public partial class download1 {
+    public partial class download {
     }
 }

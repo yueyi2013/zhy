@@ -33,7 +33,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service", "Service\Service.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{B6DE4634-FA9E-4248-972B-78047B32A989}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "download.syihy.com", "download.syihy.com\download.syihy.com.csproj", "{D2021BB7-2606-4C02-A07D-5CF505E4DF7B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "download.syihy.com", "download.syihy.com\download.syihy.com.csproj", "{C848871F-E835-4564-9D9E-98983D311805}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -206,18 +206,18 @@ Global
 		{B6DE4634-FA9E-4248-972B-78047B32A989}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B6DE4634-FA9E-4248-972B-78047B32A989}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B6DE4634-FA9E-4248-972B-78047B32A989}.Release|x86.ActiveCfg = Release|Any CPU
-		{D2021BB7-2606-4C02-A07D-5CF505E4DF7B}.Debug|.NET.ActiveCfg = Debug|Any CPU
-		{D2021BB7-2606-4C02-A07D-5CF505E4DF7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D2021BB7-2606-4C02-A07D-5CF505E4DF7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D2021BB7-2606-4C02-A07D-5CF505E4DF7B}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{D2021BB7-2606-4C02-A07D-5CF505E4DF7B}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{D2021BB7-2606-4C02-A07D-5CF505E4DF7B}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{D2021BB7-2606-4C02-A07D-5CF505E4DF7B}.Release|.NET.ActiveCfg = Release|Any CPU
-		{D2021BB7-2606-4C02-A07D-5CF505E4DF7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D2021BB7-2606-4C02-A07D-5CF505E4DF7B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D2021BB7-2606-4C02-A07D-5CF505E4DF7B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{D2021BB7-2606-4C02-A07D-5CF505E4DF7B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{D2021BB7-2606-4C02-A07D-5CF505E4DF7B}.Release|x86.ActiveCfg = Release|Any CPU
+		{C848871F-E835-4564-9D9E-98983D311805}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{C848871F-E835-4564-9D9E-98983D311805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C848871F-E835-4564-9D9E-98983D311805}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C848871F-E835-4564-9D9E-98983D311805}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{C848871F-E835-4564-9D9E-98983D311805}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{C848871F-E835-4564-9D9E-98983D311805}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C848871F-E835-4564-9D9E-98983D311805}.Release|.NET.ActiveCfg = Release|Any CPU
+		{C848871F-E835-4564-9D9E-98983D311805}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C848871F-E835-4564-9D9E-98983D311805}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C848871F-E835-4564-9D9E-98983D311805}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{C848871F-E835-4564-9D9E-98983D311805}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{C848871F-E835-4564-9D9E-98983D311805}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

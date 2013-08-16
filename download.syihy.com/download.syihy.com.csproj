@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\download.css" />
+    <Content Include="default.aspx" />
     <Content Include="download.aspx" />
     <Content Include="js\download.js" />
     <Content Include="Web.config" />
@@ -65,6 +66,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="default.aspx.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="default.aspx.designer.cs">
+      <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
     <Compile Include="download.aspx.cs">
       <DependentUpon>download.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

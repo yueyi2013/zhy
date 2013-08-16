@@ -794,6 +794,7 @@
     <Content Include="ftb.imagegallery.aspx" />
     <Content Include="Global.asax" />
     <Content Include="default.aspx" />
+    <Content Include="images\fl\logo_header_out.gif" />
     <Content Include="inc\ads\888\cpa_942_268.inc" />
     <Content Include="inc\ads\admimsy\300_250.inc" />
     <Content Include="inc\ads\chitika\160_600.inc" />
@@ -831,6 +832,7 @@
     <Content Include="inc\ads\ddg\cpa_960_380.inc" />
     <Content Include="inc\ads\zm\sh_cpa_960_90.inc" />
     <Content Include="inc\api\baidu\share.inc" />
+    <Content Include="inc\api\paypal\donate.inc" />
     <Content Include="inc\api\qq\wb\yjfx.inc" />
     <Content Include="inc\api\qq\wb\ydq_head.inc" />
     <Content Include="inc\api\qq\wb\Q-Share.inc" />
@@ -839,6 +841,7 @@
     <Content Include="inc\api\qq\wb\ydq_body_1.inc" />
     <Content Include="inc\api\qq\zone\hcfx.inc" />
     <Content Include="inc\api\qq\zone\Qzone.inc" />
+    <Content Include="inc\api\weather\360.inc" />
     <Content Include="inc\empty.inc" />
     <Content Include="inc\flash\index.inc" />
     <Content Include="inc\lanmu_right.inc" />

@@ -10,14 +10,15 @@
 </head>
 <body>
    <div>
-    <form id="form1" runat="server">
-        <asp:ScriptManager ID="scmDownload" runat="server">
-        </asp:ScriptManager>
-        <asp:ContentPlaceHolder ID="body" runat="server">
-        
-        </asp:ContentPlaceHolder>
+        <form id="form1" runat="server">
+            <asp:ScriptManager ID="scmDownload" runat="server">
+            </asp:ScriptManager>
+
+            <asp:ContentPlaceHolder ID="body" runat="server">
+                
+            </asp:ContentPlaceHolder>
     
-    </form>
+        </form>
         <asp:ContentPlaceHolder ID="foot" runat="server">
         
         </asp:ContentPlaceHolder>

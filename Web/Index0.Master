@@ -34,6 +34,7 @@
 </head>
 <body style="margin-left: 0px; margin-top: 0px; background-image: url('../images/bg.gif');
     background-repeat: repeat">
+    <script type="text/javascript" src="http://ext.weather.com.cn/41704.js"></script>
     <form id="form1" runat="server">
     <asp:ScriptManager ID="ScriptManager1" runat="server">
     </asp:ScriptManager>

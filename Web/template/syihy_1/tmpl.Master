@@ -22,6 +22,8 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+<div id="gadgetContainer">
+    </div>
 <div id="main">
     <form id="form1" runat="server">    
             
@@ -89,6 +91,9 @@
         <tr>
             <td>
                 <asp:DataList ID="dlFriendLink" runat="server" RepeatColumns="12" RepeatDirection="Horizontal">
+                    <ItemTemplate>
+                        
+                    </ItemTemplate>
                 </asp:DataList>
             </td>
         </tr>
@@ -106,5 +111,6 @@
     <asp:ContentPlaceHolder ID="foot" runat="server">
     </asp:ContentPlaceHolder>
     </div>
+    <!--#include file="../../inc/api/weather/360.inc"-->
 </body>
 </html>

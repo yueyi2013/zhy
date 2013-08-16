@@ -15,6 +15,7 @@
                 分享到新浪微博：
                 <div id="divXLWB" runat="server" />
                 <!--#include file="../inc/api/baidu/share.inc"-->
+                <!--#include file="../inc/api/paypal/donate.inc"-->
                 查看评论：
                 <div id="divComments"  runat="server" style=" display:none">
                     <table cellpadding="0" cellspacing="0" width="100%">

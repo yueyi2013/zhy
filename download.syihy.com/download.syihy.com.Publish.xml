@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="G:\Code\SitePublish\PRO\www.asyd.somee.com" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="配置文件1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
+    <file relUrl="bin/ru/AjaxControlToolkit.resources.dll" publishTime="06/08/2013 19:27:54" />
+    <file relUrl="bin/Microsoft.WindowsAzure.Storage.dll" publishTime="10/11/2012 07:48:20" />
+    <file relUrl="Main.Master" publishTime="08/04/2013 10:25:34" />
+    <file relUrl="bin/Microsoft.WindowsAzure.Storage.xml" publishTime="10/11/2012 01:54:46" />
+    <file relUrl="download.aspx" publishTime="08/04/2013 10:32:03" />
+    <file relUrl="bin/es/AjaxControlToolkit.resources.dll" publishTime="06/08/2013 19:27:52" />
+    <file relUrl="bin/hi/AjaxControlToolkit.resources.dll" publishTime="06/08/2013 19:27:52" />
+    <file relUrl="bin/zh-CHS/AjaxControlToolkit.resources.dll" publishTime="06/08/2013 19:27:54" />
+    <file relUrl="bin/download.syihy.com.pdb" publishTime="08/04/2013 11:22:28" />
+    <file relUrl="bin/download.syihy.com.dll" publishTime="08/04/2013 11:22:28" />
+    <file relUrl="bin/AjaxControlToolkit.pdb" publishTime="06/08/2013 19:27:50" />
+    <file relUrl="bin/de/AjaxControlToolkit.resources.dll" publishTime="06/08/2013 19:27:52" />
+    <file relUrl="bin/AjaxControlToolkit.dll" publishTime="06/08/2013 19:27:50" />
+    <file relUrl="bin/zh-CHT/AjaxControlToolkit.resources.dll" publishTime="06/08/2013 19:27:54" />
+    <file relUrl="js/download.js" publishTime="08/04/2013 10:37:16" />
+    <file relUrl="css/download.css" publishTime="08/04/2013 10:38:36" />
+    <file relUrl="bin/he/AjaxControlToolkit.resources.dll" publishTime="06/08/2013 19:27:52" />
+    <file relUrl="bin/fr/AjaxControlToolkit.resources.dll" publishTime="06/08/2013 19:27:52" />
+    <file relUrl="bin/nl/AjaxControlToolkit.resources.dll" publishTime="06/08/2013 19:27:52" />
+    <file relUrl="bin/tr-TR/AjaxControlToolkit.resources.dll" publishTime="06/08/2013 19:27:54" />
+    <file relUrl="bin/it/AjaxControlToolkit.resources.dll" publishTime="06/08/2013 19:27:52" />
+    <file relUrl="Web.config" publishTime="08/04/2013 11:22:30" />
+    <file relUrl="bin/cs/AjaxControlToolkit.resources.dll" publishTime="06/08/2013 19:27:52" />
+    <file relUrl="bin/pt/AjaxControlToolkit.resources.dll" publishTime="06/08/2013 19:27:54" />
+    <file relUrl="bin/ar/AjaxControlToolkit.resources.dll" publishTime="06/08/2013 19:27:52" />
+    <file relUrl="bin/ko/AjaxControlToolkit.resources.dll" publishTime="06/08/2013 19:27:52" />
+    <file relUrl="bin/ja/AjaxControlToolkit.resources.dll" publishTime="06/08/2013 19:27:52" />
+  </publishProfile>
+</publishData>

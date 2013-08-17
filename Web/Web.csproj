@@ -831,7 +831,9 @@
     <Content Include="inc\ads\zm\cpa_728_90.inc" />
     <Content Include="inc\ads\ddg\cpa_960_380.inc" />
     <Content Include="inc\ads\zm\sh_cpa_960_90.inc" />
-    <Content Include="inc\api\baidu\share.inc" />
+    <Content Include="inc\api\baidu\share.inc">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="inc\api\paypal\donate.inc" />
     <Content Include="inc\api\qq\wb\yjfx.inc" />
     <Content Include="inc\api\qq\wb\ydq_head.inc" />

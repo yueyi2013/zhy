@@ -49,6 +49,7 @@ namespace Web.forum
                 Response.Redirect("bolg.aspx");
             }
             this.lblTitle.Text = model.ArTitle;
+            Page.Title = model.ArTitle;
             this.divBlog.InnerHtml = CompressionUtil.Decompress(model.ArContent, "gb2312");
             sbWB.AppendFormat("<div id=\"qqwb_share__\" data-appkey=\"801383164\""
             +"data-icon=\"1\" data-counter=\"1\" data-counter_pos=\"right\""

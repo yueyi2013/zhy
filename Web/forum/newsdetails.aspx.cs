@@ -35,6 +35,7 @@ namespace Web.forum
             if (model != null)
             {
                 this.lblTitle.Text = Server.HtmlDecode(model.RCItemTitle);
+                Page.Title = this.lblTitle.Text;
                 this.lblAuthor.Text = model.RCItemAuthor;
                 this.lblPubDate.Text = model.RCItemPubDate.ToString();
                 this.divContent.InnerHtml = HttpUtility.HtmlDecode(CompressionUtil.Decompress(model.RCItemDescription, "gb2312"));

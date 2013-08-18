@@ -99,17 +99,21 @@
         <tr>
             <td>        
                 <div id="footer" style="text-align:center">
+                    <!--#include file="../../inc/api/cnzz/zztj.inc"-->
+                    <br />
 		            &copy; Copyright 2013. syihy.com rights reserved
 	            </div>
             </td>
         </tr>
         <!--Foot End-->
         </table>
-    
+        
     </form>
+
     <asp:ContentPlaceHolder ID="foot" runat="server">
     </asp:ContentPlaceHolder>
-    </div>
+        
+    </div>    
     <!--#include file="../../inc/api/weather/360.inc"-->
 </body>
 </html>

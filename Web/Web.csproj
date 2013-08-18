@@ -834,6 +834,7 @@
     <Content Include="inc\api\baidu\share.inc">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="inc\api\cnzz\zztj.inc" />
     <Content Include="inc\api\paypal\donate.inc" />
     <Content Include="inc\api\qq\wb\yjfx.inc" />
     <Content Include="inc\api\qq\wb\ydq_head.inc" />

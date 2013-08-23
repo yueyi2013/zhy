@@ -19,11 +19,12 @@ namespace Web.forum
                 if (!string.IsNullOrEmpty(bgid))
                 {
                     BindBlog(bgid);
-                    CheckUserLogin();
+                    //CheckUserLogin();
                 }
             }
         }
 
+        /*
         /// <summary>
         /// 检查用户是否已经登录
         /// </summary>
@@ -37,7 +38,7 @@ namespace Web.forum
                 this.divComments.Disabled = true;
                 this.divLogin.Disabled = false;
             }
-        }
+        }*/
 
         private void BindBlog(string bgid)
         {

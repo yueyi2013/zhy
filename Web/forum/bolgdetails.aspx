@@ -41,10 +41,12 @@
                     </tr>
                 </table>                
                 </div>
+                <!--
                 <div id="divLogin" runat="server">
                     您还没有登录,请<a href="memberlogin.aspx" style="color:Red; font-weight:bold">[登录]</a>或<a href="register.aspx" style="color:Red; font-weight:bold">[注册]</a>
                 </div>               
-
+                -->
+                <!--#include file="../inc/api/ds/comment.inc"-->
                 * 以上用户言论只代表其个人观点，不代表SYIHY网站的观点或立场.
             </div>
             <div class="right_blog_content" >

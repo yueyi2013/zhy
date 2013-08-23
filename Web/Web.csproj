@@ -835,6 +835,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="inc\api\cnzz\zztj.inc" />
+    <Content Include="inc\api\ds\comment.inc" />
     <Content Include="inc\api\paypal\donate.inc" />
     <Content Include="inc\api\qq\wb\yjfx.inc" />
     <Content Include="inc\api\qq\wb\ydq_head.inc" />
@@ -844,6 +845,7 @@
     <Content Include="inc\api\qq\wb\ydq_body_1.inc" />
     <Content Include="inc\api\qq\zone\hcfx.inc" />
     <Content Include="inc\api\qq\zone\Qzone.inc" />
+    <Content Include="inc\api\renren\share.inc" />
     <Content Include="inc\api\weather\360.inc" />
     <Content Include="inc\empty.inc" />
     <Content Include="inc\flash\index.inc" />

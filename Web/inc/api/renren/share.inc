@@ -1,0 +1,1 @@
+﻿<xn:share-button type="button_count_right" label="分享到人人"></xn:share-button>

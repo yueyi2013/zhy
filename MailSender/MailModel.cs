@@ -9,6 +9,14 @@ namespace ZHY.Mail
     [Serializable()]
    public class MailModel
     {
+        private string imapName;
+
+        public string ImapName
+        {
+            get { return imapName; }
+            set { imapName = value; }
+        }
+
         private string smtpName;
 
         public string SmtpName

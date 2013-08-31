@@ -55,6 +55,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "AjaxControlToolkitSampleSit
 		VWDPort = "2128"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ToolUtils", "ToolUtils\ToolUtils.csproj", "{38B2A295-22B5-4B13-B061-FEFF21379DDB}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = syihy.vsmdi
@@ -250,6 +252,18 @@ Global
 		{DAAEDE96-DE22-499C-A9E1-C100C20C05BC}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{DAAEDE96-DE22-499C-A9E1-C100C20C05BC}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
 		{DAAEDE96-DE22-499C-A9E1-C100C20C05BC}.Release|x86.ActiveCfg = Debug|Any CPU
+		{38B2A295-22B5-4B13-B061-FEFF21379DDB}.Debug|.NET.ActiveCfg = Debug|x86
+		{38B2A295-22B5-4B13-B061-FEFF21379DDB}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{38B2A295-22B5-4B13-B061-FEFF21379DDB}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{38B2A295-22B5-4B13-B061-FEFF21379DDB}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{38B2A295-22B5-4B13-B061-FEFF21379DDB}.Debug|x86.ActiveCfg = Debug|x86
+		{38B2A295-22B5-4B13-B061-FEFF21379DDB}.Debug|x86.Build.0 = Debug|x86
+		{38B2A295-22B5-4B13-B061-FEFF21379DDB}.Release|.NET.ActiveCfg = Release|x86
+		{38B2A295-22B5-4B13-B061-FEFF21379DDB}.Release|Any CPU.ActiveCfg = Release|x86
+		{38B2A295-22B5-4B13-B061-FEFF21379DDB}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{38B2A295-22B5-4B13-B061-FEFF21379DDB}.Release|Mixed Platforms.Build.0 = Release|x86
+		{38B2A295-22B5-4B13-B061-FEFF21379DDB}.Release|x86.ActiveCfg = Release|x86
+		{38B2A295-22B5-4B13-B061-FEFF21379DDB}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

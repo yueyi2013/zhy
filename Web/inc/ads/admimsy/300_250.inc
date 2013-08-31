@@ -1,1 +1,1 @@
-﻿<a href="http://www.ADmimsy.com?R=yueyi2013"><img src="http://www.ADmimsy.com/Pictures/300X250a.jpg" width="300" height="250" border="0"></a>
+﻿<a id="admimsy" href="http://www.ADmimsy.com?R=yueyi2013"><img src="http://www.ADmimsy.com/Pictures/300X250a.jpg" width="300" height="250" border="0"></a>

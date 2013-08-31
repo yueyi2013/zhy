@@ -83,9 +83,7 @@
 
 <!--租房-->
 <tr><td >
-    <div style=" width:98%; margin:5px 5px 5px 5px; height:800px; text-align:center">
-    <!--#include file="inc/api/qq/wb/ydq_body.inc"-->
-    </div>
+    
 </td></tr>
 
 <!--游戏-->

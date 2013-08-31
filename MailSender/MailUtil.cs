@@ -12,6 +12,13 @@ using System.IO;
 using System.ComponentModel;
 using System.Net.Mime;
 
+using LumiSoft.Net;
+using LumiSoft.Net.Log;
+using LumiSoft.Net.MIME;
+using LumiSoft.Net.Mail;
+using LumiSoft.Net.IMAP;
+using LumiSoft.Net.IMAP.Client;
+
 namespace ZHY.Mail
 {
     public class MailUtil
@@ -192,6 +199,67 @@ namespace ZHY.Mail
                 }
             }
             return htmltext;
-        }  
+        }
+
+        
+        public string GetLastestMailText(MailModel mail,string queryKey)
+        {
+            IMAP_Client imap = new IMAP_Client();
+            try
+            {
+                imap.Connect("imap.qq.com", 143, false);
+                imap.Login("624592410@qq.com", "zhouhy$%");
+
+                imap.SelectFolder("INBOX");
+                key = queryKey;
+                imap.Fetch(
+                    false,
+                    IMAP_t_SeqSet.Parse("*:*"),//3291:*  
+                    new IMAP_t_Fetch_i[]{
+                        new IMAP_t_Fetch_i_Envelope(),
+                        new IMAP_t_Fetch_i_Flags(),
+                        new IMAP_t_Fetch_i_InternalDate(),
+                        new IMAP_t_Fetch_i_Rfc822Size(),
+                        new IMAP_t_Fetch_i_Uid()
+                    },
+                    this.m_pImap_Fetch_MessageItems_UntaggedResponse
+                );
+                if(!string.IsNullOrEmpty(subject))
+                {
+                    return subject.Split('-')[1];
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                imap.Disconnect();
+            }
+            return "";
+        }
+
+        string subject = "";
+        string key = "";
+        private void m_pImap_Fetch_MessageItems_UntaggedResponse(object sender, EventArgs<IMAP_r_u> e)
+        {
+            try
+            {
+                if (e.Value is IMAP_r_u_Fetch)
+                {
+                    IMAP_r_u_Fetch fetchResp = (IMAP_r_u_Fetch)e.Value;
+                    string str = fetchResp.Envelope.Subject;
+                    if (!string.IsNullOrEmpty(str) && str.Contains(key))
+                    {
+                        subject = str;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
     }
 }

@@ -32,13 +32,13 @@ namespace ZHY.Model
 		private string _vpstreet="7481 Mohawk St";
 		private int? _vpzip=91941;
 		private string _vpphone;
-		private int? _vpvisa;
+		private decimal? _vpvisa;
 		private DateTime? _vpvisaexpirdate;
 		private int? _vpcvv2;
 		private string _vpbank;
-		private int? _vproutingnumber;
-		private int? _vpbankacct;
-		private int? _vpmastercard;
+		private decimal? _vproutingnumber;
+		private decimal? _vpbankacct;
+		private decimal? _vpmastercard;
 		private DateTime? _vpmexpirdate;
 		private int? _vpmcvc2;
 		private string _vpsite;
@@ -226,7 +226,7 @@ namespace ZHY.Model
 		/// <summary>
 		/// Visa信用卡
 		/// </summary>
-		public int? VPVisa
+		public decimal? VPVisa
 		{
 			set{ _vpvisa=value;}
 			get{return _vpvisa;}
@@ -258,7 +258,7 @@ namespace ZHY.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public int? VPRoutingNumber
+		public decimal? VPRoutingNumber
 		{
 			set{ _vproutingnumber=value;}
 			get{return _vproutingnumber;}
@@ -266,7 +266,7 @@ namespace ZHY.Model
 		/// <summary>
 		/// 银行账户
 		/// </summary>
-		public int? VPBankAcct
+		public decimal? VPBankAcct
 		{
 			set{ _vpbankacct=value;}
 			get{return _vpbankacct;}
@@ -274,7 +274,7 @@ namespace ZHY.Model
 		/// <summary>
 		/// 
 		/// </summary>
-		public int? VPMasterCard
+		public decimal? VPMasterCard
 		{
 			set{ _vpmastercard=value;}
 			get{return _vpmastercard;}

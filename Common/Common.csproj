@@ -129,6 +129,7 @@
     <Compile Include="FileOperation.cs" />
     <Compile Include="HtmlPaserUtil.cs" />
     <Compile Include="HttpProc.cs" />
+    <Compile Include="HttpProxy.cs" />
     <Compile Include="MailSender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

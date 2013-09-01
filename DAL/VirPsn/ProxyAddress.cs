@@ -3,15 +3,15 @@ using System.Data;
 using System.Text;
 using System.Data.SqlClient;
 using Maticsoft.DBUtility;//Please add references
+
 namespace ZHY.DAL
 {
 	/// <summary>
-	/// 数据访问类:VirtualPersonInfo
+	/// 数据访问类:ProxyAddress
 	/// </summary>
-	public partial class VirtualPersonInfo : BaseDAL
+	public partial class ProxyAddress : BaseDAL
 	{
-
-       
+		
 	}
 }
 

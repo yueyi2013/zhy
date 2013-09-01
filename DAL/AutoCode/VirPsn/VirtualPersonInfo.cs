@@ -63,13 +63,13 @@ namespace ZHY.DAL
 					new SqlParameter("@VPStreet", SqlDbType.VarChar,32),
 					new SqlParameter("@VPZip", SqlDbType.Int,4),
 					new SqlParameter("@VPPhone", SqlDbType.VarChar,16),
-					new SqlParameter("@VPVisa", SqlDbType.Int,4),
+					new SqlParameter("@VPVisa", SqlDbType.Decimal,9),
 					new SqlParameter("@VPVisaExpirDate", SqlDbType.DateTime),
 					new SqlParameter("@VPCVV2", SqlDbType.Int,4),
 					new SqlParameter("@VPBank", SqlDbType.VarChar,32),
-					new SqlParameter("@VPRoutingNumber", SqlDbType.Int,4),
-					new SqlParameter("@VPBankAcct", SqlDbType.Int,4),
-					new SqlParameter("@VPMasterCard", SqlDbType.Int,4),
+					new SqlParameter("@VPRoutingNumber", SqlDbType.Decimal,9),
+					new SqlParameter("@VPBankAcct", SqlDbType.Decimal,9),
+					new SqlParameter("@VPMasterCard", SqlDbType.Decimal,9),
 					new SqlParameter("@VPMExpirDate", SqlDbType.DateTime),
 					new SqlParameter("@VPMCVC2", SqlDbType.Int,4),
 					new SqlParameter("@VPSite", SqlDbType.VarChar,32),
@@ -191,13 +191,13 @@ namespace ZHY.DAL
 					new SqlParameter("@VPStreet", SqlDbType.VarChar,32),
 					new SqlParameter("@VPZip", SqlDbType.Int,4),
 					new SqlParameter("@VPPhone", SqlDbType.VarChar,16),
-					new SqlParameter("@VPVisa", SqlDbType.Int,4),
+					new SqlParameter("@VPVisa", SqlDbType.Decimal,9),
 					new SqlParameter("@VPVisaExpirDate", SqlDbType.DateTime),
 					new SqlParameter("@VPCVV2", SqlDbType.Int,4),
 					new SqlParameter("@VPBank", SqlDbType.VarChar,32),
-					new SqlParameter("@VPRoutingNumber", SqlDbType.Int,4),
-					new SqlParameter("@VPBankAcct", SqlDbType.Int,4),
-					new SqlParameter("@VPMasterCard", SqlDbType.Int,4),
+					new SqlParameter("@VPRoutingNumber", SqlDbType.Decimal,9),
+					new SqlParameter("@VPBankAcct", SqlDbType.Decimal,9),
+					new SqlParameter("@VPMasterCard", SqlDbType.Decimal,9),
 					new SqlParameter("@VPMExpirDate", SqlDbType.DateTime),
 					new SqlParameter("@VPMCVC2", SqlDbType.Int,4),
 					new SqlParameter("@VPSite", SqlDbType.VarChar,32),
@@ -425,7 +425,7 @@ namespace ZHY.DAL
 				}
 				if(row["VPVisa"]!=null && row["VPVisa"].ToString()!="")
 				{
-					model.VPVisa=int.Parse(row["VPVisa"].ToString());
+					model.VPVisa=decimal.Parse(row["VPVisa"].ToString());
 				}
 				if(row["VPVisaExpirDate"]!=null && row["VPVisaExpirDate"].ToString()!="")
 				{
@@ -441,15 +441,15 @@ namespace ZHY.DAL
 				}
 				if(row["VPRoutingNumber"]!=null && row["VPRoutingNumber"].ToString()!="")
 				{
-					model.VPRoutingNumber=int.Parse(row["VPRoutingNumber"].ToString());
+					model.VPRoutingNumber=decimal.Parse(row["VPRoutingNumber"].ToString());
 				}
 				if(row["VPBankAcct"]!=null && row["VPBankAcct"].ToString()!="")
 				{
-					model.VPBankAcct=int.Parse(row["VPBankAcct"].ToString());
+					model.VPBankAcct=decimal.Parse(row["VPBankAcct"].ToString());
 				}
 				if(row["VPMasterCard"]!=null && row["VPMasterCard"].ToString()!="")
 				{
-					model.VPMasterCard=int.Parse(row["VPMasterCard"].ToString());
+					model.VPMasterCard=decimal.Parse(row["VPMasterCard"].ToString());
 				}
 				if(row["VPMExpirDate"]!=null && row["VPMExpirDate"].ToString()!="")
 				{

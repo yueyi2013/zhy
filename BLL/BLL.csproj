@@ -114,6 +114,7 @@
       <Name>System.Data</Name>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
@@ -149,6 +150,7 @@
     <Compile Include="AutoCode\SysManage\RightConfig.cs" />
     <Compile Include="AutoCode\SysManage\SystemConfig.cs" />
     <Compile Include="AutoCode\SysManage\SystemMail.cs" />
+    <Compile Include="AutoCode\VirPsn\ProxyAddress.cs" />
     <Compile Include="AutoCode\VirPsn\VirtualPersonInfo.cs" />
     <Compile Include="BaseBLL.cs" />
     <Compile Include="Blog\ArticalType.cs" />
@@ -194,6 +196,7 @@
     <Compile Include="SysManage\SystemConfig.cs" />
     <Compile Include="SysManage\SetupDatabase.cs" />
     <Compile Include="PsnManage\User.cs" />
+    <Compile Include="VirPsn\ProxyAddress.cs" />
     <Compile Include="VirPsn\VirtualPersonInfo.cs" />
   </ItemGroup>
   <ItemGroup>

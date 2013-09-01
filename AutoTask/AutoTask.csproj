@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADmimsy\AutoSignUpJob.cs" />
+    <Compile Include="ADmimsy\AutoViewAdsJob.cs" />
     <Compile Include="AutoAddNewsListJob.cs" />
     <Compile Include="AutoAddNewsTopJob.cs" />
     <Compile Include="AutoLoadNewsFeedJob.cs" />
@@ -56,6 +58,8 @@
     <Compile Include="SampleJob.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SchedulerControl.cs" />
+    <Compile Include="usinfo\AutoGenUSInfoJob.cs" />
+    <Compile Include="utils\JobConstants.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ZHY.Common;
 
 using Quartz;
 using Common.Logging;
-using ZHY.Common;
-namespace AutoTask.ADmimsy
+namespace AutoTask
 {
-    public class AutoViewAdsJob :IJob
+    public class AutoCheckProxyConnJob : IJob
     {
-        private static ILog _log = LogManager.GetLogger(typeof(AutoViewAdsJob));
+        private static ILog _log = LogManager.GetLogger(typeof(AutoCheckProxyConnJob));
 
-        public AutoViewAdsJob()
+        public AutoCheckProxyConnJob()
 		{
 		}
 		
@@ -23,11 +23,11 @@ namespace AutoTask.ADmimsy
 		/// </summary>
 		public virtual void  Execute(IJobExecutionContext context)
 		{
-            string method = "--AutoViewAdsJob#Execute";
-            ZHY.BLL.VirtualTask bll = new ZHY.BLL.VirtualTask();
-            try {
-
-                bll.AutoAdmimsyTask();
+            string method = "--AutoCheckProxyConnJob#Execute";
+            ZHY.BLL.ProxyAddress bll = new ZHY.BLL.ProxyAddress();
+            try
+            {                
+                bll.CheckProxyAddressConnected();
             }catch(Exception ex)
             {
                 bll.AlertEmail(Constants.SYSTEM_CONFIG_ATT_NAME_MAIL_ERROR_ALERT_JOB_SUBJECT + method, ex.Message);

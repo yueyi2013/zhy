@@ -52,6 +52,7 @@
     <Compile Include="ADmimsy\AutoViewAdsJob.cs" />
     <Compile Include="AutoAddNewsListJob.cs" />
     <Compile Include="AutoAddNewsTopJob.cs" />
+    <Compile Include="AutoCheckProxyConnJob.cs" />
     <Compile Include="AutoLoadNewsFeedJob.cs" />
     <Compile Include="AutoPurgeNewsJob.cs" />
     <Compile Include="listener\LoadNewsFeedListener.cs" />

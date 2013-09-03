@@ -15,10 +15,10 @@ namespace TestSYIHY
         {
             //string htmlSource = HtmlPaserUtil.extractHtmlBatchContent("http://world.people.com.cn/n/2013/0728/c57505-22354965.html");
             //string tagSourcec = "";
-            //ZHY.BLL.VirtualPersonInfo bll = new ZHY.BLL.VirtualPersonInfo();
-           //Thread th = new Thread(new ThreadStart(bll.ExtractPsnInfoFromSite));
-            //th.Start();
-           // Thread.Sleep(100000);
+            /*ZHY.BLL.VirtualPersonInfo bll = new ZHY.BLL.VirtualPersonInfo();
+            Thread th = new Thread(new ThreadStart(bll.ExtractPsnInfoFromSite));
+            th.SetApartmentState(ApartmentState.STA);
+            th.Start();*/
         }
     }
 }

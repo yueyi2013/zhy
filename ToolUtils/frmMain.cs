@@ -1,10 +1,13 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Net;
+using ZHY.Common;
 
 namespace ToolUtils
 {
@@ -26,8 +29,181 @@ namespace ToolUtils
 
         private void btnReg_Click(object sender, EventArgs e)
         {
-           // ZHY.BLL.VirtualPersonInfo bll = new ZHY.BLL.VirtualPersonInfo();
-           // bll.ExtractPsnInfoFromSite();
+            admimsyTask("james00404", "james1qazxsw2");
+            //admimsyTask("yueyi2013", "yueyi2013");
+        }
+
+        private HttpWebRequest GetHttpWebRequest(string url, string proxy, ref CookieContainer adCookie)
+        {
+            HttpWebRequest requestRs = (HttpWebRequest)WebRequest.Create("http://www.admimsy.com/Logout.cfm");
+            if (!string.IsNullOrEmpty(proxy))
+            {
+                WebProxy wbPrx = new WebProxy(proxy);
+                requestRs.Proxy = wbPrx;
+            }
+            return requestRs;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userName">用户名</param>
+        /// <param name="psw">密码</param>
+        private void admimsyTask(string userName, string psw)
+        {
+            
+            HttpWebRequest requestRs = null;
+            HttpWebResponse responseRs = null;
+            CookieContainer adCookie = new CookieContainer();
+            string resHtml = "";
+            try
+            {
+                //第一步定位到登录界面
+                requestRs = (HttpWebRequest)WebRequest.Create("http://www.admimsy.com/Logout.cfm");
+                
+                responseRs = (HttpWebResponse)requestRs.GetResponse();
+                //得到定位到的URL
+                string redURL = responseRs.ResponseUri.AbsoluteUri;
+                //登录所需的信息
+                string loginPsData = "UserName=" + userName + "&Password=" + psw + "&loginSubmit=Sign+In";
+                //编码
+                ASCIIEncoding encoding = new ASCIIEncoding();
+                //编码登录信息
+                byte[] data = encoding.GetBytes(loginPsData);
+                //第二步登录网站
+                requestRs = (HttpWebRequest)WebRequest.Create("http://www.admimsy.com/Home.cfm");                
+                //设置Cookie
+                requestRs.CookieContainer = adCookie;
+                //设置登录方式
+                requestRs.Method = "POST";
+                //提交类型
+                requestRs.ContentType = "application/x-www-form-urlencoded";
+                requestRs.ContentLength = data.Length;
+                Stream newStream = requestRs.GetRequestStream();
+                // Send the data.
+                newStream.Write(data, 0, data.Length);
+                newStream.Close();
+
+                responseRs = (HttpWebResponse)requestRs.GetResponse();
+                resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.Default).ReadToEnd();
+                //打开广告界面
+                requestRs = (HttpWebRequest)WebRequest.Create("http://www.admimsy.com/ViewAds.cfm");
+                requestRs.Method = "GET";
+                requestRs.CookieContainer = adCookie;
+                responseRs = (HttpWebResponse)requestRs.GetResponse();
+
+                resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.Default).ReadToEnd();
+                //得到需要看的广告列表
+                List<string> lstADs = HtmlPaserUtil.ExtractHtmlsourceByTag(resHtml, "ADViewer");
+
+                List<string> finalADs = new List<string>();
+                foreach (string ad in lstADs)
+                {
+                    string urlAd = "http://www.admimsy.com/" + ad.Replace("ADViewer.cfm", "TopViewAd.cfm");
+                    requestRs = (HttpWebRequest)WebRequest.Create(urlAd);
+                    requestRs.Method = "GET";
+                    requestRs.CookieContainer = adCookie;
+
+                    using (WebResponse response = requestRs.GetResponse())
+                    {
+                        using (TextReader reader = new StreamReader(response.GetResponseStream()))
+                        {
+                            string line;
+                            while ((line = reader.ReadLine()) != null)
+                            {
+                                if (line.IndexOf("TopViewAd2.cfm") > 0)
+                                {
+                                    string[] ur = line.Split(new string[] { "\"" }, StringSplitOptions.RemoveEmptyEntries);
+                                    if (ur != null && ur.Length == 2)
+                                    {
+                                        string urlC = "http://www.admimsy.com/" + ur[1];
+                                        finalADs.Add(urlC);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                //最后一步：看广告
+                foreach (string urlF in finalADs)
+                {
+                    //等待10秒
+                    System.Threading.Thread.Sleep(10000);
+                    requestRs = (HttpWebRequest)WebRequest.Create(urlF);
+                    requestRs.Headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+                    requestRs.Headers.Add("Accept-Charset", "GBK,utf-8;q=0.7,*;q=0.3");
+                    requestRs.Headers.Add("Accept-Encoding", "gzip,deflate,sdch");
+                    requestRs.Headers.Add("Connection", "keep-alive");
+                    //requestRs.ContentType = "text/html;charset=UTF-8";
+                    requestRs.Method = "GET";
+                    requestRs.CookieContainer = adCookie;
+                    responseRs = (HttpWebResponse)requestRs.GetResponse();
+                    resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.ASCII).ReadToEnd();                    
+                }
+
+                MessageBox.Show("成功完成看广告的任务！");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally {
+                if (responseRs != null)
+                {
+                    responseRs.Close();
+                }
+            
+            }
+        }
+
+        public bool AutoLogin(string loginURL,string username, string psw, ref CookieContainer adCookie)
+        {
+            try
+            {
+                string strArgs = "UserName=" + username + "&Password=" + psw + "&loginSubmit=Sign+In";
+                HttpWebRequest hwr = (HttpWebRequest)WebRequest.Create(loginURL);
+                hwr.Method = "POST";
+                hwr.ContentType = "application/x-www-form-urlencoded";
+                adCookie = new CookieContainer();
+                hwr.CookieContainer = adCookie;
+                hwr.Timeout = 1000 * 10;
+                Stream stream = hwr.GetRequestStream();
+                StreamWriter sw = new StreamWriter(stream, Encoding.Default);
+                //把数据写入HttpWebRequest的Request流
+                sw.Write(strArgs);
+                sw.Close();
+                stream.Close();
+                HttpWebResponse hwp = (HttpWebResponse)hwr.GetResponse();
+
+                if (hwp.StatusCode == HttpStatusCode.OK)
+                {
+                    return true;
+                }
+                if (sw != null)
+                {
+                    sw.Close();
+                }
+                if (stream != null)
+                {
+                    stream.Close();
+                }
+                if (hwp != null)
+                {
+                    hwp.Close();
+                }
+                hwp.Close();
+            }
+            catch
+            {
+                
+                return false;
+            }
+            finally
+            {
+                
+            }
+            return false;
         }
 
         private void autoRegPsn() 
@@ -35,13 +211,20 @@ namespace ToolUtils
             this.wbHTML.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.wbHTML_Psn_DocumentCompleted);
             this.wbHTML.ScriptErrorsSuppressed = true;
             wbHTML.Navigate("http://cn.usinfo.me/", false);
+            while (true)
+            {
+                if (this.wbHTML.ReadyState == WebBrowserReadyState.Complete)
+                {
+                    break;
+                }
+            }
         }
 
         private void autoReg() 
         {
             this.wbHTML.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.wbHTML_Reg_DocumentCompleted);
             this.wbHTML.ScriptErrorsSuppressed = true;
-            wbHTML.Navigate("http://www.syihy.com/", false);            
+            wbHTML.Navigate("http://www.syihy.com/", false);
         }
 
 
@@ -49,7 +232,7 @@ namespace ToolUtils
         {
             this.wbHTML.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.wbHTML_DocumentCompleted);
             this.wbHTML.ScriptErrorsSuppressed = true;
-            wbHTML.Navigate("http://www.admimsy.com/", false);
+            wbHTML.Navigate("http://www.admimsy.com/Logout.cfm", false);
 
         }
 
@@ -217,6 +400,8 @@ namespace ToolUtils
         private bool fouthStep = false;
         private bool fifthStep = false;
 
+        private bool isEndAD = false;
+
         private void wbHTML_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             string path = e.Url.AbsolutePath;
@@ -271,16 +456,36 @@ namespace ToolUtils
                 }
             }
             if (!string.IsNullOrEmpty(path)&&
-                path.IndexOf("TopViewAd")>0 && 
+                path.IndexOf("TopViewAd") > 0 && 
                 thirdStep && !fouthStep)
             {
-                wbHTML.Document.Window.Frames["topFrame"].Document.InvokeScript("onfinish");
-                fouthStep = true;
+                try
+                {
+                    HtmlDocument topFrame = wbHTML.Document.Window.Frames["topFrame"].Document;
+                    topFrame.InvokeScript("onfinish",null);
+                    fouthStep = true;
+                }
+                catch {
+
+                    Console.WriteLine("fasdfasdf");
+                }
+                
             }
             
             if(!string.IsNullOrEmpty(path)&&
                 path.IndexOf("ADViewer") > 0 &&
                 fouthStep && !fifthStep)
+            {
+                HtmlDocument topFrame = wbHTML.Document.Window.Frames["topFrame"].Document;
+                topFrame.InvokeScript("onfinish", null);
+                isEndAD = true;
+                tmAdview.Start();
+            }
+        }
+
+        private void tmAdview_Tick(object sender, EventArgs e)
+        {
+            if (isEndAD)
             {
                 firstStep = true;
                 secondStep = true;
@@ -288,7 +493,30 @@ namespace ToolUtils
                 fouthStep = false;
                 fifthStep = false;
                 wbHTML.Navigate("http://www.admimsy.com/ViewAds.cfm");
+                wbHTML.Document.ExecCommand("Refresh", false, null);
+                isEndAD = false;
+                tmAdview.Stop();
             }
+        }
+
+        private void btnTestProxy_Click(object sender, EventArgs e)
+        {
+            ZHY.BLL.ProxyAddress bll = new ZHY.BLL.ProxyAddress();
+            
+            List<ZHY.Model.ProxyAddress> list = bll.GetModelList("");
+            int i = 0;
+            foreach (ZHY.Model.ProxyAddress model in list)
+            {
+                if (HttpProxy.CheckProxyConnected(model.PAName))
+                {
+                    //txtProxy.Text = model.PAName;
+                }
+                else {
+                    i++;
+                    bll.Delete(model.PAId);
+                }
+            }
+            MessageBox.Show("无效的代理地址数："+i);
         }
 
     }

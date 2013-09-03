@@ -139,6 +139,8 @@
     <Compile Include="AutoCode\SysManage\SystemMail.cs" />
     <Compile Include="AutoCode\VirPsn\ProxyAddress.cs" />
     <Compile Include="AutoCode\VirPsn\VirtualPersonInfo.cs" />
+    <Compile Include="AutoCode\VirPsn\VirtualSite.cs" />
+    <Compile Include="AutoCode\VirPsn\VirtualTask.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Navigation.cs" />
     <Compile Include="NewsCategory.cs" />

@@ -80,7 +80,7 @@ namespace ZHY.Common
         /// 检查代理是否连接成功
         /// </summary>
         /// <returns></returns>
-        public bool CheckProxyConnected(string strProxy)
+        public static bool CheckProxyConnected(string strProxy)
         {
             try
             {

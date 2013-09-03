@@ -52,6 +52,36 @@ namespace ZHY.Common
             return "";
         }
 
+        public static List<string> ExtractHtmlsourceByTag(string htmlSource, string exStr)
+        {
+            try
+            {
+                List<string> list = new List<string>();
+                Parser htmlParser = Parser.CreateParser(htmlSource, "GB2312");
+                NodeFilter filter = new NodeClassFilter(typeof(Winista.Text.HtmlParser.Tags.ATag));
+                NodeList nodeList = htmlParser.Parse(filter);
+                for (int i = 0; i < nodeList.Size(); i++)
+                {
+
+                    Winista.Text.HtmlParser.Tags.ATag aHref = (Winista.Text.HtmlParser.Tags.ATag)nodeList.ElementAt(i);
+                   
+                    string str = aHref.Link;
+
+                    if (str.Contains(exStr))
+                    {
+                        list.Add(str);
+                    }
+                }
+                return list;
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+        }
+
         /// <summary>
         /// 
         /// </summary>

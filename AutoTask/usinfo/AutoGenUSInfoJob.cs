@@ -24,8 +24,8 @@ namespace AutoTask.usinfo
 		public virtual void  Execute(IJobExecutionContext context)
 		{
             _log.Info("job be invoked....");
-            ZHY.BLL.VirtualPersonInfo bll = new ZHY.BLL.VirtualPersonInfo();
-            bll.ExtractPsnInfoFromSite();
+            //ZHY.BLL.VirtualPersonInfo bll = new ZHY.BLL.VirtualPersonInfo();
+           // bll.ExtractPsnInfoFromSite();
 		}
     }
 }

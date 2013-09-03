@@ -22,7 +22,16 @@ namespace AutoTask.ADmimsy
 		/// </summary>
 		public virtual void  Execute(IJobExecutionContext context)
 		{
-            _log.Info("job be invoked....");
+            try
+            {
+
+
+
+            }
+            catch (Exception ex)
+            {
+
+            }
 		}
     }
 }

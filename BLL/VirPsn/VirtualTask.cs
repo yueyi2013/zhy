@@ -16,6 +16,30 @@ namespace ZHY.BLL
 	public partial class VirtualTask : BaseBLL
 	{
 
+        /// <summary>
+        /// 调用分页存储过程
+        /// </summary>
+        /// <param name="PageIndex"></param>
+        /// <param name="name"></param>
+        /// <param name="CountAll"></param>
+        /// <returns></returns>
+        public DataSet GetList(int PageIndex, string name, ref int CountAll)
+        {
+            string strGetFields = " VTId,VTUserName,VTPassword,VTProxy,VSCode,CreateAt,CreateBy,UpdateDT,UpdateBy ";
+            string tablename = " VirtualTask ";
+            int pageSize = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("pageSize"));
+            int intOrder = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("intOrder"));
+            string strOrder = " UpdateDT";
+            string strWhere = " 1=1 ";
+            if (!String.IsNullOrEmpty(name))
+            {
+                strWhere += " and VTUserName like '%" + name + "'";
+            }
+
+            return dal.GetList(tablename, strGetFields, PageIndex, pageSize, strWhere, strOrder, intOrder, ref CountAll);
+        }
+
+
         public void AutoAdmimsyTask() 
         {
             List<ZHY.Model.VirtualTask> list = this.GetModelList("");
@@ -34,6 +58,9 @@ namespace ZHY.BLL
                 WebProxy wbPrx = new WebProxy(proxy);
                 requestRs.Proxy = wbPrx;
             }
+            requestRs.CookieContainer = adCookie;
+            requestRs.KeepAlive = false;
+            requestRs.ProtocolVersion = HttpVersion.Version10;
             return requestRs;
         }
 
@@ -65,8 +92,6 @@ namespace ZHY.BLL
                 byte[] data = encoding.GetBytes(loginPsData);
                 //第二步登录网站
                 requestRs = GetHttpWebRequest("http://www.admimsy.com/Home.cfm", model.VTProxy, ref adCookie);
-                //设置Cookie
-                requestRs.CookieContainer = adCookie;
                 //设置登录方式
                 requestRs.Method = "POST";
                 //提交类型
@@ -82,21 +107,19 @@ namespace ZHY.BLL
                 //打开广告界面
                 requestRs = GetHttpWebRequest("http://www.admimsy.com/ViewAds.cfm", model.VTProxy, ref adCookie);
                 requestRs.Method = "GET";
-                requestRs.CookieContainer = adCookie;
                 responseRs = (HttpWebResponse)requestRs.GetResponse();
 
                 resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.Default).ReadToEnd();
                 //得到需要看的广告列表
                 List<string> lstADs = HtmlPaserUtil.ExtractHtmlsourceByTag(resHtml, "ADViewer");
-
+                List<string> referView = new List<string>();
                 List<string> finalADs = new List<string>();
                 foreach (string ad in lstADs)
                 {
                     string urlAd = "http://www.admimsy.com/" + ad.Replace("ADViewer.cfm", "TopViewAd.cfm");
-                    requestRs = (HttpWebRequest)WebRequest.Create(urlAd);
+                    requestRs = GetHttpWebRequest(urlAd, model.VTProxy, ref adCookie);
                     requestRs.Method = "GET";
-                    requestRs.CookieContainer = adCookie;
-
+                    referView.Add(urlAd);
                     using (WebResponse response = requestRs.GetResponse())
                     {
                         using (TextReader reader = new StreamReader(response.GetResponseStream()))
@@ -117,22 +140,27 @@ namespace ZHY.BLL
                         }
                     }
                 }
-
+                int i = 0;
                 //最后一步：看广告
                 foreach (string urlF in finalADs)
                 {
                     //等待10秒
                     System.Threading.Thread.Sleep(10000);
                     requestRs = GetHttpWebRequest(urlF, model.VTProxy, ref adCookie);
-                    requestRs.Headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-                    requestRs.Headers.Add("Accept-Charset", "GBK,utf-8;q=0.7,*;q=0.3");
-                    requestRs.Headers.Add("Accept-Encoding", "gzip,deflate,sdch");
-                    requestRs.Headers.Add("Connection", "keep-alive");
+                    requestRs.Accept = "*/*";
+                    requestRs.Host = "www.admimsy.com";
+                    requestRs.UserAgent = "Mozilla/5.0";
+                    requestRs.Referer = referView[i];
+                    i++;
+                    //requestRs.Headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+                    //requestRs.Headers.Add("Accept-Charset", "GBK,utf-8;q=0.7,*;q=0.3");
+                    //requestRs.Headers.Add("Accept-Encoding", "gzip,deflate,sdch");
+                    //requestRs.Headers.Add("Connection", "keep-alive");
                     //requestRs.ContentType = "text/html;charset=UTF-8";
+
                     requestRs.Method = "GET";
-                    requestRs.CookieContainer = adCookie;
                     responseRs = (HttpWebResponse)requestRs.GetResponse();
-                    resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.ASCII).ReadToEnd();
+                    resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.UTF8).ReadToEnd(); 
                 }
 
                 

@@ -27,20 +27,30 @@ namespace ToolUtils
         }
 
 
-        private void btnReg_Click(object sender, EventArgs e)
+        private void btnViewAd_Click(object sender, EventArgs e)
         {
-            admimsyTask("james00404", "james1qazxsw2");
-            //admimsyTask("yueyi2013", "yueyi2013");
+            //admimsyTask("james00404", "james1qazxsw2");
+            //admimsyTask("yueyi2013", "yueyi2013"); 
+            ZHY.BLL.VirtualTask bll = new ZHY.BLL.VirtualTask();
+            List<ZHY.Model.VirtualTask> list = bll.GetModelList("");
+            foreach(ZHY.Model.VirtualTask model in list)
+            {
+                admimsyTask(model);
+            }
         }
+
 
         private HttpWebRequest GetHttpWebRequest(string url, string proxy, ref CookieContainer adCookie)
         {
-            HttpWebRequest requestRs = (HttpWebRequest)WebRequest.Create("http://www.admimsy.com/Logout.cfm");
+            HttpWebRequest requestRs = (HttpWebRequest)WebRequest.Create(url);
             if (!string.IsNullOrEmpty(proxy))
             {
                 WebProxy wbPrx = new WebProxy(proxy);
                 requestRs.Proxy = wbPrx;
             }
+            requestRs.CookieContainer = adCookie;
+            requestRs.KeepAlive = false;
+            requestRs.ProtocolVersion = HttpVersion.Version10;
             return requestRs;
         }
 
@@ -49,9 +59,8 @@ namespace ToolUtils
         /// </summary>
         /// <param name="userName">用户名</param>
         /// <param name="psw">密码</param>
-        private void admimsyTask(string userName, string psw)
+        private void admimsyTask(ZHY.Model.VirtualTask model)
         {
-            
             HttpWebRequest requestRs = null;
             HttpWebResponse responseRs = null;
             CookieContainer adCookie = new CookieContainer();
@@ -59,21 +68,19 @@ namespace ToolUtils
             try
             {
                 //第一步定位到登录界面
-                requestRs = (HttpWebRequest)WebRequest.Create("http://www.admimsy.com/Logout.cfm");
-                
+                requestRs = GetHttpWebRequest("http://www.admimsy.com/Logout.cfm", model.VTProxy, ref adCookie);
+
                 responseRs = (HttpWebResponse)requestRs.GetResponse();
                 //得到定位到的URL
                 string redURL = responseRs.ResponseUri.AbsoluteUri;
                 //登录所需的信息
-                string loginPsData = "UserName=" + userName + "&Password=" + psw + "&loginSubmit=Sign+In";
+                string loginPsData = "UserName=" + model.VTUserName + "&Password=" + model.VTPassword + "&loginSubmit=Sign+In";
                 //编码
                 ASCIIEncoding encoding = new ASCIIEncoding();
                 //编码登录信息
                 byte[] data = encoding.GetBytes(loginPsData);
                 //第二步登录网站
-                requestRs = (HttpWebRequest)WebRequest.Create("http://www.admimsy.com/Home.cfm");                
-                //设置Cookie
-                requestRs.CookieContainer = adCookie;
+                requestRs = GetHttpWebRequest("http://www.admimsy.com/Home.cfm", model.VTProxy, ref adCookie);
                 //设置登录方式
                 requestRs.Method = "POST";
                 //提交类型
@@ -87,23 +94,21 @@ namespace ToolUtils
                 responseRs = (HttpWebResponse)requestRs.GetResponse();
                 resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.Default).ReadToEnd();
                 //打开广告界面
-                requestRs = (HttpWebRequest)WebRequest.Create("http://www.admimsy.com/ViewAds.cfm");
+                requestRs = GetHttpWebRequest("http://www.admimsy.com/ViewAds.cfm", model.VTProxy, ref adCookie);
                 requestRs.Method = "GET";
-                requestRs.CookieContainer = adCookie;
                 responseRs = (HttpWebResponse)requestRs.GetResponse();
 
                 resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.Default).ReadToEnd();
                 //得到需要看的广告列表
                 List<string> lstADs = HtmlPaserUtil.ExtractHtmlsourceByTag(resHtml, "ADViewer");
-
+                List<string> referView = new List<string>();
                 List<string> finalADs = new List<string>();
                 foreach (string ad in lstADs)
                 {
                     string urlAd = "http://www.admimsy.com/" + ad.Replace("ADViewer.cfm", "TopViewAd.cfm");
-                    requestRs = (HttpWebRequest)WebRequest.Create(urlAd);
+                    requestRs = GetHttpWebRequest(urlAd, model.VTProxy, ref adCookie);
                     requestRs.Method = "GET";
-                    requestRs.CookieContainer = adCookie;
-
+                    referView.Add(urlAd);
                     using (WebResponse response = requestRs.GetResponse())
                     {
                         using (TextReader reader = new StreamReader(response.GetResponseStream()))
@@ -124,36 +129,43 @@ namespace ToolUtils
                         }
                     }
                 }
-
+                int i = 0;
                 //最后一步：看广告
                 foreach (string urlF in finalADs)
                 {
                     //等待10秒
                     System.Threading.Thread.Sleep(10000);
-                    requestRs = (HttpWebRequest)WebRequest.Create(urlF);
-                    requestRs.Headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-                    requestRs.Headers.Add("Accept-Charset", "GBK,utf-8;q=0.7,*;q=0.3");
-                    requestRs.Headers.Add("Accept-Encoding", "gzip,deflate,sdch");
-                    requestRs.Headers.Add("Connection", "keep-alive");
+                    requestRs = GetHttpWebRequest(urlF, model.VTProxy, ref adCookie);
+                    requestRs.Accept = "*/*";
+                    requestRs.Host = "www.admimsy.com";
+                    requestRs.UserAgent = "Mozilla/5.0";
+                    requestRs.Referer = referView[i];
+                    i++;
+                    //requestRs.Headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+                    //requestRs.Headers.Add("Accept-Charset", "GBK,utf-8;q=0.7,*;q=0.3");
+                    //requestRs.Headers.Add("Accept-Encoding", "gzip,deflate,sdch");
+                    //requestRs.Headers.Add("Connection", "keep-alive");
                     //requestRs.ContentType = "text/html;charset=UTF-8";
+
                     requestRs.Method = "GET";
                     requestRs.CookieContainer = adCookie;
                     responseRs = (HttpWebResponse)requestRs.GetResponse();
-                    resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.ASCII).ReadToEnd();                    
+                    resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.UTF8).ReadToEnd();
                 }
 
-                MessageBox.Show("成功完成看广告的任务！");
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //
             }
-            finally {
+            finally
+            {
                 if (responseRs != null)
                 {
                     responseRs.Close();
                 }
-            
+
             }
         }
 
@@ -220,6 +232,13 @@ namespace ToolUtils
             }
         }
 
+
+        private void btnReg_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
         private void autoReg() 
         {
             this.wbHTML.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.wbHTML_Reg_DocumentCompleted);
@@ -233,6 +252,112 @@ namespace ToolUtils
             this.wbHTML.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.wbHTML_DocumentCompleted);
             this.wbHTML.ScriptErrorsSuppressed = true;
             wbHTML.Navigate("http://www.admimsy.com/Logout.cfm", false);
+
+        }
+
+
+        private void btnPsnInfo_Click(object sender, EventArgs e)
+        {
+            GetUSPersonInfo();
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="postData"></param>
+        /// <param name="psnCookie"></param>
+        /// <returns></returns>
+        private string PostData(string url, string postData, ref CookieContainer psnCookie) 
+        {
+            HttpWebResponse responseRs = null;
+            try
+            {
+                //编码
+                ASCIIEncoding encoding = new ASCIIEncoding();
+                //编码登录信息
+                byte[] data = encoding.GetBytes(postData);
+                //登录网站
+                HttpWebRequest requestRs = (HttpWebRequest)WebRequest.Create(url);
+                //设置Cookie
+                requestRs.CookieContainer = psnCookie;
+                //设置登录方式
+                requestRs.Method = "POST";
+                //提交类型
+                requestRs.ContentType = "application/x-www-form-urlencoded";
+                requestRs.ContentLength = data.Length;
+                Stream newStream = requestRs.GetRequestStream();
+                // Send the data.
+                newStream.Write(data, 0, data.Length);
+                newStream.Close();
+                responseRs = (HttpWebResponse)requestRs.GetResponse();
+                return new StreamReader(responseRs.GetResponseStream(), Encoding.UTF8).ReadToEnd();
+            }
+            catch(Exception ex)
+            {
+                //donoting
+            }
+            finally
+            {
+                if (responseRs != null)
+                {
+                    responseRs.Close();
+                }
+            }
+            return "";
+        }
+
+        private void GetUSPersonInfo() 
+        {
+            
+            CookieContainer psnCookie = new CookieContainer();
+            string resHtml = "";
+            //第一步先登录
+            string loginURL = "http://cn.zeelin.com/login/ajax-check-web-login/";
+            string postData = "email=709757455@qq.com&pw=1qazxsw2&use_cookie=yes";
+            PostData(loginURL, postData, ref psnCookie);
+
+            //得到定位到的URL
+            loginURL = "http://cn.usinfo.me/ajax-get-new-info-by-condition/";
+            //登录所需的信息
+            postData = "condition_gender=random&condition_age=youth&condition_state=random&condition_city=random&condition_zip=random";
+
+            resHtml = PostData(loginURL, postData, ref psnCookie);
+            //开始解析
+            ZHY.Model.VirtualPersonInfo model = new ZHY.Model.VirtualPersonInfo();
+            model.VPFullName = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "full_name");
+            model.VPFirstName = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "first_name");
+            model.VPLastName = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "last_name");
+            model.VPMiddleName = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "middle_initial");
+            model.VPSex = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "gender");
+            model.VPBirthday = DateTime.Parse(HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "birthday"));
+            model.VPAge = int.Parse(HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "age"));
+            model.VPCollege = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "college");
+            model.VPOccupation = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "occupation");
+            model.VPSsn = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "ssn");
+            model.VPMail = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "email");
+            model.VPNickName = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "nick_name");
+            //model.VPFullName = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "height");
+            model.VPBloodType = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "blood_type");
+            //model.VPWeight = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "weight");
+            model.VPState = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "state");
+
+            model.VPCity = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "city");
+            model.VPStreet = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "address");
+            model.VPZip = int.Parse(HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "zip"));
+            model.VPPhone = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "phone");
+            model.VPVisa = decimal.Parse(HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "cc_visa_number").Replace(" ", ""));
+            model.VPVisaExpirDate = DateTime.Parse(HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "cc_visa_expiry_date"));
+
+            model.VPCVV2 = int.Parse(HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "cc_visa_cvv2"));
+            model.VPBank = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "bank_name");
+            model.VPRoutingNumber = decimal.Parse(HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "routing_number"));
+            model.VPBankAcct = decimal.Parse(HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "bank_account_number"));
+            model.VPMasterCard = decimal.Parse(HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "cc_mastercard_number").Replace(" ", ""));
+            model.VPMExpirDate = DateTime.Parse(HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "cc_mastercard_expiry_date"));
+            model.VPMCVC2 = int.Parse(HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "cc_mastercard_cvc2"));
+            model.VPSite = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "website");
+
 
         }
 
@@ -502,22 +627,32 @@ namespace ToolUtils
         private void btnTestProxy_Click(object sender, EventArgs e)
         {
             ZHY.BLL.ProxyAddress bll = new ZHY.BLL.ProxyAddress();
-            
-            List<ZHY.Model.ProxyAddress> list = bll.GetModelList("");
+
+            List<ZHY.Model.ProxyAddress> list = bll.GetModelList(" PACountry = 'China'");
             int i = 0;
+            int j = 0;
             foreach (ZHY.Model.ProxyAddress model in list)
             {
+                if(j==4)
+                {
+                    break;
+                }
                 if (HttpProxy.CheckProxyConnected(model.PAName))
                 {
-                    //txtProxy.Text = model.PAName;
+                    this.lsProxy.Items.Add(model.PAName);
+                    j++;
                 }
-                else {
+                else
+                {
                     i++;
-                    bll.Delete(model.PAId);
+                    //bll.Delete(model.PAId);
                 }
             }
-            MessageBox.Show("无效的代理地址数："+i);
+            MessageBox.Show("无效的代理地址数：" + i);
         }
+
+
+
 
     }
 }

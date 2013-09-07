@@ -5,6 +5,7 @@ using System.Text;
 
 using Quartz;
 using Common.Logging;
+using ZHY.Common;
 namespace AutoTask.usinfo
 {
     public class AutoGenUSInfoJob : IJob
@@ -23,9 +24,18 @@ namespace AutoTask.usinfo
 		/// </summary>
 		public virtual void  Execute(IJobExecutionContext context)
 		{
-            _log.Info("job be invoked....");
-            //ZHY.BLL.VirtualPersonInfo bll = new ZHY.BLL.VirtualPersonInfo();
-           // bll.ExtractPsnInfoFromSite();
+            string method = "--AutoGenUSInfoJob#Execute";
+            ZHY.BLL.VirtualPersonInfo bll = new ZHY.BLL.VirtualPersonInfo();
+            try
+            {
+                
+                bll.ExtractPsnInfoFromSite();
+
+            }catch(Exception ex){
+
+                bll.AlertEmail(Constants.SYSTEM_CONFIG_ATT_NAME_MAIL_ERROR_ALERT_JOB_SUBJECT + method, ex.Message);
+            }
+            
 		}
     }
 }

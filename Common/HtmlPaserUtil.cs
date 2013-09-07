@@ -52,6 +52,35 @@ namespace ZHY.Common
             return "";
         }
 
+
+        public static string ExtractHtmlValueByInputTag(string htmlSource, string exStr) 
+        {
+            try
+            {
+                List<string> list = new List<string>();
+                Parser htmlParser = Parser.CreateParser(htmlSource, "GB2312");
+                NodeFilter filter = new NodeClassFilter(typeof(Winista.Text.HtmlParser.Tags.InputTag));
+                NodeList nodeList = htmlParser.Parse(filter);
+                for (int i = 0; i < nodeList.Size(); i++)
+                {
+                    Winista.Text.HtmlParser.Tags.InputTag input = (Winista.Text.HtmlParser.Tags.InputTag)nodeList.ElementAt(i);
+
+                    string str = input.GetAttribute("id");
+                    if (str.Equals(exStr))
+                    {
+                        return input.GetAttribute("value");
+                    }
+                }
+                return "";
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+        }
+
         public static List<string> ExtractHtmlsourceByTag(string htmlSource, string exStr)
         {
             try
@@ -62,7 +91,6 @@ namespace ZHY.Common
                 NodeList nodeList = htmlParser.Parse(filter);
                 for (int i = 0; i < nodeList.Size(); i++)
                 {
-
                     Winista.Text.HtmlParser.Tags.ATag aHref = (Winista.Text.HtmlParser.Tags.ATag)nodeList.ElementAt(i);
                    
                     string str = aHref.Link;

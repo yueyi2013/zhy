@@ -31,11 +31,13 @@
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.wbHTML = new System.Windows.Forms.WebBrowser();
-            this.tmAdview = new System.Windows.Forms.Timer(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnReg = new System.Windows.Forms.Button();
+            this.btnPsnInfo = new System.Windows.Forms.Button();
+            this.btnViewAd = new System.Windows.Forms.Button();
             this.btnTestProxy = new System.Windows.Forms.Button();
-            this.txtProxy = new System.Windows.Forms.TextBox();
+            this.btnReg = new System.Windows.Forms.Button();
+            this.tmAdview = new System.Windows.Forms.Timer(this.components);
+            this.lsProxy = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -50,46 +52,54 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.19831F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80.80169F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 34.81013F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 65.18987F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(904, 474);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // wbHTML
             // 
             this.wbHTML.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wbHTML.Location = new System.Drawing.Point(3, 94);
+            this.wbHTML.Location = new System.Drawing.Point(3, 168);
             this.wbHTML.MinimumSize = new System.Drawing.Size(20, 20);
             this.wbHTML.Name = "wbHTML";
-            this.wbHTML.Size = new System.Drawing.Size(898, 377);
+            this.wbHTML.Size = new System.Drawing.Size(898, 303);
             this.wbHTML.TabIndex = 0;
-            // 
-            // tmAdview
-            // 
-            this.tmAdview.Interval = 60000;
-            this.tmAdview.Tick += new System.EventHandler(this.tmAdview_Tick);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.txtProxy);
+            this.groupBox1.Controls.Add(this.lsProxy);
+            this.groupBox1.Controls.Add(this.btnPsnInfo);
+            this.groupBox1.Controls.Add(this.btnViewAd);
             this.groupBox1.Controls.Add(this.btnTestProxy);
             this.groupBox1.Controls.Add(this.btnReg);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(898, 85);
+            this.groupBox1.Size = new System.Drawing.Size(898, 159);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             // 
-            // btnReg
+            // btnPsnInfo
             // 
-            this.btnReg.Location = new System.Drawing.Point(28, 31);
-            this.btnReg.Name = "btnReg";
-            this.btnReg.Size = new System.Drawing.Size(75, 23);
-            this.btnReg.TabIndex = 2;
-            this.btnReg.Text = "注册";
-            this.btnReg.UseVisualStyleBackColor = true;
+            this.btnPsnInfo.Location = new System.Drawing.Point(348, 30);
+            this.btnPsnInfo.Name = "btnPsnInfo";
+            this.btnPsnInfo.Size = new System.Drawing.Size(75, 23);
+            this.btnPsnInfo.TabIndex = 6;
+            this.btnPsnInfo.Text = "生成身份";
+            this.btnPsnInfo.UseVisualStyleBackColor = true;
+            this.btnPsnInfo.Click += new System.EventHandler(this.btnPsnInfo_Click);
+            // 
+            // btnViewAd
+            // 
+            this.btnViewAd.Location = new System.Drawing.Point(119, 31);
+            this.btnViewAd.Name = "btnViewAd";
+            this.btnViewAd.Size = new System.Drawing.Size(75, 23);
+            this.btnViewAd.TabIndex = 5;
+            this.btnViewAd.Text = "看广告";
+            this.btnViewAd.UseVisualStyleBackColor = true;
+            this.btnViewAd.Click += new System.EventHandler(this.btnViewAd_Click);
             // 
             // btnTestProxy
             // 
@@ -101,12 +111,29 @@
             this.btnTestProxy.UseVisualStyleBackColor = true;
             this.btnTestProxy.Click += new System.EventHandler(this.btnTestProxy_Click);
             // 
-            // txtProxy
+            // btnReg
             // 
-            this.txtProxy.Location = new System.Drawing.Point(383, 31);
-            this.txtProxy.Name = "txtProxy";
-            this.txtProxy.Size = new System.Drawing.Size(100, 21);
-            this.txtProxy.TabIndex = 4;
+            this.btnReg.Location = new System.Drawing.Point(28, 31);
+            this.btnReg.Name = "btnReg";
+            this.btnReg.Size = new System.Drawing.Size(75, 23);
+            this.btnReg.TabIndex = 2;
+            this.btnReg.Text = "注册";
+            this.btnReg.UseVisualStyleBackColor = true;
+            this.btnReg.Click += new System.EventHandler(this.btnReg_Click);
+            // 
+            // tmAdview
+            // 
+            this.tmAdview.Interval = 60000;
+            this.tmAdview.Tick += new System.EventHandler(this.tmAdview_Tick);
+            // 
+            // lsProxy
+            // 
+            this.lsProxy.FormattingEnabled = true;
+            this.lsProxy.ItemHeight = 12;
+            this.lsProxy.Location = new System.Drawing.Point(496, 31);
+            this.lsProxy.Name = "lsProxy";
+            this.lsProxy.Size = new System.Drawing.Size(120, 88);
+            this.lsProxy.TabIndex = 7;
             // 
             // frmMain
             // 
@@ -119,7 +146,6 @@
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -132,7 +158,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button btnTestProxy;
         private System.Windows.Forms.Button btnReg;
-        private System.Windows.Forms.TextBox txtProxy;
+        private System.Windows.Forms.Button btnViewAd;
+        private System.Windows.Forms.Button btnPsnInfo;
+        private System.Windows.Forms.ListBox lsProxy;
 
     }
 }

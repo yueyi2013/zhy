@@ -46,6 +46,8 @@ namespace AutoTask
             ScheduleSimpleJob("GenUSPsn", "GenUSPsn", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 24, true, typeof(AutoTask.usinfo.AutoGenUSInfoJob));
             //Auto check proxy address connected
             ScheduleSimpleJob("ChkProxyAdress", "ChkProxyAdress", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 24, true, typeof(AutoTask.AutoCheckProxyConnJob));
+            //Auto view ads
+            ScheduleSimpleJob("viewAds", "viewAds", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 12, true, typeof(AutoTask.ADmimsy.AutoViewAdsJob));
             
             sched.Start();
         }

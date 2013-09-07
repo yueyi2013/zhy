@@ -95,5 +95,51 @@ namespace ZHY.Common
             }
             return false;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url">地址</param>
+        /// <param name="postData">提交的数据</param>
+        /// <param name="psnCookie">人员信息</param>
+        /// <returns></returns>
+        public static string PostData(string url, string postData, ref CookieContainer psnCookie)
+        {
+            HttpWebResponse responseRs = null;
+            try
+            {
+                //编码
+                ASCIIEncoding encoding = new ASCIIEncoding();
+                //编码登录信息
+                byte[] data = encoding.GetBytes(postData);
+                //登录网站
+                HttpWebRequest requestRs = (HttpWebRequest)WebRequest.Create(url);
+                //设置Cookie
+                requestRs.CookieContainer = psnCookie;
+                //设置登录方式
+                requestRs.Method = "POST";
+                //提交类型
+                requestRs.ContentType = "application/x-www-form-urlencoded";
+                requestRs.ContentLength = data.Length;
+                Stream newStream = requestRs.GetRequestStream();
+                // Send the data.
+                newStream.Write(data, 0, data.Length);
+                newStream.Close();
+                responseRs = (HttpWebResponse)requestRs.GetResponse();
+                return new StreamReader(responseRs.GetResponseStream(), Encoding.UTF8).ReadToEnd();
+            }
+            catch (Exception ex)
+            {
+                //donoting
+            }
+            finally
+            {
+                if (responseRs != null)
+                {
+                    responseRs.Close();
+                }
+            }
+            return "";
+        }
     }
 }

@@ -217,6 +217,8 @@
     <Compile Include="PsnManage\User.cs" />
     <Compile Include="VirPsn\ProxyAddress.cs" />
     <Compile Include="VirPsn\VirtualPersonInfo.cs" />
+    <Compile Include="VirPsn\VirtualSite.cs" />
+    <Compile Include="VirPsn\VirtualTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

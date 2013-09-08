@@ -62,14 +62,14 @@ namespace ZHY.BLL
             //第一步先登录
             string loginURL = "http://cn.zeelin.com/login/ajax-check-web-login/";
             string postData = "email=709757455@qq.com&pw=1qazxsw2&use_cookie=yes";
-            HttpProxy.PostData(loginURL, postData, ref psnCookie);
+            HttpProxy.PostData(loginURL, postData, string.Empty,ref psnCookie);
 
             //得到定位到的URL
             loginURL = "http://cn.usinfo.me/ajax-get-new-info-by-condition/";
             //登录所需的信息
             postData = "condition_gender=random&condition_age=youth&condition_state=random&condition_city=random&condition_zip=random";
 
-            resHtml = HttpProxy.PostData(loginURL, postData, ref psnCookie);
+            resHtml = HttpProxy.PostData(loginURL, postData, string.Empty, ref psnCookie);
             //开始解析
             ZHY.Model.VirtualPersonInfo model = new ZHY.Model.VirtualPersonInfo();
             model.VPFullName = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "full_name");

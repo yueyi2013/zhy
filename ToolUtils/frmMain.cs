@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Data;
 using System.IO;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -235,9 +237,75 @@ namespace ToolUtils
 
         private void btnReg_Click(object sender, EventArgs e)
         {
-
+            RegAdmimsy();
         }
 
+        private string RegAdmimsy() 
+        {
+            string resHtml = "";
+            string loginURL = "http://www.admimsy.com/?R=yueyi2013";
+            string createURL = "http://www.admimsy.com/CreateAccount.cfm";
+            CookieContainer adCookie = new CookieContainer();
+
+            ZHY.BLL.VirtualPersonInfo bllPsn = new ZHY.BLL.VirtualPersonInfo();
+
+            List<ZHY.Model.VirtualPersonInfo> lsPsn = bllPsn.DataTableToList(bllPsn.GetList(1, "", " newid() ").Tables[0]);
+
+            ZHY.Model.VirtualPersonInfo psnInfo = lsPsn[0];
+
+            ZHY.BLL.ProxyAddress bll = new ZHY.BLL.ProxyAddress();
+
+            List<ZHY.Model.ProxyAddress> list = bll.DataTableToList(bll.GetList(1, "", " newid() ").Tables[0]);
+
+            ZHY.Model.ProxyAddress paInfo = list[0];
+
+            HttpProxy.GetResponseData(loginURL, list[0].PAName, ref adCookie);
+
+            resHtml = HttpProxy.GetResponseData(createURL, list[0].PAName, ref adCookie);
+
+            StringBuilder sb = new StringBuilder();
+            string userName = psnInfo.VPNickName + psnInfo.VPFirstName;
+            sb.AppendFormat("UserName={0}&",userName);
+            string psw = psnInfo.VPPassword + psnInfo.VPLastName;
+            sb.AppendFormat("Password={0}&",psw);
+            sb.AppendFormat("EmailAddress={0}&", psnInfo.VPMail.Replace("@", "%40"));
+            sb.AppendFormat("Gender={0}&", psnInfo.VPSex);
+            sb.AppendFormat("TheMonth={0}&", psnInfo.VPBirthday.Value.Month);
+            sb.AppendFormat("TheDay={0}&", psnInfo.VPBirthday.Value.Day);
+            sb.AppendFormat("TheYear={0}&", psnInfo.VPBirthday.Value.Year);
+            string NumberAbove = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "NumberAbove");
+            sb.AppendFormat("NumberAbove={0}&",NumberAbove);
+            sb.AppendFormat("NumberBelow={0}&",NumberAbove);
+            sb.Append("B1=Create+Account");
+
+            //编码
+            ASCIIEncoding encoding = new ASCIIEncoding();
+            //编码登录信息
+            byte[] data = encoding.GetBytes(sb.ToString());
+            //第二步登录网站
+            HttpWebRequest requestRs = HttpProxy.GetHttpWebRequest("http://www.admimsy.com/CreateAccount.cfm", paInfo.PAName, ref adCookie);
+            //设置登录方式
+            requestRs.Method = "POST";
+            requestRs.Referer = loginURL;
+            //提交类型
+            requestRs.ContentType = "application/x-www-form-urlencoded";
+            requestRs.ContentLength = data.Length;
+            Stream newStream = requestRs.GetRequestStream();
+            // Send the data.
+            newStream.Write(data, 0, data.Length);
+            newStream.Close();
+            resHtml = new StreamReader(requestRs.GetResponse().GetResponseStream(), Encoding.Default).ReadToEnd();
+
+            ZHY.BLL.VirtualTask bllTask = new ZHY.BLL.VirtualTask();
+            ZHY.Model.VirtualTask task = new ZHY.Model.VirtualTask();
+            task.VSCode = "Admimsy";
+            task.VTUserName = userName;
+            task.VTPassword = psw;
+            task.VTProxy = paInfo.PAName;
+            bllTask.Add(task);
+
+            return resHtml;
+        }
 
         private void autoReg() 
         {
@@ -628,7 +696,7 @@ namespace ToolUtils
         {
             ZHY.BLL.ProxyAddress bll = new ZHY.BLL.ProxyAddress();
 
-            List<ZHY.Model.ProxyAddress> list = bll.GetModelList(" PACountry = 'China'");
+            List<ZHY.Model.ProxyAddress> list = bll.GetModelList(" PACountry = 'United States'");
             int i = 0;
             int j = 0;
             foreach (ZHY.Model.ProxyAddress model in list)
@@ -639,7 +707,9 @@ namespace ToolUtils
                 }
                 if (HttpProxy.CheckProxyConnected(model.PAName))
                 {
-                    this.lsProxy.Items.Add(model.PAName);
+                    //this.lsProxy.Items.Add(model.PAName);
+                    txtProxy.Text = model.PAName;
+                    break;
                     j++;
                 }
                 else

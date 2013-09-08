@@ -28,7 +28,6 @@ namespace AutoTask.usinfo
             ZHY.BLL.VirtualPersonInfo bll = new ZHY.BLL.VirtualPersonInfo();
             try
             {
-                
                 bll.ExtractPsnInfoFromSite();
 
             }catch(Exception ex){

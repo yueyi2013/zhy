@@ -1,4 +1,5 @@
-﻿/****** Object:  Table [dbo].[VirtualPersonInfo]    Script Date: 08/31/2013 22:29:18 ******/
+﻿
+/****** Object:  Table [dbo].[VirtualPersonInfo]    Script Date: 09/08/2013 15:37:45 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -31,13 +32,13 @@ CREATE TABLE [dbo].[VirtualPersonInfo](
 	[VPStreet] [varchar](32) NULL,
 	[VPZip] [int] NULL,
 	[VPPhone] [varchar](16) NULL,
-	[VPVisa Visa] [int] NULL,
+	[VPVisa] [numeric](18, 0) NULL,
 	[VPVisaExpirDate] [datetime] NULL,
 	[VPCVV2] [int] NULL,
 	[VPBank] [varchar](32) NULL,
-	[VPRoutingNumber] [int] NULL,
-	[VPBankAcct] [int] NULL,
-	[VPMasterCard] [int] NULL,
+	[VPRoutingNumber] [numeric](18, 0) NULL,
+	[VPBankAcct] [numeric](18, 0) NULL,
+	[VPMasterCard] [numeric](18, 0) NULL,
 	[VPMExpirDate] [datetime] NULL,
 	[VPMCVC2] [int] NULL,
 	[VPSite] [varchar](32) NULL,
@@ -123,7 +124,7 @@ GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'电话' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'VirtualPersonInfo', @level2type=N'COLUMN',@level2name=N'VPPhone'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'信用卡' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'VirtualPersonInfo', @level2type=N'COLUMN',@level2name=N'VPVisa Visa'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Visa信用卡' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'VirtualPersonInfo', @level2type=N'COLUMN',@level2name=N'VPVisa'
 GO
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'有效期' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'VirtualPersonInfo', @level2type=N'COLUMN',@level2name=N'VPVisaExpirDate'
@@ -179,5 +180,3 @@ GO
 
 ALTER TABLE [dbo].[VirtualPersonInfo] ADD  DEFAULT (getdate()) FOR [UpdateDT]
 GO
-
-

@@ -32,12 +32,13 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.wbHTML = new System.Windows.Forms.WebBrowser();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lsProxy = new System.Windows.Forms.ListBox();
             this.btnPsnInfo = new System.Windows.Forms.Button();
             this.btnViewAd = new System.Windows.Forms.Button();
             this.btnTestProxy = new System.Windows.Forms.Button();
             this.btnReg = new System.Windows.Forms.Button();
             this.tmAdview = new System.Windows.Forms.Timer(this.components);
-            this.lsProxy = new System.Windows.Forms.ListBox();
+            this.txtProxy = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +69,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtProxy);
             this.groupBox1.Controls.Add(this.lsProxy);
             this.groupBox1.Controls.Add(this.btnPsnInfo);
             this.groupBox1.Controls.Add(this.btnViewAd);
@@ -80,6 +82,15 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // lsProxy
+            // 
+            this.lsProxy.FormattingEnabled = true;
+            this.lsProxy.ItemHeight = 12;
+            this.lsProxy.Location = new System.Drawing.Point(496, 31);
+            this.lsProxy.Name = "lsProxy";
+            this.lsProxy.Size = new System.Drawing.Size(120, 88);
+            this.lsProxy.TabIndex = 7;
             // 
             // btnPsnInfo
             // 
@@ -126,14 +137,12 @@
             this.tmAdview.Interval = 60000;
             this.tmAdview.Tick += new System.EventHandler(this.tmAdview_Tick);
             // 
-            // lsProxy
+            // txtProxy
             // 
-            this.lsProxy.FormattingEnabled = true;
-            this.lsProxy.ItemHeight = 12;
-            this.lsProxy.Location = new System.Drawing.Point(496, 31);
-            this.lsProxy.Name = "lsProxy";
-            this.lsProxy.Size = new System.Drawing.Size(120, 88);
-            this.lsProxy.TabIndex = 7;
+            this.txtProxy.Location = new System.Drawing.Point(700, 32);
+            this.txtProxy.Name = "txtProxy";
+            this.txtProxy.Size = new System.Drawing.Size(100, 21);
+            this.txtProxy.TabIndex = 8;
             // 
             // frmMain
             // 
@@ -146,6 +155,7 @@
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -161,6 +171,7 @@
         private System.Windows.Forms.Button btnViewAd;
         private System.Windows.Forms.Button btnPsnInfo;
         private System.Windows.Forms.ListBox lsProxy;
+        private System.Windows.Forms.TextBox txtProxy;
 
     }
 }

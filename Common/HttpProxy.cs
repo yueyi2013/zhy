@@ -96,6 +96,69 @@ namespace ZHY.Common
             return false;
         }
 
+        public static HttpWebRequest PostHttpWebRequest(string url, string postData, string strProxy, ref CookieContainer pstCookie)
+        {
+            try
+            {
+                //编码
+                ASCIIEncoding encoding = new ASCIIEncoding();
+                //编码登录信息
+                byte[] data = encoding.GetBytes(postData);
+                //登录网站
+                HttpWebRequest requestRs = (HttpWebRequest)WebRequest.Create(url);
+                if (!string.IsNullOrEmpty(strProxy))
+                {
+                    requestRs.Proxy = new WebProxy(strProxy);
+                    requestRs.KeepAlive = false;
+                    requestRs.ProtocolVersion = HttpVersion.Version10;
+                }
+
+                //设置Cookie
+                requestRs.CookieContainer = pstCookie;
+                //设置登录方式
+                requestRs.Method = "POST";
+                //提交类型
+                requestRs.ContentType = "application/x-www-form-urlencoded";
+                requestRs.ContentLength = data.Length;
+                Stream newStream = requestRs.GetRequestStream();
+                // Send the data.
+                newStream.Write(data, 0, data.Length);
+                newStream.Close();
+                return requestRs;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+
+            }
+        }
+
+        public static HttpWebRequest GetHttpWebRequest(string url, string proxy, ref CookieContainer adCookie)
+        {
+            HttpWebRequest requestRs = (HttpWebRequest)WebRequest.Create(url);
+            if (!string.IsNullOrEmpty(proxy))
+            {
+                WebProxy wbPrx = new WebProxy(proxy);
+                requestRs.Proxy = wbPrx;
+                requestRs.KeepAlive = false;
+                requestRs.ProtocolVersion = HttpVersion.Version10;
+            }
+            requestRs.CookieContainer = adCookie;
+            return requestRs;
+        }
+
+        public static string GetResponseData(string url, string proxy, ref CookieContainer adCookie) 
+        {
+            HttpWebRequest requestRs = GetHttpWebRequest(url, proxy, ref adCookie);
+
+            HttpWebResponse responseRs = (HttpWebResponse)requestRs.GetResponse();
+
+            return  new StreamReader(responseRs.GetResponseStream(), Encoding.Default).ReadToEnd();
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -103,7 +166,7 @@ namespace ZHY.Common
         /// <param name="postData">提交的数据</param>
         /// <param name="psnCookie">人员信息</param>
         /// <returns></returns>
-        public static string PostData(string url, string postData, ref CookieContainer psnCookie)
+        public static string PostData(string url, string postData, string strProxy, ref CookieContainer psnCookie)
         {
             HttpWebResponse responseRs = null;
             try
@@ -114,6 +177,13 @@ namespace ZHY.Common
                 byte[] data = encoding.GetBytes(postData);
                 //登录网站
                 HttpWebRequest requestRs = (HttpWebRequest)WebRequest.Create(url);
+                if (!string.IsNullOrEmpty(strProxy))
+                {
+                    requestRs.Proxy = new WebProxy(strProxy);
+                    requestRs.KeepAlive = false;
+                    requestRs.ProtocolVersion = HttpVersion.Version10;
+                }
+                
                 //设置Cookie
                 requestRs.CookieContainer = psnCookie;
                 //设置登录方式
@@ -130,7 +200,7 @@ namespace ZHY.Common
             }
             catch (Exception ex)
             {
-                //donoting
+                throw ex;
             }
             finally
             {
@@ -139,7 +209,6 @@ namespace ZHY.Common
                     responseRs.Close();
                 }
             }
-            return "";
         }
     }
 }

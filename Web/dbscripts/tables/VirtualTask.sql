@@ -1,4 +1,5 @@
-/****** Object:  Table [dbo].[VirtualSite]    Script Date: 09/03/2013 23:08:12 ******/
+
+/****** Object:  Table [dbo].[VirtualTask]    Script Date: 09/08/2013 18:45:07 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -8,18 +9,19 @@ GO
 SET ANSI_PADDING ON
 GO
 
-CREATE TABLE [dbo].[VirtualSite](
-	[VSId] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+CREATE TABLE [dbo].[VirtualTask](
+	[VTId] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[VTUserName] [varchar](32) NOT NULL,
+	[VTPassword] [varchar](32) NOT NULL,
+	[VTProxy] [varchar](32) NULL,
 	[VSCode] [varchar](16) NULL,
-	[VSName] [varchar](32) NULL,
-	[VSURL] [varchar](128) NULL,
 	[CreateAt] [datetime] NULL,
 	[CreateBy] [varchar](64) NULL,
 	[UpdateDT] [datetime] NULL,
 	[UpdateBy] [varchar](64) NULL,
- CONSTRAINT [PK_VIRTUALSITE] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_VIRTUALTASK] PRIMARY KEY CLUSTERED 
 (
-	[VSId] ASC
+	[VTId] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 
@@ -28,31 +30,40 @@ GO
 SET ANSI_PADDING OFF
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Õ¯’æ±‡∫≈' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'VirtualSite', @level2type=N'COLUMN',@level2name=N'VSId'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'»ŒŒÒ±‡∫≈' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'VirtualTask', @level2type=N'COLUMN',@level2name=N'VTId'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Õ¯’æ±‡¬Î' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'VirtualSite', @level2type=N'COLUMN',@level2name=N'VSCode'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'”√ªß√˚' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'VirtualTask', @level2type=N'COLUMN',@level2name=N'VTUserName'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Õ¯’æ√˚' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'VirtualSite', @level2type=N'COLUMN',@level2name=N'VSName'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'√‹¬Î' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'VirtualTask', @level2type=N'COLUMN',@level2name=N'VTPassword'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'µÿ÷∑' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'VirtualSite', @level2type=N'COLUMN',@level2name=N'VSURL'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'¥˙¿Ìµÿ÷∑' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'VirtualTask', @level2type=N'COLUMN',@level2name=N'VTProxy'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Õ¯’æ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'VirtualSite'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Õ¯’æ±‡¬Î' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'VirtualTask', @level2type=N'COLUMN',@level2name=N'VSCode'
 GO
 
-ALTER TABLE [dbo].[VirtualSite] ADD  DEFAULT (getdate()) FOR [CreateAt]
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'–Èƒ‚»ŒŒÒ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'VirtualTask'
 GO
 
-ALTER TABLE [dbo].[VirtualSite] ADD  DEFAULT ('syihy.com') FOR [CreateBy]
+ALTER TABLE [dbo].[VirtualTask] ADD  DEFAULT ('61.175.223.139:3128') FOR [VTProxy]
 GO
 
-ALTER TABLE [dbo].[VirtualSite] ADD  DEFAULT (getdate()) FOR [UpdateDT]
+ALTER TABLE [dbo].[VirtualTask] ADD  DEFAULT ('ONE') FOR [VSCode]
 GO
 
-ALTER TABLE [dbo].[VirtualSite] ADD  DEFAULT ('syihy.com') FOR [UpdateBy]
+ALTER TABLE [dbo].[VirtualTask] ADD  DEFAULT (getdate()) FOR [CreateAt]
+GO
+
+ALTER TABLE [dbo].[VirtualTask] ADD  DEFAULT ('syihy.com') FOR [CreateBy]
+GO
+
+ALTER TABLE [dbo].[VirtualTask] ADD  DEFAULT (getdate()) FOR [UpdateDT]
+GO
+
+ALTER TABLE [dbo].[VirtualTask] ADD  DEFAULT ('syihy.com') FOR [UpdateBy]
 GO
 
 

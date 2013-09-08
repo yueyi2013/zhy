@@ -48,6 +48,8 @@ namespace AutoTask
             ScheduleSimpleJob("ChkProxyAdress", "ChkProxyAdress", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 24, true, typeof(AutoTask.AutoCheckProxyConnJob));
             //Auto view ads
             ScheduleSimpleJob("viewAds", "viewAds", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 12, true, typeof(AutoTask.ADmimsy.AutoViewAdsJob));
+            //Auto regedit admimsy site
+            ScheduleSimpleJob("regAdmimsy", "regAdmimsy", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 4, true, typeof(AutoTask.ADmimsy.AutoSignUpJob));
             
             sched.Start();
         }

@@ -538,7 +538,7 @@ namespace Maticsoft.DBUtility
         /// <returns>DataSet</returns>
         public static DataSet Query(string SQLString)
         {
-            connectionString = "server=PC2012083019TBV\\SQLEXPRESS;database=syihy;uid=sa;pwd=12345678;multipleactiveresultsets=True;";
+            //connectionString = "server=PC2012083019TBV\\SQLEXPRESS;database=syihy;uid=sa;pwd=12345678;multipleactiveresultsets=True;";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 DataSet ds = new DataSet();

@@ -23,6 +23,8 @@
                 <table cellspacing="0" cellpadding="0" width="100%">
                     <tr>
                         <td>
+                            <asp:Button ID="btnTask" runat="server" Text="开始任务" CssClass="buttonCss" CausesValidation="false"
+                                OnClick="btnTask_Click" OnClientClick="return ConfirmTask()" />
                             <asp:Button ID="btnAdd" runat="server" Text="增加" CssClass="buttonCss" 
                                 CausesValidation="false"/>
                             <asp:Button ID="btnModify" runat="server" Text="修改" CssClass="buttonCss" CausesValidation="false"
@@ -43,6 +45,7 @@
                                     <asp:AsyncPostBackTrigger ControlID="btnDelete" EventName="Click" />
                                     <asp:AsyncPostBackTrigger ControlID="btnSearch" EventName="Click" />
                                     <asp:AsyncPostBackTrigger ControlID="btnClose" EventName="Click" />
+                                    <asp:AsyncPostBackTrigger ControlID="btnTask" EventName="Click" />
                                 </Triggers>
                                 <ContentTemplate>
                                     <asp:GridView ID="MstGridView" runat="server" AutoGenerateColumns="False" Width="98%"

@@ -126,6 +126,14 @@ function Confirm() {
         return false;
 }
 
+function ConfirmTask() {
+    if (confirm('您确定要开始任务吗？')) {
+        //document.getElementById("ContentPlaceHolder1_btnTask").disabled = "disabled";
+        return true;
+    } else
+        return false;
+}
+
 // 展开/关闭
 function extend() {
     var tHeight = parseInt(gs($("box"), "height"));

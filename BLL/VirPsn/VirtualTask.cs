@@ -39,6 +39,11 @@ namespace ZHY.BLL
             return dal.GetList(tablename, strGetFields, PageIndex, pageSize, strWhere, strOrder, intOrder, ref CountAll);
         }
 
+        public bool Exists(string userName) 
+        {
+            return dal.Exists(userName);
+        }
+
         public string RegAdmimsy()
         {
             string resHtml = "";
@@ -64,6 +69,10 @@ namespace ZHY.BLL
 
             StringBuilder sb = new StringBuilder();
             string userName = psnInfo.VPNickName + psnInfo.VPFirstName;
+            if(this.Exists(userName)){
+
+                return "";
+            }
             sb.AppendFormat("UserName={0}&", userName);
             string psw = psnInfo.VPPassword + psnInfo.VPLastName;
             sb.AppendFormat("Password={0}&", psw);
@@ -111,6 +120,10 @@ namespace ZHY.BLL
             List<ZHY.Model.VirtualTask> list = this.GetModelList(" VSCode = 'Admimsy'");
             foreach(ZHY.Model.VirtualTask model in list)
             {
+                if (!HttpProxy.CheckProxyConnected(model.VTProxy)) 
+                {
+                    model.VTProxy = string.Empty;
+                }
                 admimsyTask(model);
             }
         }
@@ -126,6 +139,7 @@ namespace ZHY.BLL
                 requestRs.KeepAlive = false;
                 requestRs.ProtocolVersion = HttpVersion.Version10;
             }
+            requestRs.Timeout = 3600000;
             requestRs.CookieContainer = adCookie;
             return requestRs;
         }
@@ -135,7 +149,7 @@ namespace ZHY.BLL
         /// </summary>
         /// <param name="userName">用户名</param>
         /// <param name="psw">密码</param>
-        private void admimsyTask(ZHY.Model.VirtualTask model)
+        public void admimsyTask(ZHY.Model.VirtualTask model)
         {
 
             HttpWebRequest requestRs = null;
@@ -150,6 +164,10 @@ namespace ZHY.BLL
                 responseRs = (HttpWebResponse)requestRs.GetResponse();
                 //得到定位到的URL
                 string redURL = responseRs.ResponseUri.AbsoluteUri;
+                if (responseRs != null)
+                {
+                    responseRs.Close();
+                }
                 //登录所需的信息
                 string loginPsData = "UserName=" + model.VTUserName + "&Password=" + model.VTPassword + "&loginSubmit=Sign+In";
                 //编码
@@ -170,12 +188,20 @@ namespace ZHY.BLL
 
                 responseRs = (HttpWebResponse)requestRs.GetResponse();
                 resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.Default).ReadToEnd();
+                if (responseRs != null)
+                {
+                    responseRs.Close();
+                }
                 //打开广告界面
                 requestRs = GetHttpWebRequest("http://www.admimsy.com/ViewAds.cfm", model.VTProxy, ref adCookie);
                 requestRs.Method = "GET";
                 responseRs = (HttpWebResponse)requestRs.GetResponse();
 
                 resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.Default).ReadToEnd();
+                if (responseRs != null)
+                {
+                    responseRs.Close();
+                }
                 //得到需要看的广告列表
                 List<string> lstADs = HtmlPaserUtil.ExtractHtmlsourceByTag(resHtml, "ADViewer");
                 List<string> referView = new List<string>();
@@ -210,26 +236,38 @@ namespace ZHY.BLL
                 //最后一步：看广告
                 foreach (string urlF in finalADs)
                 {
-                    //等待10秒
-                    System.Threading.Thread.Sleep(10000);
-                    requestRs = GetHttpWebRequest(urlF, model.VTProxy, ref adCookie);
-                    requestRs.Accept = "*/*";
-                    requestRs.Host = "www.admimsy.com";
-                    requestRs.UserAgent = "Mozilla/5.0";
-                    requestRs.Referer = referView[i];
-                    i++;
-                    //requestRs.Headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
-                    //requestRs.Headers.Add("Accept-Charset", "GBK,utf-8;q=0.7,*;q=0.3");
-                    //requestRs.Headers.Add("Accept-Encoding", "gzip,deflate,sdch");
-                    //requestRs.Headers.Add("Connection", "keep-alive");
-                    //requestRs.ContentType = "text/html;charset=UTF-8";
+                    try
+                    {
+                        //等待10秒
+                        System.Threading.Thread.Sleep(10000);
+                        requestRs = GetHttpWebRequest(urlF, model.VTProxy, ref adCookie);
+                        requestRs.Accept = "*/*";
+                        requestRs.Host = "www.admimsy.com";
+                        requestRs.UserAgent = "Mozilla/5.0";
+                        requestRs.Referer = referView[i];
+                        i++;
+                        //requestRs.Headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
+                        //requestRs.Headers.Add("Accept-Charset", "GBK,utf-8;q=0.7,*;q=0.3");
+                        //requestRs.Headers.Add("Accept-Encoding", "gzip,deflate,sdch");
+                        //requestRs.Headers.Add("Connection", "keep-alive");
+                        //requestRs.ContentType = "text/html;charset=UTF-8";
 
-                    requestRs.Method = "GET";
-                    responseRs = (HttpWebResponse)requestRs.GetResponse();
-                    resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.UTF8).ReadToEnd(); 
+                        requestRs.Method = "GET";
+                        responseRs = (HttpWebResponse)requestRs.GetResponse();
+                        resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.UTF8).ReadToEnd();
+                        
+                    }
+                    catch
+                    {
+                        //do nothing
+                    }
+                    finally {
+                        if (responseRs != null)
+                        {
+                            responseRs.Close();
+                        }
+                    }
                 }
-
-                
             }
             catch (Exception ex)
             {

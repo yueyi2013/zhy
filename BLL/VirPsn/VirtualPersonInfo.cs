@@ -46,7 +46,10 @@ namespace ZHY.BLL
         {
             try
             {
-                GetUSPersonInfo();
+                for (int i = 0; i < 10;i++ )
+                {
+                    GetUSPersonInfo();
+                }
             }
             catch(Exception ex) {
 

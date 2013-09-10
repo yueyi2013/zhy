@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ZHY.Web;
+using System.Text;
+using ZHY.Common;
 
 namespace Web.admin.task
 {
@@ -143,6 +145,61 @@ namespace Web.admin.task
             }
             MstGridViewBind();
 
+        }
+
+        /// <summary>
+        /// 开始任务
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnTask_Click(object sender, EventArgs e)
+        {
+            ZHY.BLL.VirtualTask bll = new ZHY.BLL.VirtualTask();
+            ZHY.Model.VirtualTask model= null;
+            StringBuilder sbError = new StringBuilder();
+            int i=0;
+            foreach (GridViewRow gvr in MstGridView.Rows)
+            {
+                try
+                {
+                    string id = MstGridView.DataKeys[gvr.RowIndex].Value.ToString();
+                    CheckBox chk = (CheckBox)gvr.FindControl("chkItem");
+                    if (chk.Checked)
+                    {
+                        model = bll.GetModel(decimal.Parse(id));
+                        if (!HttpProxy.CheckProxyConnected(model.VTProxy))
+                        {
+                            model.VTProxy = string.Empty;
+                        }
+                        bll.admimsyTask(model);
+                    }
+                }
+                catch(Exception ex)
+                {
+                    i++;
+                    if(i==0){
+                        sbError.Append(model.VTUserName);
+                    }else{
+                        sbError.Append(",");
+                        sbError.Append(model.VTUserName);
+                    }
+                    sbError.Append(ex.Message);
+                }
+                finally { 
+                
+                
+                }
+            }
+            if (i > 0)
+            {
+                SelfInform(this.MyUpdatePanelBody, this.GetType(), "未完成的任务[" + sbError.ToString() + "]");
+
+            }
+            else {
+
+                SelfInform(this.MyUpdatePanelBody, this.GetType(), "任务完成！");
+            }
+            this.btnTask.Enabled = true;
         }
 
         /// <summary>

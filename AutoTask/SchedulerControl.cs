@@ -43,7 +43,7 @@ namespace AutoTask
             ScheduleSimpleJob("PurgeNews", "PurgeNews", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 24, true, typeof(AutoTask.AutoPurgeNewsJob));
             //Start up the scheduler (nothing can actually run until the 
             //scheduler has been started)
-            ScheduleSimpleJob("GenUSPsn", "GenUSPsn", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 24, true, typeof(AutoTask.usinfo.AutoGenUSInfoJob));
+            ScheduleSimpleJob("GenUSPsn", "GenUSPsn", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 1, true, typeof(AutoTask.usinfo.AutoGenUSInfoJob));
             //Auto check proxy address connected
             ScheduleSimpleJob("ChkProxyAdress", "ChkProxyAdress", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 24, true, typeof(AutoTask.AutoCheckProxyConnJob));
             //Auto view ads

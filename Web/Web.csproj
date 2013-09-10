@@ -119,6 +119,8 @@
     <Content Include="admin\sys\wfUserList.aspx" />
     <Content Include="admin\task\wfAdSiteList.aspx" />
     <Content Include="admin\task\wfAdTaskList.aspx" />
+    <Content Include="admin\task\wfVirPsnInfoList.aspx" />
+    <Content Include="ads.aspx" />
     <Content Include="aspnet_client\FreeTextBox\FTB-FreeTextBox.js" />
     <Content Include="aspnet_client\FreeTextBox\FTB-ImageGallery.js" />
     <Content Include="aspnet_client\FreeTextBox\FTB-Pro.js" />
@@ -1433,6 +1435,13 @@
     <Compile Include="admin\task\wfAdTaskList.aspx.designer.cs">
       <DependentUpon>wfAdTaskList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\task\wfVirPsnInfoList.aspx.cs">
+      <DependentUpon>wfVirPsnInfoList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\task\wfVirPsnInfoList.aspx.designer.cs">
+      <DependentUpon>wfVirPsnInfoList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\wfDetailList.aspx.cs">
       <DependentUpon>wfDetailList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1586,6 +1595,13 @@
     </Compile>
     <Compile Include="admin\Main0.Master.designer.cs">
       <DependentUpon>Main0.Master</DependentUpon>
+    </Compile>
+    <Compile Include="ads.aspx.cs">
+      <DependentUpon>ads.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ads.aspx.designer.cs">
+      <DependentUpon>ads.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\BasePage.cs">
       <SubType>ASPXCodeBehind</SubType>

@@ -82,16 +82,21 @@ namespace ZHY.Common
         /// <returns></returns>
         public static bool CheckProxyConnected(string strProxy)
         {
+            WebClient wc = new WebClient();
             try
             {
-                WebClient wc = new WebClient();
+                
                 wc.Proxy = new WebProxy(strProxy);
-                wc.DownloadString("http://google.com/ncr");
+                wc.DownloadString("http://www.syihy.com/ads.aspx");
                 return true;
             }
-            catch {
-            
+            catch
+            {
                 //do nothing
+            }
+            finally {
+
+                wc.Dispose();
             }
             return false;
         }

@@ -117,7 +117,8 @@ namespace ZHY.BLL
 
         public void AutoAdmimsyTask() 
         {
-            List<ZHY.Model.VirtualTask> list = this.GetModelList(" VSCode = 'Admimsy'");
+            System.Net.ServicePointManager.DefaultConnectionLimit = 200;
+            List<ZHY.Model.VirtualTask> list = this.GetModelList(" VSCode = 'Admimsy' and UpdateDT <=getdate()");
             foreach(ZHY.Model.VirtualTask model in list)
             {
                 if (!HttpProxy.CheckProxyConnected(model.VTProxy)) 
@@ -131,15 +132,19 @@ namespace ZHY.BLL
 
         private HttpWebRequest GetHttpWebRequest(string url, string proxy, ref CookieContainer adCookie)
         {
+            System.GC.Collect();
             HttpWebRequest requestRs = (HttpWebRequest)WebRequest.Create(url);
             if (!string.IsNullOrEmpty(proxy))
             {
                 WebProxy wbPrx = new WebProxy(proxy);
                 requestRs.Proxy = wbPrx;
-                requestRs.KeepAlive = false;
-                requestRs.ProtocolVersion = HttpVersion.Version10;
             }
-            requestRs.Timeout = 3600000;
+            else {
+                requestRs.Proxy = null;
+            }
+            requestRs.KeepAlive = false;
+            requestRs.ProtocolVersion = HttpVersion.Version10;
+            requestRs.Timeout = 30*60*1000;
             requestRs.CookieContainer = adCookie;
             return requestRs;
         }
@@ -164,10 +169,19 @@ namespace ZHY.BLL
                 responseRs = (HttpWebResponse)requestRs.GetResponse();
                 //得到定位到的URL
                 string redURL = responseRs.ResponseUri.AbsoluteUri;
+
+                if (requestRs != null)
+                {
+                    requestRs.Abort();
+                    requestRs = null;
+                }
+
                 if (responseRs != null)
                 {
                     responseRs.Close();
+                    responseRs = null;
                 }
+                System.Threading.Thread.Sleep(5000);
                 //登录所需的信息
                 string loginPsData = "UserName=" + model.VTUserName + "&Password=" + model.VTPassword + "&loginSubmit=Sign+In";
                 //编码
@@ -188,20 +202,38 @@ namespace ZHY.BLL
 
                 responseRs = (HttpWebResponse)requestRs.GetResponse();
                 resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.Default).ReadToEnd();
+
+                if (requestRs != null)
+                {
+                    requestRs.Abort();
+                    requestRs = null;
+                }
+
                 if (responseRs != null)
                 {
                     responseRs.Close();
+                    responseRs = null;
                 }
+                System.Threading.Thread.Sleep(5000);
                 //打开广告界面
                 requestRs = GetHttpWebRequest("http://www.admimsy.com/ViewAds.cfm", model.VTProxy, ref adCookie);
                 requestRs.Method = "GET";
                 responseRs = (HttpWebResponse)requestRs.GetResponse();
 
                 resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.Default).ReadToEnd();
+
+                if (requestRs != null)
+                {
+                    requestRs.Abort();
+                    requestRs = null;
+                }
+
                 if (responseRs != null)
                 {
                     responseRs.Close();
+                    responseRs = null;
                 }
+                System.Threading.Thread.Sleep(5000);
                 //得到需要看的广告列表
                 List<string> lstADs = HtmlPaserUtil.ExtractHtmlsourceByTag(resHtml, "ADViewer");
                 List<string> referView = new List<string>();
@@ -231,7 +263,18 @@ namespace ZHY.BLL
                             }
                         }
                     }
+                    if (requestRs != null)
+                    {
+                        requestRs.Abort();
+                        requestRs = null;
+                    }
+                    if (responseRs != null)
+                    {
+                        responseRs.Close();
+                        responseRs = null;
+                    }
                 }
+                System.Threading.Thread.Sleep(5000);
                 int i = 0;
                 //最后一步：看广告
                 foreach (string urlF in finalADs)
@@ -262,12 +305,22 @@ namespace ZHY.BLL
                         //do nothing
                     }
                     finally {
+                        if (requestRs != null)
+                        {
+                            requestRs.Abort();
+                            requestRs = null;
+                        }
+
                         if (responseRs != null)
                         {
                             responseRs.Close();
+                            responseRs = null;
                         }
                     }
                 }
+
+                model.UpdateDT.Value.AddHours(12);
+                this.Update(model);
             }
             catch (Exception ex)
             {
@@ -275,9 +328,15 @@ namespace ZHY.BLL
             }
             finally
             {
+                if (requestRs!=null)
+                {
+                    requestRs.Abort();
+                    requestRs = null;
+                }
                 if (responseRs != null)
                 {
                     responseRs.Close();
+                    responseRs = null;
                 }
 
             }

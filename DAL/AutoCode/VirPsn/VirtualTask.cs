@@ -37,15 +37,16 @@ namespace ZHY.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into VirtualTask(");
-			strSql.Append("VTUserName,VTPassword,VTProxy,VSCode,CreateAt,CreateBy,UpdateDT,UpdateBy)");
+			strSql.Append("VTUserName,VTPassword,VTProxy,VSCode,VTCount,CreateAt,CreateBy,UpdateDT,UpdateBy)");
 			strSql.Append(" values (");
-			strSql.Append("@VTUserName,@VTPassword,@VTProxy,@VSCode,@CreateAt,@CreateBy,@UpdateDT,@UpdateBy)");
+			strSql.Append("@VTUserName,@VTPassword,@VTProxy,@VSCode,@VTCount,@CreateAt,@CreateBy,@UpdateDT,@UpdateBy)");
 			strSql.Append(";select @@IDENTITY");
 			SqlParameter[] parameters = {
 					new SqlParameter("@VTUserName", SqlDbType.VarChar,32),
 					new SqlParameter("@VTPassword", SqlDbType.VarChar,32),
 					new SqlParameter("@VTProxy", SqlDbType.VarChar,32),
 					new SqlParameter("@VSCode", SqlDbType.VarChar,16),
+					new SqlParameter("@VTCount", SqlDbType.Int,4),
 					new SqlParameter("@CreateAt", SqlDbType.DateTime),
 					new SqlParameter("@CreateBy", SqlDbType.VarChar,64),
 					new SqlParameter("@UpdateDT", SqlDbType.DateTime),
@@ -54,10 +55,11 @@ namespace ZHY.DAL
 			parameters[1].Value = model.VTPassword;
 			parameters[2].Value = model.VTProxy;
 			parameters[3].Value = model.VSCode;
-			parameters[4].Value = model.CreateAt;
-			parameters[5].Value = model.CreateBy;
-			parameters[6].Value = model.UpdateDT;
-			parameters[7].Value = model.UpdateBy;
+			parameters[4].Value = model.VTCount;
+			parameters[5].Value = model.CreateAt;
+			parameters[6].Value = model.CreateBy;
+			parameters[7].Value = model.UpdateDT;
+			parameters[8].Value = model.UpdateBy;
 
 			object obj = DbHelperSQL.GetSingle(strSql.ToString(),parameters);
 			if (obj == null)
@@ -80,6 +82,7 @@ namespace ZHY.DAL
 			strSql.Append("VTPassword=@VTPassword,");
 			strSql.Append("VTProxy=@VTProxy,");
 			strSql.Append("VSCode=@VSCode,");
+			strSql.Append("VTCount=@VTCount,");
 			strSql.Append("CreateAt=@CreateAt,");
 			strSql.Append("CreateBy=@CreateBy,");
 			strSql.Append("UpdateDT=@UpdateDT,");
@@ -90,6 +93,7 @@ namespace ZHY.DAL
 					new SqlParameter("@VTPassword", SqlDbType.VarChar,32),
 					new SqlParameter("@VTProxy", SqlDbType.VarChar,32),
 					new SqlParameter("@VSCode", SqlDbType.VarChar,16),
+					new SqlParameter("@VTCount", SqlDbType.Int,4),
 					new SqlParameter("@CreateAt", SqlDbType.DateTime),
 					new SqlParameter("@CreateBy", SqlDbType.VarChar,64),
 					new SqlParameter("@UpdateDT", SqlDbType.DateTime),
@@ -99,11 +103,12 @@ namespace ZHY.DAL
 			parameters[1].Value = model.VTPassword;
 			parameters[2].Value = model.VTProxy;
 			parameters[3].Value = model.VSCode;
-			parameters[4].Value = model.CreateAt;
-			parameters[5].Value = model.CreateBy;
-			parameters[6].Value = model.UpdateDT;
-			parameters[7].Value = model.UpdateBy;
-			parameters[8].Value = model.VTId;
+			parameters[4].Value = model.VTCount;
+			parameters[5].Value = model.CreateAt;
+			parameters[6].Value = model.CreateBy;
+			parameters[7].Value = model.UpdateDT;
+			parameters[8].Value = model.UpdateBy;
+			parameters[9].Value = model.VTId;
 
 			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
 			if (rows > 0)
@@ -167,7 +172,7 @@ namespace ZHY.DAL
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select  top 1 VTId,VTUserName,VTPassword,VTProxy,VSCode,CreateAt,CreateBy,UpdateDT,UpdateBy from VirtualTask ");
+			strSql.Append("select  top 1 VTId,VTUserName,VTPassword,VTProxy,VSCode,VTCount,CreateAt,CreateBy,UpdateDT,UpdateBy from VirtualTask ");
 			strSql.Append(" where VTId=@VTId");
 			SqlParameter[] parameters = {
 					new SqlParameter("@VTId", SqlDbType.Decimal)
@@ -215,6 +220,10 @@ namespace ZHY.DAL
 				{
 					model.VSCode=row["VSCode"].ToString();
 				}
+				if(row["VTCount"]!=null && row["VTCount"].ToString()!="")
+				{
+					model.VTCount=int.Parse(row["VTCount"].ToString());
+				}
 				if(row["CreateAt"]!=null && row["CreateAt"].ToString()!="")
 				{
 					model.CreateAt=DateTime.Parse(row["CreateAt"].ToString());
@@ -241,7 +250,7 @@ namespace ZHY.DAL
 		public DataSet GetList(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select VTId,VTUserName,VTPassword,VTProxy,VSCode,CreateAt,CreateBy,UpdateDT,UpdateBy ");
+			strSql.Append("select VTId,VTUserName,VTPassword,VTProxy,VSCode,VTCount,CreateAt,CreateBy,UpdateDT,UpdateBy ");
 			strSql.Append(" FROM VirtualTask ");
 			if(strWhere.Trim()!="")
 			{
@@ -261,7 +270,7 @@ namespace ZHY.DAL
 			{
 				strSql.Append(" top "+Top.ToString());
 			}
-			strSql.Append(" VTId,VTUserName,VTPassword,VTProxy,VSCode,CreateAt,CreateBy,UpdateDT,UpdateBy ");
+			strSql.Append(" VTId,VTUserName,VTPassword,VTProxy,VSCode,VTCount,CreateAt,CreateBy,UpdateDT,UpdateBy ");
 			strSql.Append(" FROM VirtualTask ");
 			if(strWhere.Trim()!="")
 			{

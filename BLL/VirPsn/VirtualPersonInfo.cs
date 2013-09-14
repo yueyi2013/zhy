@@ -87,6 +87,7 @@ namespace ZHY.BLL
             model.VPSsn = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "ssn");
             model.VPMail = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "email");
             model.VPNickName = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "nick_name");
+            model.VPPassword = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "password");
             //model.VPFullName = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "height");
             model.VPBloodType = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "blood_type");
             //model.VPWeight = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "weight");

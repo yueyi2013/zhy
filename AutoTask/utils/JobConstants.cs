@@ -7,6 +7,6 @@ namespace AutoTask.utils
 {
     public class JobConstants
     {
-
+        public static string sample_cron_exp = "* 0/5 * * * *";
     }
 }

@@ -5,12 +5,10 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using ZHY.Web;
-using System.Text;
-using ZHY.Common;
 
 namespace Web.admin.task
 {
-    public partial class wfAdTaskList : BasePage
+    public partial class wfProxyAddrList : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -45,7 +43,7 @@ namespace Web.admin.task
         /// </summary>
         protected override void MstGridViewBind()
         {
-            ZHY.BLL.VirtualTask bll = new ZHY.BLL.VirtualTask();
+            ZHY.BLL.ProxyAddress bll = new ZHY.BLL.ProxyAddress();
             string name = this.txtName.Text;
             this.MstGridView.DataSource = bll.GetList(pageIndex, name, ref pageRecord);
             this.MstGridView.DataBind();
@@ -112,7 +110,7 @@ namespace Web.admin.task
         /// <param name="e"></param>
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            int id = ConvertInt32(this.hfVTId.Value, 0);
+            int id = ConvertInt32(this.hfPAId.Value, 0);
             if (id == 0)
             {
                 Add();
@@ -133,7 +131,7 @@ namespace Web.admin.task
         /// <param name="e"></param>
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            ZHY.BLL.VirtualTask bll = new ZHY.BLL.VirtualTask();
+            ZHY.BLL.ProxyAddress bll = new ZHY.BLL.ProxyAddress();
             foreach (GridViewRow gvr in MstGridView.Rows)
             {
                 string id = MstGridView.DataKeys[gvr.RowIndex].Value.ToString();
@@ -145,61 +143,6 @@ namespace Web.admin.task
             }
             MstGridViewBind();
 
-        }
-
-        /// <summary>
-        /// 开始任务
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        protected void btnTask_Click(object sender, EventArgs e)
-        {
-            ZHY.BLL.VirtualTask bll = new ZHY.BLL.VirtualTask();
-            ZHY.Model.VirtualTask model= null;
-            StringBuilder sbError = new StringBuilder();
-            string method = "wfAdTaskList.aspx.cs#btnTask_Click";
-            int i=0;
-            foreach (GridViewRow gvr in MstGridView.Rows)
-            {
-                try
-                {
-                    string id = MstGridView.DataKeys[gvr.RowIndex].Value.ToString();
-                    CheckBox chk = (CheckBox)gvr.FindControl("chkItem");
-                    if (chk.Checked)
-                    {
-                        model = bll.GetModel(decimal.Parse(id));
-                        if (!HttpProxy.CheckProxyConnected(model.VTProxy))
-                        {
-                            model.VTProxy = string.Empty;
-                        }
-                        bll.admimsyTask(model);
-                        bll.Update(model);
-                    }
-                }
-                catch(Exception ex)
-                {
-                    i++;
-                    if(i==0){
-                        sbError.Append(model.VTUserName);
-                    }else{
-                        sbError.Append(",");
-                        sbError.Append(model.VTUserName);
-                    }
-                    sbError.Append(ex.Message);
-                }
-                finally { 
-                
-                
-                }
-            }
-            if (i > 0)
-            {
-                bll.AlertEmail(Constants.SYSTEM_CONFIG_ATT_NAME_MAIL_ERROR_ALERT_JOB_SUBJECT + method, "未完成的任务[" + sbError.ToString() + "]");
-            }
-            else {
-                bll.AlertEmail(Constants.SYSTEM_CONFIG_ATT_NAME_MAIL_ERROR_ALERT_JOB_SUBJECT + method, "任务完成！");
-            }
-            this.btnTask.Enabled = true;
         }
 
         /// <summary>
@@ -260,15 +203,15 @@ namespace Web.admin.task
         /// </summary>
         private void Add()
         {
-            ZHY.Model.VirtualTask model = new ZHY.Model.VirtualTask();
-            model.VSCode = this.txtVSCode.Text;
-            model.VTUserName = this.txtVTUserName.Text;
-            model.VTPassword = this.txtVTPassword.Text;
-            model.VTProxy = this.txtVTProxy.Text;
+            ZHY.Model.ProxyAddress model = new ZHY.Model.ProxyAddress();
+            model.PAName = this.txtPAName.Text;
+            model.PAType = this.txtPAType.Text;
+            model.PAAnonymity = this.txtPAAnonymity.Text;
+            model.PACountry = this.txtPACountry.Text;
             ZHY.Model.User user = getLoginUser();
             model.CreateBy = user.UserName;
             model.UpdateBy = user.UserName;
-            ZHY.BLL.VirtualTask bll = new ZHY.BLL.VirtualTask();
+            ZHY.BLL.ProxyAddress bll = new ZHY.BLL.ProxyAddress();
             bll.Add(model);
         }
 
@@ -278,14 +221,14 @@ namespace Web.admin.task
         /// <param name="LMID"></param>
         private void Modify(int ID)
         {
-            ZHY.BLL.VirtualTask bll = new ZHY.BLL.VirtualTask();
-            ZHY.Model.VirtualTask model = bll.GetModel(ID);
+            ZHY.BLL.ProxyAddress bll = new ZHY.BLL.ProxyAddress();
+            ZHY.Model.ProxyAddress model = bll.GetModel(ID);
             if (model != null)
             {
-                model.VSCode = this.txtVSCode.Text;
-                model.VTUserName = this.txtVTUserName.Text;
-                model.VTPassword = this.txtVTPassword.Text;
-                model.VTProxy = this.txtVTProxy.Text;
+                model.PAName = this.txtPAName.Text;
+                model.PAType = this.txtPAType.Text;
+                model.PAAnonymity = this.txtPAAnonymity.Text;
+                model.PACountry = this.txtPACountry.Text;
                 ZHY.Model.User user = getLoginUser();
                 model.UpdateBy = user.UserName;
                 model.UpdateDT = DateTime.Now;
@@ -298,11 +241,11 @@ namespace Web.admin.task
         /// </summary>
         private void InitDataClear()
         {
-            this.hfVTId.Value = "0";
-            this.txtVSCode.Text = "";
-            this.txtVTUserName.Text = "";
-            this.txtVTPassword.Text = "";
-            this.txtVTProxy.Text = "";
+            this.hfPAId.Value = "0";
+            this.txtPAName.Text = "";
+            this.txtPAType.Text = "";
+            this.txtPAAnonymity.Text = "";
+            this.txtPACountry.Text = "";
         }
 
         /// <summary>
@@ -310,13 +253,13 @@ namespace Web.admin.task
         /// </summary>
         private void InitData(int id)
         {
-            ZHY.BLL.VirtualTask bll = new ZHY.BLL.VirtualTask();
-            ZHY.Model.VirtualTask model = bll.GetModel(id);
-            this.hfVTId.Value = model.VTId.ToString();
-            this.txtVTUserName.Text = model.VTUserName;
-            this.txtVTPassword.Text = model.VTPassword;
-            this.txtVTProxy.Text = model.VTProxy;
-            this.txtVSCode.Text = model.VSCode;
+            ZHY.BLL.ProxyAddress bll = new ZHY.BLL.ProxyAddress();
+            ZHY.Model.ProxyAddress model = bll.GetModel(id);
+            this.hfPAId.Value = model.PAId.ToString();
+            this.txtPAName.Text = model.PAName;
+            this.txtPAType.Text = model.PAType;
+            this.txtPAAnonymity.Text = model.PAAnonymity;
+            this.txtPACountry.Text = model.PACountry;
         }
         #endregion
     }

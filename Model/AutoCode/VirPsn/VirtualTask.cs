@@ -15,6 +15,7 @@ namespace ZHY.Model
 		private string _vtpassword;
 		private string _vtproxy="61.175.223.139:3128";
 		private string _vscode="ONE";
+		private int? _vtcount=0;
 		private DateTime? _createat= DateTime.Now;
 		private string _createby="syihy.com";
 		private DateTime? _updatedt= DateTime.Now;
@@ -58,6 +59,14 @@ namespace ZHY.Model
 		{
 			set{ _vscode=value;}
 			get{return _vscode;}
+		}
+		/// <summary>
+		/// 广告次数
+		/// </summary>
+		public int? VTCount
+		{
+			set{ _vtcount=value;}
+			get{return _vtcount;}
 		}
 		/// <summary>
 		/// 

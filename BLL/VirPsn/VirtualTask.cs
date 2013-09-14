@@ -25,11 +25,11 @@ namespace ZHY.BLL
         /// <returns></returns>
         public DataSet GetList(int PageIndex, string name, ref int CountAll)
         {
-            string strGetFields = " VTId,VTUserName,VTPassword,VTProxy,VSCode,CreateAt,CreateBy,UpdateDT,UpdateBy ";
+            string strGetFields = " VTId,VTUserName,VTPassword,VTProxy,VSCode,VTCount,CreateAt,CreateBy,UpdateDT,UpdateBy ";
             string tablename = " VirtualTask ";
             int pageSize = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("pageSize"));
             int intOrder = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("intOrder"));
-            string strOrder = " UpdateDT";
+            string strOrder = " VTId ";
             string strWhere = " 1=1 ";
             if (!String.IsNullOrEmpty(name))
             {
@@ -44,88 +44,151 @@ namespace ZHY.BLL
             return dal.Exists(userName);
         }
 
-        public string RegAdmimsy()
+        public void RegAdmimsy()
         {
             string resHtml = "";
             string loginURL = "http://www.admimsy.com/?R=yueyi2013";
             string createURL = "http://www.admimsy.com/CreateAccount.cfm";
+            HttpWebRequest requestRs = null;
+            HttpWebResponse responseRs = null;
             CookieContainer adCookie = new CookieContainer();
+            try
+            {
+                ZHY.BLL.VirtualPersonInfo bllPsn = new ZHY.BLL.VirtualPersonInfo();
 
-            ZHY.BLL.VirtualPersonInfo bllPsn = new ZHY.BLL.VirtualPersonInfo();
+                List<ZHY.Model.VirtualPersonInfo> lsPsn = bllPsn.DataTableToList(bllPsn.GetList(1, "", " newid() ").Tables[0]);
 
-            List<ZHY.Model.VirtualPersonInfo> lsPsn = bllPsn.DataTableToList(bllPsn.GetList(1, "", " newid() ").Tables[0]);
+                ZHY.Model.VirtualPersonInfo psnInfo = lsPsn[0];
 
-            ZHY.Model.VirtualPersonInfo psnInfo = lsPsn[0];
+                ZHY.BLL.ProxyAddress bll = new ZHY.BLL.ProxyAddress();
 
-            ZHY.BLL.ProxyAddress bll = new ZHY.BLL.ProxyAddress();
+                List<ZHY.Model.ProxyAddress> list = bll.DataTableToList(bll.GetList(1, "", " newid() ").Tables[0]);
 
-            List<ZHY.Model.ProxyAddress> list = bll.DataTableToList(bll.GetList(1, "", " newid() ").Tables[0]);
+                ZHY.Model.ProxyAddress paInfo = list[0];
 
-            ZHY.Model.ProxyAddress paInfo = list[0];
+                HttpProxy.GetResponseData(loginURL, list[0].PAName, ref adCookie);
 
-            HttpProxy.GetResponseData(loginURL, list[0].PAName, ref adCookie);
+                resHtml = HttpProxy.GetResponseData(createURL, list[0].PAName, ref adCookie);
 
-            resHtml = HttpProxy.GetResponseData(createURL, list[0].PAName, ref adCookie);
+                StringBuilder sb = new StringBuilder();
+                string userName = psnInfo.VPNickName + psnInfo.VPFirstName;
+                if (this.Exists(userName))
+                {
 
-            StringBuilder sb = new StringBuilder();
-            string userName = psnInfo.VPNickName + psnInfo.VPFirstName;
-            if(this.Exists(userName)){
+                    return ;
+                }
+                sb.AppendFormat("UserName={0}&", userName);
+                string psw = psnInfo.VPPassword + psnInfo.VPLastName;
+                sb.AppendFormat("Password={0}&", psw);
+                sb.AppendFormat("EmailAddress={0}&", psnInfo.VPMail.Replace("@", "%40"));
+                sb.AppendFormat("Gender={0}&", psnInfo.VPSex);
+                sb.AppendFormat("TheMonth={0}&", psnInfo.VPBirthday.Value.Month);
+                sb.AppendFormat("TheDay={0}&", psnInfo.VPBirthday.Value.Day);
+                sb.AppendFormat("TheYear={0}&", psnInfo.VPBirthday.Value.Year);
+                string NumberAbove = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "NumberAbove");
+                sb.AppendFormat("NumberAbove={0}&", NumberAbove);
+                sb.AppendFormat("NumberBelow={0}&", NumberAbove);
+                sb.Append("B1=Create+Account");
 
-                return "";
+                //编码
+                ASCIIEncoding encoding = new ASCIIEncoding();
+                //编码登录信息
+                byte[] data = encoding.GetBytes(sb.ToString());
+                //第二步登录网站
+                requestRs = HttpProxy.GetHttpWebRequest("http://www.admimsy.com/CreateAccount.cfm", paInfo.PAName, ref adCookie);
+                //设置登录方式
+                requestRs.Method = "POST";
+                requestRs.Referer = loginURL;
+                //提交类型
+                requestRs.ContentType = "application/x-www-form-urlencoded";
+                requestRs.ContentLength = data.Length;
+                Stream newStream = requestRs.GetRequestStream();
+                // Send the data.
+                newStream.Write(data, 0, data.Length);
+                newStream.Close();
+                responseRs = (HttpWebResponse)requestRs.GetResponse();
+                resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.Default).ReadToEnd();
+
+                ZHY.Model.VirtualTask task = new ZHY.Model.VirtualTask();
+                task.VSCode = "Admimsy";
+                task.VTUserName = userName;
+                task.VTPassword = psw;
+                task.VTProxy = paInfo.PAName;
+                decimal vtId = this.Add(task);
+                task.VTId = vtId;
             }
-            sb.AppendFormat("UserName={0}&", userName);
-            string psw = psnInfo.VPPassword + psnInfo.VPLastName;
-            sb.AppendFormat("Password={0}&", psw);
-            sb.AppendFormat("EmailAddress={0}&", psnInfo.VPMail.Replace("@", "%40"));
-            sb.AppendFormat("Gender={0}&", psnInfo.VPSex);
-            sb.AppendFormat("TheMonth={0}&", psnInfo.VPBirthday.Value.Month);
-            sb.AppendFormat("TheDay={0}&", psnInfo.VPBirthday.Value.Day);
-            sb.AppendFormat("TheYear={0}&", psnInfo.VPBirthday.Value.Year);
-            string NumberAbove = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "NumberAbove");
-            sb.AppendFormat("NumberAbove={0}&", NumberAbove);
-            sb.AppendFormat("NumberBelow={0}&", NumberAbove);
-            sb.Append("B1=Create+Account");
+            catch (Exception ex)
+            {
 
-            //编码
-            ASCIIEncoding encoding = new ASCIIEncoding();
-            //编码登录信息
-            byte[] data = encoding.GetBytes(sb.ToString());
-            //第二步登录网站
-            HttpWebRequest requestRs = HttpProxy.GetHttpWebRequest("http://www.admimsy.com/CreateAccount.cfm", paInfo.PAName, ref adCookie);
-            //设置登录方式
-            requestRs.Method = "POST";
-            requestRs.Referer = loginURL;
-            //提交类型
-            requestRs.ContentType = "application/x-www-form-urlencoded";
-            requestRs.ContentLength = data.Length;
-            Stream newStream = requestRs.GetRequestStream();
-            // Send the data.
-            newStream.Write(data, 0, data.Length);
-            newStream.Close();
-            resHtml = new StreamReader(requestRs.GetResponse().GetResponseStream(), Encoding.Default).ReadToEnd();
+                throw ex;
+            }
+            finally {
 
-            ZHY.Model.VirtualTask task = new ZHY.Model.VirtualTask();
-            task.VSCode = "Admimsy";
-            task.VTUserName = userName;
-            task.VTPassword = psw;
-            task.VTProxy = paInfo.PAName;
-            this.Add(task);
+                if (requestRs != null)
+                {
+                    requestRs.Abort();
+                    requestRs = null;
+                }
 
-            return resHtml;
+                if (responseRs != null)
+                {
+                    responseRs.Close();
+                    responseRs = null;
+                }
+            
+            }
+            
         }
 
 
+        public void SingleAutoViewAdmimsyTask()
+        {
+            ZHY.Model.VirtualTask model = null;
+            try {
+
+                List<ZHY.Model.VirtualTask> list = DataTableToList(this.GetList(1, " VSCode = 'Admimsy' and UpdateDT <=getdate() ", " newid() ").Tables[0]);
+                if(list!=null&&list.Count>0)
+                {
+                    model = list[0];
+                    if (!HttpProxy.CheckProxyConnected(model.VTProxy))
+                    {
+                        model.VTProxy = string.Empty;
+                    }
+                    admimsyTask(model);
+                    this.Update(model);
+                }
+            }catch(Exception ex){
+
+                throw new Exception(model.VTUserName+"|"+ex.Message);
+            }
+        }
+
         public void AutoAdmimsyTask() 
         {
-            System.Net.ServicePointManager.DefaultConnectionLimit = 200;
-            List<ZHY.Model.VirtualTask> list = this.GetModelList(" VSCode = 'Admimsy' and UpdateDT <=getdate()");
+            //System.Net.ServicePointManager.DefaultConnectionLimit = 200;
+            List<ZHY.Model.VirtualTask> list = this.GetModelList(" VSCode = 'Admimsy' and UpdateDT <=getdate() order by UpdateDT");
+            bool isError = false;
+            StringBuilder sbError = new StringBuilder();
             foreach(ZHY.Model.VirtualTask model in list)
             {
-                if (!HttpProxy.CheckProxyConnected(model.VTProxy)) 
+                try
                 {
-                    model.VTProxy = string.Empty;
+                    if (!HttpProxy.CheckProxyConnected(model.VTProxy))
+                    {
+                        model.VTProxy = string.Empty;
+                    }
+                    admimsyTask(model);
+                    this.Update(model);
+                }catch(Exception ex)
+                {
+                    isError = true;
+                    sbError.AppendFormat("[{0},{1}]",model.VTUserName,ex.Message);
+                    sbError.Append("\n");
                 }
-                admimsyTask(model);
+            }
+            if (isError)
+            {
+                throw new Exception(sbError.ToString());
             }
         }
 
@@ -142,6 +205,7 @@ namespace ZHY.BLL
             else {
                 requestRs.Proxy = null;
             }
+            requestRs.UserAgent = "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31";
             requestRs.KeepAlive = false;
             requestRs.ProtocolVersion = HttpVersion.Version10;
             requestRs.Timeout = 30*60*1000;
@@ -190,6 +254,8 @@ namespace ZHY.BLL
                 byte[] data = encoding.GetBytes(loginPsData);
                 //第二步登录网站
                 requestRs = GetHttpWebRequest("http://www.admimsy.com/Home.cfm", model.VTProxy, ref adCookie);
+                //客户端接受类型
+                requestRs.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
                 //设置登录方式
                 requestRs.Method = "POST";
                 //提交类型
@@ -201,6 +267,9 @@ namespace ZHY.BLL
                 newStream.Close();
 
                 responseRs = (HttpWebResponse)requestRs.GetResponse();
+
+                redURL = responseRs.ResponseUri.AbsoluteUri;
+
                 resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.Default).ReadToEnd();
 
                 if (requestRs != null)
@@ -217,6 +286,9 @@ namespace ZHY.BLL
                 System.Threading.Thread.Sleep(5000);
                 //打开广告界面
                 requestRs = GetHttpWebRequest("http://www.admimsy.com/ViewAds.cfm", model.VTProxy, ref adCookie);
+                requestRs.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+                requestRs.Host = "www.admimsy.com";
+                requestRs.Referer = redURL;
                 requestRs.Method = "GET";
                 responseRs = (HttpWebResponse)requestRs.GetResponse();
 
@@ -236,13 +308,20 @@ namespace ZHY.BLL
                 System.Threading.Thread.Sleep(5000);
                 //得到需要看的广告列表
                 List<string> lstADs = HtmlPaserUtil.ExtractHtmlsourceByTag(resHtml, "ADViewer");
+                if (lstADs == null || lstADs.Count<1)
+                {
+                    return; //当前无广告
+                }
                 List<string> referView = new List<string>();
                 List<string> finalADs = new List<string>();
                 foreach (string ad in lstADs)
                 {
                     string urlAd = "http://www.admimsy.com/" + ad.Replace("ADViewer.cfm", "TopViewAd.cfm");
                     requestRs = GetHttpWebRequest(urlAd, model.VTProxy, ref adCookie);
+                    requestRs.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+                    requestRs.Host = "www.admimsy.com";
                     requestRs.Method = "GET";
+                    requestRs.Referer = "http://www.admimsy.com/ViewAds.cfm";
                     referView.Add(urlAd);
                     using (WebResponse response = requestRs.GetResponse())
                     {
@@ -286,7 +365,6 @@ namespace ZHY.BLL
                         requestRs = GetHttpWebRequest(urlF, model.VTProxy, ref adCookie);
                         requestRs.Accept = "*/*";
                         requestRs.Host = "www.admimsy.com";
-                        requestRs.UserAgent = "Mozilla/5.0";
                         requestRs.Referer = referView[i];
                         i++;
                         //requestRs.Headers.Add("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8");
@@ -318,9 +396,8 @@ namespace ZHY.BLL
                         }
                     }
                 }
-
-                model.UpdateDT.Value.AddHours(12);
-                this.Update(model);
+                model.VTCount = (model.VTCount == null || model.VTCount == 0) ? 1 : model.VTCount + 1;
+                model.UpdateDT = DateTime.Now.AddMinutes(11);
             }
             catch (Exception ex)
             {

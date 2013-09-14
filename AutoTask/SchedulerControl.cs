@@ -36,20 +36,20 @@ namespace AutoTask
             log.Info("------- Scheduling Job  -------------------");
 
             //Set auto load RSS job 
-            ScheduleSimpleJob("RssFeeds", "RssFeeds", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 1, true,typeof(AutoTask.AutoLoadNewsFeedJob));
+            ScheduleSimpleJob("RssFeeds", "RssFeeds", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 1, false,true,typeof(AutoTask.AutoLoadNewsFeedJob));
             //Set auto load Top news job
-            ScheduleSimpleJob("NewsTop", "NewsTop", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 2, true,typeof(AutoTask.AutoAddNewsTopJob));
+            ScheduleSimpleJob("NewsTop", "NewsTop", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 2,false,true,typeof(AutoTask.AutoAddNewsTopJob));
             //Set auto purge news job
-            ScheduleSimpleJob("PurgeNews", "PurgeNews", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 24, true, typeof(AutoTask.AutoPurgeNewsJob));
+            ScheduleSimpleJob("PurgeNews", "PurgeNews", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 24,false, true, typeof(AutoTask.AutoPurgeNewsJob));
             //Start up the scheduler (nothing can actually run until the 
             //scheduler has been started)
-            ScheduleSimpleJob("GenUSPsn", "GenUSPsn", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 1, true, typeof(AutoTask.usinfo.AutoGenUSInfoJob));
+            ScheduleSimpleJob("GenUSPsn", "GenUSPsn", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 1, false,true, typeof(AutoTask.usinfo.AutoGenUSInfoJob));
             //Auto check proxy address connected
-            ScheduleSimpleJob("ChkProxyAdress", "ChkProxyAdress", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 24, true, typeof(AutoTask.AutoCheckProxyConnJob));
+            ScheduleSimpleJob("ChkProxyAdress", "ChkProxyAdress", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 24, false,true, typeof(AutoTask.AutoCheckProxyConnJob));
             //Auto view ads
-            ScheduleSimpleJob("viewAds", "viewAds", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 12, true, typeof(AutoTask.ADmimsy.AutoViewAdsJob));
+            ScheduleSimpleJob("viewAds", "viewAds", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 5, true,true, typeof(AutoTask.ADmimsy.AutoViewAdsJob));
             //Auto regedit admimsy site
-            ScheduleSimpleJob("regAdmimsy", "regAdmimsy", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 4, true, typeof(AutoTask.ADmimsy.AutoSignUpJob));
+            ScheduleSimpleJob("regAdmimsy", "regAdmimsy", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 4, false,true, typeof(AutoTask.ADmimsy.AutoSignUpJob));
             
             sched.Start();
         }
@@ -64,7 +64,7 @@ namespace AutoTask
         /// <param name="intervalMin"></param>
         /// <param name="isForever"></param>
         /// <param name="className"></param>
-        public void ScheduleSimpleJob(string jobId, string jobGroup, DateTime startTime, DateTime endTime, int intervalHour, bool isForever,Type classFullName)
+        public void ScheduleSimpleJob(string jobId, string jobGroup, DateTime startTime, DateTime endTime, int intervalHour, bool isMintues,bool isForever,Type classFullName)
         {
             try
             {
@@ -75,18 +75,40 @@ namespace AutoTask
                 ITrigger simpleTrigger = null;
                 if (isForever)
                 {
-                    simpleTrigger = (ISimpleTrigger)TriggerBuilder.Create()
-                                              .WithIdentity(jobId + "Trigger", jobGroup + "TriggerGroup")
-                                              .StartAt(startTime)
-                                              .WithSimpleSchedule(x => x.WithIntervalInHours(intervalHour).RepeatForever())
-                                              .Build();
+                    if (isMintues)
+                    {
+                        simpleTrigger = (ISimpleTrigger)TriggerBuilder.Create()
+                                                  .WithIdentity(jobId + "Trigger", jobGroup + "TriggerGroup")
+                                                  .StartAt(startTime)
+                                                  .WithSimpleSchedule(x => x.WithIntervalInMinutes(intervalHour).RepeatForever())
+                                                  .Build();
+                    }
+                    else{
+
+                        simpleTrigger = (ISimpleTrigger)TriggerBuilder.Create()
+                                                  .WithIdentity(jobId + "Trigger", jobGroup + "TriggerGroup")
+                                                  .StartAt(startTime)
+                                                  .WithSimpleSchedule(x => x.WithIntervalInHours(intervalHour).RepeatForever())
+                                                  .Build();
+                    }
                 }
                 else {
-                    simpleTrigger = (ISimpleTrigger)TriggerBuilder.Create()
+                    if (isMintues)
+                    {
+                        simpleTrigger = (ISimpleTrigger)TriggerBuilder.Create()
+                                              .WithIdentity(jobId + "Trigger", jobGroup + "Trigger")
+                                              .StartAt(startTime).EndAt(endTime)
+                                              .WithSimpleSchedule(x => x.WithIntervalInMinutes(intervalHour))
+                                              .Build();
+                    }else{
+
+                        simpleTrigger = (ISimpleTrigger)TriggerBuilder.Create()
                                               .WithIdentity(jobId + "Trigger", jobGroup + "Trigger")
                                               .StartAt(startTime).EndAt(endTime)
                                               .WithSimpleSchedule(x => x.WithIntervalInHours(intervalHour))
-                                              .Build();              
+                                              .Build();
+                    }
+                            
                 
                 }
                 sched.ScheduleJob(simpleJob, simpleTrigger);

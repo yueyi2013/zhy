@@ -119,6 +119,7 @@
     <Content Include="admin\sys\wfUserList.aspx" />
     <Content Include="admin\task\wfAdSiteList.aspx" />
     <Content Include="admin\task\wfAdTaskList.aspx" />
+    <Content Include="admin\task\wfProxyAddrList.aspx" />
     <Content Include="admin\task\wfVirPsnInfoList.aspx" />
     <Content Include="ads.aspx" />
     <Content Include="aspnet_client\FreeTextBox\FTB-FreeTextBox.js" />
@@ -1434,6 +1435,13 @@
     </Compile>
     <Compile Include="admin\task\wfAdTaskList.aspx.designer.cs">
       <DependentUpon>wfAdTaskList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\task\wfProxyAddrList.aspx.cs">
+      <DependentUpon>wfProxyAddrList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\task\wfProxyAddrList.aspx.designer.cs">
+      <DependentUpon>wfProxyAddrList.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\task\wfVirPsnInfoList.aspx.cs">
       <DependentUpon>wfVirPsnInfoList.aspx</DependentUpon>

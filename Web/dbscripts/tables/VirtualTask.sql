@@ -1,5 +1,4 @@
-
-/****** Object:  Table [dbo].[VirtualTask]    Script Date: 09/08/2013 18:45:07 ******/
+/****** Object:  Table [dbo].[VirtualTask]    Script Date: 09/14/2013 09:20:08 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -15,6 +14,7 @@ CREATE TABLE [dbo].[VirtualTask](
 	[VTPassword] [varchar](32) NOT NULL,
 	[VTProxy] [varchar](32) NULL,
 	[VSCode] [varchar](16) NULL,
+	[VTCount] [int] NULL,
 	[CreateAt] [datetime] NULL,
 	[CreateBy] [varchar](64) NULL,
 	[UpdateDT] [datetime] NULL,
@@ -45,6 +45,9 @@ GO
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'网站编码' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'VirtualTask', @level2type=N'COLUMN',@level2name=N'VSCode'
 GO
 
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'广告次数' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'VirtualTask', @level2type=N'COLUMN',@level2name=N'VTCount'
+GO
+
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'虚拟任务' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'VirtualTask'
 GO
 
@@ -52,6 +55,9 @@ ALTER TABLE [dbo].[VirtualTask] ADD  DEFAULT ('61.175.223.139:3128') FOR [VTProx
 GO
 
 ALTER TABLE [dbo].[VirtualTask] ADD  DEFAULT ('ONE') FOR [VSCode]
+GO
+
+ALTER TABLE [dbo].[VirtualTask] ADD  DEFAULT ((0)) FOR [VTCount]
 GO
 
 ALTER TABLE [dbo].[VirtualTask] ADD  DEFAULT (getdate()) FOR [CreateAt]

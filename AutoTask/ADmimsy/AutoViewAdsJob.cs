@@ -27,7 +27,7 @@ namespace AutoTask.ADmimsy
             ZHY.BLL.VirtualTask bll = new ZHY.BLL.VirtualTask();
             try {
 
-                bll.AutoAdmimsyTask();
+               bll.SingleAutoViewAdmimsyTask();
             }catch(Exception ex)
             {
                 bll.AlertEmail(Constants.SYSTEM_CONFIG_ATT_NAME_MAIL_ERROR_ALERT_JOB_SUBJECT + method, ex.Message);

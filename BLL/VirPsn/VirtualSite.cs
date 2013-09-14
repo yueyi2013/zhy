@@ -23,7 +23,7 @@ namespace ZHY.BLL
             string tablename = " VirtualSite ";
             int pageSize = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("pageSize"));
             int intOrder = Int32.Parse(LTP.Common.ConfigHelper.GetKeyValue("intOrder"));
-            string strOrder = " NavUpdateDT";
+            string strOrder = " VSId ";
             string strWhere = " 1=1 ";
             if (!String.IsNullOrEmpty(name))
             {

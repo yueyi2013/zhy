@@ -70,11 +70,5 @@ namespace ZHY.BLL
             return sendSuccess;
         }
 
-        public ZHY.Model.SystemConfig GetSystemConfigModel() 
-        {
-
-            return null;
-        }
-
     }
 }

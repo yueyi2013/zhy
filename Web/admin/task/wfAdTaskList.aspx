@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<fieldset style="width: 900px">
+<fieldset style="width: 950px">
     <legend>任务管理</legend>
     <asp:UpdatePanel ID="MyUpdatePanelHead" runat="server" UpdateMode="Conditional">
         <Triggers>
@@ -64,25 +64,28 @@
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                             <asp:BoundField DataField="VSCode" HeaderText="网站编码">
-                                                <ItemStyle Width="100px" />
+                                                <ItemStyle Width="80px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="VTUserName" HeaderText="用户名">
                                                 <ItemStyle Width="100px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="VTPassword" HeaderText="密码">
-                                                <ItemStyle Width="100px" />
+                                                <ItemStyle Width="80px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="VTProxy" HeaderText="代理地址">
-                                                <ItemStyle Width="200px" />
+                                                <ItemStyle Width="130px" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="VTCount" HeaderText="查看次数">
+                                                <ItemStyle Width="100px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="CreateAt" HeaderText="创建日期">
-                                                <ItemStyle Width="150px" />
+                                                <ItemStyle Width="160px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="CreateBy" HeaderText="创建人">
                                                 <ItemStyle Width="80px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="UpdateDT" HeaderText="更新日期">
-                                                <ItemStyle Width="150px" />
+                                                <ItemStyle Width="160px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="UpdateBy" HeaderText="更新人">
                                                 <ItemStyle Width="80px" />

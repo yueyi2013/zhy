@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Main0.Master" AutoEventWireup="true" CodeBehind="wfAdSiteList.aspx.cs" Inherits="Web.admin.task.wfAdSiteList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Main0.Master" AutoEventWireup="true" CodeBehind="wfProxyAddrList.aspx.cs" Inherits="Web.admin.task.wfProxyAddrList" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <fieldset style="width: 900px">
-    <legend>网站管理</legend>
+    <legend>代理地址管理</legend>
     <asp:UpdatePanel ID="MyUpdatePanelHead" runat="server" UpdateMode="Conditional">
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="btnSave" EventName="Click" />
@@ -46,7 +46,7 @@
                                 </Triggers>
                                 <ContentTemplate>
                                     <asp:GridView ID="MstGridView" runat="server" AutoGenerateColumns="False" Width="98%"
-                                        AllowPaging="false" DataKeyNames="VSId" OnRowCommand="MstGridView_RowCommand"
+                                        AllowPaging="false" DataKeyNames="PAId" OnRowCommand="MstGridView_RowCommand"
                                         HeaderStyle-HorizontalAlign="Center" HeaderStyle-CssClass="MstGridViewHeaderCss" OnRowDataBound="MstGridView_RowDataBound">
                                         <Columns>
                                             <asp:TemplateField>
@@ -60,13 +60,16 @@
                                                     <asp:CheckBox ID="chkItem" runat="server" onclick="changecolor(this)" />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:BoundField DataField="VSCode" HeaderText="网站编码">
+                                            <asp:BoundField DataField="PAName" HeaderText="地址名称">
                                                 <ItemStyle Width="100px" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="VTUserName" HeaderText="网站名">
+                                            <asp:BoundField DataField="PAType" HeaderText="代理类型">
                                                 <ItemStyle Width="100px" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="VTPassword" HeaderText="网址">
+                                            <asp:BoundField DataField="PAAnonymity" HeaderText="匿名">
+                                                <ItemStyle Width="100px" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="PACountry" HeaderText="国家">
                                                 <ItemStyle Width="100px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="CreateAt" HeaderText="创建日期">
@@ -114,7 +117,7 @@
         </tr>
     </table>
     <%--新增弹出框--%>
-    <asp:Panel ID="PanelBody" runat="server" Style="width: 300px; display: none;" CssClass="modalPopup">
+    <asp:Panel ID="PanelBody" runat="server" Style="width: 900px; display: none;" CssClass="modalPopup">
         <asp:UpdatePanel ID="MyUpdatePanelPanelDrag" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <asp:Panel ID="PanelDrag" runat="server" CssClass="modalDragPopup">
@@ -133,29 +136,36 @@
                 <table cellspacing="0" cellpadding="0" width="100%" border="0">
                 <tr>
                         <td height="25" width="30%" align="right">
-                            网站编码：
+                            地址名称：
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox id="txtVSCode" runat="server" Width="220px"></asp:TextBox>
+                            <asp:TextBox id="txtPAName" runat="server" Width="200px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td height="25" width="30%" align="right">
-                            网站名： <asp:HiddenField ID="hfVSId" runat="server" Value="0"/>
+                            代理类型： <asp:HiddenField ID="hfPAId" runat="server" Value="0"/>
                         </td>
                         <td height="25" width="*" align="left">
-                           <asp:TextBox id="txtVSName" runat="server" Width="220px"></asp:TextBox>
+                          <asp:TextBox id="txtPAType" runat="server" Width="200px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td height="25" width="30%" align="right">
-                            网址：
+                            匿名：
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox id="txtVSURL" runat="server" Width="220px"></asp:TextBox>
+                            <asp:TextBox id="txtPAAnonymity" runat="server" Width="200px"></asp:TextBox>
                         </td>
                     </tr>
-                    
+                     <tr>
+                        <td height="25" width="30%" align="right">
+                            国家：
+                        </td>
+                        <td height="25" width="*" align="left">
+                            <asp:TextBox id="txtPACountry" runat="server" Width="200px"></asp:TextBox>
+                        </td>
+                    </tr>
                 </table>
             </ContentTemplate>
         </asp:UpdatePanel>

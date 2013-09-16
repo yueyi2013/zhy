@@ -45,6 +45,7 @@
                                     <asp:AsyncPostBackTrigger ControlID="btnDelete" EventName="Click" />
                                     <asp:AsyncPostBackTrigger ControlID="btnSearch" EventName="Click" />
                                     <asp:AsyncPostBackTrigger ControlID="btnClose" EventName="Click" />
+                                    <asp:AsyncPostBackTrigger ControlID="btnAutoReg" EventName="Click" />
                                     <asp:AsyncPostBackTrigger ControlID="btnTask" EventName="Click" />
                                 </Triggers>
                                 <ContentTemplate>
@@ -177,6 +178,9 @@
             </ContentTemplate>
         </asp:UpdatePanel>
         <div style="text-align: right;">
+            <asp:Button ID="btnAutoReg" runat="server" Text="自动注册" Width="65px" OnClick="btnAutoReg_Click"
+                CssClass="buttonCss"/>
+            &nbsp;&nbsp;
             <asp:Button ID="btnSave" runat="server" Text="保存" Width="65px" OnClick="btnSave_Click"
                 CssClass="buttonCss" OnClientClick="javascript:ClearZero()" />
             &nbsp;&nbsp;

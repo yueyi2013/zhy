@@ -27,7 +27,7 @@ namespace AutoTask.ADmimsy
             ZHY.BLL.VirtualTask bll = new ZHY.BLL.VirtualTask();
             try
             {
-                bll.RegAdmimsy();
+                bll.RegAdmimsyByJob();
             }
             catch (Exception ex)
             {

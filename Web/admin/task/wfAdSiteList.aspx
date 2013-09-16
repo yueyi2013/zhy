@@ -63,10 +63,10 @@
                                             <asp:BoundField DataField="VSCode" HeaderText="网站编码">
                                                 <ItemStyle Width="100px" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="VTUserName" HeaderText="网站名">
+                                            <asp:BoundField DataField="VSName" HeaderText="网站名">
                                                 <ItemStyle Width="100px" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="VTPassword" HeaderText="网址">
+                                            <asp:BoundField DataField="VSURL" HeaderText="网址">
                                                 <ItemStyle Width="100px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="CreateAt" HeaderText="创建日期">

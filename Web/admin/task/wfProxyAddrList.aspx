@@ -117,7 +117,7 @@
         </tr>
     </table>
     <%--新增弹出框--%>
-    <asp:Panel ID="PanelBody" runat="server" Style="width: 900px; display: none;" CssClass="modalPopup">
+    <asp:Panel ID="PanelBody" runat="server" Style="width: 300px; display: none;" CssClass="modalPopup">
         <asp:UpdatePanel ID="MyUpdatePanelPanelDrag" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <asp:Panel ID="PanelDrag" runat="server" CssClass="modalDragPopup">

@@ -106,6 +106,28 @@ namespace Web.admin.task
         }
 
         /// <summary>
+        ///  自动注册
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnAutoReg_Click(object sender, EventArgs e) 
+        {
+            ZHY.BLL.VirtualTask bll = new ZHY.BLL.VirtualTask();
+            ZHY.Model.VirtualTask model = null;
+            try
+            {
+                model = bll.RegAdmimsy();
+                bll.Update(model);
+            }
+            catch(Exception ex) {
+
+                SelfInform(this.MyUpdatePanelPanelBody, this.GetType(), model != null ? ex.Message : model.VTUserName + "|" + ex.Message);
+                return;
+            }
+            SelfInform(this.MyUpdatePanelPanelBody, this.GetType(), "自动注册成功！");
+        }
+        
+        /// <summary>
         ///  保存
         /// </summary>
         /// <param name="sender"></param>
@@ -168,7 +190,7 @@ namespace Web.admin.task
                     if (chk.Checked)
                     {
                         model = bll.GetModel(decimal.Parse(id));
-                        if (!HttpProxy.CheckProxyConnected(model.VTProxy))
+                        if (!string.IsNullOrEmpty(model.VTProxy)&&!HttpProxy.CheckProxyConnected(model.VTProxy))
                         {
                             model.VTProxy = string.Empty;
                         }
@@ -178,13 +200,13 @@ namespace Web.admin.task
                 }
                 catch(Exception ex)
                 {
-                    i++;
                     if(i==0){
                         sbError.Append(model.VTUserName);
                     }else{
                         sbError.Append(",");
                         sbError.Append(model.VTUserName);
                     }
+                    i++;
                     sbError.Append(ex.Message);
                 }
                 finally { 
@@ -199,7 +221,6 @@ namespace Web.admin.task
             else {
                 bll.AlertEmail(Constants.SYSTEM_CONFIG_ATT_NAME_MAIL_ERROR_ALERT_JOB_SUBJECT + method, "任务完成！");
             }
-            this.btnTask.Enabled = true;
         }
 
         /// <summary>

@@ -111,6 +111,74 @@ namespace ZHY.Common
         }
 
         /// <summary>
+        /// 获取代理地址
+        /// </summary>
+        /// <param name="htmlSource"></param>
+        /// <param name="exStr"></param>
+        /// <returns></returns>
+        public static List<string> ExtractHtmlValueByTableTag(string htmlSource) 
+        {
+            try
+            {
+                List<string> list = new List<string>();
+                Parser htmlParser = Parser.CreateParser(htmlSource, "UTF8");
+                NodeFilter filter = new NodeClassFilter(typeof(Winista.Text.HtmlParser.Tags.TableTag));
+                NodeList nodeList = htmlParser.Parse(filter);
+                for (int i = 0; i < nodeList.Size(); i++)
+                {
+                    Winista.Text.HtmlParser.Tags.TableTag table = (Winista.Text.HtmlParser.Tags.TableTag)nodeList.ElementAt(i);
+                    if(i==2)
+                    {
+                        int j = 0;
+                        foreach (TableRow row in table.Rows)
+                        {
+                            
+                            if(j>2)
+                            {
+                                int m = 0;
+                                StringBuilder sbProxy = new StringBuilder();
+                                foreach (TableColumn col in row.Columns)
+                                {
+                                    if (m == 4)
+                                    {
+                                        break;
+                                    }
+                                    if (m == 0)
+                                    {
+                                        string value0 = DropHtmlTag(col.StringText, "script");
+                                        string value1 = ParseTags(value0);
+                                        string[] value2 = value1.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+                                        if (value2 == null || value2.Length!=2)
+                                        {
+                                            return list;
+                                        }
+                                        sbProxy.Append(value2[1]);
+                                    }
+                                    else {
+                                        sbProxy.Append(",");
+                                        sbProxy.Append(ParseTags(col.StringText));
+                                    }
+                                    
+                                    m++;
+                                }
+                                list.Add(sbProxy.ToString());
+                            }
+                            j++;
+                        }
+                    }
+                    
+                }
+                return list;
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="itemRUL"></param>

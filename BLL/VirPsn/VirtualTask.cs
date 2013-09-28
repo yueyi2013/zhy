@@ -52,7 +52,9 @@ namespace ZHY.BLL
         {
             try
             {
-                return RegAdmimsy();
+                StringBuilder sbLogin = new StringBuilder();
+                sbLogin.AppendFormat("http://www.admimsy.com/?R={0}", "yueyi2013");
+                return RegAdmimsy(sbLogin.ToString());
             }
             catch (Exception ex) {
 
@@ -67,22 +69,37 @@ namespace ZHY.BLL
         {
             try
             {
-               ZHY.Model.VirtualTask model = RegAdmimsy();
-               this.Update(model);
+                StringBuilder sbLogin = new StringBuilder();
+                sbLogin.AppendFormat("http://www.admimsy.com/?R={0}", "yueyi2013");
+                ZHY.Model.VirtualTask model = RegAdmimsy(sbLogin.ToString());
+                if (model == null)
+                {
+                    for (int i = 0; i < 3;i++)
+                    {
+                        model = RegAdmimsy(sbLogin.ToString());
+                        if (model!=null)
+                        {
+                            this.Update(model);
+                            break;
+                        }
+                    }
+                }
+                else {
+                    this.Update(model);
+                }
             }catch(Exception ex)
             {
                 throw ex;
             }
         }
 
-        public ZHY.Model.VirtualTask RegAdmimsy()
+        public ZHY.Model.VirtualTask RegAdmimsy(string loginURL)
         {
             ZHY.Model.VirtualTask model = null;
             string resHtml = "";
             string method = "VirtualTask#RegAdmimsy";
             string redURL = "";
             int step = 0;
-            string loginURL = "http://www.admimsy.com/?R=yueyi2013";
             string createURL = "http://www.admimsy.com/CreateAccount.cfm";
             HttpWebRequest requestRs = null;
             HttpWebResponse responseRs = null;
@@ -110,7 +127,6 @@ namespace ZHY.BLL
                 string userName = psnInfo.VPNickName + psnInfo.VPFirstName;
                 if (this.Exists(userName))
                 {
-
                     return null;
                 }
                 sb.AppendFormat("UserName={0}&", userName);
@@ -133,6 +149,7 @@ namespace ZHY.BLL
                 step++;
                 //第二步登录网站
                 requestRs = HttpProxy.GetHttpWebRequest("http://www.admimsy.com/CreateAccount.cfm", paInfo.PAName, ref adCookie);
+                System.Net.ServicePointManager.Expect100Continue = false;
                 //设置登录方式
                 requestRs.Method = "POST";
                 requestRs.Referer = loginURL;
@@ -143,11 +160,23 @@ namespace ZHY.BLL
                 // Send the data.
                 newStream.Write(data, 0, data.Length);
                 newStream.Close();
-                responseRs = (HttpWebResponse)requestRs.GetResponse();
-                resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.Default).ReadToEnd();
+                using (responseRs = (HttpWebResponse)requestRs.GetResponse())
+                {
+                    resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.Default).ReadToEnd();
+                    redURL = responseRs.ResponseUri.AbsolutePath;
+                    if (requestRs != null)
+                    {
+                        requestRs.Abort();
+                        requestRs = null;
+                    }
 
-                redURL = responseRs.ResponseUri.AbsolutePath;
-
+                    if (responseRs != null)
+                    {
+                        responseRs.Close();
+                        responseRs = null;
+                    }
+                }
+                
                 model = new ZHY.Model.VirtualTask();
                 model.VSCode = "Admimsy";
                 model.VTUserName = userName;
@@ -185,7 +214,7 @@ namespace ZHY.BLL
             }
             catch (Exception ex)
             {
-                throw new Exception(method + "-" + model.VTUserName + "-Setp:" + step + "-" + ex.Message);
+                throw new Exception(method + "-" + model==null?"UnKnownUser":model.VTUserName + "-Setp:" + step + "-" + ex.Message);
             }
             finally {
 
@@ -208,13 +237,14 @@ namespace ZHY.BLL
 
         public void SingleAutoViewAdmimsyTask()
         {
-            ZHY.Model.VirtualTask model = null;
-            try {
-
-                List<ZHY.Model.VirtualTask> list = DataTableToList(this.GetList(1, " VSCode = 'Admimsy' and UpdateDT <=getdate() ", " newid() ").Tables[0]);
-                if(list!=null&&list.Count>0)
+            List<ZHY.Model.VirtualTask> list = DataTableToList(this.GetList(3, " VSCode = 'Admimsy' and UpdateDT <=getdate() ", " newid() ").Tables[0]);
+            bool isError = false;
+            StringBuilder sbError = new StringBuilder();
+            System.Net.ServicePointManager.DefaultConnectionLimit = 200;
+            foreach (ZHY.Model.VirtualTask model in list)
+            {
+                try
                 {
-                    model = list[0];
                     if (!HttpProxy.CheckProxyConnected(model.VTProxy))
                     {
                         model.VTProxy = string.Empty;
@@ -222,9 +252,15 @@ namespace ZHY.BLL
                     admimsyTask(model);
                     this.Update(model);
                 }
-            }catch(Exception ex){
-
-                throw new Exception(model.VTUserName+"|"+ex.Message);
+                catch (Exception ex)
+                {
+                    sbError.Append(model.VTUserName + "|" + ex.Message);
+                    sbError.Append("\n");
+                }
+            }
+            if (isError)
+            {
+                throw new Exception(sbError.ToString());
             }
         }
 
@@ -262,6 +298,8 @@ namespace ZHY.BLL
         {
             System.GC.Collect();
             HttpWebRequest requestRs = (HttpWebRequest)WebRequest.Create(url);
+            requestRs.AllowWriteStreamBuffering = true;
+            WebHeaderCollection whc = requestRs.Headers;
             if (!string.IsNullOrEmpty(proxy))
             {
                 WebProxy wbPrx = new WebProxy(proxy);
@@ -270,9 +308,12 @@ namespace ZHY.BLL
             else {
                 requestRs.Proxy = null;
             }
+           // whc.Add("Accept-Charset:GBK,utf-8;q=0.7,*;q=0.3");
+            //whc.Add("Accept-Encoding:gzip,deflate,sdch");
+           // whc.Add("Accept-Language:en;q=0.8");
             requestRs.UserAgent = "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31";
             requestRs.KeepAlive = false;
-            requestRs.ProtocolVersion = HttpVersion.Version10;
+            requestRs.ProtocolVersion = HttpVersion.Version11;
             requestRs.Timeout = 30*60*1000;
             requestRs.ReadWriteTimeout = 30 * 60 * 1000;
             requestRs.CookieContainer = adCookie;
@@ -329,6 +370,7 @@ namespace ZHY.BLL
             byte[] data = encoding.GetBytes(loginPsData);
             //第二步登录网站
             HttpWebRequest requestRs = GetHttpWebRequest("http://www.admimsy.com/Home.cfm", model.VTProxy, ref adCookie);
+            System.Net.ServicePointManager.Expect100Continue = false;
             //客户端接受类型
             requestRs.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
             //设置登录方式
@@ -511,6 +553,7 @@ namespace ZHY.BLL
         /// <param name="psw">密码</param>
         public void admimsyTask(ZHY.Model.VirtualTask model)
         {
+            model.VTProxy = string.Empty;
             string method = "VirtualTask#admimsyTask";
             HttpWebRequest requestRs = null;
             HttpWebResponse responseRs = null;

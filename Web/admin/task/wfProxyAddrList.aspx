@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<fieldset style="width: 900px">
+<fieldset style="width: 950px">
     <legend>代理地址管理</legend>
     <asp:UpdatePanel ID="MyUpdatePanelHead" runat="server" UpdateMode="Conditional">
         <Triggers>
@@ -64,13 +64,13 @@
                                                 <ItemStyle Width="100px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="PAType" HeaderText="代理类型">
-                                                <ItemStyle Width="100px" />
+                                                <ItemStyle Width="80px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="PAAnonymity" HeaderText="匿名">
-                                                <ItemStyle Width="100px" />
+                                                <ItemStyle Width="60px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="PACountry" HeaderText="国家">
-                                                <ItemStyle Width="100px" />
+                                                <ItemStyle Width="150px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="CreateAt" HeaderText="创建日期">
                                                 <ItemStyle Width="150px" />

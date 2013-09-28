@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-using ZHY.Common;
 using Quartz;
 using Common.Logging;
-namespace AutoTask.ADmimsy
-{
-    public class AutoSignUpJob :IJob
-    {
-        private static ILog _log = LogManager.GetLogger(typeof(AutoSignUpJob));
+using ZHY.Common;
 
-        public AutoSignUpJob()
+namespace AutoTask.spys
+{
+    public class AutoExtProxyAddressJob:IJob
+    {
+        private static ILog _log = LogManager.GetLogger(typeof(AutoExtProxyAddressJob));
+
+        public AutoExtProxyAddressJob()
 		{
 		}
 		
@@ -23,12 +24,11 @@ namespace AutoTask.ADmimsy
 		/// </summary>
 		public virtual void  Execute(IJobExecutionContext context)
 		{
-            
-            string method = "--AutoSignUpJob#Execute";
-            ZHY.BLL.VirtualTask bll = new ZHY.BLL.VirtualTask();
+            string method = "--AutoExtProxyAddressJob#Execute";
+            ZHY.BLL.ProxyAddress bll = new ZHY.BLL.ProxyAddress();
             try
-            {
-                bll.RegAdmimsyByJob();
+            {                
+                bll.ExtractProxyAddress();
             }
             catch (Exception ex)
             {

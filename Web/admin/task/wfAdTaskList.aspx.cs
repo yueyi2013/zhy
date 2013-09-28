@@ -116,7 +116,9 @@ namespace Web.admin.task
             ZHY.Model.VirtualTask model = null;
             try
             {
-                model = bll.RegAdmimsy();
+                StringBuilder sbLogin = new StringBuilder();
+                sbLogin.AppendFormat("http://www.admimsy.com/?R={0}", "yueyi2013");
+                model = bll.RegAdmimsy(sbLogin.ToString());
                 bll.Update(model);
             }
             catch(Exception ex) {
@@ -181,6 +183,7 @@ namespace Web.admin.task
             StringBuilder sbError = new StringBuilder();
             string method = "wfAdTaskList.aspx.cs#btnTask_Click";
             int i=0;
+            System.Net.ServicePointManager.DefaultConnectionLimit = 200;
             foreach (GridViewRow gvr in MstGridView.Rows)
             {
                 try

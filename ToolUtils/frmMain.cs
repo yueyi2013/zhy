@@ -721,8 +721,11 @@ namespace ToolUtils
             MessageBox.Show("无效的代理地址数：" + i);
         }
 
-
-
+        private void btnProxyList_Click(object sender, EventArgs e)
+        {
+            ZHY.BLL.ProxyAddress bll = new ZHY.BLL.ProxyAddress();
+            bll.ExtractProxyAddress();
+        }
 
     }
 }

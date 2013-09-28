@@ -47,10 +47,15 @@ namespace AutoTask
             //Auto check proxy address connected
             ScheduleSimpleJob("ChkProxyAdress", "ChkProxyAdress", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 24, false,true, typeof(AutoTask.AutoCheckProxyConnJob));
             //Auto view ads
-            ScheduleSimpleJob("viewAds", "viewAds", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 5, true,true, typeof(AutoTask.ADmimsy.AutoViewAdsJob));
+            ScheduleSimpleJob("viewAds", "viewAds", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 10, true,true, typeof(AutoTask.ADmimsy.AutoViewAdsJob));
             //Auto regedit admimsy site
-            ScheduleSimpleJob("regAdmimsy", "regAdmimsy", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 4, false,true, typeof(AutoTask.ADmimsy.AutoSignUpJob));
-            
+            ScheduleSimpleJob("regAdmimsy", "regAdmimsy", DateTime.Now.AddMinutes(1), DateTime.MaxValue, 3, false,true, typeof(AutoTask.ADmimsy.AutoSignUpJob));
+            //Extract Proxy Address
+            ScheduleSimpleJob("ProxyAddress", "Extract", DateTime.Now.AddMinutes(1), 
+                DateTime.MaxValue, 6, false, true, typeof(AutoTask.spys.AutoExtProxyAddressJob));
+            //
+           //ScheduleCronJob("ProxyAddress", "", "0 0/30 * * * ?", typeof(AutoTask.spys.AutoExtProxyAddressJob));
+
             sched.Start();
         }
 

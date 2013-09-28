@@ -101,6 +101,43 @@ namespace ZHY.Common
             return false;
         }
 
+        /// <summary>
+        /// 检查代理是否连接成功
+        /// </summary>
+        /// <returns></returns>
+        public static bool CheckProxyConnected(string strProxy,int port)
+        {
+            CookieContainer adCookie = new CookieContainer();
+            HttpWebRequest requestRs = GetHttpWebRequest("http://www.syihy.com/ads.aspx", strProxy + ":" + port, ref adCookie);
+            HttpWebResponse webRes = null;
+            try
+            {
+                using (webRes = (HttpWebResponse)requestRs.GetResponse())
+                {
+                    webRes.GetResponseStream();
+                }
+                
+                return true;
+            }
+            catch
+            {
+                //do nothing
+            }
+            finally
+            {
+                if(requestRs!=null){
+                    requestRs.Abort();
+                    requestRs = null;
+                }
+                if (webRes != null)
+                {
+                    webRes.Close();
+                    webRes = null;
+                }
+            }
+            return false;
+        }
+
         public static HttpWebRequest PostHttpWebRequest(string url, string postData, string strProxy, ref CookieContainer pstCookie)
         {
             try
@@ -141,6 +178,13 @@ namespace ZHY.Common
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="proxy"></param>
+        /// <param name="adCookie"></param>
+        /// <returns></returns>
         public static HttpWebRequest GetHttpWebRequest(string url, string proxy, ref CookieContainer adCookie)
         {
             HttpWebRequest requestRs = (HttpWebRequest)WebRequest.Create(url);
@@ -155,13 +199,29 @@ namespace ZHY.Common
             return requestRs;
         }
 
-        public static string GetResponseData(string url, string proxy, ref CookieContainer adCookie) 
+
+        public static string GetResponseData(string url, string proxy, ref CookieContainer adCookie)
         {
+            string result = null;
+            HttpWebResponse responseRs = null;
             HttpWebRequest requestRs = GetHttpWebRequest(url, proxy, ref adCookie);
+            requestRs.Method = "GET";
+            using (responseRs = (HttpWebResponse)requestRs.GetResponse())
+            {
+                result = new StreamReader(responseRs.GetResponseStream(), Encoding.Default).ReadToEnd();
+                if (responseRs!=null)
+                {
+                    responseRs.Close();
+                    responseRs = null;
+                }
+                if (requestRs!=null)
+                {
+                    requestRs.Abort();
+                    requestRs = null;
+                }
+            }
 
-            HttpWebResponse responseRs = (HttpWebResponse)requestRs.GetResponse();
-
-            return  new StreamReader(responseRs.GetResponseStream(), Encoding.Default).ReadToEnd();
+            return result;
         }
 
         /// <summary>

@@ -5,6 +5,7 @@ using System.Text;
 
 using Quartz;
 using Common.Logging;
+using AutoTask.utils;
 namespace AutoTask
 {
     public class AutoAddNewsListJob : IJob

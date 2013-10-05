@@ -10,7 +10,7 @@ namespace ZHY.BLL
 	/// <summary>
 	/// 新闻TOP
 	/// </summary>
-	public partial class NewsTop
+	public partial class NewsTop : BaseBLL
 	{
 	    #region 成员方法
         /// <summary>

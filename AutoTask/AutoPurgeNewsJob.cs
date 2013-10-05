@@ -6,6 +6,8 @@ using System.Text;
 
 using Quartz;
 using Common.Logging;
+using AutoTask.utils;
+using ZHY.Common;
 namespace AutoTask
 {
    public class AutoPurgeNewsJob : IJob
@@ -24,8 +26,21 @@ namespace AutoTask
 		/// </summary>
 		public virtual void  Execute(IJobExecutionContext context)
 		{
+            string method = "--AutoPurgeNewsJob#Execute";
             ZHY.ACC.BLL.RSSChannelItem bll = new ZHY.ACC.BLL.RSSChannelItem();
-            bll.MoveNewsToAccessDB();
+            try
+            {
+                if (bll.CheckJobIsEnabled(JobConstants.PURGE_NEWS_JOB, JobConstants.AUTO_TASK_JOB_GROUP))
+                {
+                    bll.MoveNewsToAccessDB();
+                }
+                else { 
+                    //do nothing
+                }
+            }
+            catch (Exception ex) {
+                bll.AlertEmail(Constants.SYSTEM_CONFIG_ATT_NAME_MAIL_ERROR_ALERT_JOB_SUBJECT + method, ex.Message);            
+            }
 		}
    }
 }

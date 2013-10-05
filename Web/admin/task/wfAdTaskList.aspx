@@ -138,6 +138,7 @@
                 <asp:AsyncPostBackTrigger ControlID="btnClose" EventName="Click" />
                 <asp:AsyncPostBackTrigger ControlID="btnModify" EventName="Click" />
                 <asp:AsyncPostBackTrigger ControlID="MstGridView" EventName="RowCommand" />
+                <asp:AsyncPostBackTrigger ControlID="btnAutoReg" EventName="Click" />
             </Triggers>
             <ContentTemplate>
                 <table cellspacing="0" cellpadding="0" width="100%" border="0">

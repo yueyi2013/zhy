@@ -6,6 +6,7 @@ using System.Text;
 using ZHY.Common;
 using Quartz;
 using Common.Logging;
+using AutoTask.utils;
 namespace AutoTask.ADmimsy
 {
     public class AutoSignUpJob :IJob
@@ -28,7 +29,12 @@ namespace AutoTask.ADmimsy
             ZHY.BLL.VirtualTask bll = new ZHY.BLL.VirtualTask();
             try
             {
-                bll.RegAdmimsyByJob();
+                if (bll.CheckJobIsEnabled(JobConstants.AD_MIMSY_SIGN_UP_JOB,JobConstants.AUTO_TASK_JOB_GROUP))
+                {
+                    bll.RegAdmimsyByJob();
+                }else{
+                    //donothing
+                }
             }
             catch (Exception ex)
             {

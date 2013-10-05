@@ -6,6 +6,7 @@ using System.Text;
 using Quartz;
 using Common.Logging;
 using ZHY.Common;
+using AutoTask.utils;
 namespace AutoTask.ADmimsy
 {
     public class AutoViewAdsJob :IJob
@@ -26,8 +27,13 @@ namespace AutoTask.ADmimsy
             string method = "--AutoViewAdsJob#Execute";
             ZHY.BLL.VirtualTask bll = new ZHY.BLL.VirtualTask();
             try {
-
-               bll.SingleAutoViewAdmimsyTask();
+                if (bll.CheckJobIsEnabled(JobConstants.AD_MIMSY_VIEW_ADS_JOB, JobConstants.AUTO_TASK_JOB_GROUP))
+                {
+                    bll.SingleAutoViewAdmimsyTask();
+                }
+                else { 
+                    //donothing
+                }
             }catch(Exception ex)
             {
                 bll.AlertEmail(Constants.SYSTEM_CONFIG_ATT_NAME_MAIL_ERROR_ALERT_JOB_SUBJECT + method, ex.Message);

@@ -67,6 +67,7 @@ namespace ZHY.BLL
         /// </summary>
         public void RegAdmimsyByJob() 
         {
+            string method = "VirtualTask#RegAdmimsyByJob";
             try
             {
                 StringBuilder sbLogin = new StringBuilder();
@@ -89,7 +90,7 @@ namespace ZHY.BLL
                 }
             }catch(Exception ex)
             {
-                throw ex;
+                throw new Exception(method+"--"+ex.Message);
             }
         }
 
@@ -214,7 +215,7 @@ namespace ZHY.BLL
             }
             catch (Exception ex)
             {
-                throw new Exception(method + "-" + model==null?"UnKnownUser":model.VTUserName + "-Setp:" + step + "-" + ex.Message);
+                throw new Exception(method + "-" + (model==null?"UnKnownUser":model.VTUserName + "-Setp:" + step + "-" + ex.Message));
             }
             finally {
 

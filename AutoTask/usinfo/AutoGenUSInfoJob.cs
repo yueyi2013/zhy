@@ -6,6 +6,7 @@ using System.Text;
 using Quartz;
 using Common.Logging;
 using ZHY.Common;
+using AutoTask.utils;
 namespace AutoTask.usinfo
 {
     public class AutoGenUSInfoJob : IJob
@@ -28,8 +29,12 @@ namespace AutoTask.usinfo
             ZHY.BLL.VirtualPersonInfo bll = new ZHY.BLL.VirtualPersonInfo();
             try
             {
-                //bll.ExtractPsnInfoFromSite();
-
+                if (bll.CheckJobIsEnabled(JobConstants.GENERATE_US_PERSON_INFO_JOB, JobConstants.AUTO_TASK_JOB_GROUP))
+                {
+                    bll.ExtractPsnInfoFromSite();
+                }else{
+                    //do nothing   
+                }
             }catch(Exception ex){
 
                 bll.AlertEmail(Constants.SYSTEM_CONFIG_ATT_NAME_MAIL_ERROR_ALERT_JOB_SUBJECT + method, ex.Message);

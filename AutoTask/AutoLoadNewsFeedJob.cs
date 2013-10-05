@@ -5,6 +5,8 @@ using System.Text;
 
 using Quartz;
 using Common.Logging;
+using AutoTask.utils;
+using ZHY.Common;
 namespace AutoTask
 {
     public class AutoLoadNewsFeedJob : IJob
@@ -23,8 +25,23 @@ namespace AutoTask
 		/// </summary>
 		public virtual void  Execute(IJobExecutionContext context)
 		{
+            string method = "--AutoLoadNewsFeedJob#Execute";
             ZHY.BLL.RSSSite bll = new ZHY.BLL.RSSSite();
-            bll.AutoTaskLoadFeeds();
+            
+            try
+            {
+                if (bll.CheckJobIsEnabled(JobConstants.RSS_FEEDS_JOB, JobConstants.AUTO_TASK_JOB_GROUP))
+                {
+                    bll.AutoTaskLoadFeeds();
+                }
+                else { 
+                    //do nothing
+                }
+                
+            }
+            catch (Exception ex) {
+                bll.AlertEmail(Constants.SYSTEM_CONFIG_ATT_NAME_MAIL_ERROR_ALERT_JOB_SUBJECT + method, ex.Message);
+            }
             _log.Info("Job finish at :"+DateTime.Now);
 		}
     }

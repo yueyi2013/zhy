@@ -6,6 +6,7 @@ using ZHY.Common;
 
 using Quartz;
 using Common.Logging;
+using AutoTask.utils;
 namespace AutoTask
 {
     public class AutoCheckProxyConnJob : IJob
@@ -26,8 +27,14 @@ namespace AutoTask
             string method = "--AutoCheckProxyConnJob#Execute";
             ZHY.BLL.ProxyAddress bll = new ZHY.BLL.ProxyAddress();
             try
-            {                
-                bll.CheckProxyAddressConnected();
+            {
+                if (bll.CheckJobIsEnabled(JobConstants.CHECK_PROXY_ADDRESS_JOB, JobConstants.AUTO_TASK_JOB_GROUP))
+                {
+                    bll.CheckProxyAddressConnected();
+                }
+                else { 
+                    //do nothing
+                }
             }catch(Exception ex)
             {
                 bll.AlertEmail(Constants.SYSTEM_CONFIG_ATT_NAME_MAIL_ERROR_ALERT_JOB_SUBJECT + method, ex.Message);

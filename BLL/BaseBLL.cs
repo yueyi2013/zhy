@@ -70,5 +70,32 @@ namespace ZHY.BLL
             return sendSuccess;
         }
 
+        /// <summary>
+        /// 返回系统配置信息
+        /// </summary>
+        /// <param name="SCAttrName">属性名</param>
+        /// <param name="SCGroup">属性组名</param>
+        /// <returns></returns>
+        public ZHY.Model.SystemConfig GetSystemConfig(string SCAttrName, string SCGroup) 
+        {
+            ZHY.BLL.SystemConfig bll = new ZHY.BLL.SystemConfig();
+            return bll.GetModel(SCAttrName, SCGroup);
+        }
+
+        /// <summary>
+        /// 检查是否启用job
+        /// </summary>
+        /// <param name="SCAttrName"></param>
+        /// <param name="SCGroup"></param>
+        /// <returns></returns>
+        public bool CheckJobIsEnabled(string SCAttrName, string SCGroup)
+        {
+            ZHY.Model.SystemConfig model = this.GetSystemConfig(SCAttrName, SCGroup);
+            if (model != null && model.SCAttrValue.Equals("Y"))
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

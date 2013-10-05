@@ -117,6 +117,7 @@
     <Content Include="admin\sys\wfSysMailList.aspx" />
     <Content Include="admin\sys\wfSystemConfig.aspx" />
     <Content Include="admin\sys\wfUserList.aspx" />
+    <Content Include="admin\task\wfAdmimsyList.aspx" />
     <Content Include="admin\task\wfAdSiteList.aspx" />
     <Content Include="admin\task\wfAdTaskList.aspx" />
     <Content Include="admin\task\wfProxyAddrList.aspx" />
@@ -1422,6 +1423,13 @@
     <Compile Include="admin\sys\wfUserList.aspx.designer.cs">
       <DependentUpon>wfUserList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\task\wfAdmimsyList.aspx.cs">
+      <DependentUpon>wfAdmimsyList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\task\wfAdmimsyList.aspx.designer.cs">
+      <DependentUpon>wfAdmimsyList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\task\wfAdSiteList.aspx.cs">
       <DependentUpon>wfAdSiteList.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1870,6 +1878,9 @@
     <Folder Include="images\admin\left\" />
     <Folder Include="inc\api\tb\" />
     <Folder Include="inc\api\xl\wb\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

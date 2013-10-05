@@ -4,13 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using ZHY.Web;
 using System.Text;
+using ZHY.Web;
 using ZHY.Common;
 
 namespace Web.admin.task
 {
-    public partial class wfAdTaskList : BasePage
+    public partial class wfAdmimsyList : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -45,7 +45,7 @@ namespace Web.admin.task
         /// </summary>
         protected override void MstGridViewBind()
         {
-            ZHY.BLL.VirtualTask bll = new ZHY.BLL.VirtualTask();
+            ZHY.BLL.ADmimsy bll = new ZHY.BLL.ADmimsy();
             string name = this.txtName.Text;
             this.MstGridView.DataSource = bll.GetList(pageIndex, name, ref pageRecord);
             this.MstGridView.DataBind();
@@ -110,7 +110,7 @@ namespace Web.admin.task
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        protected void btnAutoReg_Click(object sender, EventArgs e) 
+        protected void btnAutoReg_Click(object sender, EventArgs e)
         {
             ZHY.BLL.VirtualTask bll = new ZHY.BLL.VirtualTask();
             ZHY.Model.VirtualTask model = null;
@@ -118,24 +118,25 @@ namespace Web.admin.task
             try
             {
                 StringBuilder sbLogin = new StringBuilder();
-                
-                if (!string.IsNullOrEmpty(txtVTUserName.Text))
+
+                if (!string.IsNullOrEmpty(this.txtAdmyUserName.Text))
                 {
-                    referralName = txtVTUserName.Text.Trim();
+                    referralName = txtAdmyUserName.Text.Trim();
                 }
 
                 sbLogin.AppendFormat("http://www.admimsy.com/?R={0}", referralName);
                 model = bll.RegAdmimsy(sbLogin.ToString());
                 bll.Update(model);
             }
-            catch(Exception ex) {
+            catch (Exception ex)
+            {
 
                 SelfInform(this.MyUpdatePanelPanelBody, this.GetType(), model != null ? ex.Message : model.VTUserName + "|" + ex.Message);
                 return;
             }
             SelfInform(this.MyUpdatePanelPanelBody, this.GetType(), "自动注册成功！-推荐人" + referralName);
         }
-        
+
         /// <summary>
         ///  保存
         /// </summary>
@@ -143,7 +144,7 @@ namespace Web.admin.task
         /// <param name="e"></param>
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            int id = ConvertInt32(this.hfVTId.Value, 0);
+            int id = ConvertInt32(this.hfAdmyId.Value, 0);
             if (id == 0)
             {
                 Add();
@@ -164,7 +165,7 @@ namespace Web.admin.task
         /// <param name="e"></param>
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            ZHY.BLL.VirtualTask bll = new ZHY.BLL.VirtualTask();
+            ZHY.BLL.ADmimsy bll = new ZHY.BLL.ADmimsy();
             foreach (GridViewRow gvr in MstGridView.Rows)
             {
                 string id = MstGridView.DataKeys[gvr.RowIndex].Value.ToString();
@@ -186,10 +187,10 @@ namespace Web.admin.task
         protected void btnTask_Click(object sender, EventArgs e)
         {
             ZHY.BLL.VirtualTask bll = new ZHY.BLL.VirtualTask();
-            ZHY.Model.VirtualTask model= null;
+            ZHY.Model.VirtualTask model = null;
             StringBuilder sbError = new StringBuilder();
             string method = "wfAdTaskList.aspx.cs#btnTask_Click";
-            int i=0;
+            int i = 0;
             System.Net.ServicePointManager.DefaultConnectionLimit = 200;
             foreach (GridViewRow gvr in MstGridView.Rows)
             {
@@ -200,7 +201,7 @@ namespace Web.admin.task
                     if (chk.Checked)
                     {
                         model = bll.GetModel(decimal.Parse(id));
-                        if (!string.IsNullOrEmpty(model.VTProxy)&&!HttpProxy.CheckProxyConnected(model.VTProxy))
+                        if (!string.IsNullOrEmpty(model.VTProxy) && !HttpProxy.CheckProxyConnected(model.VTProxy))
                         {
                             model.VTProxy = string.Empty;
                         }
@@ -208,27 +209,32 @@ namespace Web.admin.task
                         bll.Update(model);
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
-                    if(i==0){
+                    if (i == 0)
+                    {
                         sbError.Append(model.VTUserName);
-                    }else{
+                    }
+                    else
+                    {
                         sbError.Append(",");
                         sbError.Append(model.VTUserName);
                     }
                     i++;
                     sbError.Append(ex.Message);
                 }
-                finally { 
-                
-                
+                finally
+                {
+
+
                 }
             }
             if (i > 0)
             {
                 bll.AlertEmail(Constants.SYSTEM_CONFIG_ATT_NAME_MAIL_ERROR_ALERT_JOB_SUBJECT + method, "未完成的任务[" + sbError.ToString() + "]");
             }
-            else {
+            else
+            {
                 bll.AlertEmail(Constants.SYSTEM_CONFIG_ATT_NAME_MAIL_ERROR_ALERT_JOB_SUBJECT + method, "任务完成！");
             }
         }
@@ -291,15 +297,15 @@ namespace Web.admin.task
         /// </summary>
         private void Add()
         {
-            ZHY.Model.VirtualTask model = new ZHY.Model.VirtualTask();
-            model.VSCode = this.txtVSCode.Text;
-            model.VTUserName = this.txtVTUserName.Text;
-            model.VTPassword = this.txtVTPassword.Text;
-            model.VTProxy = this.txtVTProxy.Text;
+            ZHY.Model.ADmimsy model = new ZHY.Model.ADmimsy();
+            model.AdmyCode = this.txtAdmyCode.Text;
+            model.AdmyUserName = this.txtAdmyUserName.Text;
+            model.AdmyPassword = this.txtAdmyPassword.Text;
+            model.ProxyAddress = this.txtProxyAddress.Text;
             ZHY.Model.User user = getLoginUser();
             model.CreateBy = user.UserName;
             model.UpdateBy = user.UserName;
-            ZHY.BLL.VirtualTask bll = new ZHY.BLL.VirtualTask();
+            ZHY.BLL.ADmimsy bll = new ZHY.BLL.ADmimsy();
             bll.Add(model);
         }
 
@@ -309,14 +315,14 @@ namespace Web.admin.task
         /// <param name="LMID"></param>
         private void Modify(int ID)
         {
-            ZHY.BLL.VirtualTask bll = new ZHY.BLL.VirtualTask();
-            ZHY.Model.VirtualTask model = bll.GetModel(ID);
+            ZHY.BLL.ADmimsy bll = new ZHY.BLL.ADmimsy();
+            ZHY.Model.ADmimsy model = bll.GetModel(ID);
             if (model != null)
             {
-                model.VSCode = this.txtVSCode.Text;
-                model.VTUserName = this.txtVTUserName.Text;
-                model.VTPassword = this.txtVTPassword.Text;
-                model.VTProxy = this.txtVTProxy.Text;
+                model.AdmyCode = this.txtAdmyCode.Text;
+                model.AdmyUserName = this.txtAdmyUserName.Text;
+                model.AdmyPassword = this.txtAdmyPassword.Text;
+                model.ProxyAddress = this.txtProxyAddress.Text;
                 ZHY.Model.User user = getLoginUser();
                 model.UpdateBy = user.UserName;
                 model.UpdateDT = DateTime.Now;
@@ -329,11 +335,11 @@ namespace Web.admin.task
         /// </summary>
         private void InitDataClear()
         {
-            this.hfVTId.Value = "0";
-            this.txtVSCode.Text = "";
-            this.txtVTUserName.Text = "";
-            this.txtVTPassword.Text = "";
-            this.txtVTProxy.Text = "";
+            this.hfAdmyId.Value = "0";
+            this.txtAdmyCode.Text = "";
+            this.txtAdmyUserName.Text = "";
+            this.txtAdmyPassword.Text = "";
+            this.txtProxyAddress.Text = "";
         }
 
         /// <summary>
@@ -341,13 +347,13 @@ namespace Web.admin.task
         /// </summary>
         private void InitData(int id)
         {
-            ZHY.BLL.VirtualTask bll = new ZHY.BLL.VirtualTask();
-            ZHY.Model.VirtualTask model = bll.GetModel(id);
-            this.hfVTId.Value = model.VTId.ToString();
-            this.txtVTUserName.Text = model.VTUserName;
-            this.txtVTPassword.Text = model.VTPassword;
-            this.txtVTProxy.Text = model.VTProxy;
-            this.txtVSCode.Text = model.VSCode;
+            ZHY.BLL.ADmimsy bll = new ZHY.BLL.ADmimsy();
+            ZHY.Model.ADmimsy model = bll.GetModel(id);
+            this.hfAdmyId.Value = model.AdmyId.ToString();
+            this.txtAdmyCode.Text = model.AdmyCode;
+            this.txtAdmyUserName.Text = model.AdmyUserName;
+            this.txtAdmyPassword.Text = model.AdmyPassword;
+            this.txtProxyAddress.Text = model.ProxyAddress;
         }
         #endregion
     }

@@ -14,7 +14,7 @@ namespace ZHY.BLL
 	/// <summary>
 	/// RSSSite
 	/// </summary>
-	public partial class RSSSite
+	public partial class RSSSite:BaseBLL
 	{
         #region 成员方法
         /// <summary>

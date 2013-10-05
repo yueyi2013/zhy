@@ -10,7 +10,7 @@ namespace ZHY.BLL
 	/// <summary>
 	/// RSSChannelItem
 	/// </summary>
-	public partial class RSSChannelItem
+	public partial class RSSChannelItem : BaseBLL
 	{
         #region 成员方法
         /// <summary>

@@ -6,6 +6,7 @@ using System.Text;
 using Quartz;
 using Common.Logging;
 using ZHY.Common;
+using AutoTask.utils;
 
 namespace AutoTask.spys
 {
@@ -27,8 +28,14 @@ namespace AutoTask.spys
             string method = "--AutoExtProxyAddressJob#Execute";
             ZHY.BLL.ProxyAddress bll = new ZHY.BLL.ProxyAddress();
             try
-            {                
-                bll.ExtractProxyAddress();
+            {
+                if (bll.CheckJobIsEnabled(JobConstants.SPYS_EXTRACT_PROXY_ADDRESS_JOB, JobConstants.AUTO_TASK_JOB_GROUP))
+                {
+                    bll.ExtractProxyAddress();
+                }
+                else { 
+                    //do nothing
+                }
             }
             catch (Exception ex)
             {

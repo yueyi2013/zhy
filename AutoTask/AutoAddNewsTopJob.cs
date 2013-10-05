@@ -5,7 +5,8 @@ using System.Text;
 
 using Quartz;
 using Common.Logging;
-using LTP.Common;
+using ZHY.Common;
+using AutoTask.utils;
 namespace AutoTask
 {
     class AutoAddNewsTopJob : IJob
@@ -24,7 +25,23 @@ namespace AutoTask
 		public virtual void  Execute(IJobExecutionContext context)
 		{
             ZHY.BLL.NewsTop bll = new ZHY.BLL.NewsTop();
-            bll.AutoTaskAddTopNews();
+            string method = "--AutoAddNewsTopJob#Execute";
+            try
+            {
+                if (bll.CheckJobIsEnabled(JobConstants.NEWS_TOP_JOB, JobConstants.AUTO_TASK_JOB_GROUP))
+                {
+                    bll.AutoTaskAddTopNews();
+                }
+                else
+                {
+                    // do nothing
+                }
+            }
+            catch (Exception ex)
+            {
+                bll.AlertEmail(Constants.SYSTEM_CONFIG_ATT_NAME_MAIL_ERROR_ALERT_JOB_SUBJECT + method, ex.Message);
+            }
+            
 		}
     }
 }

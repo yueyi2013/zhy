@@ -169,7 +169,7 @@ namespace ZHY.BLL
             catch(Exception ex)
             {
 
-                
+                throw ex;
             }
             finally {
 

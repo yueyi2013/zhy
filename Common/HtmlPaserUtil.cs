@@ -162,11 +162,14 @@ namespace ZHY.Common
                     {
                         for (int j = 0; j < childNodes.Size(); j++)
                         {
-                            Winista.Text.HtmlParser.Tags.OptionTag optTag = (Winista.Text.HtmlParser.Tags.OptionTag)childNodes.ElementAt(j);
-                            
-                            if (optTag.OptionText.Contains(exStr))
+                            if (childNodes.ElementAt(j) is OptionTag)
                             {
-                                return optTag.Value;
+                                OptionTag optTag = (OptionTag)childNodes.ElementAt(j);
+
+                                if (optTag.OptionText.Contains(exStr))
+                                {
+                                    return optTag.Value;
+                                }
                             }
                         }
                     }

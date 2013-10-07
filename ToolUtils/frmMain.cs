@@ -731,7 +731,8 @@ namespace ToolUtils
         {
             CookieContainer cookie = new CookieContainer();
             string resHtml = HttpProxy.GetResponseData("http://www.twodollarclick.com/index.php?view=join&", "", ref cookie);
-            HtmlPaserUtil.ExtractHtmlsourceBySelectTag(resHtml, "form_country");
+            string value = HtmlPaserUtil.ExtractHtmlsourceBySelectTag(resHtml, "Venezuela");
+
         }
 
     }

@@ -7,6 +7,7 @@ using System.Net;
 using System.Text;
 using ZHY.Common;
 using System.IO;
+using System.Web;
 
 namespace ZHY.BLL
 {
@@ -283,6 +284,10 @@ namespace ZHY.BLL
                 model.TDCId = id;
                 System.Threading.Thread.Sleep(5000);
 
+                //第四步：登录网站
+                step++;
+                TwoDollarcCickViewAds(model);
+
                 //第四步提取广告栏链接
                 step++;
                 List<string> lstMenu = HtmlPaserUtil.ExtractHtmlsourceByTag(resHtml, "ac=click");
@@ -292,7 +297,7 @@ namespace ZHY.BLL
                 }
                 else {
 
-                    viewAdLink = lstMenu[0];
+                    viewAdLink = HttpUtility.HtmlDecode(lstMenu[0]);
                 }
 
                 //第五步： 打开广告界面
@@ -310,13 +315,7 @@ namespace ZHY.BLL
 
                 //第七步： 得到真实的广告地址
                 step++;
-                List<string> referView = new List<string>();
-                List<string> finalADs = GetRealTwoDollarcCickADs(model.ProxyAddress, ref redURL,ref adCookie, lstAds, referView);
-                System.Threading.Thread.Sleep(5000);
-
-                //最后一步：完成广告任务
-                step++;
-                resHtml = finalTwoDollarcCickAdview(model.ProxyAddress, ref adCookie, finalADs, referView);
+                GetRealTwoDollarcCickADs(model.ProxyAddress, ref redURL,ref adCookie, lstAds);
 
                 model.TDCViews = (model.TDCViews == null || model.TDCViews == 0) ? 1 : model.TDCViews + 1;
                 model.UpdateDT = DateTime.Now.AddHours(1);
@@ -357,7 +356,7 @@ namespace ZHY.BLL
                 System.Threading.Thread.Sleep(5000);
                 //第二步:登录admimsy网站
                 step++;
-                resHtml = LoginAdmimsySite(model,loginUrl, ref redURL, ref adCookie);
+                resHtml = LoginTwoDollarcCickSite(model, loginUrl, ref redURL, ref adCookie);
                 System.Threading.Thread.Sleep(5000);
 
                 //第三步提取广告栏链接
@@ -370,7 +369,7 @@ namespace ZHY.BLL
                 else
                 {
 
-                    viewAdLink = lstMenu[0];
+                    viewAdLink = "http://www.twodollarclick.com/" + HttpUtility.HtmlDecode(lstMenu[0]);
                 }
 
                 //第五步： 打开广告界面
@@ -388,14 +387,8 @@ namespace ZHY.BLL
 
                 //第七步： 得到真实的广告地址
                 step++;
-                List<string> referView = new List<string>();
-                List<string> finalADs = GetRealTwoDollarcCickADs(model.ProxyAddress, ref redURL, ref adCookie, lstAds, referView);
-                System.Threading.Thread.Sleep(5000);
-
-                //最后一步：完成广告任务
-                step++;
-                resHtml = finalTwoDollarcCickAdview(model.ProxyAddress, ref adCookie, finalADs, referView);
-
+                GetRealTwoDollarcCickADs(model.ProxyAddress, ref redURL, ref adCookie, lstAds);
+                
                 model.TDCViews = (model.TDCViews == null || model.TDCViews == 0) ? 1 : model.TDCViews + 1;
                 model.UpdateDT = DateTime.Now.AddHours(1);
             }
@@ -453,7 +446,11 @@ namespace ZHY.BLL
             sb.AppendFormat("uName={0}&", psnInfo.VPFullName.Replace(" ","+"));
             string[] cnty = proxyAddr.PACountry.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
             string cntyValue = HtmlPaserUtil.ExtractHtmlsourceBySelectTag(resHtml, cnty[0]);
-            sb.AppendFormat("form_country={0}&", cntyValue);
+            if (string.IsNullOrEmpty(cntyValue))
+            {
+                throw new Exception("国家找不到。");
+            }
+            sb.AppendFormat("form_country={0}&", cntyValue.Replace(" ","+"));
             sb.AppendFormat("uTerms={0}&", "yes");
 
             //编码
@@ -492,11 +489,12 @@ namespace ZHY.BLL
             }
 
             ZHY.Model.TwoDollarcCick model = new ZHY.Model.TwoDollarcCick();
-            model.TDCCode = "Admimsy";
+            model.TDCCode = "TwoDollarcCick";
             model.TDCUsername = userName;
             model.TDCPassword = psw;
             model.ProxyAddress = proxyAddr.PAName;
             model.TDCCountry = cntyValue;
+            model.TDCFullName = psnInfo.VPFullName;
             model.TDCEmail = psnInfo.VPMail;
             model.TDCReferrals = reff;
             return model;
@@ -534,7 +532,7 @@ namespace ZHY.BLL
         }
         #endregion
 
-        #region 登录LoginAdmimsySite网站
+        #region 登录LoginTwoDollarcCickSite网站
         /// <summary>
         /// 第二步登录TwoDollarcCick网站
         /// </summary>
@@ -542,7 +540,7 @@ namespace ZHY.BLL
         /// <param name="redURL"></param>
         /// <param name="adCookie"></param>
         /// <returns></returns>
-        private string LoginAdmimsySite(ZHY.Model.TwoDollarcCick model,string loginUrl, ref string redURL, ref CookieContainer adCookie)
+        private string LoginTwoDollarcCickSite(ZHY.Model.TwoDollarcCick model, string loginUrl, ref string redURL, ref CookieContainer adCookie)
         {
             //返回的HTML
             string resHtml = "";
@@ -616,7 +614,7 @@ namespace ZHY.BLL
             using (responseRs = (HttpWebResponse)requestRs.GetResponse())
             {
                 resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.Default).ReadToEnd();
-
+                redURL = responseRs.ResponseUri.AbsoluteUri;
                 if (requestRs != null)
                 {
                     requestRs.Abort();
@@ -640,30 +638,28 @@ namespace ZHY.BLL
         /// </summary>
         /// <param name="lstADs"></param>
         /// <returns></returns>
-        private List<string> GetRealTwoDollarcCickADs(string proxyAddress,ref string redURL, ref CookieContainer adCookie, List<string> lstADs, List<string> referView)
+        private void GetRealTwoDollarcCickADs(string proxyAddress,ref string redURL, ref CookieContainer adCookie, List<string> lstADs)
         {
             HttpWebResponse responseRs = null;
-            List<string> finalADs = new List<string>();
             StringBuilder sbLinK = new StringBuilder(redURL);
             string refLink = sbLinK.ToString();
+            CookieContainer adCookie2 = new CookieContainer();
+            adCookie2 = adCookie;
             foreach (string ad in lstADs)
             {
                 string urlAd = "http://www.twodollarclick.com/" + ad;
 
-                string resHtml = OpenTwoDollarcCickAdviews(urlAd, proxyAddress, ref refLink, ref adCookie);
+                string resHtml = OpenTwoDollarcCickAdviews(urlAd, proxyAddress, ref refLink, ref adCookie2);
 
                 string resLink = HtmlPaserUtil.ExtractHtmlValueByFrameTag(resHtml, "surftopframe");
 
                 string realFullLink = "http://www.twodollarclick.com/" + resLink;
 
-                referView.Add(realFullLink);
-
-
                 HttpWebRequest requestRs = GetHttpWebRequest(realFullLink, proxyAddress, ref adCookie);
                 requestRs.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
                 requestRs.Host = "www.twodollarclick.com";
                 requestRs.Method = "GET";
-                requestRs.Referer = redURL;
+                requestRs.Referer = urlAd;
 
                 using (WebResponse response = requestRs.GetResponse())
                 {
@@ -683,20 +679,20 @@ namespace ZHY.BLL
                             if (line.IndexOf("var id=") > 0)
                             {
                                 string[] ur = line.Split(new string[] { "\"" }, StringSplitOptions.RemoveEmptyEntries);
-                                if (ur != null && ur.Length == 2)
+                                if (ur != null && ur.Length == 3)
                                 {
                                     id =  ur[1];
                                 }
                             }else  if (line.IndexOf("var url_variables=") > 0)
                             {
                                 string[] ur = line.Split(new string[] { "\"" }, StringSplitOptions.RemoveEmptyEntries);
-                                if (ur != null && ur.Length == 2)
+                                if (ur != null && ur.Length == 3)
                                 {
                                     url_variables =  ur[1];
                                 }
                             }else if (line.IndexOf("var timer=") > 0)
                             {
-                                string[] ur = line.Split(new string[] { "\"" }, StringSplitOptions.RemoveEmptyEntries);
+                                string[] ur = line.Split(new string[] { "=",";" }, StringSplitOptions.RemoveEmptyEntries);
                                 if (ur != null && ur.Length == 2)
                                 {
                                     timer =  ur[1];
@@ -704,21 +700,21 @@ namespace ZHY.BLL
                             }else if (line.IndexOf("var type=") > 0)
                             {
                                 string[] ur = line.Split(new string[] { "\"" }, StringSplitOptions.RemoveEmptyEntries);
-                                if (ur != null && ur.Length == 2)
+                                if (ur != null && ur.Length == 3)
                                 {
                                     type =  ur[1];
                                 }
                             }else  if (line.IndexOf("var key=") > 0)
                             {
                                 string[] ur = line.Split(new string[] { "\"" }, StringSplitOptions.RemoveEmptyEntries);
-                                if (ur != null && ur.Length == 2)
+                                if (ur != null && ur.Length == 3)
                                 {
                                     key =  ur[1];
                                 }
                             }else if (line.IndexOf("var pretime=") > 0)
                             {
                                 string[] ur = line.Split(new string[] { "\"" }, StringSplitOptions.RemoveEmptyEntries);
-                                if (ur != null && ur.Length == 2)
+                                if (ur != null && ur.Length == 3)
                                 {
                                     pretime =  ur[1];
                                 }
@@ -734,8 +730,10 @@ namespace ZHY.BLL
                             }
                         }
 
-                        finalADs.Add("http://www.twodollarclick.com/gpt.php?v=verify&buttonClicked=" + 
-                            num + "&id=" + id + "&type=" + type + "&pretime=" + pretime + "&" + url_variables);
+                        //最后一步：完成广告任务
+                        finalTwoDollarcCickAdview(proxyAddress, "http://www.twodollarclick.com/gpt.php?v=verify&buttonClicked=" +
+                            num + "&id=" + id + "&type=" + type + "&pretime=" + pretime + "&" + url_variables,
+                           realFullLink, ref adCookie);
                     }
                 }
                 if (requestRs != null)
@@ -750,7 +748,6 @@ namespace ZHY.BLL
                 }
 
             }
-            return finalADs;
         }
 
         #endregion
@@ -761,47 +758,43 @@ namespace ZHY.BLL
         /// </summary>
         /// <param name="finalADs"></param>
         /// <param name="referView"></param>
-        private string finalTwoDollarcCickAdview(string proxyAddress, ref CookieContainer adCookie, List<string> finalADs, List<string> referView)
+        private string finalTwoDollarcCickAdview(string proxyAddress, string urlF, string referView, ref CookieContainer adCookie)
         {
             HttpWebResponse responseRs = null;
             HttpWebRequest requestRs = null;
             int i = 0;
             string resHtml = "";
-            foreach (string urlF in finalADs)
+            try
             {
-                try
+                //等待10秒
+                System.Threading.Thread.Sleep(30000);
+                requestRs = GetHttpWebRequest(urlF, proxyAddress, ref adCookie);
+                requestRs.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
+                requestRs.Host = "www.twodollarclick.com";
+                requestRs.Referer = referView;
+                i++;
+                requestRs.Method = "GET";
+                using (responseRs = (HttpWebResponse)requestRs.GetResponse())
                 {
-                    //等待10秒
-                    System.Threading.Thread.Sleep(10000);
-                    requestRs = GetHttpWebRequest(urlF, proxyAddress, ref adCookie);
-                    requestRs.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8";
-                    requestRs.Host = "www.twodollarclick.com";
-                    requestRs.Referer = referView[i];
-                    i++;
-                    requestRs.Method = "GET";
-                    using (responseRs = (HttpWebResponse)requestRs.GetResponse())
-                    {
-                        resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.UTF8).ReadToEnd();
-
-                    }
+                    resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.UTF8).ReadToEnd();
                 }
-                catch
+            }
+            catch
+            {
+                //do nothing
+            }
+            finally
+            {
+                if (requestRs != null)
                 {
-                    //do nothing
+                    requestRs.Abort();
+                    requestRs = null;
                 }
-                finally
-                {
-                    if (requestRs != null)
-                    {
-                        requestRs.Abort();
-                        requestRs = null;
-                    }
 
-                    if (responseRs != null)
-                    {
-                        responseRs.Close();
-                        responseRs = null;
-                    }
+                if (responseRs != null)
+                {
+                    responseRs.Close();
+                    responseRs = null;
                 }
             }
             return resHtml;

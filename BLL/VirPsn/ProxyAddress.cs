@@ -39,7 +39,7 @@ namespace ZHY.BLL
         }
 
         /// <summary>
-        /// 
+        /// 检查代理地址的有效性
         /// </summary>
         public void CheckProxyAddressConnected() 
         {
@@ -126,6 +126,8 @@ namespace ZHY.BLL
         {
             return dal.Exists(PAName);
         }
+
+
 	}
 }
 

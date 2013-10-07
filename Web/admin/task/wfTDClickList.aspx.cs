@@ -4,13 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Text;
 using ZHY.Web;
+using System.Text;
 using ZHY.Common;
 
 namespace Web.admin.task
 {
-    public partial class wfAdmimsyList : BasePage
+    public partial class wfTDClickList : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -45,7 +45,7 @@ namespace Web.admin.task
         /// </summary>
         protected override void MstGridViewBind()
         {
-            ZHY.BLL.ADmimsy bll = new ZHY.BLL.ADmimsy();
+            ZHY.BLL.TwoDollarcCick bll = new ZHY.BLL.TwoDollarcCick();
             string name = this.txtName.Text;
             this.MstGridView.DataSource = bll.GetList(pageIndex, name, ref pageRecord);
             this.MstGridView.DataBind();
@@ -112,32 +112,32 @@ namespace Web.admin.task
         /// <param name="e"></param>
         protected void btnAutoReg_Click(object sender, EventArgs e)
         {
-            ZHY.BLL.ADmimsy bll = new ZHY.BLL.ADmimsy();
-            ZHY.Model.ADmimsy model = null;
-            string referralName = "yueyi2013";
+            ZHY.BLL.TwoDollarcCick bll = new ZHY.BLL.TwoDollarcCick();
+            ZHY.Model.TwoDollarcCick model = null;
+            string referralName = "jans2013";
             try
             {
                 StringBuilder sbLogin = new StringBuilder();
 
-                if (!string.IsNullOrEmpty(this.txtAdmyUserName.Text))
+                if (!string.IsNullOrEmpty(this.txtTDCUsername.Text))
                 {
-                    referralName = txtAdmyUserName.Text.Trim();
+                    referralName = txtTDCUsername.Text.Trim();
                 }
 
                 sbLogin.AppendFormat(referralName);
-                model = bll.SignUpAdmimsyFromUI(sbLogin.ToString());
+                model = bll.SignUpTwoDollarcCickFromUI(sbLogin.ToString());
                 bll.Update(model);
             }
             catch (Exception ex)
             {
 
-                SelfInform(this.MyUpdatePanelPanelBody, this.GetType(), model != null ? ex.Message : model.AdmyUserName + "|" + ex.Message);
+                SelfInform(this.MyUpdatePanelPanelBody, this.GetType(), model != null ? ex.Message : model.TDCUsername + "|" + ex.Message);
                 return;
             }
             SelfInform(this.MyUpdatePanelPanelBody, this.GetType(), "自动注册成功！-推荐人" + referralName);
-            this.txtAdmyCode.Text = model.AdmyCode;
-            this.txtAdmyUserName.Text = model.AdmyUserName;
-            this.txtAdmyPassword.Text = model.AdmyPassword;
+            this.txtTDCCode.Text = model.TDCCode;
+            this.txtTDCUsername.Text = model.TDCUsername;
+            this.txtTDCPassword.Text = model.TDCPassword;
             this.txtProxyAddress.Text = model.ProxyAddress;
         }
 
@@ -148,7 +148,7 @@ namespace Web.admin.task
         /// <param name="e"></param>
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            int id = ConvertInt32(this.hfAdmyId.Value, 0);
+            int id = ConvertInt32(this.hfTDCId.Value, 0);
             if (id == 0)
             {
                 Add();
@@ -169,7 +169,7 @@ namespace Web.admin.task
         /// <param name="e"></param>
         protected void btnDelete_Click(object sender, EventArgs e)
         {
-            ZHY.BLL.ADmimsy bll = new ZHY.BLL.ADmimsy();
+            ZHY.BLL.TwoDollarcCick bll = new ZHY.BLL.TwoDollarcCick();
             foreach (GridViewRow gvr in MstGridView.Rows)
             {
                 string id = MstGridView.DataKeys[gvr.RowIndex].Value.ToString();
@@ -190,10 +190,10 @@ namespace Web.admin.task
         /// <param name="e"></param>
         protected void btnTask_Click(object sender, EventArgs e)
         {
-            ZHY.BLL.ADmimsy bll = new ZHY.BLL.ADmimsy();
-            ZHY.Model.ADmimsy model = null;
+            ZHY.BLL.TwoDollarcCick bll = new ZHY.BLL.TwoDollarcCick();
+            ZHY.Model.TwoDollarcCick model = null;
             StringBuilder sbError = new StringBuilder();
-            string method = "wfAdTaskList.aspx.cs#btnTask_Click";
+            string method = "wfTDClickList.aspx.cs#btnTask_Click";
             int i = 0;
             System.Net.ServicePointManager.DefaultConnectionLimit = 200;
             foreach (GridViewRow gvr in MstGridView.Rows)
@@ -208,15 +208,14 @@ namespace Web.admin.task
                         if (!HttpProxy.CheckProxyConnected(model.ProxyAddress))
                         {
                             ZHY.BLL.ProxyAddress bllProxy = new ZHY.BLL.ProxyAddress();
-                            string[] con = model.AdmyCountry.Split(new string[]{" "},StringSplitOptions.RemoveEmptyEntries);
-                            IList<ZHY.Model.ProxyAddress> proxyLst = bllProxy.GetModelList(" PACountry like '" + con[0]+"%'");
-                            if (proxyLst == null || proxyLst.Count<1)
+                            IList<ZHY.Model.ProxyAddress> proxyLst = bllProxy.GetModelList(" PACountry like '" +model.TDCCountry + "%'");
+                            if (proxyLst == null || proxyLst.Count < 1)
                             {
                                 model.IsEnableProxy = "N";
                                 bll.Update(model);
                                 return;
                             }
-                            foreach(ZHY.Model.ProxyAddress proAddr in proxyLst)
+                            foreach (ZHY.Model.ProxyAddress proAddr in proxyLst)
                             {
                                 if (HttpProxy.CheckProxyConnected(proAddr.PAName))
                                 {
@@ -225,7 +224,7 @@ namespace Web.admin.task
                                 }
                             }
                         }
-                        bll.ADmimsyViewAdsFromUI(model);
+                        bll.TwoDollarcCickViewAdsFromUI(model);
                         bll.Update(model);
                     }
                 }
@@ -233,12 +232,12 @@ namespace Web.admin.task
                 {
                     if (i == 0)
                     {
-                        sbError.Append(model.AdmyUserName);
+                        sbError.Append(model.TDCUsername);
                     }
                     else
                     {
                         sbError.Append(",");
-                        sbError.Append(model.AdmyUserName);
+                        sbError.Append(model.TDCUsername);
                     }
                     i++;
                     sbError.Append(ex.Message);
@@ -317,15 +316,15 @@ namespace Web.admin.task
         /// </summary>
         private void Add()
         {
-            ZHY.Model.ADmimsy model = new ZHY.Model.ADmimsy();
-            model.AdmyCode = this.txtAdmyCode.Text;
-            model.AdmyUserName = this.txtAdmyUserName.Text;
-            model.AdmyPassword = this.txtAdmyPassword.Text;
+            ZHY.Model.TwoDollarcCick model = new ZHY.Model.TwoDollarcCick();
+            model.TDCCode = this.txtTDCCode.Text;
+            model.TDCUsername = this.txtTDCUsername.Text;
+            model.TDCPassword = this.txtTDCPassword.Text;
             model.ProxyAddress = this.txtProxyAddress.Text;
             ZHY.Model.User user = getLoginUser();
             model.CreateBy = user.UserName;
             model.UpdateBy = user.UserName;
-            ZHY.BLL.ADmimsy bll = new ZHY.BLL.ADmimsy();
+            ZHY.BLL.TwoDollarcCick bll = new ZHY.BLL.TwoDollarcCick();
             bll.Add(model);
         }
 
@@ -335,13 +334,13 @@ namespace Web.admin.task
         /// <param name="LMID"></param>
         private void Modify(int ID)
         {
-            ZHY.BLL.ADmimsy bll = new ZHY.BLL.ADmimsy();
-            ZHY.Model.ADmimsy model = bll.GetModel(ID);
+            ZHY.BLL.TwoDollarcCick bll = new ZHY.BLL.TwoDollarcCick();
+            ZHY.Model.TwoDollarcCick model = bll.GetModel(ID);
             if (model != null)
             {
-                model.AdmyCode = this.txtAdmyCode.Text;
-                model.AdmyUserName = this.txtAdmyUserName.Text;
-                model.AdmyPassword = this.txtAdmyPassword.Text;
+                model.TDCCode = this.txtTDCCode.Text;
+                model.TDCUsername = this.txtTDCUsername.Text;
+                model.TDCPassword = this.txtTDCPassword.Text;
                 model.ProxyAddress = this.txtProxyAddress.Text;
                 ZHY.Model.User user = getLoginUser();
                 model.UpdateBy = user.UserName;
@@ -355,10 +354,10 @@ namespace Web.admin.task
         /// </summary>
         private void InitDataClear()
         {
-            this.hfAdmyId.Value = "0";
-            this.txtAdmyCode.Text = "";
-            this.txtAdmyUserName.Text = "";
-            this.txtAdmyPassword.Text = "";
+            this.hfTDCId.Value = "0";
+            this.txtTDCCode.Text = "";
+            this.txtTDCUsername.Text = "";
+            this.txtTDCPassword.Text = "";
             this.txtProxyAddress.Text = "";
         }
 
@@ -367,12 +366,12 @@ namespace Web.admin.task
         /// </summary>
         private void InitData(int id)
         {
-            ZHY.BLL.ADmimsy bll = new ZHY.BLL.ADmimsy();
-            ZHY.Model.ADmimsy model = bll.GetModel(id);
-            this.hfAdmyId.Value = model.AdmyId.ToString();
-            this.txtAdmyCode.Text = model.AdmyCode;
-            this.txtAdmyUserName.Text = model.AdmyUserName;
-            this.txtAdmyPassword.Text = model.AdmyPassword;
+            ZHY.BLL.TwoDollarcCick bll = new ZHY.BLL.TwoDollarcCick();
+            ZHY.Model.TwoDollarcCick model = bll.GetModel(id);
+            this.hfTDCId.Value = model.TDCId.ToString();
+            this.txtTDCCode.Text = model.TDCCode;
+            this.txtTDCUsername.Text = model.TDCUsername;
+            this.txtTDCPassword.Text = model.TDCPassword;
             this.txtProxyAddress.Text = model.ProxyAddress;
         }
         #endregion

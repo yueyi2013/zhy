@@ -41,12 +41,34 @@ namespace ZHY.BLL
             return dal.GetList(tablename, strGetFields, PageIndex, pageSize, strWhere, strOrder, intOrder, ref CountAll);
         }
 
-
-        public void ExtractPsnInfoFromSite() 
+        /// <summary>
+        /// 生成美国人信息
+        /// </summary>
+        /// <param name="SCAttrName"></param>
+        /// <param name="SCGroup"></param>
+        public void ExtractPsnInfoFromSite(string SCAttrName, string SCGroup)
         {
             try
             {
-                for (int i = 0; i < 10;i++ )
+                ZHY.Model.SystemConfig model = GetSystemConfig(SCAttrName, SCGroup);
+                int size = 0;
+                try
+                {
+                    if (model != null && !string.IsNullOrEmpty(model.SCAttrValue2))
+                    {
+                        size = int.Parse(model.SCAttrValue2);
+                    }
+                    else
+                    {
+                        size = Constants.US_PERSON_INFO_COUNT;
+                    }
+                }
+                catch {
+                    size = Constants.US_PERSON_INFO_COUNT;
+                }
+
+
+                for (int i = 0; i < size; i++)
                 {
                     GetUSPersonInfo();
                 }
@@ -108,7 +130,8 @@ namespace ZHY.BLL
             model.VPMExpirDate = DateTime.Parse(HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "cc_mastercard_expiry_date"));
             model.VPMCVC2 = int.Parse(HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "cc_mastercard_cvc2"));
             model.VPSite = HtmlPaserUtil.ExtractHtmlValueByInputTag(resHtml, "website");
-
+            model.CreateBy = Constants.AUTHOR_NAME;
+            model.UpdateBy = Constants.AUTHOR_NAME;
             this.Add(model);
         }
         #endregion

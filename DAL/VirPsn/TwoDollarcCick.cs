@@ -6,9 +6,9 @@ using Maticsoft.DBUtility;//Please add references
 namespace ZHY.DAL
 {
 	/// <summary>
-	/// 数据访问类:ADmimsy
+	/// 数据访问类:TwoDollarcCick
 	/// </summary>
-	public partial class ADmimsy : BaseDAL
+	public partial class TwoDollarcCick : BaseDAL
 	{
         /// <summary>
         /// 是否存在该记录
@@ -16,10 +16,10 @@ namespace ZHY.DAL
         public bool Exists(string userName)
         {
             StringBuilder strSql = new StringBuilder();
-            strSql.Append("select count(1) from ADmimsy");
-            strSql.Append(" where AdmyUserName=@AdmyUserName");
+            strSql.Append("select count(1) from TwoDollarcCick");
+            strSql.Append(" where TDCUsername=@TDCUsername");
             SqlParameter[] parameters = {
-					new SqlParameter("@AdmyUserName", SqlDbType.VarChar)
+					new SqlParameter("@TDCUsername", SqlDbType.VarChar)
 			};
             parameters[0].Value = userName;
 

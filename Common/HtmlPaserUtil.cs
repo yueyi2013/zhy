@@ -81,6 +81,34 @@ namespace ZHY.Common
             return null;
         }
 
+        public static string ExtractHtmlValueByFrameTag(string htmlSource, string exStr)
+        {
+            try
+            {
+                List<string> list = new List<string>();
+                Parser htmlParser = Parser.CreateParser(htmlSource, "GB2312");
+                NodeFilter filter = new NodeClassFilter(typeof(Winista.Text.HtmlParser.Tags.FrameTag));
+                NodeList nodeList = htmlParser.Parse(filter);
+                for (int i = 0; i < nodeList.Size(); i++)
+                {
+                    Winista.Text.HtmlParser.Tags.FrameTag frmTag = (Winista.Text.HtmlParser.Tags.FrameTag)nodeList.ElementAt(i);
+
+                    string str = frmTag.GetAttribute("name");
+                    if (str.Equals(exStr))
+                    {
+                        return frmTag.GetAttribute("src");
+                    }
+                }
+                return "";
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+        }
+
         public static List<string> ExtractHtmlsourceByTag(string htmlSource, string exStr)
         {
             try
@@ -101,6 +129,49 @@ namespace ZHY.Common
                     }
                 }
                 return list;
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message);
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="htmlSource"></param>
+        /// <param name="exStr"></param>
+        /// <returns></returns>
+        public static string ExtractHtmlsourceBySelectTag(string htmlSource, string exStr)
+        {
+            try
+            {
+                List<string> list = new List<string>();
+                Parser htmlParser = Parser.CreateParser(htmlSource, "GB2312");
+                NodeFilter filter = new NodeClassFilter(typeof(Winista.Text.HtmlParser.Tags.SelectTag));
+                NodeList nodeList = htmlParser.Parse(filter);
+                for (int i = 0; i < nodeList.Size(); i++)
+                {
+                    Winista.Text.HtmlParser.Tags.SelectTag selTag = (Winista.Text.HtmlParser.Tags.SelectTag)nodeList.ElementAt(i);
+
+                    NodeList childNodes=selTag.Children;
+                    string optName = selTag.GetAttribute("name");
+                    if (optName.Equals("form_country"))
+                    {
+                        for (int j = 0; j < childNodes.Size(); j++)
+                        {
+                            Winista.Text.HtmlParser.Tags.OptionTag optTag = (Winista.Text.HtmlParser.Tags.OptionTag)childNodes.ElementAt(j);
+                            
+                            if (optTag.OptionText.Contains(exStr))
+                            {
+                                return optTag.Value;
+                            }
+                        }
+                    }
+                }
+                return "";
             }
             catch (Exception ex)
             {

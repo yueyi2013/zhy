@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Main0.Master" AutoEventWireup="true" CodeBehind="wfSysMailList.aspx.cs" Inherits="Web.admin.sys.wfSysMailList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/admin/Main0.Master" AutoEventWireup="true" CodeBehind="wfTDClickList.aspx.cs" Inherits="Web.admin.task.wfTDClickList" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<fieldset style="width: 800px">
-    <legend>系统邮箱</legend>
+<fieldset style="width: 950px">
+    <legend>TwoDollarcCick</legend>
     <asp:UpdatePanel ID="MyUpdatePanelHead" runat="server" UpdateMode="Conditional">
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="btnSave" EventName="Click" />
@@ -21,10 +21,11 @@
         <tr>
             <td align="left" valign="top">
                 <table cellspacing="0" cellpadding="0" width="100%">
-                    
                     <tr>
                         <td>
-                           <asp:Button ID="btnAdd" runat="server" Text="增加" CssClass="buttonCss" 
+                            <asp:Button ID="btnTask" runat="server" Text="开始任务" CssClass="buttonCss" CausesValidation="false"
+                                OnClick="btnTask_Click" OnClientClick="return ConfirmTask()" />
+                            <asp:Button ID="btnAdd" runat="server" Text="增加" CssClass="buttonCss" 
                                 CausesValidation="false"/>
                             <asp:Button ID="btnModify" runat="server" Text="修改" CssClass="buttonCss" CausesValidation="false"
                                 OnClick="btnModify_Click" Enabled="false" />
@@ -44,10 +45,12 @@
                                     <asp:AsyncPostBackTrigger ControlID="btnDelete" EventName="Click" />
                                     <asp:AsyncPostBackTrigger ControlID="btnSearch" EventName="Click" />
                                     <asp:AsyncPostBackTrigger ControlID="btnClose" EventName="Click" />
+                                    <asp:AsyncPostBackTrigger ControlID="btnAutoReg" EventName="Click" />
+                                    <asp:AsyncPostBackTrigger ControlID="btnTask" EventName="Click" />
                                 </Triggers>
                                 <ContentTemplate>
                                     <asp:GridView ID="MstGridView" runat="server" AutoGenerateColumns="False" Width="98%"
-                                        AllowPaging="false" DataKeyNames="SMId" OnRowCommand="MstGridView_RowCommand"
+                                        AllowPaging="false" DataKeyNames="TDCId" OnRowCommand="MstGridView_RowCommand"
                                         HeaderStyle-HorizontalAlign="Center" HeaderStyle-CssClass="MstGridViewHeaderCss" OnRowDataBound="MstGridView_RowDataBound">
                                         <Columns>
                                             <asp:TemplateField>
@@ -61,38 +64,44 @@
                                                     <asp:CheckBox ID="chkItem" runat="server" onclick="changecolor(this)" />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
-                                            <asp:BoundField DataField="SMHost" HeaderText="邮箱主机">
-                                                <ItemStyle Width="150px" />
+                                            <asp:BoundField DataField="TDCCode" HeaderText="网站编码">
+                                                <ItemStyle Width="80px" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="SMTimeout" HeaderText="超时">
-                                                <ItemStyle Width="150px" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="SMFromAddress" HeaderText="邮箱地址">
-                                                <ItemStyle Width="150px" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="SMOrder" HeaderText="排序">
-                                                <ItemStyle Width="150px" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="SMMailPsw" HeaderText="密码">
+                                            <asp:BoundField DataField="TDCUsername" HeaderText="用户名">
                                                 <ItemStyle Width="100px" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="SMStatus" HeaderText="状态">
-                                                <ItemStyle Width="150px" />
+                                            <asp:BoundField DataField="TDCPassword" HeaderText="密码">
+                                                <ItemStyle Width="80px" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="CreateAt" HeaderText="创建日期">
-                                                <ItemStyle Width="250px" />
+                                            <asp:BoundField DataField="TDCEmail" HeaderText="邮箱">
+                                                <ItemStyle Width="80px" />
                                             </asp:BoundField>
-                                             <asp:BoundField DataField="CreateBy" HeaderText="创建人">
-                                                <ItemStyle Width="150px" />
+                                            <asp:BoundField DataField="TDCCountry" HeaderText="国家">
+                                                <ItemStyle Width="80px" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="ProxyAddress" HeaderText="代理地址">
+                                                <ItemStyle Width="110px" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="IsEnableProxy" HeaderText="启用代理">
+                                                <ItemStyle Width="100px" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="TDCViews" HeaderText="次数">
+                                                <ItemStyle Width="50px" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="TDCReferrals" HeaderText="推荐人">
+                                                <ItemStyle Width="60px" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="TDCIsReferrals" HeaderText="是推荐人">
+                                                <ItemStyle Width="100px" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="Status" HeaderText="状态">
+                                                <ItemStyle Width="50px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="UpdateDT" HeaderText="更新日期">
-                                                <ItemStyle Width="250px" />
-                                            </asp:BoundField>
-                                             <asp:BoundField DataField="UpdateBy" HeaderText="更新人">
-                                                <ItemStyle Width="150px" />
+                                                <ItemStyle Width="160px" />
                                             </asp:BoundField>
                                         </Columns>
-                                    </asp:GridView>                                    
+                                    </asp:GridView>                                   
                                     当前页索引：<asp:Label ID="lblPageIndex0" runat="server" ForeColor="Red"></asp:Label>/
                                     总页数：<asp:Label ID="lblPageAll0" runat="server" ForeColor="Red"></asp:Label>
                                     &nbsp;&nbsp;&nbsp;&nbsp; 每页:
@@ -109,7 +118,7 @@
                                     <asp:TextBox ID="txtPageIndex0" runat="server" Width="40px" Text="1"></asp:TextBox>页
                                     <asp:Button ID="btnGo0" runat="server" Text="GO" CssClass="buttonCss" CausesValidation="false"
                                         OnClick="Button_Click" />
-                                    <asp:CustomValidator ID="cvGo" runat="server" ClientValidationFunction=""
+                                    <asp:CustomValidator ID="cvGo" runat="server" ClientValidationFunction="validateNumber"
                                         ControlToValidate="txtPageIndex0" Display="none" ValidateEmptyText="true" ErrorMessage="<font size='2'>请填写大于0的数字！</font>">
                                     </asp:CustomValidator>
                                     <ajaxToolkit:ValidatorCalloutExtender ID="vceGo" runat="server" TargetControlID="cvGo"
@@ -124,7 +133,7 @@
         </tr>
     </table>
     <%--新增弹出框--%>
-    <asp:Panel ID="PanelBody" runat="server" Style="width: 350px; display: none;" CssClass="modalPopup">
+    <asp:Panel ID="PanelBody" runat="server" Style="width: 300px; display: none;" CssClass="modalPopup">
         <asp:UpdatePanel ID="MyUpdatePanelPanelDrag" runat="server" UpdateMode="Conditional">
             <ContentTemplate>
                 <asp:Panel ID="PanelDrag" runat="server" CssClass="modalDragPopup">
@@ -138,57 +147,69 @@
                 <asp:AsyncPostBackTrigger ControlID="btnClose" EventName="Click" />
                 <asp:AsyncPostBackTrigger ControlID="btnModify" EventName="Click" />
                 <asp:AsyncPostBackTrigger ControlID="MstGridView" EventName="RowCommand" />
+                <asp:AsyncPostBackTrigger ControlID="btnAutoReg" EventName="Click" />
             </Triggers>
             <ContentTemplate>
                 <table cellspacing="0" cellpadding="0" width="100%" border="0">
-                    <tr>
+                <tr>
                         <td height="25" width="30%" align="right">
-                            邮箱主机：
+                            网站编码：
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox ID="txtSMHost" runat="server" Width="200px"></asp:TextBox>
+                            <asp:TextBox id="txtTDCCode" runat="server" Width="200px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td height="25" width="30%" align="right">
-                            超时：
+                            用户名： <asp:HiddenField ID="hfTDCId" runat="server" Value="0"/>
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox ID="txtSMTimeout" runat="server" Width="200px"></asp:TextBox>
+                           <asp:TextBox id="txtTDCUsername" runat="server" Width="200px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td height="25" width="30%" align="right">
-                            邮箱地址：
+                            密码：
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox ID="txtSMFromAddress" runat="server" Width="200px"></asp:TextBox>
+                            <asp:TextBox id="txtTDCPassword" runat="server" Width="200px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td height="25" width="30%" align="right">
-                            邮箱密码：
+                            代理地址：
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox ID="txtSMMailPsw" runat="server" Width="200px"></asp:TextBox>
+                            <asp:TextBox id="txtProxyAddress" runat="server" Width="200px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td height="25" width="30%" align="right">
-                            排序：
+                            国家：
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:TextBox ID="txtSMOrder" runat="server" Width="200px"></asp:TextBox>
+                            <asp:TextBox id="txtTDCCountry" runat="server" Width="200px"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td height="25" width="30%" align="right">
-                            状态：<asp:HiddenField ID="hfSMId" runat="server" Value="0" />
+                            启用代理：
                         </td>
                         <td height="25" width="*" align="left">
-                            <asp:RadioButtonList ID="rbStatus" runat="server" RepeatDirection="Horizontal">
-                                <asp:ListItem Value="A" Text="生效" Selected="True"></asp:ListItem>
-                                <asp:ListItem Value="I" Text="不生效"></asp:ListItem>
+                            <asp:RadioButtonList ID="rblIsEnableProxy" runat="server" RepeatDirection="Horizontal">
+                                <asp:ListItem Text="启用" Value="Y" Selected="True"></asp:ListItem>
+                                <asp:ListItem Text="不启用" Value="N"></asp:ListItem>
+                            </asp:RadioButtonList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="25" width="30%" align="right">
+                            状态：
+                        </td>
+                        <td height="25" width="*" align="left">
+                            <asp:RadioButtonList ID="rblStatus" runat="server" RepeatDirection="Horizontal">
+                                <asp:ListItem Text="有效" Value="A" Selected="True"></asp:ListItem>
+                                <asp:ListItem Text="失效" Value="I"></asp:ListItem>
                             </asp:RadioButtonList>
                         </td>
                     </tr>
@@ -196,11 +217,14 @@
             </ContentTemplate>
         </asp:UpdatePanel>
         <div style="text-align: right;">
+            <asp:Button ID="btnAutoReg" runat="server" Text="自动注册" Width="65px" OnClick="btnAutoReg_Click"
+                CssClass="buttonCss"/>
+            &nbsp;&nbsp;
             <asp:Button ID="btnSave" runat="server" Text="保存" Width="65px" OnClick="btnSave_Click"
                 CssClass="buttonCss" OnClientClick="javascript:ClearZero()" />
             &nbsp;&nbsp;
             <asp:Button ID="btnClose" runat="server" Text="关闭" Width="65px" OnClick="btnClose_Click"
-                CssClass="buttonCss" CausesValidation="false" />&nbsp;&nbsp;
+                CssClass="buttonCss" CausesValidation="false"/>&nbsp;&nbsp;
         </div>
     </asp:Panel>
     </fieldset>

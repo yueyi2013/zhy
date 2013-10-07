@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using ZHY.Mail;
 using ZHY.Common;
+using System.Net;
 
 namespace ZHY.BLL
 {
@@ -96,6 +97,61 @@ namespace ZHY.BLL
                 return true;
             }
             return false;
+        }
+
+        /// <summary>
+        /// 得到有效的代理地址
+        /// </summary>
+        /// <returns></returns>
+        public ZHY.Model.ProxyAddress GetValidProxyAddress(int count)
+        {
+            ZHY.BLL.ProxyAddress bll = new ZHY.BLL.ProxyAddress();
+
+            List<ZHY.Model.ProxyAddress> list = bll.DataTableToList(bll.GetList(count, "", " newid() ").Tables[0]);
+
+            foreach (ZHY.Model.ProxyAddress model in list)
+            {
+                if (HttpProxy.CheckProxyConnected(model.PAName))
+                {
+                    return model;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// 得到httpwebrequest 对象
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="proxy"></param>
+        /// <param name="adCookie"></param>
+        /// <returns></returns>
+        public HttpWebRequest GetHttpWebRequest(string url, string proxy, ref CookieContainer adCookie)
+        {
+            System.GC.Collect();
+            HttpWebRequest requestRs = (HttpWebRequest)WebRequest.Create(url);
+            requestRs.AllowWriteStreamBuffering = true;
+            WebHeaderCollection whc = requestRs.Headers;
+            if (!string.IsNullOrEmpty(proxy))
+            {
+                WebProxy wbPrx = new WebProxy(proxy);
+                requestRs.Proxy = wbPrx;
+            }
+            else
+            {
+                requestRs.Proxy = null;
+            }
+            // whc.Add("Accept-Charset:GBK,utf-8;q=0.7,*;q=0.3");
+            //whc.Add("Accept-Encoding:gzip,deflate,sdch");
+            // whc.Add("Accept-Language:en;q=0.8");
+            requestRs.UserAgent = "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31";
+            requestRs.KeepAlive = false;
+            requestRs.ProtocolVersion = HttpVersion.Version11;
+            requestRs.Timeout = 30 * 60 * 1000;
+            requestRs.ReadWriteTimeout = 30 * 60 * 1000;
+            requestRs.CookieContainer = adCookie;
+            return requestRs;
         }
     }
 }

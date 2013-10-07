@@ -727,5 +727,12 @@ namespace ToolUtils
             bll.ExtractProxyAddress();
         }
 
+        private void btnCnty_Click(object sender, EventArgs e)
+        {
+            CookieContainer cookie = new CookieContainer();
+            string resHtml = HttpProxy.GetResponseData("http://www.twodollarclick.com/index.php?view=join&", "", ref cookie);
+            HtmlPaserUtil.ExtractHtmlsourceBySelectTag(resHtml, "form_country");
+        }
+
     }
 }

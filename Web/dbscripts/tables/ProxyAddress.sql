@@ -14,7 +14,7 @@ CREATE TABLE [dbo].[ProxyAddress](
 	[PAName] [varchar](32) NULL,
 	[PAType] [varchar](8) NULL,
 	[PAAnonymity] [varchar](8) NULL,
-	[PACountry] [varchar](16) NULL,
+	[PACountry] [varchar](32) NULL,
 	[CreateAt] [datetime] NULL,
 	[CreateBy] [varchar](64) NULL,
 	[UpdateDT] [datetime] NULL,

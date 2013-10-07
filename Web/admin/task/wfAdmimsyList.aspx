@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <fieldset style="width: 950px">
-    <legend>任务管理</legend>
+    <legend>ADmimsy</legend>
     <asp:UpdatePanel ID="MyUpdatePanelHead" runat="server" UpdateMode="Conditional">
         <Triggers>
             <asp:AsyncPostBackTrigger ControlID="btnSave" EventName="Click" />
@@ -79,15 +79,6 @@
                                             <asp:BoundField DataField="AdmyCountry" HeaderText="国家">
                                                 <ItemStyle Width="80px" />
                                             </asp:BoundField>
-                                            <asp:BoundField DataField="AdmyBirthday" HeaderText="生日">
-                                                <ItemStyle Width="80px" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="AdmyGender" HeaderText="性别">
-                                                <ItemStyle Width="80px" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="AdmyPayment" HeaderText="Paypal">
-                                                <ItemStyle Width="80px" />
-                                            </asp:BoundField>
                                             <asp:BoundField DataField="ProxyAddress" HeaderText="代理地址">
                                                 <ItemStyle Width="110px" />
                                             </asp:BoundField>
@@ -95,25 +86,19 @@
                                                 <ItemStyle Width="100px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="AdmyViews" HeaderText="次数">
-                                                <ItemStyle Width="100px" />
+                                                <ItemStyle Width="50px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="AdmyReferrals" HeaderText="推荐人">
+                                                <ItemStyle Width="60px" />
+                                            </asp:BoundField>
+                                            <asp:BoundField DataField="AdmyIsReferrals" HeaderText="是推荐人">
                                                 <ItemStyle Width="100px" />
                                             </asp:BoundField>
                                             <asp:BoundField DataField="AdmyStatus" HeaderText="状态">
-                                                <ItemStyle Width="100px" />
-                                            </asp:BoundField>
-                                            <asp:BoundField DataField="CreateAt" HeaderText="创建日期">
-                                                <ItemStyle Width="160px" />
-                                            </asp:BoundField>
-                                             <asp:BoundField DataField="CreateBy" HeaderText="创建人">
-                                                <ItemStyle Width="80px" />
+                                                <ItemStyle Width="50px" />
                                             </asp:BoundField>
                                              <asp:BoundField DataField="UpdateDT" HeaderText="更新日期">
                                                 <ItemStyle Width="160px" />
-                                            </asp:BoundField>
-                                             <asp:BoundField DataField="UpdateBy" HeaderText="更新人">
-                                                <ItemStyle Width="80px" />
                                             </asp:BoundField>
                                         </Columns>
                                     </asp:GridView>                                   

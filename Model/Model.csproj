@@ -139,6 +139,7 @@
     <Compile Include="AutoCode\SysManage\SystemMail.cs" />
     <Compile Include="AutoCode\VirPsn\ADmimsy.cs" />
     <Compile Include="AutoCode\VirPsn\ProxyAddress.cs" />
+    <Compile Include="AutoCode\VirPsn\TwoDollarcCick.cs" />
     <Compile Include="AutoCode\VirPsn\VirtualPersonInfo.cs" />
     <Compile Include="AutoCode\VirPsn\VirtualSite.cs" />
     <Compile Include="AutoCode\VirPsn\VirtualTask.cs" />

@@ -23,7 +23,6 @@ namespace ZHY.Common
         public static string SYSTEM_CONFIG_ATT_NAME_NEWS_PURGE_DAYS = "PURGE_DAYS";
         public static string SYSTEM_CONFIG_ATT_NAME_NEWS_INDEX_TOPS = "INDEX_TOPS";
 
-
         public static string DEFAULT_SITE_USER_PASSWORD = "syihy001";
         public static int DEFAULT_NEWS_INDEX_TOPS = 20;
         public static int DEFAULT_PURGE_NEWS_DAYS = -7;
@@ -31,5 +30,9 @@ namespace ZHY.Common
         public static int SITE_INDEX_TOP_NEWS_WORDS = 630;
         //网站首页新闻列表标题字数
         public static int SITE_INDEX_NEWS_LIST_TITLE_WORDS = 18;
+        //每次job运行生成的美国人信息人数
+        public static int US_PERSON_INFO_COUNT = 10;
+        //每次job运行默认查看广告的次数
+        public static int DEFAULT_ADMIMSY_VIEW_ADS_COUNT = 3;
     }
 }

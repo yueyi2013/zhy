@@ -31,7 +31,7 @@ namespace AutoTask.usinfo
             {
                 if (bll.CheckJobIsEnabled(JobConstants.GENERATE_US_PERSON_INFO_JOB, JobConstants.AUTO_TASK_JOB_GROUP))
                 {
-                    bll.ExtractPsnInfoFromSite();
+                    bll.ExtractPsnInfoFromSite(JobConstants.GENERATE_US_PERSON_INFO_JOB, JobConstants.AUTO_TASK_JOB_GROUP);
                 }else{
                     //do nothing   
                 }

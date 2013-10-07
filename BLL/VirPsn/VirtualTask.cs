@@ -125,7 +125,7 @@ namespace ZHY.BLL
                 resHtml = HttpProxy.GetResponseData(createURL, list[0].PAName, ref adCookie);
 
                 StringBuilder sb = new StringBuilder();
-                string userName = psnInfo.VPNickName + psnInfo.VPFirstName;
+                string userName = (psnInfo.VPNickName + psnInfo.VPFirstName).ToLower();
                 if (this.Exists(userName))
                 {
                     return null;
@@ -157,6 +157,7 @@ namespace ZHY.BLL
                 //提交类型
                 requestRs.ContentType = "application/x-www-form-urlencoded";
                 requestRs.ContentLength = data.Length;
+                requestRs.AllowAutoRedirect = true;
                 Stream newStream = requestRs.GetRequestStream();
                 // Send the data.
                 newStream.Write(data, 0, data.Length);
@@ -164,7 +165,7 @@ namespace ZHY.BLL
                 using (responseRs = (HttpWebResponse)requestRs.GetResponse())
                 {
                     resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.Default).ReadToEnd();
-                    redURL = responseRs.ResponseUri.AbsolutePath;
+                    redURL = responseRs.ResponseUri.AbsoluteUri;
                     if (requestRs != null)
                     {
                         requestRs.Abort();

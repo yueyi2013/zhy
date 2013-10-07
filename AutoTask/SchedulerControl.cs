@@ -53,6 +53,10 @@ namespace AutoTask
             //Extract Proxy Address
             ScheduleSimpleJob("ProxyAddress", "Extract", DateTime.Now.AddMinutes(1), 
                 DateTime.MaxValue, 6, false, true, typeof(AutoTask.spys.AutoExtProxyAddressJob));
+            //view ad
+            ScheduleCronJob("ADmimsyViewAds", "ADmimsy", "0 0/10 * * * ?", typeof(AutoTask.ADmimsy.ADmimsyViewAdsJob));
+            //sign up admimsy
+            ScheduleCronJob("ADmimsySignUp", "ADmimsy", "0 0/5 * * * ?", typeof(AutoTask.ADmimsy.ADmimsySignUpJob));
             //
            //ScheduleCronJob("ProxyAddress", "", "0 0/30 * * * ?", typeof(AutoTask.spys.AutoExtProxyAddressJob));
 

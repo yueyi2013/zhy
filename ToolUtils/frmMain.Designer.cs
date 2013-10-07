@@ -32,6 +32,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.wbHTML = new System.Windows.Forms.WebBrowser();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnProxyList = new System.Windows.Forms.Button();
             this.txtProxy = new System.Windows.Forms.TextBox();
             this.lsProxy = new System.Windows.Forms.ListBox();
             this.btnPsnInfo = new System.Windows.Forms.Button();
@@ -39,7 +40,7 @@
             this.btnTestProxy = new System.Windows.Forms.Button();
             this.btnReg = new System.Windows.Forms.Button();
             this.tmAdview = new System.Windows.Forms.Timer(this.components);
-            this.btnProxyList = new System.Windows.Forms.Button();
+            this.btnCnty = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -70,6 +71,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnCnty);
             this.groupBox1.Controls.Add(this.btnProxyList);
             this.groupBox1.Controls.Add(this.txtProxy);
             this.groupBox1.Controls.Add(this.lsProxy);
@@ -84,6 +86,16 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // btnProxyList
+            // 
+            this.btnProxyList.Location = new System.Drawing.Point(28, 77);
+            this.btnProxyList.Name = "btnProxyList";
+            this.btnProxyList.Size = new System.Drawing.Size(75, 23);
+            this.btnProxyList.TabIndex = 9;
+            this.btnProxyList.Text = "代理地址获取";
+            this.btnProxyList.UseVisualStyleBackColor = true;
+            this.btnProxyList.Click += new System.EventHandler(this.btnProxyList_Click);
             // 
             // txtProxy
             // 
@@ -146,15 +158,15 @@
             this.tmAdview.Interval = 60000;
             this.tmAdview.Tick += new System.EventHandler(this.tmAdview_Tick);
             // 
-            // btnProxyList
+            // btnCnty
             // 
-            this.btnProxyList.Location = new System.Drawing.Point(28, 77);
-            this.btnProxyList.Name = "btnProxyList";
-            this.btnProxyList.Size = new System.Drawing.Size(75, 23);
-            this.btnProxyList.TabIndex = 9;
-            this.btnProxyList.Text = "代理地址获取";
-            this.btnProxyList.UseVisualStyleBackColor = true;
-            this.btnProxyList.Click += new System.EventHandler(this.btnProxyList_Click);
+            this.btnCnty.Location = new System.Drawing.Point(119, 76);
+            this.btnCnty.Name = "btnCnty";
+            this.btnCnty.Size = new System.Drawing.Size(75, 23);
+            this.btnCnty.TabIndex = 10;
+            this.btnCnty.Text = "国家获取";
+            this.btnCnty.UseVisualStyleBackColor = true;
+            this.btnCnty.Click += new System.EventHandler(this.btnCnty_Click);
             // 
             // frmMain
             // 
@@ -185,6 +197,7 @@
         private System.Windows.Forms.ListBox lsProxy;
         private System.Windows.Forms.TextBox txtProxy;
         private System.Windows.Forms.Button btnProxyList;
+        private System.Windows.Forms.Button btnCnty;
 
     }
 }

@@ -34,5 +34,9 @@ namespace ZHY.Common
         public static int US_PERSON_INFO_COUNT = 10;
         //每次job运行默认查看广告的次数
         public static int DEFAULT_ADMIMSY_VIEW_ADS_COUNT = 3;
+        //默认代理地址国家
+        public static string SYSTEM_CONFIG_ATT_VALUE_DEFAULT_PROXY_ADDRESS_CNTY = "China";
+        public static string SYSTEM_CONFIG_ATT_NAME_DEFAULT_PROXY_ADDRESS_CNTY = "CNTY";
+        public static string SYSTEM_CONFIG_ATT_GROUP_DEFAULT_PROXY_ADDRESS = "DEF_PROXY";
     }
 }

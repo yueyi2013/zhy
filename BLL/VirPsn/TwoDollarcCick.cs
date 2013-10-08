@@ -274,7 +274,17 @@ namespace ZHY.BLL
 
                 if (proxyAddr == null)
                 {
-                    throw new Exception(method + "--" + "没有找到有效的代理地址。");
+                    proxyAddr = new Model.ProxyAddress();
+
+                    ZHY.Model.SystemConfig cofCnty = this.GetSystemConfig(Constants.SYSTEM_CONFIG_ATT_NAME_DEFAULT_PROXY_ADDRESS_CNTY, Constants.SYSTEM_CONFIG_ATT_GROUP_DEFAULT_PROXY_ADDRESS);
+                    if (cofCnty == null || string.IsNullOrEmpty(cofCnty.SCAttrValue))
+                    {
+                        proxyAddr.PACountry = Constants.SYSTEM_CONFIG_ATT_VALUE_DEFAULT_PROXY_ADDRESS_CNTY;
+                    }
+                    else
+                    {
+                        proxyAddr.PACountry = cofCnty.SCAttrValue;
+                    }
                 }
 
                 //第三步： 定位到注册页面

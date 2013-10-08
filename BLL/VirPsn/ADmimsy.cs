@@ -255,7 +255,17 @@ namespace ZHY.BLL
 
                 if (proxyAddr==null)
                 {
-                    throw new Exception(method + "--" + "没有找有效的代理地址。");
+                    proxyAddr = new Model.ProxyAddress();
+                    
+                    ZHY.Model.SystemConfig cofCnty = this.GetSystemConfig(Constants.SYSTEM_CONFIG_ATT_NAME_DEFAULT_PROXY_ADDRESS_CNTY, Constants.SYSTEM_CONFIG_ATT_GROUP_DEFAULT_PROXY_ADDRESS);
+                    if (cofCnty == null || string.IsNullOrEmpty(cofCnty.SCAttrValue))
+                    {
+                        proxyAddr.PACountry = Constants.SYSTEM_CONFIG_ATT_VALUE_DEFAULT_PROXY_ADDRESS_CNTY;
+                    }
+                    else {
+
+                        proxyAddr.PACountry = cofCnty.SCAttrValue;
+                    }
                 }
 
                 //第三步： 定位到注册页面
@@ -281,13 +291,7 @@ namespace ZHY.BLL
 
                 //第六步： 得到真实的广告地址
                 step++;
-                List<string> referView = new List<string>();
-                List<string> finalADs = GetRealAdmimsyADs(model.ProxyAddress, ref adCookie, lstADs, referView);
-                System.Threading.Thread.Sleep(5000);
-                
-                //最后一步：完成广告任务
-                step++;
-                resHtml = finalAdview(model.ProxyAddress, ref adCookie, finalADs, referView);
+                GetRealAdmimsyADs(model.ProxyAddress, ref adCookie, lstADs);
 
                 model.AdmyViews = (model.AdmyViews == null || model.AdmyViews == 0) ? 1 : model.AdmyViews + 1;
                 model.UpdateDT = DateTime.Now.AddHours(1);
@@ -342,10 +346,9 @@ namespace ZHY.BLL
         /// </summary>
         /// <param name="lstADs"></param>
         /// <returns></returns>
-        private List<string> GetRealAdmimsyADs(string proxyAddress, ref CookieContainer adCookie, List<string> lstADs, List<string> referView)
+        private void GetRealAdmimsyADs(string proxyAddress, ref CookieContainer adCookie, List<string> lstADs)
         {
             HttpWebResponse responseRs = null;
-            List<string> finalADs = new List<string>();
             foreach (string ad in lstADs)
             {
                 string urlAd = "http://www.admimsy.com/" + ad.Replace("ADViewer.cfm", "TopViewAd.cfm");
@@ -354,7 +357,6 @@ namespace ZHY.BLL
                 requestRs.Host = "www.admimsy.com";
                 requestRs.Method = "GET";
                 requestRs.Referer = "http://www.admimsy.com/ViewAds.cfm";
-                referView.Add(urlAd);
                 using (WebResponse response = requestRs.GetResponse())
                 {
                     using (TextReader reader = new StreamReader(response.GetResponseStream()))
@@ -368,7 +370,8 @@ namespace ZHY.BLL
                                 if (ur != null && ur.Length == 2)
                                 {
                                     string urlC = "http://www.admimsy.com/" + ur[1];
-                                    finalADs.Add(urlC);
+                                    //最后一步：完成广告任务
+                                    finalAdview(proxyAddress, ref adCookie, urlC, urlAd);
                                 }
                             }
                         }
@@ -386,59 +389,54 @@ namespace ZHY.BLL
                 }
 
             }
-            return finalADs;
         }
 
+        #region 开始完成广告任务
         /// <summary>
         /// 开始完成广告任务
         /// </summary>
         /// <param name="finalADs"></param>
         /// <param name="referView"></param>
-        private string finalAdview(string proxyAddress, ref CookieContainer adCookie, List<string> finalADs, List<string> referView)
+        private string finalAdview(string proxyAddress, ref CookieContainer adCookie, string urlF, string referView)
         {
             HttpWebResponse responseRs = null;
             HttpWebRequest requestRs = null;
-            int i = 0;
             string resHtml = "";
-            foreach (string urlF in finalADs)
+            try
             {
-                try
+                //等待10秒
+                System.Threading.Thread.Sleep(30000);
+                requestRs = GetHttpWebRequest(urlF, proxyAddress, ref adCookie);
+                requestRs.Accept = "*/*";
+                requestRs.Host = "www.admimsy.com";
+                requestRs.Referer = referView;
+                requestRs.Method = "GET";
+                using (responseRs = (HttpWebResponse)requestRs.GetResponse())
                 {
-                    //等待10秒
-                    System.Threading.Thread.Sleep(10000);
-                    requestRs = GetHttpWebRequest(urlF, proxyAddress, ref adCookie);
-                    requestRs.Accept = "*/*";
-                    requestRs.Host = "www.admimsy.com";
-                    requestRs.Referer = referView[i];
-                    i++;
-                    requestRs.Method = "GET";
-                    using (responseRs = (HttpWebResponse)requestRs.GetResponse())
-                    {
-                        resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.UTF8).ReadToEnd();
-
-                    }
+                    resHtml = new StreamReader(responseRs.GetResponseStream(), Encoding.UTF8).ReadToEnd();
                 }
-                catch
+            }
+            catch
+            {
+                //do nothing
+            }
+            finally
+            {
+                if (requestRs != null)
                 {
-                    //do nothing
+                    requestRs.Abort();
+                    requestRs = null;
                 }
-                finally
-                {
-                    if (requestRs != null)
-                    {
-                        requestRs.Abort();
-                        requestRs = null;
-                    }
 
-                    if (responseRs != null)
-                    {
-                        responseRs.Close();
-                        responseRs = null;
-                    }
+                if (responseRs != null)
+                {
+                    responseRs.Close();
+                    responseRs = null;
                 }
             }
             return resHtml;
         }
+        #endregion
 
         /// <summary>
         /// 
@@ -561,15 +559,9 @@ namespace ZHY.BLL
                 {
                     return; //当前无广告
                 }
-                List<string> referView = new List<string>();
                 //第五步得到真实的广告地址
                 step++;
-                List<string> finalADs = GetRealAdmimsyADs(model.ProxyAddress, ref adCookie, lstADs, referView);
-                System.Threading.Thread.Sleep(5000);
-                
-                //第六步最后一步：看广告
-                step++;
-                resHtml = finalAdview(model.ProxyAddress, ref adCookie, finalADs, referView);
+                GetRealAdmimsyADs(model.ProxyAddress, ref adCookie, lstADs);
 
                 model.AdmyViews = (model.AdmyViews == null || model.AdmyViews == 0) ? 1 : model.AdmyViews + 1;
                 model.UpdateDT = DateTime.Now.AddHours(1);

@@ -70,6 +70,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestVCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestVCode.designer.cs">
+      <DependentUpon>TestVCode.cs</DependentUpon>
+    </Compile>
     <Compile Include="ValidateCode.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
@@ -84,6 +90,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TestVCode.resx">
+      <DependentUpon>TestVCode.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

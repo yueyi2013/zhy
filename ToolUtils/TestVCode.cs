@@ -13,6 +13,7 @@ using System.Net.Security;
 using System.Net.Cache;
 using System.Threading;
 using ZHY.Common;
+using GetCodes;
 
 namespace ToolUtils
 {
@@ -107,23 +108,38 @@ namespace ToolUtils
 
         private void getvcode()
         {
-            SetTdCtl(btn_getvcode, "获取中...", false, null);
+            //SetTdCtl(btn_getvcode, "获取中...", false, null);
             CookieContainer cookie = new CookieContainer();
             string err;
-            Stream stream = GetStream("http://paidtoclick.ca/router.php?rid=9345", "", 10000, Encoding.UTF8, ref cookie, null, out err);
+            Stream stream = GetStream("https://www.paidtoclick.ca/router.php?rid=10851", "", 10000, Encoding.UTF8, ref cookie, null, out err);
             try
             {
-                Bitmap bmp = (Bitmap)Image.FromStream(stream);
-                SetTdCtl(linklab_result, VCode.GetVCode(bmp, 4), true, null);
-                SetTdCtl(pic_code, null, true, new Bitmap(bmp));
+                StringBuilder sbCde = new StringBuilder();
+                Bitmap bitmap = (Bitmap)Image.FromStream(stream);
+                UnCodebase ud = new UnCodebase(bitmap);
+                bitmap = ud.GrayByPixels();
+                ud.ClearNoise(128, 2);
+
+                pic_code.Image = bitmap;
+
+                tessnet2.Tesseract ocr = new tessnet2.Tesseract();
+                ocr.SetVariable("tessedit_char_whitelist", "0123456789"); // If digit only
+                ocr.Init(@"G:\Code\MIS\syihy\ToolUtils\lib\tessdata", "eng", false); // To use correct tessdata
+                List<tessnet2.Word> result = ocr.DoOCR(bitmap, Rectangle.Empty);
+                foreach (tessnet2.Word word in result)
+                    sbCde.AppendFormat("{0} : {1}", word.Confidence, word.Text);
+
+
+                MessageBox.Show(sbCde.ToString());
+
             }
-            catch { SetTdCtl(linklab_result, "错误", true, null); }
-            SetTdCtl(btn_getvcode, "刷新", true, null);
+            catch {  }
         }
 
         private void btn_getvcode_Click(object sender, EventArgs e)
         {
-            new Thread(getvcode).Start();
+           //new Thread(getvcode).Start();
+            getvcode();
         }
     }
 }

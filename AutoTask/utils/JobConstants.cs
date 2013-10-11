@@ -19,6 +19,8 @@ namespace AutoTask.utils
         public static string SPYS_EXTRACT_PROXY_ADDRESS_JOB = "EXT_PROXY";
         public static string AD_MIMSY_VIEW_ADS_TWO_JOB = "VIEW_ADS2";
         public static string AD_MIMSY_SIGN_UP_TWO_JOB = "MIMSY_REG2";
+        public static string TWO_DOLLAR_CLICK_VIEW_ADS_JOB = "TDC_VIEW";
+        public static string TWO_DOLLAR_CLICK_SIGN_UP_JOB = "TDC_SU";
         public static string AUTO_TASK_JOB_GROUP = "TASK_JOB";
     }
 }

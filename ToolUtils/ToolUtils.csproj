@@ -60,6 +60,10 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="tessnet2_32, Version=2.0.4.0, Culture=neutral, PublicKeyToken=1550524b5ba07e29, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\tessnet2_32.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="frmMain.cs">
@@ -76,6 +80,7 @@
     <Compile Include="TestVCode.designer.cs">
       <DependentUpon>TestVCode.cs</DependentUpon>
     </Compile>
+    <Compile Include="UnCodebase.cs" />
     <Compile Include="ValidateCode.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

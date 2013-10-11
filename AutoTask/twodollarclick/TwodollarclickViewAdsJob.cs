@@ -7,7 +7,7 @@ using Quartz;
 using Common.Logging;
 using ZHY.Common;
 using AutoTask.utils;
-namespace AutoTask
+namespace AutoTask.Twodollarclick
 {
     public class TwodollarclickViewAdsJob:IJob
     {
@@ -31,7 +31,7 @@ namespace AutoTask
             {
                 if (bll.CheckJobIsEnabled(JobConstants.AD_MIMSY_VIEW_ADS_TWO_JOB, JobConstants.AUTO_TASK_JOB_GROUP))
                 {
-                    
+                    bll.TwoDollarcCickViewAdsFromJob(JobConstants.AD_MIMSY_VIEW_ADS_TWO_JOB, JobConstants.AUTO_TASK_JOB_GROUP);
                 }
                 else
                 {

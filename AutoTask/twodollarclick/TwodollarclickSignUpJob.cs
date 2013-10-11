@@ -7,7 +7,7 @@ using Quartz;
 using Common.Logging;
 using ZHY.Common;
 using AutoTask.utils;
-namespace AutoTask
+namespace AutoTask.Twodollarclick
 {
     public class TwodollarclickSignUpJob:IJob
     {

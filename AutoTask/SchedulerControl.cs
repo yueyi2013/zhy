@@ -58,6 +58,11 @@ namespace AutoTask
             //sign up admimsy
             ScheduleCronJob("ADmimsySignUp", "ADmimsy", "0 0/5 * * * ?", typeof(AutoTask.ADmimsy.ADmimsySignUpJob));
             //
+            //view ad
+            ScheduleCronJob("TwodollarclickViewAds", "Twodollarclick", "0 0/10 * * * ?", typeof(AutoTask.Twodollarclick.TwodollarclickViewAdsJob));
+            //sign up Twodollarclick
+            ScheduleCronJob("TwodollarclickSignUp", "Twodollarclick", "0 0/5 * * * ?", typeof(AutoTask.Twodollarclick.TwodollarclickSignUpJob));
+            //
            //ScheduleCronJob("ProxyAddress", "", "0 0/30 * * * ?", typeof(AutoTask.spys.AutoExtProxyAddressJob));
 
             sched.Start();

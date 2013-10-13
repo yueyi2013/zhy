@@ -123,6 +123,7 @@
     <Content Include="admin\task\wfProxyAddrList.aspx" />
     <Content Include="admin\task\wfTDClickList.aspx" />
     <Content Include="admin\task\wfVirPsnInfoList.aspx" />
+    <Content Include="admin\vcode\wfVCodeList.aspx" />
     <Content Include="ads.aspx" />
     <Content Include="aspnet_client\FreeTextBox\FTB-FreeTextBox.js" />
     <Content Include="aspnet_client\FreeTextBox\FTB-ImageGallery.js" />
@@ -1170,6 +1171,22 @@
     <None Include="template\login_admin_green\web\images\Thumbs.db" />
     <None Include="template\login_admin_green\web\tab\images\Thumbs.db" />
     <Content Include="Web.sitemap" />
+    <None Include="tessdata\2.0\eng\eng.DangAmbigs" />
+    <None Include="tessdata\2.0\eng\eng.freq-dawg" />
+    <None Include="tessdata\2.0\eng\eng.inttemp" />
+    <None Include="tessdata\2.0\eng\eng.normproto" />
+    <None Include="tessdata\2.0\eng\eng.pffmtable" />
+    <None Include="tessdata\2.0\eng\eng.unicharset" />
+    <None Include="tessdata\2.0\eng\eng.user-words" />
+    <None Include="tessdata\2.0\eng\eng.word-dawg" />
+    <None Include="tessdata\2.0\ptc\ptc.DangAmbigs" />
+    <None Include="tessdata\2.0\ptc\ptc.freq-dawg" />
+    <None Include="tessdata\2.0\ptc\ptc.inttemp" />
+    <None Include="tessdata\2.0\ptc\ptc.normproto" />
+    <None Include="tessdata\2.0\ptc\ptc.pffmtable" />
+    <None Include="tessdata\2.0\ptc\ptc.unicharset" />
+    <None Include="tessdata\2.0\ptc\ptc.user-words" />
+    <None Include="tessdata\2.0\ptc\ptc.word-dawg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="admin\Main.Master.cs">
@@ -1465,6 +1482,13 @@
     </Compile>
     <Compile Include="admin\task\wfVirPsnInfoList.aspx.designer.cs">
       <DependentUpon>wfVirPsnInfoList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\vcode\wfVCodeList.aspx.cs">
+      <DependentUpon>wfVCodeList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\vcode\wfVCodeList.aspx.designer.cs">
+      <DependentUpon>wfVCodeList.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\wfDetailList.aspx.cs">
       <DependentUpon>wfDetailList.aspx</DependentUpon>

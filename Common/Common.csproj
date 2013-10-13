@@ -119,6 +119,9 @@
     <Reference Include="System.Xml">
       <Name>System.XML</Name>
     </Reference>
+    <Reference Include="tessnet2_32">
+      <HintPath>dll\tessnet2_32.dll</HintPath>
+    </Reference>
     <Reference Include="Winista.HtmlParser">
       <HintPath>dll\Winista.HtmlParser.dll</HintPath>
     </Reference>
@@ -168,6 +171,7 @@
     <Compile Include="RSSFeeds.cs" />
     <Compile Include="StringPlus.cs" />
     <Compile Include="TimeParser.cs" />
+    <Compile Include="UnCodebase.cs" />
     <Compile Include="UrlOper.cs" />
     <Compile Include="VCode.cs" />
   </ItemGroup>

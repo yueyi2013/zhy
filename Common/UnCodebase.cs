@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
+using System.Collections;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.Runtime.InteropServices;
+using System.Drawing.Drawing2D;
+using tessnet2;
 
-namespace GetCodes
+namespace ZHY.Common
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-    using System.Collections;
-    using System.Drawing;
-    using System.Drawing.Imaging;
-    using System.Runtime.InteropServices;
-    using System.Drawing.Drawing2D;
-
+    
     public class UnCodebase
     {
         public Bitmap bmpobj;
@@ -304,6 +301,74 @@ namespace GetCodes
                  GraphicsUnit.Pixel);
 
             return tmpBmp;
+        }
+
+        /// <summary>
+        /// 解析验证码
+        /// </summary>
+        /// <param name="map">需要识别的验证码</param>
+        /// <param name="parType">识别类型-Exp:0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</param>
+        /// <param name="tesPath">词库路径</param>
+        /// <param name="lang">词库前缀：eng</param>
+        /// <param name="isNumericMode">是否是双精度模式</param>
+        /// <returns>返回结果</returns>
+        public string ParseValidateCode(Bitmap map,string parType,
+            string tesPath,string lang,bool isNumericMode)
+        {
+            //声明一个OCR类
+            Tesseract ocr = new Tesseract();   
+            //接受解析结果
+            StringBuilder sbRes = new StringBuilder();
+            List<Word> resList = new List<Word>();
+            try
+            {
+                //ocr.SetVariable("tessedit_char_whitelist", "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");//设置识别变量，当前只能识别数字及英文字符
+                ocr.SetVariable("tessedit_char_whitelist", parType);//设置识别变量，当前只能识别数字及英文字符
+                //应用当前语言包。注，Tessnet2是支持多国语的。语言包下载链接：http://code.google.com/p/tesseract-ocr/downloads/list
+                ocr.Init(tesPath, lang, isNumericMode);
+                //接受返回结果
+                resList = ocr.DoOCR(map, Rectangle.Empty);
+                foreach (Word word in resList)
+                {
+                    sbRes.Append(word.Text);
+                }
+
+            }
+            catch
+            {
+                //do nothing
+            }
+            //执行第二次尝试
+            try
+            {
+                if (string.IsNullOrEmpty(sbRes.ToString()) || sbRes.ToString() == "~")
+                {
+                    #region 如图片太小，无法识别，则先放大
+
+                    int w = map.Width >= 100 ? map.Width : 100;
+                    int h = map.Height >= 30 ? map.Height : 30;
+
+                    Bitmap resizedBmp = new Bitmap(w, h);
+                    Graphics g = Graphics.FromImage(resizedBmp);
+                    g.DrawImage(map, new Rectangle(0, 0, w, h), new Rectangle(0, 0, map.Width, map.Height), GraphicsUnit.Pixel);
+                    map = resizedBmp;
+
+                    #endregion
+
+                    resList.Clear();
+                    sbRes.Clear();
+                    resList = ocr.DoOCR(map, Rectangle.Empty);//执行识别操作                    
+
+                    foreach (tessnet2.Word word in resList)//遍历识别结果。
+                    {
+                        sbRes.Append(word.Text);
+                    }
+                }
+                return sbRes.ToString();
+            }catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
     }

@@ -25,13 +25,13 @@ namespace AutoTask.Twodollarclick
 		/// </summary>
 		public virtual void  Execute(IJobExecutionContext context)
 		{
-            string method = "--ADmimsyViewAdsJob#Execute";
+            string method = "TwodollarclickViewAdsJob#Execute";
             ZHY.BLL.TwoDollarcCick bll = new ZHY.BLL.TwoDollarcCick();
             try
             {
-                if (bll.CheckJobIsEnabled(JobConstants.AD_MIMSY_VIEW_ADS_TWO_JOB, JobConstants.AUTO_TASK_JOB_GROUP))
+                if (bll.CheckJobIsEnabled(JobConstants.TWO_DOLLAR_CLICK_VIEW_ADS_JOB, JobConstants.AUTO_TASK_JOB_GROUP))
                 {
-                    bll.TwoDollarcCickViewAdsFromJob(JobConstants.AD_MIMSY_VIEW_ADS_TWO_JOB, JobConstants.AUTO_TASK_JOB_GROUP);
+                    bll.TwoDollarcCickViewAdsFromJob(JobConstants.TWO_DOLLAR_CLICK_VIEW_ADS_JOB, JobConstants.AUTO_TASK_JOB_GROUP);
                 }
                 else
                 {

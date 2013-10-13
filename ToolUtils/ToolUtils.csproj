@@ -80,7 +80,6 @@
     <Compile Include="TestVCode.designer.cs">
       <DependentUpon>TestVCode.cs</DependentUpon>
     </Compile>
-    <Compile Include="UnCodebase.cs" />
     <Compile Include="ValidateCode.cs" />
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

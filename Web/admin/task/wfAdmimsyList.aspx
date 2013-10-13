@@ -177,6 +177,14 @@
                     </tr>
                     <tr>
                         <td height="25" width="30%" align="right">
+                            邮箱地址：
+                        </td>
+                        <td height="25" width="*" align="left">
+                            <asp:TextBox id="txtAdmyMail" runat="server" Width="200px"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="25" width="30%" align="right">
                             代理地址：
                         </td>
                         <td height="25" width="*" align="left">
@@ -189,6 +197,25 @@
                         </td>
                         <td height="25" width="*" align="left">
                             <asp:TextBox id="txtAdmyCountry" runat="server" Width="200px"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="25" width="30%" align="right">
+                            推荐人：
+                        </td>
+                        <td height="25" width="*" align="left">
+                            <asp:TextBox id="txtAdmyReferrals" runat="server" Width="200px"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="25" width="30%" align="right">
+                            是推荐人：
+                        </td>
+                        <td height="25" width="*" align="left">
+                            <asp:RadioButtonList ID="rblAdmyIsReferrals" runat="server" RepeatDirection="Horizontal">
+                                <asp:ListItem Text="是" Value="Y" Selected="True"></asp:ListItem>
+                                <asp:ListItem Text="否" Value="N"></asp:ListItem>
+                            </asp:RadioButtonList>
                         </td>
                     </tr>
                     <tr>

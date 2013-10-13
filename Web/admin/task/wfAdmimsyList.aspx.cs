@@ -321,7 +321,13 @@ namespace Web.admin.task
             model.AdmyCode = this.txtAdmyCode.Text;
             model.AdmyUserName = this.txtAdmyUserName.Text;
             model.AdmyPassword = this.txtAdmyPassword.Text;
+            model.AdmyEmail = this.txtAdmyMail.Text;
             model.ProxyAddress = this.txtProxyAddress.Text;
+            model.AdmyCountry = this.txtAdmyCountry.Text;
+            model.AdmyReferrals = this.txtAdmyReferrals.Text;
+            model.AdmyIsReferrals = this.rblAdmyIsReferrals.SelectedItem.Value;
+            model.IsEnableProxy = this.rblIsEnableProxy.SelectedItem.Value;
+            model.AdmyStatus = this.rblAdmyStatus.SelectedItem.Value;
             ZHY.Model.User user = getLoginUser();
             model.CreateBy = user.UserName;
             model.UpdateBy = user.UserName;
@@ -342,7 +348,13 @@ namespace Web.admin.task
                 model.AdmyCode = this.txtAdmyCode.Text;
                 model.AdmyUserName = this.txtAdmyUserName.Text;
                 model.AdmyPassword = this.txtAdmyPassword.Text;
+                model.AdmyEmail = this.txtAdmyMail.Text;
                 model.ProxyAddress = this.txtProxyAddress.Text;
+                model.AdmyCountry = this.txtAdmyCountry.Text;
+                model.AdmyReferrals = this.txtAdmyReferrals.Text;
+                model.AdmyIsReferrals = this.rblAdmyIsReferrals.SelectedItem.Value;
+                model.IsEnableProxy = this.rblIsEnableProxy.SelectedItem.Value;
+                model.AdmyStatus = this.rblAdmyStatus.SelectedItem.Value;
                 ZHY.Model.User user = getLoginUser();
                 model.UpdateBy = user.UserName;
                 model.UpdateDT = DateTime.Now;
@@ -360,6 +372,9 @@ namespace Web.admin.task
             this.txtAdmyUserName.Text = "";
             this.txtAdmyPassword.Text = "";
             this.txtProxyAddress.Text = "";
+            this.txtAdmyCountry.Text = "";
+            this.txtAdmyMail.Text = "";
+            this.txtAdmyReferrals.Text = "";
         }
 
         /// <summary>
@@ -374,6 +389,12 @@ namespace Web.admin.task
             this.txtAdmyUserName.Text = model.AdmyUserName;
             this.txtAdmyPassword.Text = model.AdmyPassword;
             this.txtProxyAddress.Text = model.ProxyAddress;
+            this.txtAdmyMail.Text = model.AdmyEmail;
+            this.txtAdmyReferrals.Text = model.AdmyReferrals;
+            this.txtAdmyCountry.Text = model.AdmyCountry;
+            this.rblAdmyIsReferrals.SelectedItem.Value = model.AdmyIsReferrals;
+            this.rblIsEnableProxy.SelectedItem.Value = model.IsEnableProxy;
+            this.rblAdmyStatus.SelectedItem.Value = model.AdmyStatus;
         }
         #endregion
     }

@@ -129,10 +129,10 @@ namespace ZHY.BLL
         /// <returns></returns>
         public HttpWebRequest GetHttpWebRequest(string url, string proxy, ref CookieContainer adCookie)
         {
-            System.GC.Collect();
+            //System.GC.Collect();
             HttpWebRequest requestRs = (HttpWebRequest)WebRequest.Create(url);
             requestRs.AllowWriteStreamBuffering = true;
-            WebHeaderCollection whc = requestRs.Headers;
+            //WebHeaderCollection whc = requestRs.Headers;
             if (!string.IsNullOrEmpty(proxy))
             {
                 WebProxy wbPrx = new WebProxy(proxy);
@@ -145,6 +145,7 @@ namespace ZHY.BLL
             // whc.Add("Accept-Charset:GBK,utf-8;q=0.7,*;q=0.3");
             //whc.Add("Accept-Encoding:gzip,deflate,sdch");
             // whc.Add("Accept-Language:en;q=0.8");
+            requestRs.ServicePoint.ConnectionLimit = int.MaxValue;
             requestRs.UserAgent = "Mozilla/5.0 (Windows NT 5.1) AppleWebKit/537.31 (KHTML, like Gecko) Chrome/26.0.1410.64 Safari/537.31";
             requestRs.KeepAlive = false;
             requestRs.ProtocolVersion = HttpVersion.Version11;

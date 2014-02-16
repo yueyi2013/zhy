@@ -320,7 +320,10 @@ namespace Web.admin.task
             model.TDCCode = this.txtTDCCode.Text;
             model.TDCUsername = this.txtTDCUsername.Text;
             model.TDCPassword = this.txtTDCPassword.Text;
+            model.TDCEmail = this.txtTDCEmail.Text;
+            model.TDCIsReferrals = this.rblTDCIsReferrals.SelectedItem.Value;
             model.ProxyAddress = this.txtProxyAddress.Text;
+            model.TDCCountry = this.txtTDCCountry.Text;
             ZHY.Model.User user = getLoginUser();
             model.CreateBy = user.UserName;
             model.UpdateBy = user.UserName;
@@ -341,7 +344,10 @@ namespace Web.admin.task
                 model.TDCCode = this.txtTDCCode.Text;
                 model.TDCUsername = this.txtTDCUsername.Text;
                 model.TDCPassword = this.txtTDCPassword.Text;
+                model.TDCEmail = this.txtTDCEmail.Text;
+                model.TDCIsReferrals = this.rblTDCIsReferrals.SelectedItem.Value;
                 model.ProxyAddress = this.txtProxyAddress.Text;
+                model.TDCCountry = this.txtTDCCountry.Text;
                 ZHY.Model.User user = getLoginUser();
                 model.UpdateBy = user.UserName;
                 model.UpdateDT = DateTime.Now;
@@ -373,6 +379,12 @@ namespace Web.admin.task
             this.txtTDCUsername.Text = model.TDCUsername;
             this.txtTDCPassword.Text = model.TDCPassword;
             this.txtProxyAddress.Text = model.ProxyAddress;
+            this.txtTDCCountry.Text = model.TDCCountry;
+            this.txtTDCEmail.Text = model.TDCEmail;
+            this.rblTDCIsReferrals.SelectedItem.Value = model.TDCIsReferrals;
+            this.rblIsEnableProxy.SelectedItem.Value = model.IsEnableProxy;
+            this.rblStatus.SelectedItem.Value = model.Status;
+
         }
         #endregion
     }

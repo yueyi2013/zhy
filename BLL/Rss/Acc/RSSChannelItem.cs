@@ -21,12 +21,16 @@ namespace ZHY.ACC.BLL
         public void MoveNewsToAccessDB()
         {
             int days = Constants.DEFAULT_PURGE_NEWS_DAYS;
+            bool isMovedDB = false;
             try
             {
                 ZHY.BLL.SystemConfig bll = new ZHY.BLL.SystemConfig();
                 ZHY.Model.SystemConfig model = bll.GetModel(Constants.SYSTEM_CONFIG_ATT_NAME_NEWS_PURGE_DAYS, Constants.SYSTEM_CONFIG_ATT_GROUP_NEWS);
                 if (model != null)
+                {
                     days = int.Parse(model.SCAttrValue);
+                    isMovedDB = string.IsNullOrEmpty(model.SCAttrValue2)||model.SCAttrValue2.Equals("N")?false:true;
+                }
                 if (days >= 0)
                 {
                     days = Constants.DEFAULT_PURGE_NEWS_DAYS;
@@ -38,18 +42,24 @@ namespace ZHY.ACC.BLL
                 days = Constants.DEFAULT_PURGE_NEWS_DAYS;
             }
             ZHY.BLL.RSSChannelItem bllItem = new ZHY.BLL.RSSChannelItem();
-            IList<ZHY.Model.RSSChannelItem> list = bllItem.loadExpireNews(days);
-            string errorMsg = "";
-            foreach(ZHY.Model.RSSChannelItem model in list)
+            if (isMovedDB)
             {
-                if (!dal.Add(model, ref errorMsg))
+                IList<ZHY.Model.RSSChannelItem> list = bllItem.loadExpireNews(days);
+                string errorMsg = "";
+                foreach (ZHY.Model.RSSChannelItem model in list)
                 {
-                    AlertEmail(Constants.SYSTEM_CONFIG_ATT_NAME_MAIL_PURGE_JOB_SUBJECT, "执行 MoveNewsToAccessDB() 方法时发生错误：" + errorMsg);
-                    break;
+                    if (!dal.Add(model, ref errorMsg))
+                    {
+                        AlertEmail(Constants.SYSTEM_CONFIG_ATT_NAME_MAIL_PURGE_JOB_SUBJECT, "执行 MoveNewsToAccessDB() 方法时发生错误：" + errorMsg);
+                        break;
+                    }
                 }
+                if (list.Count > 0)
+                    bllItem.DeleteExpireNews(days);
             }
-            if (list.Count>0)
+            else {
                 bllItem.DeleteExpireNews(days);
+            }
         }
 	}
 }

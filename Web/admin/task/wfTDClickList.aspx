@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<fieldset style="width: 950px">
+<fieldset style="width: 1200px">
     <legend>TwoDollarcCick</legend>
     <asp:UpdatePanel ID="MyUpdatePanelHead" runat="server" UpdateMode="Conditional">
         <Triggers>
@@ -177,6 +177,15 @@
                     </tr>
                     <tr>
                         <td height="25" width="30%" align="right">
+                            邮箱：
+                        </td>
+                        <td height="25" width="*" align="left">
+                            <asp:TextBox id="txtTDCEmail" runat="server" Width="200px"></asp:TextBox>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td height="25" width="30%" align="right">
                             代理地址：
                         </td>
                         <td height="25" width="*" align="left">
@@ -199,6 +208,17 @@
                             <asp:RadioButtonList ID="rblIsEnableProxy" runat="server" RepeatDirection="Horizontal">
                                 <asp:ListItem Text="启用" Value="Y" Selected="True"></asp:ListItem>
                                 <asp:ListItem Text="不启用" Value="N"></asp:ListItem>
+                            </asp:RadioButtonList>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="25" width="30%" align="right">
+                            是推荐人：
+                        </td>
+                        <td height="25" width="*" align="left">
+                            <asp:RadioButtonList ID="rblTDCIsReferrals" runat="server" RepeatDirection="Horizontal">
+                                <asp:ListItem Text="是" Value="Y" ></asp:ListItem>
+                                <asp:ListItem Text="否" Value="N" Selected="True"></asp:ListItem>
                             </asp:RadioButtonList>
                         </td>
                     </tr>

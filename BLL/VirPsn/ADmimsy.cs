@@ -153,7 +153,7 @@ namespace ZHY.BLL
             model.AdmyCountry = proxyAddr.PACountry;
             model.AdmyGender = psnInfo.VPSex;
             model.AdmyEmail = psnInfo.VPMail;
-            
+            model.AdmyIsReferrals = "N";
             return model;
         }
 
@@ -198,7 +198,7 @@ namespace ZHY.BLL
             string method = "ADmimsy#SignUpAdmimsyFromJob";
             try
             {
-                string refs = "yueyi2013";
+                string refs = "williamzz";
                 ZHY.Model.ADmimsy refModel = GetReferralsModel();
                 if (refModel != null && !string.IsNullOrEmpty(refModel.AdmyUserName))
                 {

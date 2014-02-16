@@ -301,6 +301,15 @@ namespace Web.admin.task {
         protected global::System.Web.UI.WebControls.TextBox txtTDCPassword;
         
         /// <summary>
+        /// txtTDCEmail 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTDCEmail;
+        
+        /// <summary>
         /// txtProxyAddress 控件。
         /// </summary>
         /// <remarks>
@@ -326,6 +335,15 @@ namespace Web.admin.task {
         /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
         /// </remarks>
         protected global::System.Web.UI.WebControls.RadioButtonList rblIsEnableProxy;
+        
+        /// <summary>
+        /// rblTDCIsReferrals 控件。
+        /// </summary>
+        /// <remarks>
+        /// 自动生成的字段。
+        /// 若要进行修改，请将字段声明从设计器文件移到代码隐藏文件。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rblTDCIsReferrals;
         
         /// <summary>
         /// rblStatus 控件。

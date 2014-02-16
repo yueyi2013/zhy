@@ -114,7 +114,7 @@ namespace Web.admin.task
         {
             ZHY.BLL.ADmimsy bll = new ZHY.BLL.ADmimsy();
             ZHY.Model.ADmimsy model = null;
-            string referralName = "yueyi2013";
+            string referralName = "williamzz";
             try
             {
                 StringBuilder sbLogin = new StringBuilder();

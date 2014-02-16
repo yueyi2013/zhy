@@ -148,8 +148,8 @@ namespace AutoTask
         {
             try
             {
-                IJobDetail cronJob = JobBuilder.Create<SampleJob>()
-                .WithIdentity(jobId + "Job", jobGroup + "JobGroup")
+                IJobDetail cronJob = JobBuilder.Create(className)
+                    .WithIdentity(jobId + "Job", jobGroup + "JobGroup")
                 .Build();
 
                 ICronTrigger cronTrigger = (ICronTrigger)TriggerBuilder.Create()

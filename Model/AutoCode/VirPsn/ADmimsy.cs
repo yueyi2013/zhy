@@ -22,7 +22,7 @@ namespace ZHY.Model
 		private string _proxyaddress;
 		private string _isenableproxy="Y";
 		private int? _admyviews=0;
-		private string _admyisreferrals="Y";
+		private string _admyisreferrals="N";
 		private string _admyreferrals;
 		private string _admystatus="A";
 		private DateTime? _createat= DateTime.Now;

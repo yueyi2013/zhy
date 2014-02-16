@@ -507,6 +507,7 @@ namespace ZHY.BLL
             model.TDCFullName = psnInfo.VPFullName;
             model.TDCEmail = psnInfo.VPMail;
             model.TDCReferrals = reff;
+            model.TDCIsReferrals = "N";
             return model;
         }
         #endregion

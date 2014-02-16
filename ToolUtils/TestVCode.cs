@@ -13,7 +13,6 @@ using System.Net.Security;
 using System.Net.Cache;
 using System.Threading;
 using ZHY.Common;
-using GetCodes;
 
 namespace ToolUtils
 {

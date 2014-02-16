@@ -22,7 +22,7 @@ namespace ZHY.Model
 		private string _isenableproxy="Y";
 		private int? _tdcviews=0;
 		private string _tdcreferrals;
-		private string _tdcisreferrals="Y";
+		private string _tdcisreferrals="N";
 		private string _status="A";
 		private DateTime? _createat= DateTime.Now;
 		private string _createby="syihy.com";

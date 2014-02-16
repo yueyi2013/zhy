@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<fieldset style="width: 950px">
+<fieldset style="width: 1200px">
     <legend>ADmimsy</legend>
     <asp:UpdatePanel ID="MyUpdatePanelHead" runat="server" UpdateMode="Conditional">
         <Triggers>
@@ -213,8 +213,8 @@
                         </td>
                         <td height="25" width="*" align="left">
                             <asp:RadioButtonList ID="rblAdmyIsReferrals" runat="server" RepeatDirection="Horizontal">
-                                <asp:ListItem Text="是" Value="Y" Selected="True"></asp:ListItem>
-                                <asp:ListItem Text="否" Value="N"></asp:ListItem>
+                                <asp:ListItem Text="是" Value="Y" ></asp:ListItem>
+                                <asp:ListItem Text="否" Value="N" Selected="True"></asp:ListItem>
                             </asp:RadioButtonList>
                         </td>
                     </tr>
